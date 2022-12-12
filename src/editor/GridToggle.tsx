@@ -1,11 +1,14 @@
 import { useSearchParams } from "react-router-dom";
+import { useShowGrid } from '../utils/ParameterUtils';
 
-const GridToggle = ({}) => {
+const PARAMETER_NAME = 'showGrid';
+
+const GridToggle = () => {
     let [searchParams, setSearchParams] = useSearchParams();
-    const showGrid: boolean = Boolean(searchParams?.get('showGrid') === 'true');
+    const showGrid: boolean = Boolean(searchParams?.get(PARAMETER_NAME) === 'true');
 
     const handleChange = () => {
-        searchParams.set('showGrid', String(!showGrid));
+        searchParams.set(PARAMETER_NAME, String(!showGrid));
         setSearchParams(searchParams);
     }
 
