@@ -1,0 +1,7 @@
+@use '../utils/units';
+
+.stop-bullet {
+    stroke-width: units.$basic-unit * .5;
+    fill: white;
+    stroke: black;
+}
