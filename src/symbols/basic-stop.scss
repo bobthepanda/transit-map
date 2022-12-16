@@ -21,11 +21,6 @@ $line-height: calc(1.2em * 2 / 3);
 .text-up, .text-down {
     text-anchor: middle;
 }
-
-.text-upper-left, .text-upper-right, .text-up {
-    alignment-baseline: text-after-edge;
-}
-
 .text-left {
     transform: translateX(calc(-1 * $text-spacing));
 }
