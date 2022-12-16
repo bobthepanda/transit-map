@@ -1,28 +1,57 @@
 import { Coordinates } from '../interfaces/Dimensions';
 import './basic-stop.scss';
 
-const ID = 'basic-stop';
+const STOP_ID = 'basic-stop';
 
 const UNIT_SIZE = 12;
 
-const TOTAL_SIZE = 3 * UNIT_SIZE;
-
-const HALF_SIZE = TOTAL_SIZE * .5;
-
 export const BasicStopDefinition = (): JSX.Element => {
-    // return (
-    //     <symbol id={ID} width={TOTAL_SIZE} height={TOTAL_SIZE} refX="center" refY="center" className="stop-bullet">
-    //         <circle cx={HALF_SIZE} cy={HALF_SIZE} r={UNIT_SIZE} />
-    //     </symbol>
-    // );
-
     return (
         <defs>
-            <circle id={ID} cx="0" cy="0"  r={UNIT_SIZE} className="stop-bullet" />
+            <circle id={STOP_ID} cx="0" cy="0"  r={UNIT_SIZE} className="stop-bullet" />
         </defs>
     );
 }
 
-export const BasicStop = ({x, y}: Coordinates): JSX.Element => {
-    return (<use href={`#${ID}`} x={x} y={y} />);
+export enum TextAlignment {
+    UP = "text-up",
+    DOWN = "text-down",
+    LEFT = "text-left",
+    RIGHT = "text-right",
+    UPPER_RIGHT = "text-upper-right",
+    UPPER_LEFT = "text-upper-left",
+    LOWER_RIGHT = "text-lower-right",
+    LOWER_LEFT = "text-lower-left",
+}
+
+
+interface TextDefinition {
+    text?: string,
+    subtitleText?: string,
+    textAlignment: TextAlignment,
+}
+
+
+interface StopDefinition extends TextDefinition {
+    location: Coordinates,
+    stationCode?: string,
+}
+
+const StopText = ({text, subtitleText = '', textAlignment}: TextDefinition) => {
+    return (
+        <text className={textAlignment.toString()}>
+            <tspan>{text}</tspan>
+            {subtitleText.length != 0 && <tspan className="text-subtitle" x="0" dy="1.2em">subTitleText</tspan>}
+        </text>
+    );
+}
+
+export const Stop = ({ location, stationCode = '', text, subtitleText = '', textAlignment} : StopDefinition) => {
+    const { x, y } : Coordinates = location;
+    return (
+        <g className="stop-group" transform={`translate(${x} ${y})`}>
+            <circle cx="0" cy="0"  r={UNIT_SIZE} className="stop-bullet"/>
+            <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />
+        </g>
+    )
 }

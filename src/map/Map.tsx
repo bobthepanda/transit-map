@@ -1,6 +1,5 @@
 import GridLines from './GridLines';
 import { Dimensions } from '../interfaces/Dimensions';
-import { BasicStopDefinition } from '../symbols/BasicStop';
 import { Route, Routes } from 'react-router';
 import Tokyo from '../tokyo/Tokyo';
 
@@ -18,7 +17,6 @@ const Map = ({ width = WIDTH, height = HEIGHT} : Dimensions) => {
                 className="map"
                 preserveAspectRatio="xMidYMin meet"
             >
-                <BasicStopDefinition />
                 <GridLines width={width} height={height} />
                 <Routes>
                     <Route path="/tokyo" element={<Tokyo />} />
