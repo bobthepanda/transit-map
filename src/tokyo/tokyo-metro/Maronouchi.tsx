@@ -1,13 +1,8 @@
 import Papa from 'papaparse';
-import { Stop } from '../symbols/BasicStop';
-import { MAJOR_LINE } from '../map/GridLines';
+import { Stop } from '../../symbols/BasicStop';
+import { MAJOR_LINE } from '../../map/GridLines';
 import { useState, useEffect } from 'react';
-
-interface CSVData {
-    stationCode: string,
-    eng: string,
-    jp: string,
-}
+import { CSVData } from '../../interfaces/Stops';
 
 const Maronouchi = () => {
     const [stops, setStops] = useState(new Map<string, CSVData>());

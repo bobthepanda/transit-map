@@ -1,9 +1,10 @@
 import { Coordinates } from '../interfaces/Dimensions';
+import { MINOR_LINE } from '../map/GridLines';
 import './basic-stop.scss';
 
 const STOP_ID = 'basic-stop';
 
-const UNIT_SIZE = 12;
+export const UNIT_SIZE = MINOR_LINE;
 
 export const BasicStopDefinition = (): JSX.Element => {
     return (

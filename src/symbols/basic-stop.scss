@@ -58,3 +58,9 @@ $line-height: calc(1.2em * 2 / 3);
     text-anchor: middle;
     font-weight: bold;
 }
+
+line {
+    stroke-width: calc(units.$basic-unit * 2 / 3);
+    stroke: black;
+    stroke-linecap: round;
+}

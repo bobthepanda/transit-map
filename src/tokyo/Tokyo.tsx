@@ -1,11 +1,12 @@
-import Maronouchi from './Maronouchi';
+import Maronouchi from './tokyo-metro/Maronouchi';
+import Mita from './tokyo-metro/Mita';
 import './Tokyo.scss'
 
 const Tokyo = (): JSX.Element => {
 
     return (
         <g id="tokyo">
-            <Maronouchi />
+            <Mita />
         </g>
     );
 }

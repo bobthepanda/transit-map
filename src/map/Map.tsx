@@ -3,8 +3,8 @@ import { Dimensions } from '../interfaces/Dimensions';
 import { Route, Routes } from 'react-router';
 import Tokyo from '../tokyo/Tokyo';
 
-export const WIDTH = 2384;
-export const HEIGHT = 3370;
+export const WIDTH = 2384 * 4;
+export const HEIGHT = 3370 * 4;
 
 const Map = ({ width = WIDTH, height = HEIGHT} : Dimensions) => {
     return (

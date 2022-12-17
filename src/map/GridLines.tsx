@@ -2,7 +2,7 @@ import { useShowGrid } from "../utils/ParameterUtils";
 import './GridLines.scss';
 import { Dimensions } from "../interfaces/Dimensions";
 
-const MINOR_LINE = 12;
+export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * 12;
 
 const GridLines = ({ width = 0, height = 0 } : Dimensions) : JSX.Element => {
