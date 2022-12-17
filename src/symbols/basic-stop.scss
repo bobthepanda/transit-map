@@ -5,7 +5,7 @@ $sin-45: 0.707106781;
 $line-height: calc(1.2em * 2 / 3);
 
 .stop-bullet {
-    stroke-width: units.$basic-unit * .5;
+    stroke-width: units.$basic-unit * .25;
     fill: white;
     stroke: black;
 }
@@ -51,4 +51,10 @@ $line-height: calc(1.2em * 2 / 3);
 
 .text-upper-left {
     transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
+}
+
+.station-code {
+    font-size: calc(2em/3);
+    text-anchor: middle;
+    font-weight: bold;
 }
