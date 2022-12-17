@@ -24,14 +24,14 @@ const Maronouchi = () => {
                 setStops(newStops);
             }
         })
-    });
+    }, []);
 
     let y = 0;
     const stopElements: JSX.Element[] = Array.from(stops, ([key, value]) => {
         y += MAJOR_LINE;
         const { stationCode, eng: text, jp: subtitleText } = value;
         return (
-            <Stop location={{x: MAJOR_LINE, y }} stationCode={stationCode} text={text} subtitleText={subtitleText}/>
+            <Stop location={{x: MAJOR_LINE, y }} stationCode={stationCode} text={text} subtitleText={subtitleText} key={key}/>
         );
     })
 
