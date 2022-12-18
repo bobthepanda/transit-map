@@ -2,8 +2,12 @@ import { Coordinates } from "../interfaces/Dimensions"
 import { CSVData } from "../interfaces/Stops"
 import { Stop, TextAlignment } from "./BasicStop";
 
-export interface StopData extends CSVData {
-    textAlignment?: TextAlignment
+export interface StopMetadata {
+    textAlignment?: TextAlignment,
+    hideText?: boolean,
+}
+
+export interface StopData extends CSVData, StopMetadata {
 }
 
 interface LineSegmentData {
@@ -31,14 +35,17 @@ export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0,
     const { x, y } = origin;
     const numberOfSteps = stops.length - 1;
 
-    const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, textAlignment}, index) => {
+    const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, textAlignment, hideText}, index) => {
         return (
             <Stop 
+                key={index}
                 location={{x: x + index * xstep, y: y + index * ystep}} 
                 text={eng} 
                 subtitleText={jp} 
                 stationCode={stationCode} 
-                textAlignment={textAlignment} />)
+                textAlignment={textAlignment} 
+                hideText={hideText}
+            />)
     });
 
     return (

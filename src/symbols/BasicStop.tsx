@@ -1,5 +1,6 @@
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
+import { useShowGrid } from '../utils/ParameterUtils';
 import './basic-stop.scss';
 
 const STOP_ID = 'basic-stop';
@@ -36,6 +37,7 @@ interface TextDefinition {
 interface StopDefinition extends TextDefinition {
     location: Coordinates,
     stationCode?: string,
+    hideText?: boolean,
 }
 
 const StopText = ({text, subtitleText = '', textAlignment = TextAlignment.RIGHT}: TextDefinition) => {
@@ -58,13 +60,15 @@ const StationCode = ({stationCode} : {stationCode: string}) => {
 
 }
 
-export const Stop = ({ location, stationCode = '', text, subtitleText = '', textAlignment = TextAlignment.RIGHT} : StopDefinition) => {
+export const Stop = ({ location, stationCode = '', text, subtitleText = '', textAlignment = TextAlignment.RIGHT, hideText} : StopDefinition) => {
     const { x, y } : Coordinates = location;
+    const showGrid = useShowGrid();
     return (
         <g className="stop-group" transform={`translate(${x} ${y})`}>
+            { showGrid && <title>{JSON.stringify(location)}</title>}
             <circle cx="0" cy="0"  r={UNIT_SIZE} className="stop-bullet"/>
             <StationCode stationCode={stationCode} />
-            <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />
+            {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
         </g>
     )
 }
