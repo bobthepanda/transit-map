@@ -10,15 +10,26 @@ interface LineSegmentData {
     className?: string,
     stops: StopData[],
     origin: Coordinates,
+}
+
+interface LineSegmentDataWithStepChange extends LineSegmentData {
+    xstep?: number,
+    ystep?: number,
+}
+
+interface LineSegmentDataWithTotalChange extends LineSegmentData {
     dx?: number,
     dy?: number,
 }
 
-const LineSegment = ({ className, stops, origin, dx = 0, dy = 0} : LineSegmentData): JSX.Element => {
+interface LineSegmentDataWithEndpoint extends LineSegmentData {
+    endpoint: Coordinates,
+}
+
+export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0, ystep = 0} : LineSegmentDataWithStepChange): JSX.Element => {
     if (stops.length === 0) return <></>;
     const { x, y } = origin;
-    const xstep = dx / (stops.length - 1);
-    const ystep = dy / (stops.length - 1);
+    const numberOfSteps = stops.length - 1;
 
     const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, textAlignment}, index) => {
         return (
@@ -32,10 +43,38 @@ const LineSegment = ({ className, stops, origin, dx = 0, dy = 0} : LineSegmentDa
 
     return (
         <g className={className}>  
-            <line x1={x} y1={y} x2={x + dx} y2={y + dy} />
+            <line x1={x} y1={y} x2={x + xstep * numberOfSteps} y2={y + ystep * numberOfSteps} />
             { stopElements }
         </g>
     );
 }
 
-export default LineSegment;
+export const LineSegmentWithTotalChange = ({ className, stops, origin, dx = 0, dy = 0} : LineSegmentDataWithTotalChange): JSX.Element => {
+    const xstep = dx / (stops.length - 1);
+    const ystep = dy / (stops.length - 1);
+
+    return (
+        <LineSegmentWithStepChange 
+            className={className}
+            stops={stops}
+            origin={origin}
+            xstep={xstep}
+            ystep={ystep}
+        />
+    )
+}
+
+export const LineSegmentWithEndpoint =  ({ className, stops, origin, endpoint} : LineSegmentDataWithEndpoint): JSX.Element => {
+    const { x: originX, y: originY } = origin;
+    const { x: endX, y: endY } = endpoint;
+
+    return (
+        <LineSegmentWithTotalChange
+            className={className}
+            stops={stops}
+            origin={origin}
+            dx={endX - originX}
+            dy={endY - originY}
+        />
+    )
+}

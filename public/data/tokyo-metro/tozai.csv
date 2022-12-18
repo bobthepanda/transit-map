@@ -1,0 +1,24 @@
+stationCode,eng,jp,Location,Location
+T 01,Nakano,中野,Nakano,Tokyo
+T 02,Ochiai,落合,Shinjuku,Tokyo
+T 03,Takadanobaba,高田馬場,Shinjuku,Tokyo
+T 04,Waseda,早稲田,Shinjuku,Tokyo
+T 05,Kagurazaka,神楽坂,Shinjuku,Tokyo
+T 06,Iidabashi,飯田橋,Chiyoda,Tokyo
+T 07,Kudanshita,九段下,Chiyoda,Tokyo
+T 08,Takebashi,竹橋,Chiyoda,Tokyo
+T 09,Ōtemachi,大手町,Chiyoda,Tokyo
+T 10,Nihombashi,日本橋,Chūō,Tokyo
+T 11,Kayabachō,茅場町,Chūō,Tokyo
+T 12,Monzen-Nakachō,門前仲町,Kōtō,Tokyo
+T 13,Kiba,木場,Kōtō,Tokyo
+T 14,Tōyōchō,東陽町,Kōtō,Tokyo
+T 15,Minami-Sunamachi,南砂町,Kōtō,Tokyo
+T 16,Nishi-Kasai,西葛西,Edogawa,Tokyo
+T 17,Kasai,葛西,Edogawa,Tokyo
+T 18,Urayasu,浦安,Urayasu,Chiba
+T 19,Minami-Gyōtoku,南行徳,Ichikawa,Chiba
+T 20,Gyōtoku,行徳,Ichikawa,Chiba
+T 21,Myōden,妙典,Ichikawa,Chiba
+T 22,Baraki-Nakayama,原木中山,Funabashi,Chiba
+T 23,Nishi-Funabashi,西船橋,Funabashi,Chiba

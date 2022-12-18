@@ -1,5 +1,5 @@
-import Maronouchi from './tokyo-metro/Maronouchi';
-import Mita from './tokyo-metro/Mita';
+import Maronouchi from './tokyo-metro/Marunouchi';
+import Mita from './toei/Mita';
 import './Tokyo.scss'
 
 const Tokyo = (): JSX.Element => {

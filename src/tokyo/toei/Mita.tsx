@@ -1,15 +1,14 @@
 import Papa from 'papaparse';
-import { Stop } from '../../symbols/BasicStop';
 import { MAJOR_LINE } from '../../map/GridLines';
 import { useState, useEffect } from 'react';
 import { CSVData } from '../../interfaces/Stops';
-import { StopData } from '../../symbols/LineSegment';
-import LineSegment from '../../symbols/LineSegment';
+import { LineSegmentWithStepChange, LineSegmentWithTotalChange, StopData } from '../../symbols/LineSegment';
+import { OTEMACHI } from '../../utils/CommonCoordinates';
 
-const Maronouchi = () => {
+const Mita = () => {
     const [stops, setStops] = useState(new Map<string, CSVData>());
     useEffect(() => {
-        Papa.parse('/data/tokyo-metro/mita.csv', {
+        Papa.parse('/data/toei/mita.csv', {
             header: true,
             download: true,
             complete: (results) => {
@@ -31,13 +30,13 @@ const Maronouchi = () => {
 
     return (
         <g id="mita">
-            <LineSegment
+            <LineSegmentWithStepChange
                 stops={buildStops({ ids: ['I 09', 'I O8', 'I 07', 'I 06', 'I 05', 'I 04']})}
-                origin={{x: MAJOR_LINE, y: MAJOR_LINE}}
-                dy={4 * MAJOR_LINE}
+                origin={OTEMACHI}
+                ystep={MAJOR_LINE / 2}
             />
         </g>
     )
 }
 
-export default Maronouchi;
+export default Mita;
