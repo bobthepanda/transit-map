@@ -59,8 +59,9 @@ $line-height: calc(1.2em * 2 / 3);
     font-weight: bold;
 }
 
-line {
+line, path {
     stroke-width: calc(units.$basic-unit * 2 / 3);
     stroke: black;
+    fill: none;
     stroke-linecap: round;
 }

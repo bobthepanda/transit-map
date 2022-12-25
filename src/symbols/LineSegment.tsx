@@ -14,6 +14,7 @@ interface LineSegmentData {
     className?: string,
     stops: StopData[],
     origin: Coordinates,
+    textAlignments?: TextAlignment[],
 }
 
 interface LineSegmentDataWithStepChange extends LineSegmentData {
@@ -30,12 +31,13 @@ interface LineSegmentDataWithEndpoint extends LineSegmentData {
     endpoint: Coordinates,
 }
 
-export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0, ystep = 0} : LineSegmentDataWithStepChange): JSX.Element => {
+export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0, ystep = 0, textAlignments = [TextAlignment.RIGHT]} : LineSegmentDataWithStepChange): JSX.Element => {
     if (stops.length === 0) return <></>;
     const { x, y } = origin;
     const numberOfSteps = stops.length - 1;
 
-    const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, textAlignment, hideText}, index) => {
+    const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, hideText}, index) => {
+        const textAlignment = textAlignments[index % textAlignments.length];
         return (
             <Stop 
                 key={index}
@@ -56,7 +58,7 @@ export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0,
     );
 }
 
-export const LineSegmentWithTotalChange = ({ className, stops, origin, dx = 0, dy = 0} : LineSegmentDataWithTotalChange): JSX.Element => {
+export const LineSegmentWithTotalChange = ({ className, stops, origin, dx = 0, dy = 0, textAlignments} : LineSegmentDataWithTotalChange): JSX.Element => {
     const xstep = dx / (stops.length - 1);
     const ystep = dy / (stops.length - 1);
 
@@ -67,11 +69,12 @@ export const LineSegmentWithTotalChange = ({ className, stops, origin, dx = 0, d
             origin={origin}
             xstep={xstep}
             ystep={ystep}
+            textAlignments={textAlignments}
         />
     )
 }
 
-export const LineSegmentWithEndpoint =  ({ className, stops, origin, endpoint} : LineSegmentDataWithEndpoint): JSX.Element => {
+export const LineSegmentWithEndpoint =  ({ className, stops, origin, endpoint, textAlignments } : LineSegmentDataWithEndpoint): JSX.Element => {
     const { x: originX, y: originY } = origin;
     const { x: endX, y: endY } = endpoint;
 
@@ -82,6 +85,7 @@ export const LineSegmentWithEndpoint =  ({ className, stops, origin, endpoint} :
             origin={origin}
             dx={endX - originX}
             dy={endY - originY}
+            textAlignments={textAlignments}
         />
     )
 }

@@ -1,15 +1,11 @@
 stationCode,eng,jp
-JL 19,Ayase,綾瀬
-JL 20,Kameari,亀有
-JL 21,Kanamachi,金町
-JL 22,Matsudo,松戸
-JL 23,Kita-Matsudo,北松戸
-JL 24,Mabashi,馬橋
-JL 25,Shim-Matsudo,新松戸
-JL 26,Kita-Kogane,北小金
-JL 27,Minami-Kashiwa,南柏
-JL 28,Kashiwa,柏
-JL 29,Kita-Kashiwa,北柏
-JL 30,Abiko,我孫子
-JL 31,Tennōdai,天王台
-JL 32,Toride,取手
+JJ 01,Ueno,上野
+JJ 02,Nippori,日暮里
+JJ 03,Mikawashima,三河島
+JJ 04,Minami-Senju,南千住
+JJ 05,Kita-Senju,北千住
+JJ 06,Matsudo,松戸
+JJ 07,Kashiwa,柏
+JJ 08,Abiko,我孫子
+JJ 09,Tennōdai,天王台
+JJ 10,Toride,取手

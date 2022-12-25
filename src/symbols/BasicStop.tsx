@@ -1,6 +1,7 @@
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
 import { useShowGrid } from '../utils/ParameterUtils';
+import { STOPS_TO_HIDE_TEXT } from '../utils/StopUtils';
 import './basic-stop.scss';
 
 const STOP_ID = 'basic-stop';
@@ -60,7 +61,14 @@ const StationCode = ({stationCode} : {stationCode: string}) => {
 
 }
 
-export const Stop = ({ location, stationCode = '', text, subtitleText = '', textAlignment = TextAlignment.RIGHT, hideText} : StopDefinition) => {
+export const Stop = ({ 
+    location, 
+    stationCode = '', 
+    text, 
+    subtitleText = '', 
+    textAlignment = TextAlignment.RIGHT, 
+    hideText = STOPS_TO_HIDE_TEXT.includes(stationCode)}
+     : StopDefinition) => {
     const { x, y } : Coordinates = location;
     const showGrid = useShowGrid();
     return (

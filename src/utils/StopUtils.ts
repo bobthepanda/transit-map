@@ -5,13 +5,13 @@ import Papa from 'papaparse';
 
 interface BuildStopParameters {
     ids: string[],
-    stopMetadata: Map<string, StopMetadata>
+    stopMetadata?: Map<string, StopMetadata>
     stops: Map<string, StopData>
 }
 
 export const buildStops = ({ ids, stops, stopMetadata } : BuildStopParameters) : StopData[] => {
     return ids.map(id => {
-        return { ...stops.get(id), ...stopMetadata.get(id)};
+        return { ...stops.get(id), ...stopMetadata?.get(id)};
     }).filter((item): item is StopData => !!item)
 };
 
@@ -34,3 +34,13 @@ export const useStopsFromCSV = (csvName: string) => {
 
     return stops;
 }
+
+export const STOPS_TO_HIDE_TEXT: string[] = [
+    'C 11', 'C 09',
+    'H 08', 'H 09',
+    'M 17',
+    'JC 01',
+    'JY 01', 
+    'JK 26',
+    'JT 01',
+]
