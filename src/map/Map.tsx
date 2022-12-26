@@ -3,10 +3,11 @@ import { Dimensions } from '../interfaces/Dimensions';
 import { Route, Routes } from 'react-router';
 import Tokyo from '../tokyo/Tokyo';
 
-export const WIDTH = 2384 * 4;
-export const HEIGHT = 3370 * 4;
+// A0 dimensions.
+export const WIDTH = 2384;
+export const HEIGHT = 3370;
 
-const Map = ({ width = WIDTH, height = HEIGHT} : Dimensions) => {
+const Map = ({ width = WIDTH * 3, height = HEIGHT * 3} : Dimensions) => {
     return (
         <section>
             <svg 

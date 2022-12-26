@@ -10,6 +10,11 @@ export const MARUNOUCHI_OTEMACHI: Coordinates = { ...OTEMACHI, x: OTEMACHI.x + M
 export const MITA_HIBIYA: Coordinates = { ...OTEMACHI , y: OTEMACHI.y + MAJOR_LINE * 2 };
 export const HIBIYA: Coordinates = { x: MITA_HIBIYA.x + OFFSET * .5, y: MITA_HIBIYA.y - OFFSET };
 
-export const HIBIYA_GINZA: Coordinates = { x: OTEMACHI.x + 4 * MAJOR_LINE, y: OTEMACHI.y + 2 * MAJOR_LINE - OFFSET };
+export const HIBIYA_GINZA: Coordinates = { x: OTEMACHI.x + 3.5 * MAJOR_LINE + OFFSET, y: OTEMACHI.y + 2 * MAJOR_LINE - OFFSET };
 
-export const CHUO_TOKYO: Coordinates = { x: OTEMACHI.x + MAJOR_LINE * 2, y: OTEMACHI.y + MAJOR_LINE }
+export const CHUO_TOKYO: Coordinates = { x: OTEMACHI.x + MAJOR_LINE * 2, y: OTEMACHI.y + MAJOR_LINE - OFFSET * 2 };
+export const YAMANOTE_TOKYO = { ...CHUO_TOKYO, x: CHUO_TOKYO.x + OFFSET };
+export const YAMANOTE_SHIMBASHI = { ...YAMANOTE_TOKYO, y: OTEMACHI.y + MAJOR_LINE * 3 + OFFSET};
+
+export const HIBIYA_KASUMIGASEKI: Coordinates = { x: MITA_HIBIYA.x - MAJOR_LINE, y: MITA_HIBIYA.y + MAJOR_LINE * .5 };
+export const NIHOMBASHI: Coordinates = { ...OTEMACHI, x: HIBIYA_GINZA.x - OFFSET };

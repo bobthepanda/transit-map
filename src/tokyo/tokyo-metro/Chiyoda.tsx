@@ -1,11 +1,11 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { OTEMACHI, CHIYODA_OTEMACHI } from '../../utils/CommonCoordinates';
+import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET } from '../../utils/CommonCoordinates';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
-const KASUMIGASEKI = { x: OTEMACHI.x - .5 * MAJOR_LINE, y: OTEMACHI.y + 2.5 * MAJOR_LINE };
+const KASUMIGASEKI = { x: HIBIYA_KASUMIGASEKI.x - OFFSET, y: HIBIYA_KASUMIGASEKI.y + OFFSET * .5 };
 
 const SEGMENT_1 = ['C 11', 'C 10', 'C 09'];
 const SEGMENT_2 = ['C 11', 'C 12', 'C 13'];
