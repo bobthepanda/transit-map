@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI } from '../../utils/CommonCoordinates';
-import { horizontalTo, start } from '../../utils/PathUtils';
+import { horizontalToLocation, start } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
@@ -28,7 +28,7 @@ const Marunouchi = () => {
             q ${TOKYO_RADIUS} 0 ${TOKYO_RADIUS} ${TOKYO_RADIUS}
             V ${KASUMIGASEKI.y - TOKYO_RADIUS}
             q 0 ${TOKYO_RADIUS} ${-1 * TOKYO_RADIUS} ${TOKYO_RADIUS}
-            ${horizontalTo(KASUMIGASEKI)}`}
+            ${horizontalToLocation(KASUMIGASEKI)}`}
             />
             <LineSegmentWithStepChange
                 stops={buildTheseStops(SEGMENT_1)}
