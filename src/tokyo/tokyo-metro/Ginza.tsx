@@ -1,14 +1,14 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, NIHOMBASHI, YAMANOTE_SHIMBASHI, HIBIYA_GINZA } from '../../utils/CommonCoordinates';
+import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, NIHOMBASHI, YAMANOTE_SHIMBASHI, HIBIYA_GINZA, MITA_HIBIYA } from '../../utils/CommonCoordinates';
 import { start, S_TO_W, curveTo } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from './Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET };
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET, y: HIBIYA_GINZA.y + OFFSET };
+const GINZA = { x: HIBIYA_GINZA.x - OFFSET, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET;
 const TORANOMON = {y: SHIMBASHI.y, x: HIBIYA_KASUMIGASEKI.x - OFFSET};
 

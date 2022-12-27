@@ -10,18 +10,24 @@ import Chiyoda from './tokyo-metro/Chiyoda';
 import Ginza from './tokyo-metro/Ginza';
 import Hibiya from './tokyo-metro/Hibiya';
 import Marunouchi from './tokyo-metro/Marunouchi';
+import Tozai from './tokyo-metro/Tozai';
 import './Tokyo.scss';
 
 const Tokyo = (): JSX.Element => {
 
     return (
         <g id="tokyo">
-            <Mita />
-            <Chiyoda />
-            <Marunouchi />
-            <Hibiya />
-            <Ginza />
-            <Asakusa />
+            <g id="toei">
+                <Mita />
+                <Asakusa />
+            </g>
+            <g id="tokyo-metro">
+                <Chiyoda />
+                <Marunouchi />
+                <Hibiya />
+                <Ginza />
+                <Tozai />
+            </g>
             <ChuoTokyo />
             <Yamanote />
             <KeihinTohoku />

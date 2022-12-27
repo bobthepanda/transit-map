@@ -1,8 +1,7 @@
-import { getOutputFileNames } from 'typescript';
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI } from '../../utils/CommonCoordinates';
+import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, MITA_HIBIYA } from '../../utils/CommonCoordinates';
 import { start,  curveTo, S_TO_E, E_TO_S, S_TO_W } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
@@ -10,7 +9,7 @@ import { StopFromTokyo } from '../StopsFromTokyo';
 const SEGMENT_1 = ['M 18', 'M 19'];
 
 const TOKYO = { x: CHUO_TOKYO.x + OFFSET * 2, y: CHUO_TOKYO.y + OFFSET }; 
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 2, y: HIBIYA_GINZA.y + OFFSET };
+const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 2, y: MITA_HIBIYA.y };
 const KASUMIGASEKI = { x: HIBIYA_KASUMIGASEKI.x - OFFSET, y: HIBIYA_KASUMIGASEKI.y - OFFSET * .5 };
 
 export const TOKYO_RADIUS = OFFSET * 2;

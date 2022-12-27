@@ -1,14 +1,14 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, NIHOMBASHI, YAMANOTE_SHIMBASHI, HIBIYA_GINZA, ASAKUSA_NIHOMBASHI } from '../../utils/CommonCoordinates';
+import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, NIHOMBASHI, YAMANOTE_SHIMBASHI, HIBIYA_GINZA, ASAKUSA_NIHOMBASHI, MITA_HIBIYA } from '../../utils/CommonCoordinates';
 import { start, S_TO_E, S_TO_W, curveTo } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET + MAJOR_LINE, y: HIBIYA_GINZA.y + OFFSET };
+const GINZA = { x: HIBIYA_GINZA.x - OFFSET + MAJOR_LINE, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const Asakusa = () => {
     const stops = useStopsFromCSV('/data/toei/asakusa.csv');

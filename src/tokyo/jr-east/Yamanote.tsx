@@ -1,6 +1,6 @@
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
-import { CHUO_TOKYO, OFFSET, OTEMACHI, YAMANOTE_SHIMBASHI, YAMANOTE_TOKYO } from '../../utils/CommonCoordinates';
+import { CHUO_TOKYO, OFFSET, OTEMACHI, RAPID_OCHANOMIZU, YAMANOTE_SHIMBASHI, YAMANOTE_TOKYO } from '../../utils/CommonCoordinates';
 import { MAJOR_LINE } from '../../map/GridLines';
 
 const TOKYO = { ...CHUO_TOKYO, x: CHUO_TOKYO.x + OFFSET };
@@ -12,6 +12,8 @@ const Yamanote = () => {
 
     const buildTheseStops = (ids) => buildStops({ids, stops});
 
+    const buildSingleStop = (id) => buildTheseStops([id])[0];
+
     const tokyoInfo = buildTheseStops(['JY 01'])[0];
     const yurakuchoInfo = buildTheseStops(['JY 30'])[0];
 
@@ -19,16 +21,24 @@ const Yamanote = () => {
         <g id="yamanote">
             <StopFromTokyo
                 location={YAMANOTE_TOKYO}
-                stop={tokyoInfo}
+                stop={buildSingleStop('JY 01')}
                 />
             <StopFromTokyo
                 location={YURAKUCHO}
-                stop={yurakuchoInfo}
+                stop={buildSingleStop('JY 30')}
                 />
              <StopFromTokyo
                 location={YAMANOTE_SHIMBASHI}
-                stop={buildTheseStops(['JY 29'])[0]}
+                stop={buildSingleStop('JY 29')}
                 />
+            <StopFromTokyo
+                location={{x : YAMANOTE_TOKYO.x, y: RAPID_OCHANOMIZU.y}}
+                stop={buildSingleStop('JY 03')}
+            />
+            <StopFromTokyo
+                location={{x: YAMANOTE_TOKYO.x, y: OTEMACHI.y - OFFSET * 3}}
+                stop={buildSingleStop('JY 02')}
+            />
         </g>
     )
 }
