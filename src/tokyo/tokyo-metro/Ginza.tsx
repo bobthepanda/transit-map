@@ -2,7 +2,7 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, NIHOMBASHI, YAMANOTE_SHIMBASHI, HIBIYA_GINZA } from '../../utils/CommonCoordinates';
-import { start } from '../../utils/PathUtils';
+import { start, S_TO_W, curveTo } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from './Marunouchi';
@@ -23,9 +23,13 @@ const Ginza = () => {
         <g id="ginza">
             <path 
                 d={`${start(NIHOMBASHI)}
-                V ${SHIMBASHI.y - SHIMBASHI_RADIUS}
-                q 0 ${SHIMBASHI_RADIUS} ${-1 * SHIMBASHI_RADIUS} ${SHIMBASHI_RADIUS}
-                H ${TORANOMON.x}`
+                ${curveTo({
+                    control: { x: NIHOMBASHI.x, y: SHIMBASHI.y},
+                    end: TORANOMON,
+                    radius:SHIMBASHI_RADIUS,
+                    ...S_TO_W
+                })}
+                `
             }
             />
             <StopFromTokyo

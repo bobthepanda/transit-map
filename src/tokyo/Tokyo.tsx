@@ -5,6 +5,7 @@ import SobuRapid from './jr-east/SobuRapid';
 import Tokaido from './jr-east/Tokaido';
 import Yamanote from './jr-east/Yamanote';
 import Mita from './toei/Mita';
+import Asakusa from './toei/Asakusa';
 import Chiyoda from './tokyo-metro/Chiyoda';
 import Ginza from './tokyo-metro/Ginza';
 import Hibiya from './tokyo-metro/Hibiya';
@@ -20,6 +21,7 @@ const Tokyo = (): JSX.Element => {
             <Marunouchi />
             <Hibiya />
             <Ginza />
+            <Asakusa />
             <ChuoTokyo />
             <Yamanote />
             <KeihinTohoku />

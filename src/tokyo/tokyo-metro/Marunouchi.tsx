@@ -1,8 +1,9 @@
+import { getOutputFileNames } from 'typescript';
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI } from '../../utils/CommonCoordinates';
-import { horizontalToLocation, start } from '../../utils/PathUtils';
+import { start,  curveTo, S_TO_E, E_TO_S, S_TO_W } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
@@ -22,13 +23,25 @@ const Marunouchi = () => {
     return (
         <g id="marunouchi">
             <path d={`${start(MARUNOUCHI_OTEMACHI)} 
-            V ${TOKYO.y - TOKYO_RADIUS} 
-            q 0 ${TOKYO_RADIUS} ${TOKYO_RADIUS} ${TOKYO_RADIUS} 
-            H ${GINZA.x - TOKYO_RADIUS} 
-            q ${TOKYO_RADIUS} 0 ${TOKYO_RADIUS} ${TOKYO_RADIUS}
-            V ${KASUMIGASEKI.y - TOKYO_RADIUS}
-            q 0 ${TOKYO_RADIUS} ${-1 * TOKYO_RADIUS} ${TOKYO_RADIUS}
-            ${horizontalToLocation(KASUMIGASEKI)}`}
+                ${curveTo({
+                    control: {y: TOKYO.y, x: MARUNOUCHI_OTEMACHI.x},
+                    end: TOKYO,
+                    ...S_TO_E,
+                    radius: TOKYO_RADIUS
+                })}
+                ${curveTo({
+                    control: { x: GINZA.x, y: TOKYO.y },
+                    end: GINZA,
+                    ...E_TO_S,
+                    radius: TOKYO_RADIUS
+                })}
+                ${curveTo({
+                    control: { x: GINZA.x, y: KASUMIGASEKI.y},
+                    end: KASUMIGASEKI,
+                    ...S_TO_W,
+                    radius: TOKYO_RADIUS
+                })}
+                `}
             />
             <LineSegmentWithStepChange
                 stops={buildTheseStops(SEGMENT_1)}

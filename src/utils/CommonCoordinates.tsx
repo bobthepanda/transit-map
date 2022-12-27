@@ -18,3 +18,6 @@ export const YAMANOTE_SHIMBASHI = { ...YAMANOTE_TOKYO, y: OTEMACHI.y + MAJOR_LIN
 
 export const HIBIYA_KASUMIGASEKI: Coordinates = { x: MITA_HIBIYA.x - MAJOR_LINE, y: MITA_HIBIYA.y + MAJOR_LINE * .5 };
 export const NIHOMBASHI: Coordinates = { ...OTEMACHI, x: HIBIYA_GINZA.x - OFFSET };
+export const ASAKUSA_NIHOMBASHI: Coordinates = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE };
+
+export const RAPID_OCHANOMIZU: Coordinates = {x: OTEMACHI.x - OFFSET, y: OTEMACHI.y - MAJOR_LINE * 1.5 + OFFSET};
