@@ -8,7 +8,7 @@ import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET + MAJOR_LINE, y: MITA_HIBIYA.y };
+const GINZA = { x: HIBIYA_GINZA.x - OFFSET * .5+ MAJOR_LINE, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const Asakusa = () => {
     const stops = useStopsFromCSV('/data/toei/asakusa.csv');

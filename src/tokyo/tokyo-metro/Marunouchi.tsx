@@ -9,7 +9,7 @@ import { StopFromTokyo } from '../StopsFromTokyo';
 const SEGMENT_1 = ['M 18', 'M 19'];
 
 const TOKYO = { x: CHUO_TOKYO.x + OFFSET * 2, y: CHUO_TOKYO.y + OFFSET }; 
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 2, y: MITA_HIBIYA.y };
+const GINZA = { x: HIBIYA_GINZA.x - OFFSET * .5, y: MITA_HIBIYA.y };
 const KASUMIGASEKI = { x: HIBIYA_KASUMIGASEKI.x - OFFSET, y: HIBIYA_KASUMIGASEKI.y - OFFSET * .5 };
 
 export const TOKYO_RADIUS = OFFSET * 2;

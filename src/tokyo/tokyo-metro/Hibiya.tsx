@@ -1,12 +1,17 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, LineSegmentWithEndpoint } from '../../symbols/LineSegment';
-import { HIBIYA, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, OFFSET } from '../../utils/CommonCoordinates';
+import { HIBIYA, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, NIHOMBASHI, OFFSET, YURAKUCHO } from '../../utils/CommonCoordinates';
+import { curveTo, S_TO_W, start } from '../../utils/PathUtils';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
+import { TOKYO_RADIUS } from './Marunouchi';
 
 const SEGMENT_1 = ['H 08', 'H 09'];
 const SEGMENT_2 = ['H 09', 'H 10'];
+
+const HIBIYA_KAYABACHO = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE * 2}
+const HIBIYA_YURAKUCHO = {x: HIBIYA_KAYABACHO.x, y: YURAKUCHO.y };
 
 
 
@@ -15,19 +20,33 @@ const Hibiya = () => {
 
     const buildTheseStops = (ids) => buildStops({ids, stops});
 
+    const buildSingleStop = (id) => buildTheseStops([id])[0];
+
     return (
         <g id="hibiya">
-            <LineSegmentWithEndpoint
-                stops={buildTheseStops(SEGMENT_1)}
-                origin={HIBIYA}
-                endpoint={HIBIYA_GINZA}
-                textAlignments={[TextAlignment.DOWN]}
+            <path d={`
+                ${start(HIBIYA_YURAKUCHO)}
+                ${curveTo({
+                    control: {x: HIBIYA_YURAKUCHO.x, y: HIBIYA.y },
+                    end: HIBIYA,
+                    radius: TOKYO_RADIUS,
+                    ...S_TO_W
+                })}
+            `}/>
+            <StopFromTokyo
+                location={HIBIYA}
+                stop={buildSingleStop('H 08')}
             />
             <LineSegmentWithStepChange
                 stops={buildTheseStops(SEGMENT_2)}
                 origin={HIBIYA_GINZA}
                 xstep={MAJOR_LINE}
                 textAlignments={[TextAlignment.DOWN]}
+            />
+            <LineSegmentWithEndpoint
+                stops={(buildTheseStops(['H 11', 'H 12', 'H 13']))}
+                origin={HIBIYA_YURAKUCHO}
+                endpoint={HIBIYA_KAYABACHO}
             />
         </g>
     )

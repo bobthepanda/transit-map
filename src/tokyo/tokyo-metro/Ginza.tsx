@@ -8,7 +8,7 @@ import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from './Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET };
-const GINZA = { x: HIBIYA_GINZA.x - OFFSET, y: MITA_HIBIYA.y };
+const GINZA = { x: NIHOMBASHI.x, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET;
 const TORANOMON = {y: SHIMBASHI.y, x: HIBIYA_KASUMIGASEKI.x - OFFSET};
 
