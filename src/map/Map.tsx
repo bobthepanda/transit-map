@@ -1,7 +1,7 @@
-import GridLines from "./GridLines";
-import { Dimensions } from "../interfaces/Dimensions";
-import { Route, Routes } from "react-router";
-import Tokyo from "../tokyo/Tokyo";
+import GridLines from './GridLines';
+import { Dimensions } from '../interfaces/Dimensions';
+import { Route, Routes } from 'react-router';
+import Tokyo from '../tokyo/Tokyo';
 
 // A0 dimensions.
 export const WIDTH = 2384;

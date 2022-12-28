@@ -1,9 +1,6 @@
-import { MAJOR_LINE, MINOR_LINE } from "../../map/GridLines";
-import { TextAlignment } from "../../symbols/BasicStop";
-import {
-  LineSegmentWithStepChange,
-  StopMetadata,
-} from "../../symbols/LineSegment";
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { TextAlignment } from '../../symbols/BasicStop';
+import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import {
   OTEMACHI,
   CHIYODA_OTEMACHI,
@@ -13,10 +10,10 @@ import {
   YAMANOTE_SHIMBASHI,
   HIBIYA_GINZA,
   MITA_HIBIYA,
-} from "../../utils/CommonCoordinates";
-import { start, S_TO_W, curveTo } from "../../utils/PathUtils";
-import { StopFromTokyo } from "../StopsFromTokyo";
-import { TOKYO_RADIUS } from "./Marunouchi";
+} from '../../utils/CommonCoordinates';
+import { start, S_TO_W, curveTo } from '../../utils/PathUtils';
+import { StopFromTokyo } from '../StopsFromTokyo';
+import { TOKYO_RADIUS } from './Marunouchi';
 
 const SHIMBASHI = {
   x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5,
@@ -40,17 +37,10 @@ const Ginza = () => {
                 `}
       />
       <StopFromTokyo location={NIHOMBASHI} stationCode="G 11" />
-      <StopFromTokyo
-        location={{ ...NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }}
-        stationCode="G 10"
-      />
+      <StopFromTokyo location={{ ...NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="G 10" />
       <StopFromTokyo location={GINZA} stationCode="G 09" />
       <StopFromTokyo location={SHIMBASHI} stationCode="G 08" />
-      <StopFromTokyo
-        location={TORANOMON}
-        stationCode="G 07"
-        textAlignment={TextAlignment.UP}
-      />
+      <StopFromTokyo location={TORANOMON} stationCode="G 07" textAlignment={TextAlignment.UP} />
     </g>
   );
 };

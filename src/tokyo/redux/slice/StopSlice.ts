@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { CSVData } from "../../../interfaces/Stops";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { CSVData } from '../../../interfaces/Stops';
 
 export const stopsSlice = createSlice({
-  name: "stops",
+  name: 'stops',
   initialState: {},
   reducers: {
     load: (state, action: PayloadAction<CSVData[]>) => {

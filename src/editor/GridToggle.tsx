@@ -1,8 +1,5 @@
-import { useSearchParams } from "react-router-dom";
-import {
-  useShowGrid,
-  GRID_PARAMETER_NAME as PARAMETER_NAME,
-} from "../utils/ParameterUtils";
+import { useSearchParams } from 'react-router-dom';
+import { useShowGrid, GRID_PARAMETER_NAME as PARAMETER_NAME } from '../utils/ParameterUtils';
 
 const GridToggle = () => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -15,8 +12,7 @@ const GridToggle = () => {
 
   return (
     <>
-      Show grid:{" "}
-      <input type="checkbox" onChange={handleChange} checked={showGrid} />
+      Show grid: <input type="checkbox" onChange={handleChange} checked={showGrid} />
     </>
   );
 };

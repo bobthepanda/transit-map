@@ -1,5 +1,5 @@
-import { Coordinates } from "../interfaces/Dimensions";
-import { MAJOR_LINE, MINOR_LINE } from "../map/GridLines";
+import { Coordinates } from '../interfaces/Dimensions';
+import { MAJOR_LINE, MINOR_LINE } from '../map/GridLines';
 
 export const OFFSET = MINOR_LINE * 2;
 

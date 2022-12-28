@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import stopReducer from "./slice/StopSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import stopReducer from './slice/StopSlice';
 
 export const store = configureStore({
   reducer: {

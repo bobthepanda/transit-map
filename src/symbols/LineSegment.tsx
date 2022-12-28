@@ -1,6 +1,6 @@
-import { Coordinates } from "../interfaces/Dimensions";
-import { CSVData } from "../interfaces/Stops";
-import { Stop, TextAlignment } from "./BasicStop";
+import { Coordinates } from '../interfaces/Dimensions';
+import { CSVData } from '../interfaces/Stops';
+import { Stop, TextAlignment } from './BasicStop';
 
 export interface StopMetadata {
   textAlignment?: TextAlignment;
@@ -45,23 +45,13 @@ export const LineSegmentWithStepChange = ({
   const stopElements: JSX.Element[] = stops.map((stationCode, index) => {
     const textAlignment = textAlignments[index % textAlignments.length];
     return (
-      <Stop
-        key={index}
-        location={{ x: x + index * xstep, y: y + index * ystep }}
-        stationCode={stationCode}
-        textAlignment={textAlignment}
-      />
+      <Stop key={index} location={{ x: x + index * xstep, y: y + index * ystep }} stationCode={stationCode} textAlignment={textAlignment} />
     );
   });
 
   return (
     <g className={className}>
-      <line
-        x1={x}
-        y1={y}
-        x2={x + xstep * numberOfSteps}
-        y2={y + ystep * numberOfSteps}
-      />
+      <line x1={x} y1={y} x2={x + xstep * numberOfSteps} y2={y + ystep * numberOfSteps} />
       {stopElements}
     </g>
   );

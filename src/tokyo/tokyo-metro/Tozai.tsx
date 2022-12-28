@@ -1,7 +1,7 @@
-import { MAJOR_LINE, MINOR_LINE } from "../../map/GridLines";
-import { OTEMACHI, OFFSET, NIHOMBASHI } from "../../utils/CommonCoordinates";
-import { start, horizontalToLocation } from "../../utils/PathUtils";
-import { StopFromTokyo } from "../StopsFromTokyo";
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { OTEMACHI, OFFSET, NIHOMBASHI } from '../../utils/CommonCoordinates';
+import { start, horizontalToLocation } from '../../utils/PathUtils';
+import { StopFromTokyo } from '../StopsFromTokyo';
 
 const TOZAI_OTEMACHI = {
   x: OTEMACHI.x + MAJOR_LINE * 0.5 + MINOR_LINE,

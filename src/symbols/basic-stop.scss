@@ -1,4 +1,4 @@
-@use "../utils/units";
+@use '../utils/units';
 
 $text-spacing: calc(units.$basic-unit * 4 / 3);
 $sin-45: 0.707106781;
@@ -41,23 +41,19 @@ $line-height: calc(1.2em * 2 / 3);
 }
 
 .text-lower-right {
-  transform: translateX(calc($text-spacing * $sin-45))
-    translateY(calc($text-spacing * $sin-45)) translateY($line-height);
+  transform: translateX(calc($text-spacing * $sin-45)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
 }
 
 .text-lower-left {
-  transform: translateX(calc($text-spacing * $sin-45 * -1))
-    translateY(calc($text-spacing * $sin-45)) translateY($line-height);
+  transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
 }
 
 .text-upper-right {
-  transform: translateX(calc($text-spacing * $sin-45))
-    translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
+  transform: translateX(calc($text-spacing * $sin-45)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
 }
 
 .text-upper-left {
-  transform: translateX(calc($text-spacing * $sin-45 * -1))
-    translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
+  transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
 }
 
 .station-code {

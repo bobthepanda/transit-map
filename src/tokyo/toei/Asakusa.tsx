@@ -1,8 +1,5 @@
-import { MAJOR_LINE } from "../../map/GridLines";
-import {
-  LineSegmentWithStepChange,
-  StopMetadata,
-} from "../../symbols/LineSegment";
+import { MAJOR_LINE } from '../../map/GridLines';
+import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import {
   OTEMACHI,
   CHIYODA_OTEMACHI,
@@ -13,10 +10,10 @@ import {
   HIBIYA_GINZA,
   ASAKUSA_NIHOMBASHI,
   MITA_HIBIYA,
-} from "../../utils/CommonCoordinates";
-import { start, S_TO_E, S_TO_W, curveTo } from "../../utils/PathUtils";
-import { StopFromTokyo } from "../StopsFromTokyo";
-import { TOKYO_RADIUS } from "../tokyo-metro/Marunouchi";
+} from '../../utils/CommonCoordinates';
+import { start, S_TO_E, S_TO_W, curveTo } from '../../utils/PathUtils';
+import { StopFromTokyo } from '../StopsFromTokyo';
+import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
 const SHIMBASHI = {
   x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5,
@@ -42,10 +39,7 @@ const Asakusa = () => {
             `}
       />
       <StopFromTokyo location={SHIMBASHI} stationCode="A 10" />
-      <StopFromTokyo
-        location={{ ...ASAKUSA_NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }}
-        stationCode="A 12"
-      />
+      <StopFromTokyo location={{ ...ASAKUSA_NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="A 12" />
       <StopFromTokyo location={GINZA} stationCode="A 11" />
       <StopFromTokyo location={ASAKUSA_NIHOMBASHI} stationCode="A 13" />
     </g>

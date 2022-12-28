@@ -1,5 +1,5 @@
-import { Coordinates, RelativeCoordinates } from "../interfaces/Dimensions";
-import { OFFSET } from "./CommonCoordinates";
+import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
+import { OFFSET } from './CommonCoordinates';
 
 export const start = (location: Coordinates): string => {
   return `M ${location.x} ${location.y}`;

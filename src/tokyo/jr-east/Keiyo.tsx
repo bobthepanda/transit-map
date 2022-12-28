@@ -1,15 +1,6 @@
-import {
-  HIBIYA_KAYABACHO,
-  OFFSET,
-  YAMANOTE_TOKYO,
-} from "../../utils/CommonCoordinates";
-import {
-  start,
-  S_TO_W,
-  curveTo,
-  horizontalToLocation,
-} from "../../utils/PathUtils";
-import { StopFromTokyo } from "../StopsFromTokyo";
+import { HIBIYA_KAYABACHO, OFFSET, YAMANOTE_TOKYO } from '../../utils/CommonCoordinates';
+import { start, S_TO_W, curveTo, horizontalToLocation } from '../../utils/PathUtils';
+import { StopFromTokyo } from '../StopsFromTokyo';
 
 const TOKYO = {
   x: YAMANOTE_TOKYO.x + OFFSET,
