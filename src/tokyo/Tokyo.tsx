@@ -1,4 +1,4 @@
-import ChuoTokyo from './jr-east/ChuoRapid';
+import ChuoRapid from './jr-east/ChuoRapid';
 import KeihinTohoku from './jr-east/KeihinTohoku';
 import SobuRapid from './jr-east/SobuRapid';
 import Tokaido from './jr-east/Tokaido';
@@ -14,13 +14,24 @@ import './colors/colors.scss';
 import './colors/jr-east-colors.scss';
 import Yurakucho from './tokyo-metro/Yurakucho';
 import Keiyo from './jr-east/Keiyo';
+import { useEffect } from 'react';
+import { loadTokyo } from './redux/actions/LoadActions';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from './redux/store';
+
+const useAppDispatch: () => AppDispatch = useDispatch;
 
 const Tokyo = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(loadTokyo);
+    }, [])
 
     return (
         <g id="tokyo">
             <g id="jr">
-                <ChuoTokyo />
+                <ChuoRapid />
                 <Yamanote />
                 <KeihinTohoku />
                 <Tokaido />

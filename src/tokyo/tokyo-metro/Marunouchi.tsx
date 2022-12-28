@@ -3,7 +3,6 @@ import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, MITA_HIBIYA } from '../../utils/CommonCoordinates';
 import { start,  curveTo, S_TO_E, E_TO_S, S_TO_W } from '../../utils/PathUtils';
-import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
 const SEGMENT_1 = ['M 18', 'M 19'];
@@ -15,10 +14,6 @@ const KASUMIGASEKI = { x: HIBIYA_KASUMIGASEKI.x - OFFSET, y: HIBIYA_KASUMIGASEKI
 export const TOKYO_RADIUS = OFFSET * 2;
 
 const Marunouchi = () => {
-    const stops = useStopsFromCSV('/data/tokyo-metro/marunouchi.csv');
-
-    const buildTheseStops = (ids) => buildStops({ids, stops});
-
     return (
         <g id="marunouchi">
             <path d={`${start(MARUNOUCHI_OTEMACHI)} 
@@ -43,21 +38,21 @@ const Marunouchi = () => {
                 `}
             />
             <LineSegmentWithStepChange
-                stops={buildTheseStops(SEGMENT_1)}
+                stops={(SEGMENT_1)}
                 origin={MARUNOUCHI_OTEMACHI}
                 ystep={MAJOR_LINE * -1}
             />
             <StopFromTokyo 
                 location={TOKYO}
-                stop={buildTheseStops(['M 17'])[0]}
+                stationCode="M 17"
             />
             <StopFromTokyo 
                 location={GINZA}
-                stop={buildTheseStops(['M 16'])[0]}
+                stationCode="M 16"
             />
             <StopFromTokyo 
                 location={KASUMIGASEKI}
-                stop={buildTheseStops(['M 15'])[0]}
+                stationCode="M 15"
                 textAlignment={TextAlignment.UP}
             />
         </g>

@@ -12,7 +12,7 @@ export interface StopData extends CSVData, StopMetadata {
 
 interface LineSegmentData {
     className?: string,
-    stops: StopData[],
+    stops: string[],
     origin: Coordinates,
     textAlignments?: TextAlignment[],
 }
@@ -36,17 +36,14 @@ export const LineSegmentWithStepChange = ({ className, stops, origin, xstep = 0,
     const { x, y } = origin;
     const numberOfSteps = stops.length - 1;
 
-    const stopElements: JSX.Element[] = stops.map(({stationCode, eng, jp, hideText}, index) => {
+    const stopElements: JSX.Element[] = stops.map((stationCode, index) => {
         const textAlignment = textAlignments[index % textAlignments.length];
         return (
             <Stop 
                 key={index}
-                location={{x: x + index * xstep, y: y + index * ystep}} 
-                text={eng} 
-                subtitleText={jp} 
+                location={{x: x + index * xstep, y: y + index * ystep}}
                 stationCode={stationCode} 
                 textAlignment={textAlignment} 
-                hideText={hideText}
             />)
     });
 

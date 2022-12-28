@@ -3,21 +3,13 @@ import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { OTEMACHI, OFFSET, NIHOMBASHI } from '../../utils/CommonCoordinates';
 import { start, S_TO_W, curveTo, horizontalToLocation } from '../../utils/PathUtils';
-import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
-import { TOKYO_RADIUS } from './Marunouchi';
 
 const TOZAI_OTEMACHI = { x: OTEMACHI.x + MAJOR_LINE * .5 + MINOR_LINE, y: NIHOMBASHI.y + OFFSET};
 const TOZAI_NIHOMBASHI = { x: NIHOMBASHI.x + MAJOR_LINE * .5, y: TOZAI_OTEMACHI.y };
 const TOZAI_KAYABACHO ={ ...TOZAI_NIHOMBASHI, x: TOZAI_NIHOMBASHI.x + MAJOR_LINE * 1.5 + OFFSET * .5};
 
 const Tozai = () => {
-    const stops = useStopsFromCSV('/data/tokyo-metro/tozai.csv');
-
-    const buildTheseStops = (ids) => buildStops({ids, stops});
-
-    const buildSingleStop = (id) => buildTheseStops([id])[0];
-
     return (
         <g id="tozai">
             <path d={`
@@ -26,15 +18,15 @@ const Tozai = () => {
             `}/>
             <StopFromTokyo
                 location={TOZAI_NIHOMBASHI}
-                stop={buildSingleStop('T 10')}
+                stationCode="T 10"
             />
             <StopFromTokyo
                 location={TOZAI_OTEMACHI}
-                stop={buildSingleStop('T 09')}
+                stationCode="T 09"
             />
             <StopFromTokyo
                 location={TOZAI_KAYABACHO}
-                stop={buildSingleStop('T 11')}
+                stationCode="T 11"
             />
         </g>
     )

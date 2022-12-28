@@ -1,5 +1,8 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
+import { RootState } from '../tokyo/redux/store';
 import { useShowGrid } from '../utils/ParameterUtils';
 import { STOPS_TO_HIDE_TEXT } from '../utils/StopUtils';
 import './basic-stop.scss';
@@ -35,10 +38,11 @@ interface TextDefinition {
 }
 
 
-interface StopDefinition extends TextDefinition {
+interface StopDefinition {
     location: Coordinates,
-    stationCode?: string,
+    stationCode: string,
     hideText?: boolean,
+    textAlignment?: TextAlignment,
 }
 
 const StopText = ({text, subtitleText = '', textAlignment = TextAlignment.RIGHT}: TextDefinition) => {
@@ -61,14 +65,15 @@ const StationCode = ({stationCode} : {stationCode: string}) => {
 
 }
 
-export const Stop = ({ 
+const NonMemoStop = ({ 
     location, 
     stationCode = '', 
-    text, 
-    subtitleText = '', 
     textAlignment = TextAlignment.RIGHT, 
     hideText = STOPS_TO_HIDE_TEXT.includes(stationCode)}
      : StopDefinition) => {
+
+    const { text, subtitleText } = useSelector((state: RootState) => state?.stops?.[stationCode]) || {};
+
     const { x, y } : Coordinates = location;
     const showGrid = useShowGrid();
     return (
@@ -80,3 +85,5 @@ export const Stop = ({
         </g>
     )
 }
+
+export const Stop = React.memo(NonMemoStop);

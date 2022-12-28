@@ -1,4 +1,3 @@
-import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { CHUO_TOKYO, OFFSET, OTEMACHI, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
 import { MAJOR_LINE } from '../../map/GridLines';
@@ -8,22 +7,15 @@ const SHIMBASHI = { ...YAMANOTE_SHIMBASHI, x: YAMANOTE_SHIMBASHI.x + OFFSET * 2 
 
 
 const Tokaido = () => {
-    const stops = useStopsFromCSV('/data/jr-east/tokaido.csv');
-
-    const buildTheseStops = (ids) => buildStops({ids, stops});
-
-
-    const tokyoInfo = buildTheseStops(['JT 01'])[0];
-
     return (
         <g id="tokaido">
             <StopFromTokyo
                 location={TOKYO}
-                stop={tokyoInfo}
+                stationCode="JT 01"
                 />
              <StopFromTokyo
                 location={SHIMBASHI}
-                stop={buildTheseStops(['JT 02'])[0]}
+                stationCode="JT 02"
                 />
         </g>
     )
