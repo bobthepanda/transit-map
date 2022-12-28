@@ -32,18 +32,18 @@ const NORTH = { dy: Factor.NEGATIVE, dx: Factor.ZERO };
 const SOUTH = { dy: Factor.POSITIVE, dx: Factor.ZERO };
 
 export interface Scales {
-  startOffset: RelativeCoordinates;
-  endOffset: RelativeCoordinates;
+  firstDirection: RelativeCoordinates;
+  secondDirection: RelativeCoordinates;
 }
 
-export const W_TO_N: Scales = { startOffset: EAST, endOffset: NORTH };
-export const W_TO_S: Scales = { startOffset: EAST, endOffset: SOUTH };
-export const E_TO_N: Scales = { startOffset: WEST, endOffset: NORTH };
-export const E_TO_S: Scales = { startOffset: WEST, endOffset: SOUTH };
-export const S_TO_W: Scales = { startOffset: NORTH, endOffset: WEST };
-export const S_TO_E: Scales = { startOffset: NORTH, endOffset: EAST };
-export const N_TO_W: Scales = { startOffset: SOUTH, endOffset: WEST };
-export const N_TO_E: Scales = { startOffset: SOUTH, endOffset: EAST };
+export const W_TO_N: Scales = { firstDirection: WEST, secondDirection: NORTH };
+export const W_TO_S: Scales = { firstDirection: WEST, secondDirection: SOUTH };
+export const E_TO_N: Scales = { firstDirection: EAST, secondDirection: NORTH };
+export const E_TO_S: Scales = { firstDirection: EAST, secondDirection: SOUTH };
+export const S_TO_W: Scales = { firstDirection: SOUTH, secondDirection: WEST };
+export const S_TO_E: Scales = { firstDirection: SOUTH, secondDirection: EAST };
+export const N_TO_W: Scales = { firstDirection: NORTH, secondDirection: WEST };
+export const N_TO_E: Scales = { firstDirection: NORTH, secondDirection: EAST };
 
 export interface NewCurveParameters extends Scales {
   control: Coordinates;
@@ -54,17 +54,17 @@ export interface NewCurveParameters extends Scales {
 export const curveTo = ({
   control,
   end,
-  startOffset: relativeControl,
-  endOffset: relativeEndpoint,
+  firstDirection,
+  secondDirection,
   radius = OFFSET,
 }: NewCurveParameters) => {
   const startCurve: Coordinates = {
-    x: control.x + relativeControl.dx * radius,
-    y: control.y + relativeControl.dy * radius,
+    x: control.x - firstDirection.dx * radius,
+    y: control.y - firstDirection.dy * radius,
   };
   const endCurve: Coordinates = {
-    x: control.x + relativeEndpoint.dx * radius,
-    y: control.y + relativeEndpoint.dy * radius,
+    x: control.x + secondDirection.dx * radius,
+    y: control.y + secondDirection.dy * radius,
   };
 
   return `${lineToLocation(startCurve)} 
