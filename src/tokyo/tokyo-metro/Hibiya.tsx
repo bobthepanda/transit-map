@@ -37,11 +37,13 @@ const Hibiya = () => {
                 location={HIBIYA}
                 stop={buildSingleStop('H 08')}
             />
-            <LineSegmentWithStepChange
-                stops={buildTheseStops(SEGMENT_2)}
-                origin={HIBIYA_GINZA}
-                xstep={MAJOR_LINE}
-                textAlignments={[TextAlignment.DOWN]}
+            <StopFromTokyo
+                location={HIBIYA_GINZA}
+                stop={buildSingleStop('H 09')}
+            />
+            <StopFromTokyo 
+                location={{...HIBIYA_GINZA, x: HIBIYA_GINZA.x + MAJOR_LINE + OFFSET}}
+                stop={(buildSingleStop('H 10'))}
             />
             <LineSegmentWithEndpoint
                 stops={(buildTheseStops(['H 11', 'H 12', 'H 13']))}

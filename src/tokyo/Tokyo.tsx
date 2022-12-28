@@ -1,4 +1,3 @@
-import './colors.scss';
 import ChuoTokyo from './jr-east/ChuoRapid';
 import KeihinTohoku from './jr-east/KeihinTohoku';
 import SobuRapid from './jr-east/SobuRapid';
@@ -11,7 +10,9 @@ import Ginza from './tokyo-metro/Ginza';
 import Hibiya from './tokyo-metro/Hibiya';
 import Marunouchi from './tokyo-metro/Marunouchi';
 import Tozai from './tokyo-metro/Tozai';
-import './Tokyo.scss';
+import './colors/colors.scss';
+import './colors/jr-east-colors.scss';
+import Yurakucho from './tokyo-metro/Yurakucho';
 
 const Tokyo = (): JSX.Element => {
 
@@ -27,6 +28,7 @@ const Tokyo = (): JSX.Element => {
                 <Hibiya />
                 <Ginza />
                 <Tozai />
+                <Yurakucho />
             </g>
             <ChuoTokyo />
             <Yamanote />
