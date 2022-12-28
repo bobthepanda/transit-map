@@ -1,11 +1,12 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET } from '../../utils/CommonCoordinates';
+import { LineSegmentWithStepChange, LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import { OTEMACHI, CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, HIBIYA } from '../../utils/CommonCoordinates';
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
 const KASUMIGASEKI = { x: HIBIYA_KASUMIGASEKI.x - OFFSET, y: HIBIYA_KASUMIGASEKI.y + OFFSET * .5 };
+const THIS_HIBIYA = { x: HIBIYA.x + OFFSET * .5, y: HIBIYA.y - OFFSET};
 
 const SEGMENT_1 = ['C 11', 'C 10', 'C 09'];
 const SEGMENT_2 = ['C 11', 'C 12', 'C 13'];
@@ -19,10 +20,10 @@ const Chiyoda = () => {
 
     return (
         <g id="chiyoda">
-            <LineSegmentWithStepChange
+            <LineSegmentWithEndpoint
                 stops={buildTheseStops(SEGMENT_1)}
                 origin={CHIYODA_OTEMACHI}
-                ystep={MAJOR_LINE}
+                endpoint={THIS_HIBIYA}
                 textAlignments={[TextAlignment.LEFT]}
             />
             <LineSegmentWithStepChange

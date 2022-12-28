@@ -13,11 +13,20 @@ import Tozai from './tokyo-metro/Tozai';
 import './colors/colors.scss';
 import './colors/jr-east-colors.scss';
 import Yurakucho from './tokyo-metro/Yurakucho';
+import Keiyo from './jr-east/Keiyo';
 
 const Tokyo = (): JSX.Element => {
 
     return (
         <g id="tokyo">
+            <g id="jr">
+                <ChuoTokyo />
+                <Yamanote />
+                <KeihinTohoku />
+                <Tokaido />
+                <SobuRapid />
+                <Keiyo />
+            </g>
             <g id="toei">
                 <Mita />
                 <Asakusa />
@@ -30,11 +39,6 @@ const Tokyo = (): JSX.Element => {
                 <Tozai />
                 <Yurakucho />
             </g>
-            <ChuoTokyo />
-            <Yamanote />
-            <KeihinTohoku />
-            <Tokaido />
-            <SobuRapid />
         </g>
     );
 }

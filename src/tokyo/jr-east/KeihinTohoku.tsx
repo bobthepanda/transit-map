@@ -1,10 +1,10 @@
 import { buildStops, useStopsFromCSV } from '../../utils/StopUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
-import { CHUO_TOKYO, OFFSET, OTEMACHI, YAMANOTE_SHIMBASHI, RAPID_OCHANOMIZU } from '../../utils/CommonCoordinates';
+import { CHUO_TOKYO, OFFSET, OTEMACHI, YAMANOTE_SHIMBASHI, RAPID_OCHANOMIZU, YAMANOTE_YURAKUCHO } from '../../utils/CommonCoordinates';
 import { MAJOR_LINE } from '../../map/GridLines';
 
 const TOKYO = { ...CHUO_TOKYO, x: CHUO_TOKYO.x + OFFSET * 2 };
-const YURAKUCHO = { ...TOKYO, y: TOKYO.y + OFFSET * 4};
+const YURAKUCHO = { ...TOKYO, y: YAMANOTE_YURAKUCHO.y};
 const SHIMBASHI = { ...YAMANOTE_SHIMBASHI, x: YAMANOTE_SHIMBASHI.x + OFFSET };
 
 const KeihinTohoku = () => {
