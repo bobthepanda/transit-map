@@ -1,6 +1,5 @@
 import { StopFromTokyo } from '../StopsFromTokyo';
-import { CHUO_TOKYO, OFFSET, OTEMACHI, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
-import { MAJOR_LINE } from '../../map/GridLines';
+import { CHUO_TOKYO, OFFSET, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
 
 const TOKYO = { ...CHUO_TOKYO, x: CHUO_TOKYO.x + OFFSET * 4 };
 const SHIMBASHI = {
