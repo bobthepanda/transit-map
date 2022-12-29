@@ -2,9 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import stopReducer from './slice/StopSlice';
 
 export const store = configureStore({
-  reducer: {
-    stops: stopReducer,
-  },
+    reducer: {
+        stops: stopReducer,
+    },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

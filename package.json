@@ -1,109 +1,134 @@
 {
-  "name": "transit-map",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.9.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.13",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
-    "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.1.0",
-    "papaparse": "^5.3.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
-    "sass": "^1.56.2",
-    "save": "^2.9.0",
-    "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "airbnb",
-      "plugin:prettier/recommended",
-      "prettier/react"
-    ],
-    "env": {
-      "browser": true,
-      "commonjs": true,
-      "es6": true,
-      "jest": true,
-      "node": true
+    "name": "transit-map",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@reduxjs/toolkit": "^1.9.1",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^29.2.4",
+        "@types/node": "^18.11.13",
+        "@types/react": "^18.0.26",
+        "@types/react-dom": "^18.0.9",
+        "husky": "^8.0.2",
+        "lint-staged": "^13.1.0",
+        "papaparse": "^5.3.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
+        "react-router": "^6.6.1",
+        "react-router-dom": "^6.4.5",
+        "react-scripts": "5.0.1",
+        "sass": "^1.56.2",
+        "save": "^2.9.0",
+        "typescript": "^4.9.4",
+        "web-vitals": "^2.1.4"
     },
-    "rules": {
-      "jsx-a11y/href-no-hash": [
-        "off"
-      ],
-      "react/jsx-filename-extension": [
-        "warn",
-        {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "plugins": [
+            "@typescript-eslint",
+            "prettier"
+        ],
+        "extends": [
+            "react-app",
+            "react-app/jest",
+            "airbnb",
+            "airbnb-typescript",
+            "plugin:prettier/recommended",
+            "prettier"
+        ],
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es6": true,
+            "jest": true,
+            "node": true
+        },
+        "rules": {
+            "jsx-a11y/href-no-hash": [
+                "off"
+            ],
+            "react/jsx-filename-extension": [
+                "warn",
+                {
+                    "extensions": [
+                        ".js",
+                        ".jsx",
+                        ".ts",
+                        ".tsx"
+                    ]
+                }
+            ],
+            "max-len": [
+                "warn",
+                {
+                    "code": 140,
+                    "tabWidth": 4,
+                    "ignoreComments": false,
+                    "ignoreTrailingComments": true,
+                    "ignoreUrls": true,
+                    "ignoreStrings": true,
+                    "ignoreTemplateLiterals": true,
+                    "ignoreRegExpLiterals": true
+                }
+            ],
+            "react/function-component-definition": [
+                "warn",
+                {
+                    "namedComponents": "arrow-function",
+                    "unnamedComponents": "arrow-function"
+                }
+            ],
+            "react/react-in-jsx-scope": "off",
+            "react/require-default-props": "off"
+        },
+        "parserOptions": {
+            "project": "./tsconfig.json"
         }
-      ],
-      "max-len": [
-        "warn",
-        {
-          "tabWidth": 2,
-          "ignoreComments": false,
-          "ignoreTrailingComments": true,
-          "ignoreUrls": true,
-          "ignoreStrings": true,
-          "ignoreTemplateLiterals": true,
-          "ignoreRegExpLiterals": true
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/preset-typescript": "^7.18.6",
+        "@typescript-eslint/eslint-plugin": "^5.47.1",
+        "@typescript-eslint/parser": "^5.47.1",
+        "eslint": "^8.30.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.11",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "^2.8.1",
+        "ts-jest": "^29.0.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
         }
-      ]
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --write"
+        ]
     }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@babel/preset-typescript": "^7.18.6",
-    "eslint": "^8.30.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write"
-    ]
-  }
 }

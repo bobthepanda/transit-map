@@ -5,67 +5,67 @@ $sin-45: 0.707106781;
 $line-height: calc(1.2em * 2 / 3);
 
 .stop-bullet {
-  stroke-width: units.$basic-unit * 0.25;
-  fill: white;
-  stroke: black;
+    stroke-width: units.$basic-unit * 0.25;
+    fill: white;
+    stroke: black;
 }
 
 .text-subtitle {
-  font-size: calc(2em / 3);
+    font-size: calc(2em / 3);
 }
 
 .text-left,
 .text-upper-left,
 .text-lower-left {
-  text-anchor: end;
+    text-anchor: end;
 }
 
 .text-up,
 .text-down {
-  text-anchor: middle;
+    text-anchor: middle;
 }
 .text-left {
-  transform: translateX(calc(-1 * $text-spacing));
+    transform: translateX(calc(-1 * $text-spacing));
 }
 
 .text-right {
-  transform: translateX($text-spacing);
+    transform: translateX($text-spacing);
 }
 
 .text-up {
-  transform: translateY(calc(-1 * $text-spacing)) translateY(-1 * $line-height);
+    transform: translateY(calc(-1 * $text-spacing)) translateY(-1 * $line-height);
 }
 
 .text-down {
-  transform: translateY($text-spacing) translateY($line-height);
+    transform: translateY($text-spacing) translateY($line-height);
 }
 
 .text-lower-right {
-  transform: translateX(calc($text-spacing * $sin-45)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
+    transform: translateX(calc($text-spacing * $sin-45)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
 }
 
 .text-lower-left {
-  transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
+    transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc($text-spacing * $sin-45)) translateY($line-height);
 }
 
 .text-upper-right {
-  transform: translateX(calc($text-spacing * $sin-45)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
+    transform: translateX(calc($text-spacing * $sin-45)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
 }
 
 .text-upper-left {
-  transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
+    transform: translateX(calc($text-spacing * $sin-45 * -1)) translateY(calc(-1 * $text-spacing * $sin-45)) translateY(-1 * $line-height);
 }
 
 .station-code {
-  font-size: calc(2em / 3);
-  text-anchor: middle;
-  font-weight: bold;
+    font-size: calc(2em / 3);
+    text-anchor: middle;
+    font-weight: bold;
 }
 
 line,
 path {
-  stroke-width: calc(units.$basic-unit * 2 / 3);
-  stroke: black;
-  fill: none;
-  stroke-linecap: round;
+    stroke-width: calc(units.$basic-unit * 2 / 3);
+    stroke: black;
+    fill: none;
+    stroke-linecap: round;
 }

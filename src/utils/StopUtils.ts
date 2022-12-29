@@ -1,5 +1,5 @@
 // prettier-ignore
-export const STOPS_TO_HIDE_TEXT: string[] = [
+const STOPS_TO_HIDE_TEXT: string[] = [
   'C 11', 'C 09', 'C 08',
   'H 08', 'H 09',
   'M 17',
@@ -12,3 +12,5 @@ export const STOPS_TO_HIDE_TEXT: string[] = [
   'G 11',
   'JY 02', 'JY 03',
 ]
+
+export default STOPS_TO_HIDE_TEXT;
