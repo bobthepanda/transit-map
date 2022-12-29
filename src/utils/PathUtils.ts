@@ -23,29 +23,20 @@ enum Factor {
   ZERO = 0,
 }
 
-const EAST = { dx: Factor.POSITIVE, dy: Factor.ZERO };
+export const EAST = { dx: Factor.POSITIVE, dy: Factor.ZERO };
 
-const WEST = { dx: Factor.NEGATIVE, dy: Factor.ZERO };
+export const WEST = { dx: Factor.NEGATIVE, dy: Factor.ZERO };
 
-const NORTH = { dy: Factor.NEGATIVE, dx: Factor.ZERO };
+export const NORTH = { dy: Factor.NEGATIVE, dx: Factor.ZERO };
 
-const SOUTH = { dy: Factor.POSITIVE, dx: Factor.ZERO };
+export const SOUTH = { dy: Factor.POSITIVE, dx: Factor.ZERO };
 
-export interface Scales {
+export interface Directions {
   firstDirection: RelativeCoordinates;
   secondDirection: RelativeCoordinates;
 }
 
-export const W_TO_N: Scales = { firstDirection: WEST, secondDirection: NORTH };
-export const W_TO_S: Scales = { firstDirection: WEST, secondDirection: SOUTH };
-export const E_TO_N: Scales = { firstDirection: EAST, secondDirection: NORTH };
-export const E_TO_S: Scales = { firstDirection: EAST, secondDirection: SOUTH };
-export const S_TO_W: Scales = { firstDirection: SOUTH, secondDirection: WEST };
-export const S_TO_E: Scales = { firstDirection: SOUTH, secondDirection: EAST };
-export const N_TO_W: Scales = { firstDirection: NORTH, secondDirection: WEST };
-export const N_TO_E: Scales = { firstDirection: NORTH, secondDirection: EAST };
-
-export interface NewCurveParameters extends Scales {
+export interface NewCurveParameters extends Directions {
   control: Coordinates;
   end: Coordinates;
   radius?: number;

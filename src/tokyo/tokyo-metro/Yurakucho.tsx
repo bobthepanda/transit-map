@@ -1,8 +1,7 @@
-import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
 import { NIHOMBASHI, OFFSET, YAMANOTE_YURAKUCHO } from '../../utils/CommonCoordinates';
-import { start, S_TO_W, curveTo, horizontalToLocation } from '../../utils/PathUtils';
+import { horizontalToLocation, start } from '../../utils/PathUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
 const THIS_YURAKUCHO = {

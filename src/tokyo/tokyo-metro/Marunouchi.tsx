@@ -1,8 +1,8 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import { CHUO_TOKYO, MARUNOUCHI_OTEMACHI, OFFSET, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, MITA_HIBIYA } from '../../utils/CommonCoordinates';
-import { start, curveTo, S_TO_E, E_TO_S, S_TO_W } from '../../utils/PathUtils';
+import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import { CHUO_TOKYO, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, MARUNOUCHI_OTEMACHI, MITA_HIBIYA, OFFSET } from '../../utils/CommonCoordinates';
+import { curveTo, EAST, SOUTH, start, WEST } from '../../utils/PathUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 
 const SEGMENT_1 = ['M 18', 'M 19'];
@@ -24,19 +24,22 @@ const Marunouchi = () => {
                 ${curveTo({
                   control: { y: TOKYO.y, x: MARUNOUCHI_OTEMACHI.x },
                   end: TOKYO,
-                  ...S_TO_E,
+                  firstDirection: SOUTH,
+                  secondDirection: EAST,
                   radius: TOKYO_RADIUS,
                 })}
                 ${curveTo({
                   control: { x: GINZA.x, y: TOKYO.y },
                   end: GINZA,
-                  ...E_TO_S,
+                  firstDirection: EAST,
+                  secondDirection: SOUTH,
                   radius: TOKYO_RADIUS,
                 })}
                 ${curveTo({
                   control: { x: GINZA.x, y: KASUMIGASEKI.y },
                   end: KASUMIGASEKI,
-                  ...S_TO_W,
+                  firstDirection: SOUTH,
+                  secondDirection: WEST,
                   radius: TOKYO_RADIUS,
                 })}
                 `}

@@ -1,17 +1,6 @@
-import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import {
-  OTEMACHI,
-  CHIYODA_OTEMACHI,
-  HIBIYA_KASUMIGASEKI,
-  OFFSET,
-  NIHOMBASHI,
-  YAMANOTE_SHIMBASHI,
-  HIBIYA_GINZA,
-  MITA_HIBIYA,
-} from '../../utils/CommonCoordinates';
-import { start, S_TO_W, curveTo } from '../../utils/PathUtils';
+import { HIBIYA_KASUMIGASEKI, MITA_HIBIYA, NIHOMBASHI, OFFSET, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
+import { curveTo, SOUTH, start, WEST } from '../../utils/PathUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from './Marunouchi';
 
@@ -32,7 +21,8 @@ const Ginza = () => {
                   control: { x: NIHOMBASHI.x, y: SHIMBASHI.y },
                   end: TORANOMON,
                   radius: SHIMBASHI_RADIUS,
-                  ...S_TO_W,
+                  firstDirection: SOUTH,
+                  secondDirection: WEST,
                 })}
                 `}
       />

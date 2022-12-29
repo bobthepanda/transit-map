@@ -1,16 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange, LineSegmentWithEndpoint } from '../../symbols/LineSegment';
-import {
-  HIBIYA,
-  HIBIYA_GINZA,
-  HIBIYA_KASUMIGASEKI,
-  NIHOMBASHI,
-  OFFSET,
-  YAMANOTE_YURAKUCHO,
-  HIBIYA_KAYABACHO,
-} from '../../utils/CommonCoordinates';
-import { curveTo, S_TO_W, start } from '../../utils/PathUtils';
+import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import { HIBIYA, HIBIYA_GINZA, HIBIYA_KAYABACHO, OFFSET, YAMANOTE_YURAKUCHO } from '../../utils/CommonCoordinates';
+import { curveTo, SOUTH, start, WEST } from '../../utils/PathUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from './Marunouchi';
 
@@ -26,7 +17,8 @@ const Hibiya = () => {
                   control: { x: HIBIYA_YURAKUCHO.x, y: HIBIYA.y },
                   end: HIBIYA,
                   radius: TOKYO_RADIUS,
-                  ...S_TO_W,
+                  firstDirection: SOUTH,
+                  secondDirection: WEST,
                 })}
             `}
       />

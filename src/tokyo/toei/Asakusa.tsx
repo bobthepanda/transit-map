@@ -1,28 +1,11 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { LineSegmentWithStepChange, StopMetadata } from '../../symbols/LineSegment';
-import {
-  OTEMACHI,
-  CHIYODA_OTEMACHI,
-  HIBIYA_KASUMIGASEKI,
-  OFFSET,
-  NIHOMBASHI,
-  YAMANOTE_SHIMBASHI,
-  HIBIYA_GINZA,
-  ASAKUSA_NIHOMBASHI,
-  MITA_HIBIYA,
-} from '../../utils/CommonCoordinates';
-import { start, S_TO_E, S_TO_W, curveTo } from '../../utils/PathUtils';
+import { ASAKUSA_NIHOMBASHI, HIBIYA_GINZA, MITA_HIBIYA, NIHOMBASHI, OFFSET, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
+import { curveTo, SOUTH, start, WEST } from '../../utils/PathUtils';
 import { StopFromTokyo } from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
-const SHIMBASHI = {
-  x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5,
-  y: YAMANOTE_SHIMBASHI.y + OFFSET * 2,
-};
-const GINZA = {
-  x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE,
-  y: MITA_HIBIYA.y,
-};
+const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
+const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const Asakusa = () => {
   return (
@@ -34,7 +17,8 @@ const Asakusa = () => {
                   control: { x: ASAKUSA_NIHOMBASHI.x, y: SHIMBASHI.y },
                   end: SHIMBASHI,
                   radius: SHIMBASHI_RADIUS,
-                  ...S_TO_W,
+                  firstDirection: SOUTH,
+                  secondDirection: WEST,
                 })}
             `}
       />
