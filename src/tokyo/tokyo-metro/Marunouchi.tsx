@@ -1,8 +1,16 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
-import { CHUO_TOKYO, HIBIYA_GINZA, HIBIYA_KASUMIGASEKI, MARUNOUCHI_OTEMACHI, MITA_HIBIYA, OFFSET } from '../../utils/CommonCoordinates';
-import { curveFrom, EAST, SOUTH, startAtLocation, WEST } from '../../utils/PathUtils';
+import {
+    CHUO_OCHANOMIZU,
+    CHUO_TOKYO,
+    HIBIYA_GINZA,
+    HIBIYA_KASUMIGASEKI,
+    MARUNOUCHI_OTEMACHI,
+    MITA_HIBIYA,
+    OFFSET,
+} from '../../utils/CommonCoordinates';
+import { curveFrom, E, ESE, offset, S, startAtLocation, W } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 
 const SEGMENT_1 = ['M 18', 'M 19'];
@@ -16,35 +24,50 @@ const KASUMIGASEKI = {
 
 export const TOKYO_RADIUS = OFFSET * 2;
 
-const Marunouchi = () => {
+const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -2 });
+
+export const MarunouchiPath = () => {
     return (
-        <g id="marunouchi">
-            <path
-                d={`${startAtLocation(MARUNOUCHI_OTEMACHI)} 
+        <path
+            d={`${startAtLocation(OCHANOMIZU)}
+                ${curveFrom({
+                    start: OCHANOMIZU,
+                    end: MARUNOUCHI_OTEMACHI,
+                    firstDirection: ESE,
+                    secondDirection: S,
+                })} 
                 ${curveFrom({
                     start: MARUNOUCHI_OTEMACHI,
                     end: TOKYO,
-                    firstDirection: SOUTH,
-                    secondDirection: EAST,
+                    firstDirection: S,
+                    secondDirection: E,
                 })}
                 ${curveFrom({
                     start: TOKYO,
                     end: GINZA,
-                    firstDirection: EAST,
-                    secondDirection: SOUTH,
+                    firstDirection: E,
+                    secondDirection: S,
                 })}
                 ${curveFrom({
                     start: GINZA,
                     end: KASUMIGASEKI,
-                    firstDirection: SOUTH,
-                    secondDirection: WEST,
+                    firstDirection: S,
+                    secondDirection: W,
                 })}
                 `}
-            />
+        />
+    );
+};
+
+const Marunouchi = () => {
+    return (
+        <g id="marunouchi">
+            <MarunouchiPath />
             <LineSegmentWithStepChange stops={SEGMENT_1} origin={MARUNOUCHI_OTEMACHI} ystep={MAJOR_LINE * -1} />
             <StopFromTokyo location={TOKYO} stationCode="M 17" />
             <StopFromTokyo location={GINZA} stationCode="M 16" />
             <StopFromTokyo location={KASUMIGASEKI} stationCode="M 15" textAlignment={TextAlignment.UP} />
+            <StopFromTokyo stationCode="M 20" location={OCHANOMIZU} textAlignment={TextAlignment.UP} />
         </g>
     );
 };

@@ -10,7 +10,12 @@ const STOPS_TO_HIDE_TEXT: string[] = [
   'H 10', // Higashi-Ginza
   'T 09', 'T 10', 'T 11',
   'G 11',
-  'JY 02', 'JY 03',
+  'JY 02', 'JC 02', 'JK 27', // Kanda
+  'JY 03', 'JK 28', // Akihabara
+  'A 14', // Ningyocho
+  'Z 09', // Mitsukoshimae
+  'JE 01', 'JE 02',
+  'M 20' // Ochanomizu
 ]
 
 export default STOPS_TO_HIDE_TEXT;

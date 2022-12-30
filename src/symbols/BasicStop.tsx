@@ -80,9 +80,11 @@ const NonMemoStop = ({
     const showGrid = useShowGrid();
     return (
         <g className="stop-group" transform={`translate(${x} ${y})`}>
-            {showGrid && <title>{JSON.stringify(location)}</title>}
-            <circle cx="0" cy="0" r={UNIT_SIZE} className="stop-bullet" />
-            <StationCode stationCode={stationCode} />
+            <g>
+                {showGrid && <title>{JSON.stringify({ ...location, stationCode, text, subtitleText, hideText })}</title>}
+                <circle cx="0" cy="0" r={UNIT_SIZE} className="stop-bullet" />
+                <StationCode stationCode={stationCode} />
+            </g>
             {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
         </g>
     );

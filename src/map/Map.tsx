@@ -9,7 +9,7 @@ export const HEIGHT = 3370;
 
 const Map = ({ width = WIDTH * 3, height = HEIGHT * 3 }: Dimensions) => {
     return (
-        <section>
+        <section id="map">
             <svg
                 width={`${WIDTH}pt`}
                 height={`${HEIGHT}pt`}

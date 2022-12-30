@@ -9,6 +9,6 @@ export interface Coordinates {
 }
 
 export interface RelativeCoordinates {
-    dx: number;
-    dy: number;
+    dx?: number;
+    dy?: number;
 }

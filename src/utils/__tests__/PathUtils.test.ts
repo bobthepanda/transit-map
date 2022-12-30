@@ -1,13 +1,13 @@
 import { Coordinates } from '../../interfaces/Dimensions';
 import {
     curveFrom,
-    EAST,
+    E,
     generatePoint,
     horizontalToLocation,
     lineToLocation,
-    NORTH,
-    SOUTH,
-    SOUTHEAST,
+    N,
+    S,
+    SE,
     startAtLocation,
     verticalToLocation,
 } from '../PathUtils';
@@ -43,28 +43,28 @@ describe('PathUtils', () => {
         const commonCase = { start: commonStart, endReference };
 
         it('works with vertical slope', () => {
-            const point = generatePoint({ ...commonCase, slope: NORTH });
+            const point = generatePoint({ ...commonCase, slope: N });
 
             expect(point.x).toBe(1);
             expect(point.y).toBe(10);
         });
 
         it('works with horizontal slope', () => {
-            const point = generatePoint({ ...commonCase, slope: EAST });
+            const point = generatePoint({ ...commonCase, slope: E });
 
             expect(point.x).toBe(10);
             expect(point.y).toBe(2);
         });
 
         it('works with normal slope', () => {
-            const point = generatePoint({ ...commonCase, slope: SOUTHEAST });
+            const point = generatePoint({ ...commonCase, slope: SE });
 
             expect(point.x).toBe(10);
             expect(point.y).toBe(11);
         });
 
         it('works with normal backwards', () => {
-            const point = generatePoint({ start: endReference, endReference: commonStart, slope: SOUTHEAST });
+            const point = generatePoint({ start: endReference, endReference: commonStart, slope: SE });
 
             expect(point.x).toBe(1);
             expect(point.y).toBe(1);
@@ -76,8 +76,8 @@ describe('PathUtils', () => {
             const curveStringArray: string[] = curveFrom({
                 start: commonStart,
                 end: endReference,
-                firstDirection: EAST,
-                secondDirection: SOUTH,
+                firstDirection: E,
+                secondDirection: S,
                 radius: 2,
             }).split(/\r?\n/);
 
@@ -91,8 +91,8 @@ describe('PathUtils', () => {
             const curveStringArray: string[] = curveFrom({
                 start: commonStart,
                 end: endReference,
-                firstDirection: SOUTH,
-                secondDirection: EAST,
+                firstDirection: S,
+                secondDirection: E,
                 radius: 2,
             }).split(/\r?\n/);
 

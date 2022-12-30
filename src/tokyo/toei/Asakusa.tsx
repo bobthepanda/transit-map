@@ -1,6 +1,15 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { ASAKUSA_NIHOMBASHI, HIBIYA_GINZA, MITA_HIBIYA, NIHOMBASHI, OFFSET, YAMANOTE_SHIMBASHI } from '../../utils/CommonCoordinates';
-import { curveFrom, SOUTH, startAtLocation, WEST } from '../../utils/PathUtils';
+import {
+    ASAKUSA_BAKUROCHO,
+    ASAKUSA_NIHOMBASHI,
+    ASAKUSA_NINGYOCHO,
+    HIBIYA_GINZA,
+    MITA_HIBIYA,
+    NIHOMBASHI,
+    OFFSET,
+    YAMANOTE_SHIMBASHI,
+} from '../../utils/CommonCoordinates';
+import { curveFrom, S, startAtLocation, W } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
@@ -12,13 +21,13 @@ const Asakusa = () => {
         <g id="asakusa">
             <path
                 d={`
-                ${startAtLocation(ASAKUSA_NIHOMBASHI)}
+                ${startAtLocation(ASAKUSA_BAKUROCHO)}
                 ${curveFrom({
-                    start: ASAKUSA_NIHOMBASHI,
+                    start: ASAKUSA_BAKUROCHO,
                     end: SHIMBASHI,
                     radius: SHIMBASHI_RADIUS,
-                    firstDirection: SOUTH,
-                    secondDirection: WEST,
+                    firstDirection: S,
+                    secondDirection: W,
                 })}
             `}
             />
@@ -26,6 +35,8 @@ const Asakusa = () => {
             <StopFromTokyo location={{ ...ASAKUSA_NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="A 12" />
             <StopFromTokyo location={GINZA} stationCode="A 11" />
             <StopFromTokyo location={ASAKUSA_NIHOMBASHI} stationCode="A 13" />
+            <StopFromTokyo stationCode="A 14" location={ASAKUSA_NINGYOCHO} />
+            <StopFromTokyo stationCode="A 15" location={ASAKUSA_BAKUROCHO} />
         </g>
     );
 };

@@ -22,23 +22,35 @@ enum Factor {
     NEGATIVE = -1,
     ZERO = 0,
     DIAG = Math.sin(Math.atan(1)),
+    HALF_DIAG = Math.sin(Math.atan(0.5)),
+    DOUBLE_DIAG = Math.cos(Math.atan(0.5)),
 }
 
-export const EAST = { dx: Factor.POSITIVE, dy: Factor.ZERO };
+export const E = { dx: Factor.POSITIVE };
 
-export const WEST = { dx: Factor.NEGATIVE, dy: Factor.ZERO };
+export const W = { dx: Factor.NEGATIVE };
 
-export const NORTH = { dy: Factor.NEGATIVE, dx: Factor.ZERO };
+export const N = { dy: Factor.NEGATIVE };
 
-export const SOUTH = { dy: Factor.POSITIVE, dx: Factor.ZERO };
+export const S = { dy: Factor.POSITIVE };
 
-export const SOUTHEAST = { dx: Factor.DIAG, dy: Factor.DIAG };
+export const SE = { dx: Factor.DIAG, dy: Factor.DIAG };
 
-export const SOUTHWEST = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG };
+export const SW = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG };
 
-export const NORTHEAST = { dx: Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
+export const NE = { dx: Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
 
-export const NORTHWEST = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
+export const NW = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
+
+export const NNW = { dx: Factor.NEGATIVE * Factor.HALF_DIAG, dy: Factor.NEGATIVE * Factor.DOUBLE_DIAG };
+
+export const WNW = { dy: Factor.NEGATIVE * Factor.HALF_DIAG, dx: Factor.NEGATIVE * Factor.DOUBLE_DIAG };
+
+export const NNE = { dx: Factor.HALF_DIAG, dy: Factor.NEGATIVE * Factor.DOUBLE_DIAG };
+
+export const ENE = { dx: Factor.DOUBLE_DIAG, dy: Factor.NEGATIVE * Factor.HALF_DIAG };
+
+export const ESE = { dy: Factor.HALF_DIAG, dx: Factor.DOUBLE_DIAG };
 
 export interface Directions {
     firstDirection: RelativeCoordinates;
@@ -54,14 +66,20 @@ export interface CurveToParameters extends CommonCurveParameters {
     control: Coordinates;
 }
 
-export const curveTo = ({ control, end, firstDirection, secondDirection, radius = OFFSET * 2 }: CurveToParameters) => {
+const curveTo = ({
+    control,
+    end,
+    firstDirection: { dx: firstDx = 0, dy: firstDy = 0 },
+    secondDirection: { dx: secondDx = 0, dy: secondDy = 0 },
+    radius = OFFSET * 2,
+}: CurveToParameters) => {
     const startCurve: Coordinates = {
-        x: control.x - firstDirection.dx * radius,
-        y: control.y - firstDirection.dy * radius,
+        x: control.x - firstDx * radius,
+        y: control.y - firstDy * radius,
     };
     const endCurve: Coordinates = {
-        x: control.x + secondDirection.dx * radius,
-        y: control.y + secondDirection.dy * radius,
+        x: control.x + secondDx * radius,
+        y: control.y + secondDy * radius,
     };
 
     return `${lineToLocation(startCurve)} 
@@ -76,7 +94,7 @@ interface PointGeneration {
 }
 
 export const generatePoint = ({ start, slope, endReference }: PointGeneration): Coordinates => {
-    const { dx, dy } = slope;
+    const { dx = 0, dy = 0 } = slope;
 
     if (dx === 0) {
         return { x: start.x, y: endReference.y };
@@ -141,4 +159,12 @@ export const curveFrom = ({ start, end, firstDirection, secondDirection, radius 
         secondDirection,
         radius,
     });
+};
+
+export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordinates): Coordinates => {
+    return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
+};
+
+export const offset = ({ x, y }: Coordinates, { dx = 0, dy = 0 }: RelativeCoordinates): Coordinates => {
+    return { x: x + dx, y: y + dy };
 };

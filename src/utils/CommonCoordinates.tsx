@@ -49,17 +49,16 @@ export const NIHOMBASHI: Coordinates = {
     ...OTEMACHI,
     x: HIBIYA_GINZA.x + OFFSET * 0.5,
 };
-export const ASAKUSA_NIHOMBASHI: Coordinates = {
-    ...NIHOMBASHI,
-    x: NIHOMBASHI.x + MAJOR_LINE,
-};
+export const ASAKUSA_NIHOMBASHI: Coordinates = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE };
 
-export const RAPID_OCHANOMIZU: Coordinates = {
-    x: OTEMACHI.x - OFFSET,
-    y: OTEMACHI.y - MAJOR_LINE * 1.5 + OFFSET,
-};
+export const ASAKUSA_NINGYOCHO: Coordinates = { ...ASAKUSA_NIHOMBASHI, y: ASAKUSA_NIHOMBASHI.y - MAJOR_LINE + MINOR_LINE };
+export const ASAKUSA_BAKUROCHO: Coordinates = { ...ASAKUSA_NIHOMBASHI, y: ASAKUSA_NIHOMBASHI.y - MAJOR_LINE * 2 + OFFSET * 2 };
 
-export const HIBIYA_KAYABACHO = {
-    ...NIHOMBASHI,
-    x: NIHOMBASHI.x + MAJOR_LINE * 2,
-};
+export const RAPID_OCHANOMIZU: Coordinates = { x: OTEMACHI.x - OFFSET, y: OTEMACHI.y - MAJOR_LINE * 1.5 + OFFSET };
+
+export const HIBIYA_KAYABACHO = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE * 2 };
+
+export const YAMANOTE_KANDA = { ...YAMANOTE_TOKYO, y: OTEMACHI.y - MAJOR_LINE * 1.25 };
+export const YAMANOTE_AKIHABARA = { ...YAMANOTE_KANDA, y: OTEMACHI.y - MAJOR_LINE * 2.5 };
+export const GINZA_MITSUKOSHIMAE = { x: YAMANOTE_KANDA.x + OFFSET * 8 - OFFSET * 2, y: YAMANOTE_KANDA.y + OFFSET * 4 };
+export const CHUO_OCHANOMIZU = { x: OTEMACHI.x - OFFSET, y: YAMANOTE_AKIHABARA.y };
