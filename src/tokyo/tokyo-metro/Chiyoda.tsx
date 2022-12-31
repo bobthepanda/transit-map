@@ -24,7 +24,7 @@ export const ChiyodaPath = () => {
 
 const Chiyoda = () => {
     return (
-        <g id="chiyoda">
+        <g className="chiyoda">
             <ChiyodaPath />
             <StopFromTokyo stationCode="C 13" location={YUSHIMA} textAlignment={TextAlignment.LEFT} />
             <StopFromTokyo

@@ -9,7 +9,7 @@ const SHIMBASHI = {
 
 const Tokaido = () => {
     return (
-        <g id="tokaido">
+        <g className="tokaido">
             <StopFromTokyo location={TOKYO} stationCode="JT 01" />
             <StopFromTokyo location={SHIMBASHI} stationCode="JT 02" />
         </g>

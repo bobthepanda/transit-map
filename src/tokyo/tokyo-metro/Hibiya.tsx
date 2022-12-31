@@ -50,7 +50,7 @@ export const HibiyaPath = () => {
 
 const Hibiya = () => {
     return (
-        <g id="hibiya">
+        <g className="hibiya">
             <HibiyaPath />
             <StopFromTokyo location={HIBIYA} stationCode="H 08" />
             <StopFromTokyo location={HIBIYA_GINZA} stationCode="H 09" />

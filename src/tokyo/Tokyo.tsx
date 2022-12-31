@@ -20,6 +20,7 @@ import Tozai from './tokyo-metro/Tozai';
 import Hanzomon from './tokyo-metro/Hanzomon';
 import Yurakucho from './tokyo-metro/Yurakucho';
 import Shinjuku from './toei/Shinjuku';
+import { ChuoSobu } from './jr-east/ChuoSobu';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -40,6 +41,7 @@ const Tokyo = (): JSX.Element => {
                 <SobuRapid />
                 <Keiyo />
                 <Shinjuku />
+                <ChuoSobu />
             </g>
             <g id="toei">
                 <Mita />

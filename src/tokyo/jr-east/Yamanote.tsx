@@ -3,7 +3,7 @@ import StopFromTokyo from '../StopsFromTokyo';
 
 const Yamanote = () => {
     return (
-        <g id="yamanote">
+        <g className="yamanote">
             <StopFromTokyo location={YAMANOTE_TOKYO} stationCode="JY 01" />
             <StopFromTokyo location={YAMANOTE_YURAKUCHO} stationCode="JY 30" />
             <StopFromTokyo location={YAMANOTE_SHIMBASHI} stationCode="JY 29" />

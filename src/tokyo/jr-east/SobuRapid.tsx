@@ -12,7 +12,7 @@ const BAKUROCHO = { ...ASAKUSA_BAKUROCHO, y: ASAKUSA_BAKUROCHO.y - OFFSET, x: AS
 
 const SobuRapid = () => {
     return (
-        <g id="sobu-rapid">
+        <g className="sobu-rapid">
             <path
                 d={`
                 ${startAtLocation(SHIMBASHI)}

@@ -61,7 +61,7 @@ export const MarunouchiPath = () => {
 
 const Marunouchi = () => {
     return (
-        <g id="marunouchi">
+        <g className="marunouchi">
             <MarunouchiPath />
             <LineSegmentWithStepChange stops={SEGMENT_1} origin={MARUNOUCHI_OTEMACHI} ystep={MAJOR_LINE * -1} />
             <StopFromTokyo location={TOKYO} stationCode="M 17" />

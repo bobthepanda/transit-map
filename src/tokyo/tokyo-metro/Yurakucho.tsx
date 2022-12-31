@@ -16,7 +16,7 @@ const TSUKIJI = {
 
 const Yurakucho = () => {
     return (
-        <g id="yurakucho">
+        <g className="yurakucho">
             <path
                 d={`
                 ${startAtLocation(THIS_YURAKUCHO)}

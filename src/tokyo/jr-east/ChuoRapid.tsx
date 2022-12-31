@@ -4,7 +4,7 @@ import { curveFrom, N, startAtLocation, W } from '../../utils/PathUtils';
 
 const ChuoRapid = () => {
     return (
-        <g id="chuo-rapid">
+        <g className="chuo-rapid">
             <path
                 d={`
                 ${startAtLocation(CHUO_TOKYO)}

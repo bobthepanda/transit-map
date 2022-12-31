@@ -9,7 +9,7 @@ const HATCHOBORI = { ...TOKYO, x: HIBIYA_KAYABACHO.x + OFFSET * 0.5 };
 
 const Keiyo = () => {
     return (
-        <g id="keiyo">
+        <g className="keiyo">
             <StopFromTokyo location={TOKYO} stationCode="JE 01" />
             <StopFromTokyo location={HATCHOBORI} stationCode="JE 02" />
         </g>

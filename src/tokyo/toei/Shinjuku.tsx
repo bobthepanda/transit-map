@@ -20,7 +20,7 @@ export const ShinjukuPath = () => {
 
 const Shinjuku = () => {
     return (
-        <g id="shinjuku">
+        <g className="class">
             <ShinjukuPath />
             <StopFromTokyo stationCode="S 09" location={BAKUROCHO} textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="S 07" location={OGAWAMACHI} textAlignment={TextAlignment.UP} />

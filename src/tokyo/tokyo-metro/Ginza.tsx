@@ -23,7 +23,7 @@ const KANDA = { ...YAMANOTE_KANDA, x: YAMANOTE_KANDA.x - OFFSET * 2 };
 
 const Ginza = () => {
     return (
-        <g id="ginza">
+        <g className="ginza">
             <path
                 d={`${startAtLocation(TORANOMON)}
                 ${curveFrom({

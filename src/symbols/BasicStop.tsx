@@ -45,7 +45,7 @@ interface StopDefinition {
 
 const StopText = ({ text, subtitleText = '', textAlignment = TextAlignment.RIGHT }: TextDefinition) => {
     return (
-        <text className={textAlignment.toString()}>
+        <text className={`label-text ${textAlignment}`}>
             <tspan>{text}</tspan>
             {subtitleText.length !== 0 && (
                 <tspan className="text-subtitle" x="0" dy="1.2em">

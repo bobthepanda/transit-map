@@ -14,7 +14,7 @@ const MIDPOINT = midPoint(TOZAI_OTEMACHI, MITSUKOSHIMAE);
 
 const Hanzomon = () => {
     return (
-        <g id="hanzomon">
+        <g className="hanzomon">
             <path
                 d={`
                 ${startAtLocation(TOZAI_OTEMACHI)}

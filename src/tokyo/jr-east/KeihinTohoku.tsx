@@ -14,7 +14,7 @@ const SHIMBASHI = { ...YAMANOTE_SHIMBASHI, x: YAMANOTE_SHIMBASHI.x + OFFSET };
 
 const KeihinTohoku = () => {
     return (
-        <g id="keihin-tohoku">
+        <g className="keihin-tohoku">
             <StopFromTokyo location={TOKYO} stationCode="JK 26" />
             <StopFromTokyo location={YURAKUCHO} stationCode="JK 25" />
             <StopFromTokyo location={SHIMBASHI} stationCode="JK 24" />

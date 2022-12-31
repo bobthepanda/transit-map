@@ -18,7 +18,7 @@ const TOZAI_KAYABACHO = {
 
 const Tozai = () => {
     return (
-        <g id="tozai">
+        <g className="tozai">
             <path
                 d={`
                 ${startAtLocation(TOZAI_OTEMACHI)}

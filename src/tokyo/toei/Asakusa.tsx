@@ -18,7 +18,7 @@ const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y 
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const Asakusa = () => {
     return (
-        <g id="asakusa">
+        <g className="asakusa">
             <path
                 d={`
                 ${startAtLocation(ASAKUSA_BAKUROCHO)}

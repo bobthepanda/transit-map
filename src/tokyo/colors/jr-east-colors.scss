@@ -1,61 +1,67 @@
 .stop-bullet,
 line,
 path {
-    #chuo-rapid &,
-    #ome &,
-    #itsukaichi & {
+    .chuo-rapid &,
+    .ome &,
+    .itsukaichi & {
         stroke: #ff4500;
     }
 
-    #chuo-sobu & {
+    .chuo-sobu & {
         stroke: #ffd700;
     }
 
-    #tokaido & {
+    .tokaido & {
         stroke: #ffa500;
     }
 
-    #musashino & {
+    .musashino & {
         stroke: #ff4500;
     }
 
-    #nambu & {
+    .nambu & {
         stroke: #ffd700;
     }
 
-    #yokohama & {
+    .yokohama & {
         stroke: #ffd700;
     }
 
-    #negishi &,
-    #keihin-tohoku & {
+    .negishi &,
+    .keihin-tohoku & {
         stroke: #00bfff;
     }
 
-    #saikyo & {
+    .saikyo & {
         stroke: #2e8b57;
     }
 
-    #shonan-shinjuku & {
+    .shonan-shinjuku & {
         stroke: #ff0000;
     }
 
-    #takasaki &,
-    #tohoku &,
-    #tokaido & {
+    .takasaki &,
+    .tohoku &,
+    .tokaido & {
         stroke: #ffa500;
     }
 
-    #yamanote & {
+    .yamanote & {
         stroke: #9acd32;
     }
 
-    #yokosuka &,
-    #sobu-rapid & {
+    .yokosuka &,
+    .sobu-rapid & {
         stroke: #0070b9;
     }
 
-    #keiyo & {
+    .keiyo & {
         stroke: #dc143c;
     }
+}
+
+text.label-text {
+    stroke: white;
+    paint-order: stroke;
+    stroke-width: 6px;
 }
