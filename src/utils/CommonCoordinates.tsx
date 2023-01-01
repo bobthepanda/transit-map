@@ -76,7 +76,7 @@ export const SOBU_BAKUROCHO = { ...ASAKUSA_BAKUROCHO, y: ASAKUSA_BAKUROCHO.y - O
 export const SOBU_KINSCHICHO = generatePoint({
     start: SOBU_BAKUROCHO,
     slope: ENE,
-    endReference: offset(KIKUKAWA, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 }),
+    endReference: offset(KIKUKAWA, { dx: MAJOR_LINE * 0.75, dy: -MAJOR_LINE * 0.5 * 0.75 }),
 });
 
 export const CS_RYOGOKU = generatePoint({

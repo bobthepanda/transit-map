@@ -1,4 +1,5 @@
 import { MAJOR_LINE } from '../../map/GridLines';
+import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import {
     ASAKUSA_BAKUROCHO,
@@ -9,7 +10,7 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, SSE, offset, scale, startAtLocation, N, RADIUS, generatePoint } from '../../utils/PathUtils';
+import { curveFrom, E, ENE, SSE, offset, scale, startAtLocation, N, RADIUS, generatePoint, W } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 
@@ -18,7 +19,7 @@ const AKIHABARA = offset(YAMANOTE_AKIHABARA, { dx: OFFSET * 1.5, dy: OFFSET * -1
 const START = OCHANOMIZU;
 const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
 export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 });
-export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 4.5 - OFFSET, dy: -MAJOR_LINE * 2 });
+export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 });
 export const ChuoSobuPath = () => {
     return (
         <path
@@ -46,7 +47,12 @@ export const ChuoSobu = () => {
                 stops={generateStationCodes('JB', 23, 25)}
                 endpoint={offset(generatePoint({ start: CS_KAMEIDO, slope: N, endReference: CS_MOTOYAWATA }), { dy: MAJOR_LINE * 0.5 })}
             />
-            <StopFromTokyo stationCode="JB 28" location={CS_MOTOYAWATA} />
+            <LineSegmentWithEndpoint
+                origin={CS_MOTOYAWATA}
+                stops={generateStationCodes('JB', 28, 26)}
+                endpoint={offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 })}
+                textAlignments={[TextAlignment.DOWN]}
+            />
         </g>
     );
 };

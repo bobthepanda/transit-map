@@ -9,7 +9,7 @@ import StopFromTokyo from '../StopsFromTokyo';
 
 const OGAWAMACHI = { x: OTEMACHI.x + MAJOR_LINE * 0.5 + OFFSET * 0.5, y: SHINJUKU_BAKUROCHO.y };
 
-const ICHINOE = offset(offset(KIKUKAWA, { dx: MAJOR_LINE * 6, dy: MAJOR_LINE * -0.5 * 6 }), {
+const ICHINOE = offset(offset(KIKUKAWA, { dx: MAJOR_LINE * 6 * 0.75, dy: MAJOR_LINE * -0.5 * 6 * 0.75 }), {
     dx: OFFSET * 2,
     dy: -OFFSET * 3,
 });
@@ -41,8 +41,8 @@ const Shinjuku = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('S', 12, 18)}
                 origin={KIKUKAWA}
-                ystep={MAJOR_LINE * -0.5}
-                xstep={MAJOR_LINE}
+                ystep={MAJOR_LINE * -0.5 * 0.75}
+                xstep={MAJOR_LINE * 0.75}
             />
             <LineSegmentWithEndpoint stops={generateStationCodes('S', 19, 21)} origin={ICHINOE} endpoint={MOTOYAWATA} />
         </g>
