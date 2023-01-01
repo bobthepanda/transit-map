@@ -19,3 +19,17 @@ const STOPS_TO_HIDE_TEXT: string[] = [
 ]
 
 export default STOPS_TO_HIDE_TEXT;
+
+export const generateStationCodes = (prefix: string, start: number, end: number): string[] => {
+    if (start > end) {
+        return generateStationCodes(prefix, end, start).reverse();
+    }
+
+    const codes: string[] = [`${prefix} ${start}`];
+
+    for (let i = start + 1; i <= end; i += 1) {
+        codes.push(`${prefix} ${i}`);
+    }
+
+    return codes;
+};

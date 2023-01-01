@@ -7,13 +7,13 @@ import Tokyo from '../tokyo/Tokyo';
 export const WIDTH = 2384;
 export const HEIGHT = 3370;
 
-const Map = ({ width = WIDTH * 3, height = HEIGHT * 3 }: Dimensions) => {
+const Map = ({ width = WIDTH * 4, height = HEIGHT * 4 }: Dimensions) => {
     return (
         <section id="map">
             <svg
-                width={`${WIDTH}pt`}
-                height={`${HEIGHT}pt`}
-                viewBox={`0 0 ${WIDTH}pt ${HEIGHT}pt`}
+                width={`${width}pt`}
+                height={`${height}pt`}
+                viewBox={`0 0 ${width}pt ${height}pt`}
                 xmlns="http://www.w3.org/2000/svg"
                 className="map"
                 preserveAspectRatio="xMidYMin meet"

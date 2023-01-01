@@ -1,5 +1,5 @@
+import { MINOR_LINE } from '../map/GridLines';
 import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
-import { OFFSET } from './CommonCoordinates';
 
 export const startAtLocation = (location: Coordinates): string => {
     return `M ${location.x} ${location.y}`;
@@ -52,6 +52,10 @@ export const ENE = { dx: Factor.DOUBLE_DIAG, dy: Factor.NEGATIVE * Factor.HALF_D
 
 export const ESE = { dy: Factor.HALF_DIAG, dx: Factor.DOUBLE_DIAG };
 
+export const WSW = { dx: -Factor.DOUBLE_DIAG, dy: Factor.HALF_DIAG };
+
+export const SSE = { dy: Factor.DOUBLE_DIAG, dx: Factor.HALF_DIAG };
+
 export interface Directions {
     firstDirection: RelativeCoordinates;
     secondDirection: RelativeCoordinates;
@@ -66,20 +70,22 @@ export interface CurveToParameters extends CommonCurveParameters {
     control: Coordinates;
 }
 
+export const RADIUS = MINOR_LINE * 4;
+
 const curveTo = ({
     control,
     end,
     firstDirection: { dx: firstDx = 0, dy: firstDy = 0 },
     secondDirection: { dx: secondDx = 0, dy: secondDy = 0 },
-    radius = OFFSET * 2,
+    radius = RADIUS,
 }: CurveToParameters) => {
     const startCurve: Coordinates = {
-        x: control.x - firstDx * radius,
-        y: control.y - firstDy * radius,
+        x: control.x - firstDx * Math.abs(radius),
+        y: control.y - firstDy * Math.abs(radius),
     };
     const endCurve: Coordinates = {
-        x: control.x + secondDx * radius,
-        y: control.y + secondDy * radius,
+        x: control.x + secondDx * Math.abs(radius),
+        y: control.y + secondDy * Math.abs(radius),
     };
 
     return `${lineToLocation(startCurve)} 
@@ -167,4 +173,8 @@ export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordi
 
 export const offset = ({ x, y }: Coordinates, { dx = 0, dy = 0 }: RelativeCoordinates): Coordinates => {
     return { x: x + dx, y: y + dy };
+};
+
+export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, value: number): RelativeCoordinates => {
+    return { dx: dx * value, dy: dy * value };
 };

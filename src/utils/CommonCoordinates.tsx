@@ -1,6 +1,8 @@
 import { Coordinates } from '../interfaces/Dimensions';
-import { MAJOR_LINE, MINOR_LINE } from '../map/GridLines';
+import { ENE, generatePoint, SSE, offset, scale, WSW } from './PathUtils';
 
+export const MINOR_LINE = 12;
+export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;
 
 export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 10, y: MAJOR_LINE * 10 };
@@ -58,7 +60,27 @@ export const RAPID_OCHANOMIZU: Coordinates = { x: OTEMACHI.x - OFFSET, y: OTEMAC
 
 export const HIBIYA_KAYABACHO = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE * 2 };
 
-export const YAMANOTE_KANDA = { ...YAMANOTE_TOKYO, y: OTEMACHI.y - MAJOR_LINE * 1.25 };
-export const YAMANOTE_AKIHABARA = { ...YAMANOTE_KANDA, y: OTEMACHI.y - MAJOR_LINE * 2.5 };
+export const YAMANOTE_KANDA = offset(YAMANOTE_TOKYO, { dy: MAJOR_LINE * -2 + OFFSET * 0.5 });
+export const YAMANOTE_AKIHABARA = offset(YAMANOTE_KANDA, { dy: MAJOR_LINE * -1.25 });
 export const GINZA_MITSUKOSHIMAE = { x: YAMANOTE_KANDA.x + OFFSET * 8 - OFFSET * 2, y: YAMANOTE_KANDA.y + OFFSET * 4 };
 export const CHUO_OCHANOMIZU = { x: OTEMACHI.x - OFFSET, y: YAMANOTE_AKIHABARA.y };
+
+export const OEDO_MONZEN_NAKACHO = offset(HIBIYA_KAYABACHO, { dx: MAJOR_LINE });
+export const ASAKUSA_KURAMAE = { ...ASAKUSA_BAKUROCHO, y: YAMANOTE_AKIHABARA.y - MAJOR_LINE };
+
+export const SHINJUKU_BAKUROCHO = offset(ASAKUSA_BAKUROCHO, { dx: OFFSET * -1, dy: OFFSET * -2 });
+export const MORISHITA = { x: OEDO_MONZEN_NAKACHO.x + OFFSET * 0.5, y: SHINJUKU_BAKUROCHO.y };
+export const KIKUKAWA = offset(MORISHITA, { dx: MAJOR_LINE - OFFSET * 0.5, dy: MAJOR_LINE * -0.25 });
+
+export const SOBU_BAKUROCHO = { ...ASAKUSA_BAKUROCHO, y: ASAKUSA_BAKUROCHO.y - OFFSET, x: ASAKUSA_BAKUROCHO.x - OFFSET * 0.5 };
+export const SOBU_KINSCHICHO = generatePoint({
+    start: SOBU_BAKUROCHO,
+    slope: ENE,
+    endReference: offset(KIKUKAWA, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 }),
+});
+
+export const CS_RYOGOKU = generatePoint({
+    start: offset(SOBU_KINSCHICHO, scale(SSE, OFFSET)),
+    slope: WSW,
+    endReference: offset(OEDO_MONZEN_NAKACHO, { dx: OFFSET * 0.5 }),
+});
