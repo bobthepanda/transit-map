@@ -1,22 +1,36 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
-import { CHIYODA_OTEMACHI, HIBIYA_KASUMIGASEKI, OFFSET, HIBIYA } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, startAtLocation } from '../../utils/PathUtils';
+import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import {
+    CHIYODA_OTEMACHI,
+    HIBIYA_KASUMIGASEKI,
+    OFFSET,
+    HIBIYA,
+    CHIYODA_NISHI_NIPPORI,
+    CHIYODA_YUSHIMA,
+} from '../../utils/CommonCoordinates';
+import { curveFrom, E, N, startAtLocation, offset, midPoint } from '../../utils/PathUtils';
+import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
+import { HIBIYA_KITA_SENJU } from './Hibiya';
 
 const KASUMIGASEKI = {
     x: HIBIYA_KASUMIGASEKI.x - OFFSET,
     y: HIBIYA_KASUMIGASEKI.y + OFFSET * 0.5,
 };
 const THIS_HIBIYA = { x: HIBIYA.x + OFFSET * 0.5, y: HIBIYA.y - OFFSET };
-const YUSHIMA = { ...CHIYODA_OTEMACHI, y: CHIYODA_OTEMACHI.y - MAJOR_LINE * 3.5 };
+const KITA_SENJU = offset(HIBIYA_KITA_SENJU, { dx: -OFFSET * 2 });
+const CHIYODA_MICHIYA = offset(midPoint(CHIYODA_NISHI_NIPPORI, KITA_SENJU), { dy: -OFFSET * 1.5 });
 
 export const ChiyodaPath = () => {
     return (
         <path
             d={`
         ${startAtLocation(KASUMIGASEKI)}
-        ${curveFrom({ start: KASUMIGASEKI, end: YUSHIMA, firstDirection: E, secondDirection: N })}
+        ${curveFrom({ start: KASUMIGASEKI, end: CHIYODA_YUSHIMA, firstDirection: E, secondDirection: N })}
+        ${curveFrom({ start: CHIYODA_NISHI_NIPPORI, end: CHIYODA_MICHIYA, firstDirection: N, secondDirection: E })}
+        ${curveFrom({ start: CHIYODA_MICHIYA, end: KITA_SENJU, firstDirection: E, secondDirection: N })}
+
     `}
         />
     );
@@ -26,7 +40,14 @@ const Chiyoda = () => {
     return (
         <g className="chiyoda">
             <ChiyodaPath />
-            <StopFromTokyo stationCode="C 13" location={YUSHIMA} textAlignment={TextAlignment.LEFT} />
+            <StopFromTokyo stationCode="C 18" location={KITA_SENJU} />
+            <StopFromTokyo stationCode="C 17" location={CHIYODA_MICHIYA} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('C', 13, 16)}
+                origin={CHIYODA_YUSHIMA}
+                endpoint={CHIYODA_NISHI_NIPPORI}
+                textAlignments={[TextAlignment.LEFT]}
+            />
             <StopFromTokyo
                 stationCode="C 12"
                 location={{ ...CHIYODA_OTEMACHI, y: CHIYODA_OTEMACHI.y - MAJOR_LINE }}

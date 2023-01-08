@@ -1,6 +1,18 @@
 import { MINOR_LINE } from '../map/GridLines';
 import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
 
+export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordinates): Coordinates => {
+    return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
+};
+
+export const offset = ({ x, y }: Coordinates, { dx = 0, dy = 0 }: RelativeCoordinates): Coordinates => {
+    return { x: x + dx, y: y + dy };
+};
+
+export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, value: number): RelativeCoordinates => {
+    return { dx: dx * value, dy: dy * value };
+};
+
 export const startAtLocation = (location: Coordinates): string => {
     return `M ${location.x} ${location.y}`;
 };
@@ -17,7 +29,7 @@ export const lineToLocation = (location: Coordinates): string => {
     return `L ${location.x} ${location.y}`;
 };
 
-enum Factor {
+export enum Factor {
     POSITIVE = 1,
     NEGATIVE = -1,
     ZERO = 0,
@@ -56,6 +68,8 @@ export const WSW = { dx: -Factor.DOUBLE_DIAG, dy: Factor.HALF_DIAG };
 
 export const SSE = { dy: Factor.DOUBLE_DIAG, dx: Factor.HALF_DIAG };
 
+export const SSW = { dy: Factor.DOUBLE_DIAG, dx: -Factor.HALF_DIAG };
+
 export interface Directions {
     firstDirection: RelativeCoordinates;
     secondDirection: RelativeCoordinates;
@@ -64,6 +78,7 @@ export interface Directions {
 export interface CommonCurveParameters extends Directions {
     end: Coordinates;
     radius?: number;
+    debug?: boolean;
 }
 
 export interface CurveToParameters extends CommonCurveParameters {
@@ -72,21 +87,12 @@ export interface CurveToParameters extends CommonCurveParameters {
 
 export const RADIUS = MINOR_LINE * 4;
 
-const curveTo = ({
-    control,
-    end,
-    firstDirection: { dx: firstDx = 0, dy: firstDy = 0 },
-    secondDirection: { dx: secondDx = 0, dy: secondDy = 0 },
-    radius = RADIUS,
-}: CurveToParameters) => {
-    const startCurve: Coordinates = {
-        x: control.x - firstDx * Math.abs(radius),
-        y: control.y - firstDy * Math.abs(radius),
-    };
-    const endCurve: Coordinates = {
-        x: control.x + secondDx * Math.abs(radius),
-        y: control.y + secondDy * Math.abs(radius),
-    };
+const curveTo = ({ control, end, firstDirection, secondDirection, radius = RADIUS, debug = false }: CurveToParameters) => {
+    const startCurve: Coordinates = offset(control, scale(firstDirection, Math.abs(radius) * -1));
+    const endCurve: Coordinates = offset(control, scale(secondDirection, Math.abs(radius)));
+
+    // eslint-disable-next-line no-console
+    if (debug) console.log({ startCurve, endCurve, control, radius, firstDirection, secondDirection });
 
     return `${lineToLocation(startCurve)} 
         Q ${control.x} ${control.y} ${endCurve.x} ${endCurve.y}
@@ -156,7 +162,7 @@ export interface CurveFromParameters extends CommonCurveParameters {
     start: Coordinates;
 }
 
-export const curveFrom = ({ start, end, firstDirection, secondDirection, radius }: CurveFromParameters): string => {
+export const curveFrom = ({ start, end, firstDirection, secondDirection, radius, debug }: CurveFromParameters): string => {
     const control: Coordinates = findIntersectionFromSlopes({ start, end, firstDirection, secondDirection });
     return curveTo({
         control,
@@ -164,17 +170,6 @@ export const curveFrom = ({ start, end, firstDirection, secondDirection, radius 
         firstDirection,
         secondDirection,
         radius,
+        debug,
     });
-};
-
-export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordinates): Coordinates => {
-    return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
-};
-
-export const offset = ({ x, y }: Coordinates, { dx = 0, dy = 0 }: RelativeCoordinates): Coordinates => {
-    return { x: x + dx, y: y + dy };
-};
-
-export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, value: number): RelativeCoordinates => {
-    return { dx: dx * value, dy: dy * value };
 };

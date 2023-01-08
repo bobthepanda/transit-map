@@ -5,7 +5,7 @@ export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;
 
-export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 10, y: MAJOR_LINE * 10 };
+export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 10, y: MAJOR_LINE * 20 };
 export const CHIYODA_OTEMACHI: Coordinates = {
     ...OTEMACHI,
     x: OTEMACHI.x + OFFSET,
@@ -65,7 +65,7 @@ export const YAMANOTE_AKIHABARA = offset(YAMANOTE_KANDA, { dy: MAJOR_LINE * -1.2
 export const GINZA_MITSUKOSHIMAE = { x: YAMANOTE_KANDA.x + OFFSET * 8 - OFFSET * 2, y: YAMANOTE_KANDA.y + OFFSET * 4 };
 export const CHUO_OCHANOMIZU = { x: OTEMACHI.x - OFFSET, y: YAMANOTE_AKIHABARA.y };
 
-export const OEDO_MONZEN_NAKACHO = offset(HIBIYA_KAYABACHO, { dx: MAJOR_LINE });
+export const OEDO_MONZEN_NAKACHO = offset(HIBIYA_KAYABACHO, { dx: MAJOR_LINE, dy: OFFSET * 2 });
 export const ASAKUSA_KURAMAE = { ...ASAKUSA_BAKUROCHO, y: YAMANOTE_AKIHABARA.y - MAJOR_LINE };
 
 export const SHINJUKU_BAKUROCHO = offset(ASAKUSA_BAKUROCHO, { dx: OFFSET * -1, dy: OFFSET * -2 });
@@ -84,3 +84,9 @@ export const CS_RYOGOKU = generatePoint({
     slope: WSW,
     endReference: offset(OEDO_MONZEN_NAKACHO, { dx: OFFSET * 0.5 }),
 });
+
+export const YAMANOTE_OKACHIMACHI = { x: YAMANOTE_TOKYO.x, y: ASAKUSA_KURAMAE.y + OFFSET };
+export const YAMANOTE_UENO = offset(YAMANOTE_OKACHIMACHI, { dy: -MAJOR_LINE });
+
+export const CHIYODA_YUSHIMA = { ...CHIYODA_OTEMACHI, y: ASAKUSA_KURAMAE.y - MAJOR_LINE * 0.5 };
+export const CHIYODA_NISHI_NIPPORI = offset(CHIYODA_YUSHIMA, { dy: -MAJOR_LINE * 3 });

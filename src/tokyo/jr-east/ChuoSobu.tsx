@@ -20,13 +20,14 @@ const START = OCHANOMIZU;
 const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
 export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 });
 export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 });
+export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 2 });
 export const ChuoSobuPath = () => {
     return (
         <path
             d={`
             ${startAtLocation(START)}
             ${curveFrom({ start: START, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
-            ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET })}
+            ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET * 0.5 })}
             ${curveFrom({ start: CS_KAMEIDO, end: CS_MOTOYAWATA, firstDirection: N, secondDirection: E })}
         `}
         />
@@ -51,6 +52,12 @@ export const ChuoSobu = () => {
                 origin={CS_MOTOYAWATA}
                 stops={generateStationCodes('JB', 28, 26)}
                 endpoint={offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 })}
+                textAlignments={[TextAlignment.DOWN]}
+            />
+            <LineSegmentWithEndpoint
+                origin={CS_MOTOYAWATA}
+                stops={generateStationCodes('JB', 28, 30)}
+                endpoint={CS_NISHI_FUNABASHI}
                 textAlignments={[TextAlignment.DOWN]}
             />
         </g>

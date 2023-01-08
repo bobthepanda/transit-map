@@ -1,4 +1,5 @@
 import { MAJOR_LINE } from '../../map/GridLines';
+import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import {
     ASAKUSA_BAKUROCHO,
     ASAKUSA_KURAMAE,
@@ -10,23 +11,30 @@ import {
     OFFSET,
     YAMANOTE_AKIHABARA,
     YAMANOTE_SHIMBASHI,
+    YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, S, startAtLocation, W } from '../../utils/PathUtils';
+import { curveFrom, Factor, offset, S, scale, startAtLocation, W, WSW } from '../../utils/PathUtils';
+import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
+import { Z_14 } from '../tokyo-metro/Hanzomon';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
 const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y };
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const ASAKUSABASHI = { ...YAMANOTE_AKIHABARA, x: ASAKUSA_BAKUROCHO.x };
-const FIRST_STOP = ASAKUSA_KURAMAE;
+const OSHIAGE = offset(Z_14, { dx: -OFFSET });
+export const A_18 = offset(OSHIAGE, scale(WSW, (-OSHIAGE.y + YAMANOTE_UENO.y) / Factor.HALF_DIAG));
+
+const FIRST_STOP = OSHIAGE;
 
 export const AsakusaPath = () => {
     return (
         <path
             d={`
         ${startAtLocation(FIRST_STOP)}
-        ${curveFrom({ start: FIRST_STOP, end: SHIMBASHI, radius: SHIMBASHI_RADIUS, firstDirection: S, secondDirection: W })}
+        ${curveFrom({ start: FIRST_STOP, end: ASAKUSA_KURAMAE, firstDirection: WSW, secondDirection: S })}
+        ${curveFrom({ start: ASAKUSA_KURAMAE, end: SHIMBASHI, radius: SHIMBASHI_RADIUS, firstDirection: S, secondDirection: W })}
     `}
         />
     );
@@ -44,6 +52,7 @@ const Asakusa = () => {
             <StopFromTokyo stationCode="A 15" location={ASAKUSA_BAKUROCHO} />
             <StopFromTokyo stationCode="A 16" location={ASAKUSABASHI} />
             <StopFromTokyo stationCode="A 17" location={ASAKUSA_KURAMAE} />
+            <LineSegmentWithEndpoint origin={A_18} endpoint={OSHIAGE} stops={generateStationCodes('A', 18, 20)} />
         </g>
     );
 };

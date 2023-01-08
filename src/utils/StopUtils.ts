@@ -15,7 +15,8 @@ const STOPS_TO_HIDE_TEXT: string[] = [
   'A 14', // Ningyocho
   'Z 09', // Mitsukoshimae
   'JE 01', 'JE 02',
-  'M 20' // Ochanomizu
+  'M 20', // Ochanomizu,
+  'JB 21', 'S 11', 'Z 11', 'T 12', 'Y 21', // Oedo East
 ]
 
 export default STOPS_TO_HIDE_TEXT;

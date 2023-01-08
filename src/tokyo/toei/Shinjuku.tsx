@@ -1,8 +1,16 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
-import { KIKUKAWA, MORISHITA, OFFSET, OTEMACHI, SHINJUKU_BAKUROCHO, YAMANOTE_AKIHABARA } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, midPoint, N, offset, startAtLocation } from '../../utils/PathUtils';
+import {
+    KIKUKAWA,
+    MORISHITA,
+    OFFSET,
+    OTEMACHI,
+    SHINJUKU_BAKUROCHO,
+    SOBU_KINSCHICHO,
+    YAMANOTE_AKIHABARA,
+} from '../../utils/CommonCoordinates';
+import { curveFrom, E, ENE, generatePoint, midPoint, N, offset, startAtLocation } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_MOTOYAWATA } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
@@ -13,6 +21,9 @@ const ICHINOE = offset(offset(KIKUKAWA, { dx: MAJOR_LINE * 6 * 0.75, dy: MAJOR_L
     dx: OFFSET * 2,
     dy: -OFFSET * 3,
 });
+
+export const S_13 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: SOBU_KINSCHICHO });
+const S_14 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: { ...KIKUKAWA, x: KIKUKAWA.x + MAJOR_LINE * 1.5 } });
 
 const MOTOYAWATA = offset(CS_MOTOYAWATA, { dy: OFFSET });
 
@@ -38,9 +49,11 @@ const Shinjuku = () => {
             <StopFromTokyo stationCode="S 09" location={SHINJUKU_BAKUROCHO} textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="S 08" location={{ y: SHINJUKU_BAKUROCHO.y, x: YAMANOTE_AKIHABARA.x + MAJOR_LINE - OFFSET }} />
             <StopFromTokyo stationCode="S 07" location={OGAWAMACHI} textAlignment={TextAlignment.DOWN} />
+            <StopFromTokyo stationCode="S 12" location={KIKUKAWA} />
+            <StopFromTokyo stationCode="S 13" location={S_13} />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('S', 12, 18)}
-                origin={KIKUKAWA}
+                stops={generateStationCodes('S', 14, 18)}
+                origin={S_14}
                 ystep={MAJOR_LINE * -0.5 * 0.75}
                 xstep={MAJOR_LINE * 0.75}
             />

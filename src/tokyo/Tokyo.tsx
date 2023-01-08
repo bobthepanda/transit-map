@@ -4,7 +4,7 @@ import './colors/colors.scss';
 import './colors/jr-east-colors.scss';
 import ChuoRapid from './jr-east/ChuoRapid';
 import KeihinTohoku from './jr-east/KeihinTohoku';
-import Keiyo from './jr-east/Keiyo';
+import Musashino from './jr-east/Musashino';
 import SobuRapid from './jr-east/SobuRapid';
 import Tokaido from './jr-east/Tokaido';
 import Yamanote from './jr-east/Yamanote';
@@ -22,6 +22,7 @@ import Yurakucho from './tokyo-metro/Yurakucho';
 import Shinjuku from './toei/Shinjuku';
 import { ChuoSobu } from './jr-east/ChuoSobu';
 import Oedo from './toei/Oedo';
+import JobanRapid from './jr-east/JobanRapid';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -40,10 +41,11 @@ const Tokyo = (): JSX.Element => {
                 <KeihinTohoku />
                 <Tokaido />
                 <SobuRapid />
-                <Keiyo />
+                <Musashino />
                 <Shinjuku />
                 <ChuoSobu />
                 <Oedo />
+                <JobanRapid />
             </g>
             <g id="toei">
                 <Mita />
