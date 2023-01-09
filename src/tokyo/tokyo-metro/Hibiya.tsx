@@ -22,8 +22,8 @@ const HIBIYA_TSUKIJI = { x: HIBIYA_KAYABACHO.x, y: YAMANOTE_YURAKUCHO.y };
 const AKIHABARA = { ...YAMANOTE_AKIHABARA, x: YAMANOTE_AKIHABARA.x + OFFSET * 3 };
 const UENO = { x: AKIHABARA.x, y: YAMANOTE_UENO.y };
 const NIGYOCHO = { x: ASAKUSA_NINGYOCHO.x + OFFSET, y: ASAKUSA_NINGYOCHO.y - OFFSET * 0.25 };
-export const HIBIYA_KITA_SENJU = { x: OEDO_MONZEN_NAKACHO.x, y: CS_KOIWA.y - MAJOR_LINE * 2 };
-export const H_21 = offset(HIBIYA_KITA_SENJU, { dy: MAJOR_LINE * 1.5 });
+export const HIBIYA_KITA_SENJU = { x: OEDO_MONZEN_NAKACHO.x, y: CS_KOIWA.y - MAJOR_LINE * 1.5 };
+export const H_21 = offset(HIBIYA_KITA_SENJU, { dy: MAJOR_LINE * 1 });
 const H_20 = offset(H_21, { dx: -MAJOR_LINE, dy: MAJOR_LINE + OFFSET });
 const H_19 = offset(H_20, scale(WSW, MAJOR_LINE / Factor.HALF_DIAG));
 

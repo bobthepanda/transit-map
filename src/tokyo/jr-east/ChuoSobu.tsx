@@ -18,9 +18,9 @@ const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -1 });
 const AKIHABARA = offset(YAMANOTE_AKIHABARA, { dx: OFFSET * 1.5, dy: OFFSET * -1 });
 const START = OCHANOMIZU;
 const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
-export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 });
-export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 });
-export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 2 });
+export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 + OFFSET });
+export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 - OFFSET });
+export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
 export const ChuoSobuPath = () => {
     return (
         <path

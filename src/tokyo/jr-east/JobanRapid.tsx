@@ -9,7 +9,7 @@ import { YAMANOTE_NIPPORI } from './Yamanote';
 
 const UENO = offset(YAMANOTE_UENO, { dx: -OFFSET });
 const NIPPORI = offset(YAMANOTE_NIPPORI, scale(SSW, OFFSET));
-const JJ_03 = offset(CHIYODA_MICHIYA, { dy: MAJOR_LINE * 1.5 });
+const JJ_03 = offset(CHIYODA_MICHIYA, { dy: MAJOR_LINE });
 const JJ_05 = offset(HIBIYA_KITA_SENJU, { dx: -OFFSET });
 const CURVE_POINT = { x: YAMANOTE_NIPPORI.x - OFFSET * 2, y: JJ_03.y + OFFSET * 2 };
 
@@ -34,7 +34,7 @@ const JobanRapid = () => {
             <StopFromTokyo stationCode="JJ 01" location={UENO} />
             <StopFromTokyo stationCode="JJ 02" location={NIPPORI} />
             <StopFromTokyo stationCode="JJ 03" location={JJ_03} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="JJ 04" location={offset(H_21, { dx: -OFFSET })} />
+            <StopFromTokyo stationCode="JJ 04" location={offset(H_21, { dx: -OFFSET })} textAlignment={TextAlignment.LEFT} />
             <StopFromTokyo stationCode="JJ 05" location={JJ_05} />
         </g>
     );

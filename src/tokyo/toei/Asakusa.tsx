@@ -1,5 +1,5 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import { TextAlignment } from '../../symbols/BasicStop';
 import {
     ASAKUSA_BAKUROCHO,
     ASAKUSA_KURAMAE,
@@ -13,8 +13,7 @@ import {
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, Factor, offset, S, scale, startAtLocation, W, WSW } from '../../utils/PathUtils';
-import { generateStationCodes } from '../../utils/StopUtils';
+import { curveFrom, offset, S, startAtLocation, W, WSW } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 import { Z_14 } from '../tokyo-metro/Hanzomon';
 import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
@@ -24,16 +23,15 @@ const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y 
 const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
 const ASAKUSABASHI = { ...YAMANOTE_AKIHABARA, x: ASAKUSA_BAKUROCHO.x };
 const OSHIAGE = offset(Z_14, { dx: -OFFSET });
-export const A_18 = offset(OSHIAGE, scale(WSW, (-OSHIAGE.y + YAMANOTE_UENO.y) / Factor.HALF_DIAG));
-
-const FIRST_STOP = OSHIAGE;
+export const A_18 = { x: ASAKUSA_KURAMAE.x + MAJOR_LINE, y: YAMANOTE_UENO.y };
 
 export const AsakusaPath = () => {
     return (
         <path
             d={`
-        ${startAtLocation(FIRST_STOP)}
-        ${curveFrom({ start: FIRST_STOP, end: ASAKUSA_KURAMAE, firstDirection: WSW, secondDirection: S })}
+        ${startAtLocation(OSHIAGE)}
+        ${curveFrom({ start: OSHIAGE, end: A_18, firstDirection: W, secondDirection: WSW })}
+        ${curveFrom({ start: A_18, end: ASAKUSA_KURAMAE, firstDirection: WSW, secondDirection: S })}
         ${curveFrom({ start: ASAKUSA_KURAMAE, end: SHIMBASHI, radius: SHIMBASHI_RADIUS, firstDirection: S, secondDirection: W })}
     `}
         />
@@ -52,7 +50,13 @@ const Asakusa = () => {
             <StopFromTokyo stationCode="A 15" location={ASAKUSA_BAKUROCHO} />
             <StopFromTokyo stationCode="A 16" location={ASAKUSABASHI} />
             <StopFromTokyo stationCode="A 17" location={ASAKUSA_KURAMAE} />
-            <LineSegmentWithEndpoint origin={A_18} endpoint={OSHIAGE} stops={generateStationCodes('A', 18, 20)} />
+            <StopFromTokyo stationCode="A 18" location={A_18} textAlignment={TextAlignment.DOWN} />
+            <StopFromTokyo
+                stationCode="A 19"
+                location={offset(A_18, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })}
+                textAlignment={TextAlignment.DOWN}
+            />
+            <StopFromTokyo stationCode="A 20" location={OSHIAGE} textAlignment={TextAlignment.DOWN} />
         </g>
     );
 };

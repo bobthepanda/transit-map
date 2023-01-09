@@ -40,7 +40,7 @@ const Chiyoda = () => {
     return (
         <g className="chiyoda">
             <ChiyodaPath />
-            <StopFromTokyo stationCode="C 18" location={KITA_SENJU} />
+            <StopFromTokyo stationCode="C 18" location={KITA_SENJU} textAlignment={TextAlignment.LEFT} />
             <StopFromTokyo stationCode="C 17" location={CHIYODA_MICHIYA} />
             <LineSegmentWithEndpoint
                 stops={generateStationCodes('C', 13, 16)}

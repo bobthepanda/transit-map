@@ -8,9 +8,9 @@ import {
     ASAKUSA_NINGYOCHO,
     OEDO_MONZEN_NAKACHO,
     SOBU_KINSCHICHO,
-    ASAKUSA_KURAMAE,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, midPoint, N, offset, startAtLocation } from '../../utils/PathUtils';
+import { curveFrom, E, ENE, midPoint, N, offset, startAtLocation, WNW } from '../../utils/PathUtils';
+import { CS_KAMEIDO } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
 import { S_13 } from '../toei/Shinjuku';
 
@@ -24,7 +24,7 @@ const MIDPOINT = midPoint(TOZAI_OTEMACHI, MITSUKOSHIMAE);
 const Z_11 = { ...NINGYOCHO, x: OEDO_MONZEN_NAKACHO.x + OFFSET * 0.5 };
 const Z_12 = offset(S_13, { dx: -OFFSET * 0.5, dy: -OFFSET });
 export const Z_13 = offset(SOBU_KINSCHICHO, { dx: -OFFSET * 0.5, dy: -OFFSET });
-export const Z_14 = { ...Z_13, y: ASAKUSA_KURAMAE.y - MAJOR_LINE * 2.5 };
+export const Z_14 = { x: Z_13.x - MAJOR_LINE * 0.5 - OFFSET, y: CS_KAMEIDO.y - OFFSET * 2 };
 
 const Hanzomon = () => {
     return (
@@ -36,10 +36,16 @@ const Hanzomon = () => {
                 ${curveFrom({ start: MIDPOINT, end: NINGYOCHO, firstDirection: ENE, secondDirection: E })}
                 ${curveFrom({
                     start: Z_11,
-                    end: Z_14,
+                    end: Z_13,
                     firstDirection: E,
                     secondDirection: N,
                     radius: Z_12.x - Z_11.x - OFFSET,
+                })}
+                ${curveFrom({
+                    start: Z_13,
+                    end: Z_14,
+                    firstDirection: N,
+                    secondDirection: WNW,
                 })}
             `}
             />

@@ -23,6 +23,10 @@ import Shinjuku from './toei/Shinjuku';
 import { ChuoSobu } from './jr-east/ChuoSobu';
 import Oedo from './toei/Oedo';
 import JobanRapid from './jr-east/JobanRapid';
+import Main from './keisei/Main';
+import Skytree from './tobu/Skytree';
+import Kameido from './tobu/Kameido';
+import Oshiage from './keisei/Oshiage';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -59,6 +63,14 @@ const Tokyo = (): JSX.Element => {
                 <Tozai />
                 <Yurakucho />
                 <Hanzomon />
+            </g>
+            <g id="keisei">
+                <Oshiage />
+                <Main />
+            </g>
+            <g id="tozai">
+                <Kameido />
+                <Skytree />
             </g>
         </g>
     );

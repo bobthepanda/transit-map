@@ -39,7 +39,7 @@ const Tozai = () => {
             <StopFromTokyo location={TOZAI_NIHOMBASHI} stationCode="T 10" />
             <StopFromTokyo location={TOZAI_OTEMACHI} stationCode="T 09" />
             <StopFromTokyo location={TOZAI_KAYABACHO} stationCode="T 11" />
-            <LineSegmentWithStepChange origin={BARAKI_NAKAYAMA} stops={generateStationCodes('T', 22, 19)} ystep={MAJOR_LINE - OFFSET} />
+            <LineSegmentWithStepChange origin={BARAKI_NAKAYAMA} stops={generateStationCodes('T', 22, 19)} ystep={MAJOR_LINE - OFFSET * 2} />
             <StopFromTokyo location={TOZAI_NISHI_FUNABASHI} stationCode="T 23" />
             <StopFromTokyo location={KIBA} stationCode="T 13" />
             <LineSegmentWithEndpoint
