@@ -34,6 +34,19 @@ const CSVS: string[] = [
     '/tokyo-metro/namboku.csv',
     '/tokyo-metro/tozai.csv',
     '/tokyo-metro/yurakucho.csv',
+    '/tobu/daishi.csv',
+    '/tobu/ikesaki.csv',
+    '/tobu/kameido.csv',
+    '/tobu/kinugawa.csv',
+    '/tobu/kiryu.csv',
+    '/tobu/koizumi.csv',
+    '/tobu/nikko.csv',
+    '/tobu/ogose.csv',
+    '/tobu/sano.csv',
+    '/tobu/skytree.csv',
+    '/tobu/tojo.csv',
+    '/tobu/urban-park.csv',
+    '/tobu/utsunomiya.csv',
 ];
 
 const parsePromise = (file): Promise<CSVData[]> => {
