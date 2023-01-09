@@ -34,6 +34,7 @@ export const ChuoSobuPath = () => {
     );
 };
 
+export const CS_KOIWA = offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 });
 export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
@@ -51,7 +52,7 @@ export const ChuoSobu = () => {
             <LineSegmentWithEndpoint
                 origin={CS_MOTOYAWATA}
                 stops={generateStationCodes('JB', 28, 26)}
-                endpoint={offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 })}
+                endpoint={CS_KOIWA}
                 textAlignments={[TextAlignment.DOWN]}
             />
             <LineSegmentWithEndpoint

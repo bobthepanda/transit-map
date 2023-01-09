@@ -20,7 +20,7 @@ const KASUMIGASEKI = {
 };
 const THIS_HIBIYA = { x: HIBIYA.x + OFFSET * 0.5, y: HIBIYA.y - OFFSET };
 const KITA_SENJU = offset(HIBIYA_KITA_SENJU, { dx: -OFFSET * 2 });
-const CHIYODA_MICHIYA = offset(midPoint(CHIYODA_NISHI_NIPPORI, KITA_SENJU), { dy: -OFFSET * 1.5 });
+export const CHIYODA_MICHIYA = { x: midPoint(CHIYODA_NISHI_NIPPORI, KITA_SENJU).x, y: KITA_SENJU.y + MAJOR_LINE * 0.5 };
 
 export const ChiyodaPath = () => {
     return (
