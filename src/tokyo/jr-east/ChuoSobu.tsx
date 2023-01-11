@@ -10,7 +10,7 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, SSE, offset, scale, startAtLocation, N, RADIUS, generatePoint, W } from '../../utils/PathUtils';
+import { curveFrom, E, ENE, SSE, offset, scale, startAtLocation, N, RADIUS, generatePoint, W, midPoint, NNE } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 
@@ -21,6 +21,9 @@ const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
 export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 + OFFSET });
 export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 - OFFSET });
 export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
+export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 1.5 + OFFSET, dy: -OFFSET * 5 });
+export const FUNABASHI_MIDPOINT = offset(midPoint(CS_NISHI_FUNABASHI, JB_31), { dx: OFFSET * 2 });
+
 export const ChuoSobuPath = () => {
     return (
         <path
@@ -28,7 +31,9 @@ export const ChuoSobuPath = () => {
             ${startAtLocation(START)}
             ${curveFrom({ start: START, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET * 0.5 })}
-            ${curveFrom({ start: CS_KAMEIDO, end: CS_MOTOYAWATA, firstDirection: N, secondDirection: E })}
+            ${curveFrom({ start: CS_KAMEIDO, end: CS_NISHI_FUNABASHI, firstDirection: N, secondDirection: E })}
+            ${curveFrom({ start: CS_NISHI_FUNABASHI, end: FUNABASHI_MIDPOINT, firstDirection: E, secondDirection: NNE })}
+            ${curveFrom({ start: FUNABASHI_MIDPOINT, end: JB_31, firstDirection: NNE, secondDirection: E })}
         `}
         />
     );
@@ -61,6 +66,7 @@ export const ChuoSobu = () => {
                 endpoint={CS_NISHI_FUNABASHI}
                 textAlignments={[TextAlignment.DOWN]}
             />
+            <StopFromTokyo stationCode="JB 31" location={JB_31} textAlignment={TextAlignment.DOWN} />
         </g>
     );
 };

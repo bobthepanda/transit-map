@@ -27,6 +27,10 @@ import Main from './keisei/Main';
 import Skytree from './tobu/Skytree';
 import Kameido from './tobu/Kameido';
 import Oshiage from './keisei/Oshiage';
+import JobanLocal from './jr-east/JobanLocal';
+import Hokuso from './other/Hokuso';
+import UrbanPark from './tobu/UrbanPark';
+import ShinKeisei from './other/ShinKeisei';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -50,6 +54,7 @@ const Tokyo = (): JSX.Element => {
                 <ChuoSobu />
                 <Oedo />
                 <JobanRapid />
+                <JobanLocal />
             </g>
             <g id="toei">
                 <Mita />
@@ -68,9 +73,14 @@ const Tokyo = (): JSX.Element => {
                 <Oshiage />
                 <Main />
             </g>
-            <g id="tozai">
+            <g id="tobu">
                 <Kameido />
                 <Skytree />
+                <UrbanPark />
+            </g>
+            <g id="other">
+                <Hokuso />
+                <ShinKeisei />
             </g>
         </g>
     );
