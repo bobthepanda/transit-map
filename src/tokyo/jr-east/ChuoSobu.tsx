@@ -16,20 +16,23 @@ import StopFromTokyo from '../StopsFromTokyo';
 
 const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -1 });
 const AKIHABARA = offset(YAMANOTE_AKIHABARA, { dx: OFFSET * 1.5, dy: OFFSET * -1 });
-const START = OCHANOMIZU;
 const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
 export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 + OFFSET });
 export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 - OFFSET });
 export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
 export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 1.5 + OFFSET, dy: -OFFSET * 5 });
 export const FUNABASHI_MIDPOINT = offset(midPoint(CS_NISHI_FUNABASHI, JB_31), { dx: OFFSET * 2 });
+export const JB_17 = offset(OCHANOMIZU, { dx: -MAJOR_LINE * 3 + OFFSET * 0.5 });
+export const JB_16 = offset(JB_17, { dy: OFFSET * 2, dx: OFFSET * 0.5 - MAJOR_LINE * 2 });
+const START = JB_16;
 
 export const ChuoSobuPath = () => {
     return (
         <path
             d={`
             ${startAtLocation(START)}
-            ${curveFrom({ start: START, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
+            ${curveFrom({ start: START, end: JB_17, firstDirection: N, secondDirection: E })}
+            ${curveFrom({ start: JB_17, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET * 0.5 })}
             ${curveFrom({ start: CS_KAMEIDO, end: CS_NISHI_FUNABASHI, firstDirection: N, secondDirection: E })}
             ${curveFrom({ start: CS_NISHI_FUNABASHI, end: FUNABASHI_MIDPOINT, firstDirection: E, secondDirection: NNE })}
@@ -44,6 +47,8 @@ export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
             <ChuoSobuPath />
+            <StopFromTokyo stationCode="JB 16" location={JB_16} />
+            <StopFromTokyo stationCode="JB 17" location={JB_17} />
             <StopFromTokyo stationCode="JB 18" location={OCHANOMIZU} />
             <StopFromTokyo stationCode="JB 19" location={AKIHABARA} />
             <StopFromTokyo stationCode="JB 20" location={{ y: OCHANOMIZU.y, x: ASAKUSA_BAKUROCHO.x + OFFSET * 0.5 }} />

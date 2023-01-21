@@ -7,23 +7,23 @@ import {
     MITA_HIBIYA,
     NIHOMBASHI,
     OFFSET,
+    OTEMACHI,
     YAMANOTE_KANDA,
     YAMANOTE_OKACHIMACHI,
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, offset, startAtLocation, WNW } from '../../utils/PathUtils';
+import { curveFrom, E, N, offset, RADIUS, startAtLocation, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 import { A_18 } from '../toei/Asakusa';
-import { TOKYO_RADIUS } from './Marunouchi';
 
 const SHIMBASHI = {
     x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5,
     y: YAMANOTE_SHIMBASHI.y + OFFSET,
 };
-const GINZA = { x: NIHOMBASHI.x, y: MITA_HIBIYA.y };
-const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET;
+const GINZA = { x: OTEMACHI.x, y: MITA_HIBIYA.y };
+const SHIMBASHI_RADIUS = RADIUS + OFFSET;
 const TORANOMON = { y: SHIMBASHI.y, x: HIBIYA_KASUMIGASEKI.x - OFFSET };
 const KANDA = { ...YAMANOTE_KANDA, x: YAMANOTE_KANDA.x - OFFSET * 2 };
 const UENO = offset(YAMANOTE_UENO, { dx: OFFSET, dy: -OFFSET });

@@ -13,14 +13,13 @@ import {
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, offset, S, startAtLocation, W, WSW } from '../../utils/PathUtils';
+import { curveFrom, offset, RADIUS, S, startAtLocation, W, WSW } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 import { Z_14 } from '../tokyo-metro/Hanzomon';
-import { TOKYO_RADIUS } from '../tokyo-metro/Marunouchi';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
 const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y };
-const SHIMBASHI_RADIUS = TOKYO_RADIUS + OFFSET * 2;
+const SHIMBASHI_RADIUS = RADIUS + OFFSET * 2;
 const ASAKUSABASHI = { ...YAMANOTE_AKIHABARA, x: ASAKUSA_BAKUROCHO.x };
 const OSHIAGE = offset(Z_14, { dx: -OFFSET });
 export const A_18 = { x: ASAKUSA_KURAMAE.x + MAJOR_LINE, y: YAMANOTE_UENO.y };

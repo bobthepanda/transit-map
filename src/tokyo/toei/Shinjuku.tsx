@@ -14,6 +14,7 @@ import { curveFrom, E, ENE, generatePoint, midPoint, N, offset, startAtLocation 
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_MOTOYAWATA } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
+import { I_10 } from './Mita';
 
 const OGAWAMACHI = { x: OTEMACHI.x + MAJOR_LINE * 0.5 + OFFSET * 0.5, y: SHINJUKU_BAKUROCHO.y };
 
@@ -24,7 +25,7 @@ const ICHINOE = offset(offset(KIKUKAWA, { dx: MAJOR_LINE * 6 * 0.75, dy: MAJOR_L
 
 export const S_13 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: SOBU_KINSCHICHO });
 const S_14 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: { ...KIKUKAWA, x: KIKUKAWA.x + MAJOR_LINE * 1.5 } });
-
+const S_06 = offset(I_10, { dy: -OFFSET * 2 });
 const MOTOYAWATA = offset(CS_MOTOYAWATA, { dy: OFFSET });
 
 export const ShinjukuPath = () => {
@@ -32,7 +33,7 @@ export const ShinjukuPath = () => {
         <path
             className="shinjuku"
             d={`
-            ${startAtLocation(OGAWAMACHI)}
+            ${startAtLocation(S_06)}
             ${curveFrom({ start: OGAWAMACHI, end: KIKUKAWA, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KIKUKAWA, end: MOTOYAWATA, firstDirection: ENE, secondDirection: N })}        
         `}
@@ -51,6 +52,7 @@ const Shinjuku = () => {
             <StopFromTokyo stationCode="S 07" location={OGAWAMACHI} textAlignment={TextAlignment.DOWN} />
             <StopFromTokyo stationCode="S 12" location={KIKUKAWA} />
             <StopFromTokyo stationCode="S 13" location={S_13} />
+            <StopFromTokyo stationCode="S 06" location={S_06} />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('S', 14, 18)}
                 origin={S_14}

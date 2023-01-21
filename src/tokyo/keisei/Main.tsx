@@ -2,14 +2,16 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import { OFFSET, YAMANOTE_UENO } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, offset, SSE, startAtLocation } from '../../utils/PathUtils';
+import { curveFrom, E, generatePoint, N, offset, SSE, SSW, startAtLocation } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_KOIWA, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT } from '../jr-east/ChuoSobu';
+import { YAMANOTE_NIPPORI } from '../jr-east/Yamanote';
 import StopFromTokyo from '../StopsFromTokyo';
 import { CHIYODA_MICHIYA } from '../tokyo-metro/Chiyoda';
 import { HIBIYA_KITA_SENJU } from '../tokyo-metro/Hibiya';
 
 const UENO = offset(YAMANOTE_UENO, { dx: -OFFSET - MAJOR_LINE * 0.5, dy: -OFFSET - MAJOR_LINE * 0.5 });
+const KS_02 = generatePoint({ start: YAMANOTE_NIPPORI, slope: SSW, endReference: UENO });
 const KS_04 = offset(CHIYODA_MICHIYA, { dy: OFFSET });
 export const KS_06 = { ...KS_04, x: HIBIYA_KITA_SENJU.x + MAJOR_LINE * 0.5 + OFFSET * 0.5 };
 const KS_11 = { ...CS_KOIWA, y: KS_04.y };
@@ -37,7 +39,7 @@ const Main = () => {
         <g className="keisei-main">
             <MainPath />
             <StopFromTokyo stationCode="KS 01" location={UENO} />
-            <StopFromTokyo stationCode="KS 02" location={offset(UENO, { dy: -MAJOR_LINE })} />
+            <StopFromTokyo stationCode="KS 02" location={KS_02} />
             <StopFromTokyo stationCode="KS 04" location={KS_04} />
             <StopFromTokyo stationCode="KS 06" location={KS_06} textAlignment={TextAlignment.UP} />
             <LineSegmentWithEndpoint

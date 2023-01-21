@@ -61,7 +61,7 @@ export const RAPID_OCHANOMIZU: Coordinates = { x: OTEMACHI.x - OFFSET, y: OTEMAC
 export const HIBIYA_KAYABACHO = { ...NIHOMBASHI, x: NIHOMBASHI.x + MAJOR_LINE * 2 };
 
 export const YAMANOTE_KANDA = offset(YAMANOTE_TOKYO, { dy: MAJOR_LINE * -2 + OFFSET * 0.5 });
-export const YAMANOTE_AKIHABARA = offset(YAMANOTE_KANDA, { dy: MAJOR_LINE * -1.25 });
+export const YAMANOTE_AKIHABARA = offset(YAMANOTE_KANDA, { dy: MAJOR_LINE * -1.5 - OFFSET * 0.5 });
 export const GINZA_MITSUKOSHIMAE = { x: YAMANOTE_KANDA.x + OFFSET * 8 - OFFSET * 2, y: YAMANOTE_KANDA.y + OFFSET * 4 };
 export const CHUO_OCHANOMIZU = { x: OTEMACHI.x - OFFSET, y: YAMANOTE_AKIHABARA.y };
 

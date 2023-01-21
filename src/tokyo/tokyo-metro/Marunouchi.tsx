@@ -3,35 +3,32 @@ import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import {
     CHUO_OCHANOMIZU,
-    CHUO_TOKYO,
     HIBIYA_GINZA,
     HIBIYA_KASUMIGASEKI,
     MARUNOUCHI_OTEMACHI,
     MITA_HIBIYA,
     OFFSET,
+    YAMANOTE_TOKYO,
 } from '../../utils/CommonCoordinates';
 import { curveFrom, E, ESE, offset, S, startAtLocation, W } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 
 const SEGMENT_1 = ['M 18', 'M 19'];
 
-const TOKYO = { x: CHUO_TOKYO.x + OFFSET * 2, y: CHUO_TOKYO.y + OFFSET };
+const TOKYO = offset(YAMANOTE_TOKYO, { dx: OFFSET, dy: OFFSET });
 const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 0.5, y: MITA_HIBIYA.y };
-const KASUMIGASEKI = {
-    x: HIBIYA_KASUMIGASEKI.x - OFFSET,
-    y: HIBIYA_KASUMIGASEKI.y - OFFSET * 0.5,
-};
-
-export const TOKYO_RADIUS = OFFSET * 2;
+const KASUMIGASEKI = offset(HIBIYA_KASUMIGASEKI, { dx: -OFFSET, dy: -OFFSET * 0.5 });
 
 const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -2 });
+export const M_21 = offset(OCHANOMIZU, { dy: -OFFSET * 4, dx: -OFFSET * 8 });
+export const M_22 = offset(M_21, { dx: -MAJOR_LINE * 2 - OFFSET, dy: -MAJOR_LINE - OFFSET * 0.5 });
 
 export const MarunouchiPath = () => {
     return (
         <path
-            d={`${startAtLocation(OCHANOMIZU)}
+            d={`${startAtLocation(M_22)}
                 ${curveFrom({
-                    start: OCHANOMIZU,
+                    start: M_22,
                     end: MARUNOUCHI_OTEMACHI,
                     firstDirection: ESE,
                     secondDirection: S,
@@ -68,6 +65,8 @@ const Marunouchi = () => {
             <StopFromTokyo location={GINZA} stationCode="M 16" />
             <StopFromTokyo location={KASUMIGASEKI} stationCode="M 15" textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="M 20" location={OCHANOMIZU} textAlignment={TextAlignment.UP} />
+            <StopFromTokyo stationCode="M 21" location={M_21} />
+            <StopFromTokyo stationCode="M 22" location={M_22} />
         </g>
     );
 };

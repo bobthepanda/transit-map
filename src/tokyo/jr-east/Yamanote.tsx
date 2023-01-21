@@ -2,20 +2,23 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import {
     CHIYODA_NISHI_NIPPORI,
     OFFSET,
+    OTEMACHI,
     YAMANOTE_AKIHABARA,
     YAMANOTE_KANDA,
-    YAMANOTE_OKACHIMACHI,
+    YAMANOTE_OKACHIMACHI as JY_04,
     YAMANOTE_SHIMBASHI,
     YAMANOTE_TOKYO,
     YAMANOTE_UENO,
     YAMANOTE_YURAKUCHO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, ESE, Factor, N, offset, scale, startAtLocation, WNW } from '../../utils/PathUtils';
+import { curveFrom, ESE, Factor, N, offset, scale, SSW, startAtLocation, W, WNW } from '../../utils/PathUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 
-export const YAMANOTE_NISHI_NIPPORI = offset(CHIYODA_NISHI_NIPPORI, { dx: OFFSET });
-export const YAMANOTE_USAIGUIDANI = offset(YAMANOTE_UENO, { dy: -MAJOR_LINE });
+export const YAMANOTE_NISHI_NIPPORI = offset(offset(CHIYODA_NISHI_NIPPORI, { dx: OFFSET * 1.5, dy: -OFFSET * 2 }), scale(SSW, OFFSET));
+export const JY_06 = offset(YAMANOTE_UENO, { dy: -MAJOR_LINE });
 export const YAMANOTE_NIPPORI = offset(YAMANOTE_NISHI_NIPPORI, scale(ESE, (OFFSET * 8) / Factor.DOUBLE_DIAG));
+export const JY_11 = offset(OTEMACHI, { dx: -MAJOR_LINE * 3 - OFFSET * 0.5, dy: -MAJOR_LINE * 8 - OFFSET * 2 });
+export const JY_10 = offset(JY_11, { dx: MAJOR_LINE });
 
 const YamanotePath = () => {
     return (
@@ -23,6 +26,7 @@ const YamanotePath = () => {
             d={`
             ${startAtLocation(YAMANOTE_SHIMBASHI)}
             ${curveFrom({ start: YAMANOTE_SHIMBASHI, end: YAMANOTE_NISHI_NIPPORI, firstDirection: N, secondDirection: WNW })}
+            ${curveFrom({ start: YAMANOTE_NISHI_NIPPORI, end: JY_11, firstDirection: WNW, secondDirection: W })}
         `}
         />
     );
@@ -34,14 +38,17 @@ const Yamanote = () => {
             <YamanotePath />
             <StopFromTokyo location={YAMANOTE_NISHI_NIPPORI} stationCode="JY 08" />
             <StopFromTokyo stationCode="JY 07" location={YAMANOTE_NIPPORI} />
-            <StopFromTokyo stationCode="JY 06" location={YAMANOTE_USAIGUIDANI} />
+            <StopFromTokyo stationCode="JY 06" location={JY_06} />
             <StopFromTokyo stationCode="JY 05" location={YAMANOTE_UENO} />
-            <StopFromTokyo stationCode="JY 04" location={YAMANOTE_OKACHIMACHI} />
+            <StopFromTokyo stationCode="JY 04" location={JY_04} />
             <StopFromTokyo location={YAMANOTE_AKIHABARA} stationCode="JY 03" />
             <StopFromTokyo location={YAMANOTE_KANDA} stationCode="JY 02" />
             <StopFromTokyo location={YAMANOTE_TOKYO} stationCode="JY 01" />
             <StopFromTokyo location={YAMANOTE_YURAKUCHO} stationCode="JY 30" />
             <StopFromTokyo location={YAMANOTE_SHIMBASHI} stationCode="JY 29" />
+            <StopFromTokyo stationCode="JY 11" location={JY_11} />
+            <StopFromTokyo stationCode="JY 10" location={JY_10} />
+            <StopFromTokyo stationCode="JY 09" location={offset(YAMANOTE_NISHI_NIPPORI, { dx: -MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })} />
         </g>
     );
 };

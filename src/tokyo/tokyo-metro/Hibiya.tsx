@@ -16,7 +16,6 @@ import {
 import { curveFrom, S, ESE, startAtLocation, W, offset, WSW, Factor, scale } from '../../utils/PathUtils';
 import { CS_KOIWA } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
-import { TOKYO_RADIUS } from './Marunouchi';
 
 const HIBIYA_TSUKIJI = { x: HIBIYA_KAYABACHO.x, y: YAMANOTE_YURAKUCHO.y };
 const AKIHABARA = { ...YAMANOTE_AKIHABARA, x: YAMANOTE_AKIHABARA.x + OFFSET * 3 };
@@ -59,7 +58,6 @@ export const HibiyaPath = () => {
                 ${curveFrom({
                     start: HIBIYA_TSUKIJI,
                     end: HIBIYA,
-                    radius: TOKYO_RADIUS,
                     firstDirection: S,
                     secondDirection: W,
                 })}
