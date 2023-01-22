@@ -8,12 +8,13 @@ import {
     OEDO_MONZEN_NAKACHO,
     SOBU_KINSCHICHO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, midPoint, N, offset, S, startAtLocation, WNW } from '../../utils/PathUtils';
+import { curveFrom, E, ENE, midPoint, N, NNW, offset, S, scale, SSE, startAtLocation, WNW } from '../../utils/PathUtils';
 import { CS_KAMEIDO } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
 import { I_10 } from '../toei/Mita';
-import { S_13 } from '../toei/Shinjuku';
-import { T_07 } from './Tozai';
+import { S_05, S_13 } from '../toei/Shinjuku';
+import { G_04 } from './Ginza';
+import { Y_16 } from './Yurakucho';
 
 const Z_08 = {
     x: OTEMACHI.x + MAJOR_LINE * 0.5 + MINOR_LINE,
@@ -27,14 +28,19 @@ const Z_12 = offset(S_13, { dx: -OFFSET * 0.5, dy: -OFFSET });
 export const Z_13 = offset(SOBU_KINSCHICHO, { dx: -OFFSET * 0.5, dy: -OFFSET });
 export const Z_14 = { x: Z_13.x - MAJOR_LINE * 0.5 - OFFSET, y: CS_KAMEIDO.y - OFFSET * 2 };
 const Z_07 = offset(I_10, { dy: -OFFSET });
-const OTEMACHI_MIDPOINT = offset(Z_07, { dx: -OFFSET + MAJOR_LINE, dy: MAJOR_LINE });
-const Z_06 = offset(T_07, { dy: -OFFSET });
+const OTEMACHI_MIDPOINT = offset(OTEMACHI, { dx: -OFFSET, dy: -MAJOR_LINE });
+const Z_06 = offset(S_05, scale(SSE, OFFSET));
+const Z_04 = offset(Y_16, { dx: -OFFSET * 0.5, dy: -OFFSET });
+const Z_03 = offset(G_04, scale(NNW, OFFSET));
 
 export const HanzomonPath = () => {
     return (
         <path
             d={`
-    ${startAtLocation(Z_06)}
+    ${startAtLocation(Z_03)}
+    ${curveFrom({ start: Z_03, end: Z_04, firstDirection: ENE, secondDirection: N })}
+    ${curveFrom({ start: Z_04, end: Z_06, firstDirection: N, secondDirection: ENE })}
+    ${curveFrom({ start: Z_06, end: Z_07, firstDirection: ENE, secondDirection: E })}
     ${curveFrom({ start: Z_07, end: OTEMACHI_MIDPOINT, firstDirection: E, secondDirection: S })}
     ${curveFrom({ start: OTEMACHI_MIDPOINT, end: Z_08, firstDirection: S, secondDirection: E })}
     ${curveFrom({ start: Z_08, end: MIDPOINT, firstDirection: E, secondDirection: ENE })}
@@ -69,6 +75,8 @@ const Hanzomon = () => {
             <StopFromTokyo stationCode="Z 12" location={Z_12} />
             <StopFromTokyo stationCode="Z 13" location={Z_13} />
             <StopFromTokyo stationCode="Z 14" location={Z_14} />
+            <StopFromTokyo stationCode="Z 04" location={Z_04} />
+            <StopFromTokyo stationCode="Z 03" location={Z_03} />
         </g>
     );
 };

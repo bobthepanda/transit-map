@@ -3,37 +3,48 @@ import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import {
     GINZA_MITSUKOSHIMAE,
+    HIBIYA_GINZA,
     HIBIYA_KASUMIGASEKI,
-    MITA_HIBIYA,
     NIHOMBASHI,
     OFFSET,
-    OTEMACHI,
     YAMANOTE_KANDA,
     YAMANOTE_OKACHIMACHI,
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, offset, RADIUS, startAtLocation, WNW } from '../../utils/PathUtils';
+import { curveFrom, E, ENE, ESE, Factor, N, offset, RADIUS, scale, SSW, startAtLocation, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
 import { A_18 } from '../toei/Asakusa';
+import { E_24 } from '../toei/Oedo';
+import { M_13 } from './Marunouchi';
 
 const SHIMBASHI = {
     x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5,
     y: YAMANOTE_SHIMBASHI.y + OFFSET,
 };
-const GINZA = { x: OTEMACHI.x, y: MITA_HIBIYA.y };
+const GINZA = offset(HIBIYA_GINZA, { dx: OFFSET * 0.5, dy: -OFFSET });
 const SHIMBASHI_RADIUS = RADIUS + OFFSET;
-const TORANOMON = { y: SHIMBASHI.y, x: HIBIYA_KASUMIGASEKI.x - OFFSET };
+const TORANOMON = { y: SHIMBASHI.y, x: HIBIYA_KASUMIGASEKI.x + OFFSET };
 const KANDA = { ...YAMANOTE_KANDA, x: YAMANOTE_KANDA.x - OFFSET * 2 };
 const UENO = offset(YAMANOTE_UENO, { dx: OFFSET, dy: -OFFSET });
 const ASAKUSA = offset(A_18, { dy: -OFFSET });
 export const G_15 = offset(YAMANOTE_OKACHIMACHI, { dx: -MAJOR_LINE * 0.5 - OFFSET, dy: -OFFSET * 4 });
+const G_05 = offset(M_13, scale(SSW, OFFSET));
+export const G_06 = offset(G_05, scale(ESE, MAJOR_LINE / Factor.DOUBLE_DIAG));
+export const G_04 = offset(E_24, { dy: -OFFSET });
 
 export const GinzaPath = () => {
     return (
         <path
-            d={`${startAtLocation(TORANOMON)}
+            d={`${startAtLocation(G_04)}
+            ${curveFrom({
+                start: G_04,
+                end: G_05,
+                firstDirection: ENE,
+                secondDirection: ESE,
+            })}
+            ${curveFrom({ start: G_05, end: TORANOMON, firstDirection: ESE, secondDirection: E })}
                 ${curveFrom({
                     start: TORANOMON,
                     end: NIHOMBASHI,
@@ -68,6 +79,9 @@ const Ginza = () => {
     return (
         <g className="ginza">
             <GinzaPath />
+            <StopFromTokyo stationCode="G 04" location={G_04} />
+            <StopFromTokyo stationCode="G 06" location={G_06} />
+            <StopFromTokyo stationCode="G 05" location={G_05} />
             <StopFromTokyo location={NIHOMBASHI} stationCode="G 11" />
             <StopFromTokyo location={{ ...NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="G 10" />
             <StopFromTokyo location={GINZA} stationCode="G 09" />

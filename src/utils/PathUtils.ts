@@ -118,6 +118,19 @@ export const generatePoint = ({ start, slope, endReference }: PointGeneration): 
     return { x: endReference.x, y: start.y + xDiff * slopeRate };
 };
 
+export const generatePointY = ({ start, slope, endReference }: PointGeneration): Coordinates => {
+    const { dx = 0, dy = 0 } = slope;
+
+    if (dy === 0) {
+        return { x: start.x, y: endReference.y };
+    }
+
+    const slopeRate: number = dx / dy;
+    const yDiff: number = endReference.y - start.y;
+
+    return { y: endReference.y, x: start.x + yDiff * slopeRate };
+};
+
 const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2: Coordinates): Coordinates => {
     if (a1.x > a2.x) {
         return findIntersection(a2, a1, b1, b2);

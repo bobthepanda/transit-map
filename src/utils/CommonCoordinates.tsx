@@ -1,5 +1,5 @@
 import { Coordinates } from '../interfaces/Dimensions';
-import { ENE, generatePoint, SSE, offset, scale, WSW } from './PathUtils';
+import { ENE, generatePoint, offset } from './PathUtils';
 
 export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * MINOR_LINE;
@@ -79,11 +79,7 @@ export const SOBU_KINSCHICHO = generatePoint({
     endReference: offset(KIKUKAWA, { dx: MAJOR_LINE * 0.75, dy: -MAJOR_LINE * 0.5 * 0.75 }),
 });
 
-export const CS_RYOGOKU = generatePoint({
-    start: offset(SOBU_KINSCHICHO, scale(SSE, OFFSET)),
-    slope: WSW,
-    endReference: offset(OEDO_MONZEN_NAKACHO, { dx: OFFSET * 0.5 }),
-});
+export const CS_RYOGOKU = offset(YAMANOTE_AKIHABARA, { dy: -OFFSET, dx: MAJOR_LINE * 4.5 });
 
 export const YAMANOTE_OKACHIMACHI = { x: YAMANOTE_TOKYO.x, y: ASAKUSA_KURAMAE.y + OFFSET };
 export const YAMANOTE_UENO = offset(YAMANOTE_OKACHIMACHI, { dy: -MAJOR_LINE });

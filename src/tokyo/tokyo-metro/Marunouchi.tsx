@@ -10,8 +10,10 @@ import {
     OFFSET,
     YAMANOTE_TOKYO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ESE, offset, S, startAtLocation, W } from '../../utils/PathUtils';
+import { curveFrom, E, ESE, generatePoint, offset, S, startAtLocation, W, WNW } from '../../utils/PathUtils';
+import { JB_14 } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
+import { E_07, E_08 } from '../toei/Oedo';
 
 const SEGMENT_1 = ['M 18', 'M 19'];
 
@@ -20,8 +22,11 @@ const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 0.5, y: MITA_HIBIYA.y };
 const KASUMIGASEKI = offset(HIBIYA_KASUMIGASEKI, { dx: -OFFSET, dy: -OFFSET * 0.5 });
 
 const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -2 });
-export const M_21 = offset(OCHANOMIZU, { dy: -OFFSET * 4, dx: -OFFSET * 8 });
+export const M_21 = generatePoint({ start: OCHANOMIZU, slope: WNW, endReference: E_08 });
 export const M_22 = offset(M_21, { dx: -MAJOR_LINE * 2 - OFFSET, dy: -MAJOR_LINE - OFFSET * 0.5 });
+const M_12 = offset(JB_14, { dx: -OFFSET * 2 });
+export const M_14 = offset(KASUMIGASEKI, { dx: -MAJOR_LINE });
+export const M_13 = generatePoint({ start: M_12, slope: ESE, endReference: offset(E_07, { dx: OFFSET * -2 }) });
 
 export const MarunouchiPath = () => {
     return (
@@ -51,6 +56,12 @@ export const MarunouchiPath = () => {
                     firstDirection: S,
                     secondDirection: W,
                 })}
+                ${curveFrom({
+                    start: KASUMIGASEKI,
+                    end: M_12,
+                    firstDirection: W,
+                    secondDirection: WNW,
+                })}
                 `}
         />
     );
@@ -60,6 +71,9 @@ const Marunouchi = () => {
     return (
         <g className="marunouchi">
             <MarunouchiPath />
+            <StopFromTokyo stationCode="M 12" location={M_12} />
+            <StopFromTokyo stationCode="M 13" location={M_13} />
+            <StopFromTokyo stationCode="M 14" location={M_14} />
             <LineSegmentWithStepChange stops={SEGMENT_1} origin={MARUNOUCHI_OTEMACHI} ystep={MAJOR_LINE * -1} />
             <StopFromTokyo location={TOKYO} stationCode="M 17" />
             <StopFromTokyo location={GINZA} stationCode="M 16" />

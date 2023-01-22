@@ -4,6 +4,7 @@ import {
     ASAKUSA_NINGYOCHO,
     HIBIYA,
     HIBIYA_GINZA,
+    HIBIYA_KASUMIGASEKI,
     HIBIYA_KAYABACHO,
     OEDO_MONZEN_NAKACHO,
     OFFSET,
@@ -16,6 +17,7 @@ import {
 import { curveFrom, S, ESE, startAtLocation, W, offset, WSW, Factor, scale } from '../../utils/PathUtils';
 import { CS_KOIWA } from '../jr-east/ChuoSobu';
 import StopFromTokyo from '../StopsFromTokyo';
+import { E_23 } from '../toei/Oedo';
 
 const HIBIYA_TSUKIJI = { x: HIBIYA_KAYABACHO.x, y: YAMANOTE_YURAKUCHO.y };
 const AKIHABARA = { ...YAMANOTE_AKIHABARA, x: YAMANOTE_AKIHABARA.x + OFFSET * 3 };
@@ -25,6 +27,9 @@ export const HIBIYA_KITA_SENJU = { x: OEDO_MONZEN_NAKACHO.x, y: CS_KOIWA.y - MAJ
 export const H_21 = offset(HIBIYA_KITA_SENJU, { dy: MAJOR_LINE * 1 });
 const H_20 = offset(H_21, { dx: -MAJOR_LINE, dy: MAJOR_LINE + OFFSET });
 const H_19 = offset(H_20, scale(WSW, MAJOR_LINE / Factor.HALF_DIAG));
+const H_06 = offset(HIBIYA_KASUMIGASEKI, { dy: MAJOR_LINE + OFFSET * 2 });
+const H_05 = offset(H_06, { dx: -MAJOR_LINE, dy: MAJOR_LINE * 0.5 });
+const H_04 = offset(E_23, { dy: -OFFSET });
 
 export const HibiyaPath = () => {
     return (
@@ -61,6 +66,8 @@ export const HibiyaPath = () => {
                     firstDirection: S,
                     secondDirection: W,
                 })}
+                ${curveFrom({ start: HIBIYA, end: H_06, firstDirection: W, secondDirection: S })}
+                ${curveFrom({ start: H_06, end: H_04, firstDirection: S, secondDirection: W })}
             `}
         />
     );
@@ -84,6 +91,10 @@ const Hibiya = () => {
             <StopFromTokyo stationCode="H 21" location={H_21} />
             <StopFromTokyo stationCode="H 20" location={H_20} />
             <StopFromTokyo stationCode="H 19" location={H_19} />
+            <StopFromTokyo stationCode="H 07" location={HIBIYA_KASUMIGASEKI} />
+            <StopFromTokyo stationCode="H 06" location={H_06} />
+            <StopFromTokyo stationCode="H 05" location={H_05} />
+            <StopFromTokyo stationCode="H 04" location={H_04} />
         </g>
     );
 };

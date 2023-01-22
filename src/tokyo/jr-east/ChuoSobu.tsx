@@ -7,6 +7,7 @@ import {
     CHUO_OCHANOMIZU,
     CS_RYOGOKU,
     OFFSET,
+    OTEMACHI,
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
@@ -23,8 +24,10 @@ export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
 export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 1.5 + OFFSET, dy: -OFFSET * 5 });
 export const FUNABASHI_MIDPOINT = offset(midPoint(CS_NISHI_FUNABASHI, JB_31), { dx: OFFSET * 2 });
 export const JB_17 = offset(OCHANOMIZU, { dx: -MAJOR_LINE * 3 + OFFSET * 0.5 });
-export const JB_16 = offset(JB_17, { dy: OFFSET * 2, dx: OFFSET * 0.5 - MAJOR_LINE * 2 });
-const START = JB_16;
+export const JB_16 = offset(JB_17, { dy: OFFSET * 2, dx: OFFSET * 0.5 - MAJOR_LINE * 2 - OFFSET * 4 });
+export const JB_15 = { x: JB_16.x, y: OTEMACHI.y };
+export const JB_14 = offset(JB_15, { dy: MAJOR_LINE * 1.5 });
+const START = JB_14;
 
 export const ChuoSobuPath = () => {
     return (
@@ -47,6 +50,8 @@ export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
             <ChuoSobuPath />
+            <StopFromTokyo stationCode="JB 14" location={JB_14} />
+            <StopFromTokyo stationCode="JB 15" location={JB_15} />
             <StopFromTokyo stationCode="JB 16" location={JB_16} />
             <StopFromTokyo stationCode="JB 17" location={JB_17} />
             <StopFromTokyo stationCode="JB 18" location={OCHANOMIZU} />

@@ -44,7 +44,7 @@ const Musashino = () => {
             <StopFromTokyo stationCode="JE 03" location={{ ...TOKYO, x: OEDO_MONZEN_NAKACHO.x + MAJOR_LINE * 0.5 }} />
             <StopFromTokyo stationCode="JE 04" location={SHIOMI} />
             <LineSegmentWithEndpoint
-                stops={generateStationCodes('JJ', 5, 7)}
+                stops={generateStationCodes('JE', 5, 7)}
                 origin={MUSASHINO_SHIN_KIBA}
                 endpoint={generatePoint({
                     start: MUSASHINO_SHIN_KIBA,

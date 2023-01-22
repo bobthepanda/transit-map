@@ -17,8 +17,8 @@ import StopFromTokyo from '../StopsFromTokyo';
 export const YAMANOTE_NISHI_NIPPORI = offset(offset(CHIYODA_NISHI_NIPPORI, { dx: OFFSET * 1.5, dy: -OFFSET * 2 }), scale(SSW, OFFSET));
 export const JY_06 = offset(YAMANOTE_UENO, { dy: -MAJOR_LINE });
 export const YAMANOTE_NIPPORI = offset(YAMANOTE_NISHI_NIPPORI, scale(ESE, (OFFSET * 8) / Factor.DOUBLE_DIAG));
-export const JY_11 = offset(OTEMACHI, { dx: -MAJOR_LINE * 3 - OFFSET * 0.5, dy: -MAJOR_LINE * 8 - OFFSET * 2 });
-export const JY_10 = offset(JY_11, { dx: MAJOR_LINE });
+export const JY_11 = offset(OTEMACHI, { dx: -MAJOR_LINE * 5, dy: -MAJOR_LINE * 8 - OFFSET * 2 });
+export const JY_10 = offset(JY_11, { dx: MAJOR_LINE * 2 });
 
 const YamanotePath = () => {
     return (
