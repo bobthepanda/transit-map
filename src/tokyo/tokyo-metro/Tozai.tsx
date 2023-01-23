@@ -1,9 +1,11 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OTEMACHI, OFFSET, NIHOMBASHI, OEDO_MONZEN_NAKACHO, SOBU_KINSCHICHO } from '../../utils/CommonCoordinates';
-import { startAtLocation, offset, generatePoint, ENE, curveFrom, E, N, ESE, WNW } from '../../utils/PathUtils';
+import { startAtLocation, offset, generatePoint, ENE, curveFrom, E, N, ESE, WNW, midPoint } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_NISHI_FUNABASHI, JB_16 } from '../jr-east/ChuoSobu';
+import { JY_15 } from '../jr-east/Yamanote';
 import StopFromTokyo from '../StopsFromTokyo';
 import { I_10 } from '../toei/Mita';
 
@@ -27,11 +29,14 @@ const KIBA = offset(TOZAI_MONZEN_NAKACHO, { dx: MAJOR_LINE, dy: -OFFSET * 2 });
 const TOYOCHO = generatePoint({ start: KIBA, slope: ENE, endReference: offset(SOBU_KINSCHICHO, { dx: OFFSET }) });
 export const T_07 = offset(offset(I_10, { dx: -MAJOR_LINE * 2 + OFFSET * 1.5, dy: MAJOR_LINE * 0.5 + OFFSET + OFFSET * 0.75 }), {});
 const T_06 = generatePoint({ start: T_07, slope: WNW, endReference: offset(JB_16, { dx: -OFFSET * 4 }) });
+const T_03 = offset(JY_15, { dx: -OFFSET * 0.5, dy: -OFFSET });
+const T_04 = offset(T_03, { dx: OFFSET * 0.5 + MAJOR_LINE * 1.5 });
 export const TozaiPath = () => {
     return (
         <path
             d={`
-                ${startAtLocation(T_06)}
+                ${startAtLocation(T_03)}
+                ${curveFrom({ start: T_03, end: T_06, firstDirection: E, secondDirection: ESE })}
                 ${curveFrom({ start: T_06, end: TOZAI_OTEMACHI, firstDirection: ESE, secondDirection: E })}
                 ${curveFrom({ start: TOZAI_OTEMACHI, end: TOYOCHO, firstDirection: E, secondDirection: ENE })}
                 ${curveFrom({ start: TOYOCHO, end: BARAKI_NAKAYAMA, firstDirection: ENE, secondDirection: N })}
@@ -45,7 +50,14 @@ const Tozai = () => {
     return (
         <g className="tozai">
             <TozaiPath />
-            <StopFromTokyo stationCode="T 06" location={T_06} />
+            <StopFromTokyo stationCode="T 03" location={T_03} />
+            <StopFromTokyo stationCode="T 04" location={T_04} textAlignment={TextAlignment.UP} />
+            <StopFromTokyo
+                stationCode="T 05"
+                location={generatePoint({ start: T_06, slope: WNW, endReference: midPoint(T_04, T_06) })}
+                textAlignment={TextAlignment.UP}
+            />
+            <StopFromTokyo stationCode="T 06" location={T_06} textAlignment={TextAlignment.LEFT} />
             <StopFromTokyo stationCode="T 07" location={T_07} />
             <StopFromTokyo stationCode="T 08" location={offset(T_07, { dx: MAJOR_LINE, dy: MAJOR_LINE * 0.5 })} />
             <StopFromTokyo location={TOZAI_NIHOMBASHI} stationCode="T 10" />

@@ -1,5 +1,5 @@
 import { Coordinates } from '../interfaces/Dimensions';
-import { Stop, TextAlignment } from '../symbols/BasicStop';
+import { Stop } from '../symbols/BasicStop';
 
 const StopFromTokyo = ({
     stationCode,
@@ -9,7 +9,7 @@ const StopFromTokyo = ({
 }: {
     stationCode: string;
     location: Coordinates;
-    textAlignment?: TextAlignment;
+    textAlignment?: string;
     hideText?: boolean;
 }) => {
     return <Stop stationCode={stationCode} textAlignment={textAlignment} location={location} hideText={hideText} />;

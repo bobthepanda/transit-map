@@ -33,14 +33,14 @@ export enum TextAlignment {
 interface TextDefinition {
     text?: string;
     subtitleText?: string;
-    textAlignment?: TextAlignment;
+    textAlignment?: string;
 }
 
 interface StopDefinition {
     location: Coordinates;
     stationCode: string;
     hideText?: boolean;
-    textAlignment?: TextAlignment;
+    textAlignment?: string;
 }
 
 const StopText = ({ text, subtitleText = '', textAlignment = TextAlignment.RIGHT }: TextDefinition) => {

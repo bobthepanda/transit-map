@@ -12,7 +12,8 @@ import {
     MITA_HIBIYA,
 } from '../../utils/CommonCoordinates';
 import { curveFrom, E, generatePoint, N, offset, RADIUS, S, startAtLocation, W, WNW } from '../../utils/PathUtils';
-import { JB_16, JB_17 } from '../jr-east/ChuoSobu';
+import { JB_12, JB_16, JB_17 } from '../jr-east/ChuoSobu';
+import { JY_17, JY_18 } from '../jr-east/Yamanote';
 import StopFromTokyo from '../StopsFromTokyo';
 
 const KURAMAE = offset(ASAKUSA_KURAMAE, { dx: OFFSET * 0.5, dy: -OFFSET });
@@ -27,6 +28,9 @@ const E_18 = offset(E_20, { dx: MAJOR_LINE * 3 - OFFSET * 0.5 });
 export const E_22 = offset(E_20, { dx: -OFFSET - MAJOR_LINE * 3.5 });
 export const E_23 = offset(E_22, { dx: OFFSET * 0.5 - MAJOR_LINE * 1.5, dy: -MAJOR_LINE * 0.5 });
 export const E_24 = generatePoint({ start: E_23, slope: WNW, endReference: offset(E_23, { dx: -MAJOR_LINE * 2 }) });
+const E_25 = offset(JB_12, { dy: OFFSET + MAJOR_LINE });
+const E_26 = offset(JY_18, { dx: OFFSET * 2 });
+const E_27 = offset(JY_17, { dy: OFFSET * 2, dx: -OFFSET });
 const FIRST_STOP = E_06;
 
 export const OedoPath = () => {
@@ -39,6 +43,9 @@ export const OedoPath = () => {
         ${curveFrom({ start: E_07, end: TSUKISHIMA, firstDirection: E, secondDirection: S, radius: RYOGOKU.y - KURAMAE.y - OFFSET })}
         ${curveFrom({ start: TSUKISHIMA, end: E_22, firstDirection: S, secondDirection: W, radius: RADIUS + OFFSET * 4 })}
         ${curveFrom({ start: E_22, end: E_24, firstDirection: W, secondDirection: WNW })}
+        ${curveFrom({ start: E_24, end: E_25, firstDirection: WNW, secondDirection: W })}
+        ${curveFrom({ start: E_25, end: E_26, firstDirection: W, secondDirection: N })}
+        ${curveFrom({ start: E_26, end: E_27, firstDirection: N, secondDirection: W })}
     `}
         />
     );
@@ -48,6 +55,9 @@ const Oedo = () => {
     return (
         <g className="oedo">
             <OedoPath />
+            <StopFromTokyo stationCode="E 27" location={E_27} />
+            <StopFromTokyo stationCode="E 26" location={E_26} />
+            <StopFromTokyo stationCode="E 25" location={E_25} textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="E 24" location={E_24} />
             <StopFromTokyo stationCode="E 23" location={E_23} />
             <StopFromTokyo stationCode="E 22" location={E_22} />

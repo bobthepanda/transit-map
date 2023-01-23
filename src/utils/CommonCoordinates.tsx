@@ -5,7 +5,7 @@ export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;
 
-export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 10, y: MAJOR_LINE * 20 };
+export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 20, y: MAJOR_LINE * 20 };
 export const CHIYODA_OTEMACHI: Coordinates = {
     ...OTEMACHI,
     x: OTEMACHI.x + OFFSET,
@@ -85,4 +85,4 @@ export const YAMANOTE_OKACHIMACHI = { x: YAMANOTE_TOKYO.x, y: ASAKUSA_KURAMAE.y 
 export const YAMANOTE_UENO = offset(YAMANOTE_OKACHIMACHI, { dy: -MAJOR_LINE });
 
 export const CHIYODA_YUSHIMA = { ...CHIYODA_OTEMACHI, y: ASAKUSA_KURAMAE.y - MAJOR_LINE * 0.5 };
-export const CHIYODA_NISHI_NIPPORI = offset(CHIYODA_YUSHIMA, { dy: -MAJOR_LINE * 3 });
+export const CHIYODA_NISHI_NIPPORI = offset(CHIYODA_YUSHIMA, { dy: -MAJOR_LINE * 3 - OFFSET });

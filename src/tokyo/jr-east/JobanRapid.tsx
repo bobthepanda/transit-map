@@ -20,6 +20,7 @@ const JJ_06 = offset(JL_22, { dx: OFFSET });
 const JJ_07 = offset(JL_28, scale(SSE, OFFSET));
 const JJ_08 = offset(JL_30, scale(SSE, OFFSET));
 const JJ_10 = offset(JL_32, scale(SSE, OFFSET));
+const NIPPORI_RADIUS = MINOR_LINE * 1.5;
 
 export const JobanRapidPath = () => {
     return (
@@ -27,8 +28,8 @@ export const JobanRapidPath = () => {
             d={`
         ${startAtLocation(UENO)}
         ${curveFrom({ start: UENO, end: NIPPORI, firstDirection: N, secondDirection: WNW })}
-        ${curveFrom({ start: NIPPORI, end: CURVE_POINT, firstDirection: WNW, secondDirection: N, radius: MINOR_LINE * 3 })}
-        ${curveFrom({ start: CURVE_POINT, end: JJ_03, firstDirection: N, secondDirection: E, radius: MINOR_LINE * 3 })}
+        ${curveFrom({ start: NIPPORI, end: CURVE_POINT, firstDirection: WNW, secondDirection: N, radius: (NIPPORI_RADIUS * 2) / 3 })}
+        ${curveFrom({ start: CURVE_POINT, end: JJ_03, firstDirection: N, secondDirection: E, radius: NIPPORI_RADIUS })}
         ${curveFrom({ start: JJ_03, end: JJ_05, firstDirection: E, secondDirection: N })}
         ${curveFrom({ start: JJ_05, end: LOCAL_CURVE_POINT, firstDirection: N, secondDirection: E })}
         ${curveFrom({ start: LOCAL_CURVE_POINT, end: JJ_06, firstDirection: E, secondDirection: N, radius: RADIUS + OFFSET })}

@@ -11,9 +11,25 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, SSE, offset, scale, startAtLocation, N, RADIUS, generatePoint, W, midPoint, NNE } from '../../utils/PathUtils';
+import {
+    curveFrom,
+    E,
+    ENE,
+    SSE,
+    offset,
+    scale,
+    startAtLocation,
+    N,
+    RADIUS,
+    generatePoint,
+    W,
+    midPoint,
+    NNE,
+    S,
+} from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import StopFromTokyo from '../StopsFromTokyo';
+import { JY_17, JY_18 } from './Yamanote';
 
 const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -1 });
 const AKIHABARA = offset(YAMANOTE_AKIHABARA, { dx: OFFSET * 1.5, dy: OFFSET * -1 });
@@ -27,14 +43,18 @@ export const JB_17 = offset(OCHANOMIZU, { dx: -MAJOR_LINE * 3 + OFFSET * 0.5 });
 export const JB_16 = offset(JB_17, { dy: OFFSET * 2, dx: OFFSET * 0.5 - MAJOR_LINE * 2 - OFFSET * 4 });
 export const JB_15 = { x: JB_16.x, y: OTEMACHI.y };
 export const JB_14 = offset(JB_15, { dy: MAJOR_LINE * 1.5 });
-const START = JB_14;
+export const JB_10 = offset(JY_17, { dx: OFFSET });
+export const JB_13 = offset(JB_14, { dy: MAJOR_LINE * 0.5 - OFFSET, dx: OFFSET - MAJOR_LINE * 1.5 });
+export const JB_12 = offset(JB_13, { dx: -MAJOR_LINE * 1.5 });
 
 export const ChuoSobuPath = () => {
     return (
         <path
             d={`
-            ${startAtLocation(START)}
-            ${curveFrom({ start: START, end: JB_17, firstDirection: N, secondDirection: E })}
+            ${startAtLocation(JB_10)}
+            ${curveFrom({ start: JB_10, end: JB_13, firstDirection: S, secondDirection: E })}
+            ${curveFrom({ start: JB_13, end: JB_14, firstDirection: E, secondDirection: N })}
+            ${curveFrom({ start: JB_14, end: JB_17, firstDirection: N, secondDirection: E })}
             ${curveFrom({ start: JB_17, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET * 0.5 })}
             ${curveFrom({ start: CS_KAMEIDO, end: CS_NISHI_FUNABASHI, firstDirection: N, secondDirection: E })}
@@ -50,6 +70,10 @@ export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
             <ChuoSobuPath />
+            <StopFromTokyo stationCode="JB 10" location={JB_10} />
+            <StopFromTokyo stationCode="JB 11" location={offset(JY_18, { dx: OFFSET })} />
+            <StopFromTokyo stationCode="JB 13" location={JB_13} textAlignment={TextAlignment.UP} />
+            <StopFromTokyo stationCode="JB 12" location={JB_12} textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="JB 14" location={JB_14} />
             <StopFromTokyo stationCode="JB 15" location={JB_15} />
             <StopFromTokyo stationCode="JB 16" location={JB_16} />

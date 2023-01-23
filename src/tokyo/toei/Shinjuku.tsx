@@ -13,7 +13,9 @@ import {
 import { curveFrom, E, ENE, generatePoint, midPoint, N, offset, startAtLocation } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_MOTOYAWATA, JB_15 } from '../jr-east/ChuoSobu';
+import { JY_17 } from '../jr-east/Yamanote';
 import StopFromTokyo from '../StopsFromTokyo';
+import { F_13 } from '../tokyo-metro/Fukutoshin';
 import { T_07 } from '../tokyo-metro/Tozai';
 import { I_10 } from './Mita';
 
@@ -31,14 +33,16 @@ const S_04 = offset(JB_15, { dx: -OFFSET * 2.5, dy: -OFFSET });
 const KUDANSHITA_MIDPOINT = midPoint(JB_15, S_06);
 const MOTOYAWATA = offset(CS_MOTOYAWATA, { dy: OFFSET });
 export const S_05 = offset(T_07, { dy: -OFFSET * 2, dx: -OFFSET });
+const S_02 = offset(F_13, { dx: OFFSET * 0.5, dy: -OFFSET });
+const S_01 = offset(JY_17, { dx: -OFFSET, dy: -OFFSET });
 
 export const ShinjukuPath = () => {
     return (
         <path
             className="shinjuku"
             d={`
-            ${startAtLocation(S_04)}
-            ${curveFrom({ start: S_04, end: KUDANSHITA_MIDPOINT, firstDirection: E, secondDirection: ENE })}
+            ${startAtLocation(S_01)}
+            ${curveFrom({ start: S_01, end: KUDANSHITA_MIDPOINT, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KUDANSHITA_MIDPOINT, end: OGAWAMACHI, firstDirection: ENE, secondDirection: E })}
             ${curveFrom({ start: OGAWAMACHI, end: KIKUKAWA, firstDirection: E, secondDirection: ENE })}
             ${curveFrom({ start: KIKUKAWA, end: MOTOYAWATA, firstDirection: ENE, secondDirection: N })}        
@@ -51,6 +55,9 @@ const Shinjuku = () => {
     return (
         <g className="shinjuku">
             <ShinjukuPath />
+            <StopFromTokyo stationCode="S 01" location={S_01} />
+            <StopFromTokyo stationCode="S 02" location={S_02} />
+            <StopFromTokyo stationCode="S 03" location={midPoint(S_02, S_04)} textAlignment={TextAlignment.UP} />
             <StopFromTokyo stationCode="S 04" location={S_04} />
             <StopFromTokyo stationCode="S 05" location={S_05} />
             <StopFromTokyo stationCode="S 11" location={MORISHITA} textAlignment={TextAlignment.UP} />

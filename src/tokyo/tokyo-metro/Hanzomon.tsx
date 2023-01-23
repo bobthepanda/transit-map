@@ -75,6 +75,7 @@ const Hanzomon = () => {
             <StopFromTokyo stationCode="Z 12" location={Z_12} />
             <StopFromTokyo stationCode="Z 13" location={Z_13} />
             <StopFromTokyo stationCode="Z 14" location={Z_14} />
+            <StopFromTokyo stationCode="Z 05" location={offset(Z_04, { dy: -MAJOR_LINE * 1.5 })} />
             <StopFromTokyo stationCode="Z 04" location={Z_04} />
             <StopFromTokyo stationCode="Z 03" location={Z_03} />
         </g>

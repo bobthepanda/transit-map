@@ -1,4 +1,5 @@
 import Chiyoda from './Chiyoda';
+import Fukutoshin from './Fukutoshin';
 import Ginza from './Ginza';
 import Hanzomon from './Hanzomon';
 import Hibiya from './Hibiya';
@@ -18,6 +19,7 @@ const TokyoMetro = () => {
             <Yurakucho />
             <Hanzomon />
             <Namboku />
+            <Fukutoshin />
         </g>
     );
 };
