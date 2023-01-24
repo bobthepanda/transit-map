@@ -1,3 +1,5 @@
+import { Stop, StopDefinition } from '../../symbols/BasicStop';
+import SVGPath from '../../symbols/SVGPath';
 import {
     CHUO_TOKYO,
     GINZA_MITSUKOSHIMAE,
@@ -6,8 +8,7 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_SHIMBASHI,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, N, ENE, startAtLocation, offset, E, RADIUS } from '../../utils/PathUtils';
-import StopFromTokyo from '../StopsFromTokyo';
+import { E, ENE, N, offset, RADIUS } from '../../utils/PathUtils';
 import { CS_KAMEIDO, CS_MOTOYAWATA } from './ChuoSobu';
 
 const TOKYO = { ...CHUO_TOKYO, x: CHUO_TOKYO.x + OFFSET * 4 };
@@ -21,26 +22,28 @@ const MOTOYAWATA = offset(CS_MOTOYAWATA, { dy: -OFFSET });
 
 export const SobuRapidPath = () => {
     return (
-        <path
-            d={`
-                ${startAtLocation(SHIMBASHI)}
-                ${curveFrom({ start: SHIMBASHI, end: SOBU_KINSCHICHO, firstDirection: N, secondDirection: ENE })}
-                ${curveFrom({ start: SOBU_KINSCHICHO, end: KAMEIDO, firstDirection: ENE, secondDirection: N })}
-                ${curveFrom({ start: KAMEIDO, end: MOTOYAWATA, firstDirection: N, secondDirection: E, radius: RADIUS + OFFSET })}
-        `}
+        <SVGPath
+            color="stroke-sobu-rapid"
+            points={[SHIMBASHI, SOBU_KINSCHICHO, KAMEIDO, MOTOYAWATA]}
+            directions={[N, ENE, N, E]}
+            radii={{ 3: RADIUS + OFFSET }}
         />
     );
+};
+
+const SobuRapidStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-musashino" />;
 };
 
 const SobuRapid = () => {
     return (
         <g className="sobu-rapid">
             <SobuRapidPath />
-            <StopFromTokyo location={TOKYO} stationCode="JO 19" />
-            <StopFromTokyo location={SHIMBASHI} stationCode="JO 18" />
-            <StopFromTokyo location={MITSUKOSHIMAE} stationCode="JO 20" />
-            <StopFromTokyo location={SOBU_BAKUROCHO} stationCode="JO 21" />
-            <StopFromTokyo location={SOBU_KINSCHICHO} stationCode="JO 22" />
+            <SobuRapidStop location={TOKYO} stationCode="JO 19" />
+            <SobuRapidStop location={SHIMBASHI} stationCode="JO 18" />
+            <SobuRapidStop location={MITSUKOSHIMAE} stationCode="JO 20" />
+            <SobuRapidStop location={SOBU_BAKUROCHO} stationCode="JO 21" />
+            <SobuRapidStop location={SOBU_KINSCHICHO} stationCode="JO 22" />
         </g>
     );
 };

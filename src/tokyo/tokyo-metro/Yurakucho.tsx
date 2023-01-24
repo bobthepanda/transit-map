@@ -1,9 +1,9 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
+import SVGPath from '../../symbols/SVGPath';
 import { NIHOMBASHI, OEDO_MONZEN_NAKACHO, OFFSET, YAMANOTE_YURAKUCHO } from '../../utils/CommonCoordinates';
-import { curveFrom, E, offset, S, ESE, startAtLocation, NNE, scale } from '../../utils/PathUtils';
+import { E, ESE, NNE, offset, S, scale } from '../../utils/PathUtils';
 import { JB_15, JB_16 } from '../jr-east/ChuoSobu';
-import StopFromTokyo from '../StopsFromTokyo';
 import { E_07 } from '../toei/Oedo';
 import { F_09 } from './Fukutoshin';
 
@@ -24,31 +24,26 @@ const Y_15 = offset(Y_14, { dx: MAJOR_LINE * 1.5, dy: MAJOR_LINE * 1.5 });
 const Y_09 = offset(F_09, scale(NNE, OFFSET));
 
 export const YurakuchoPath = () => {
-    return (
-        <path
-            d={`
-                ${startAtLocation(Y_09)}
-                ${curveFrom({ start: Y_09, end: Y_13, firstDirection: ESE, secondDirection: S })}
-                ${curveFrom({ start: Y_13, end: Y_15, firstDirection: S, secondDirection: ESE })}
-                ${curveFrom({ start: Y_15, end: TSUKISHIMA, firstDirection: ESE, secondDirection: E })}
-            `}
-        />
-    );
+    return <SVGPath color="stroke-yurakucho" points={[Y_09, Y_13, Y_15, TSUKISHIMA]} directions={[ESE, S, ESE, E]} />;
+};
+
+const YurakuchoStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-yurakucho" />;
 };
 
 const Yurakucho = () => {
     return (
         <g className="yurakucho">
             <YurakuchoPath />
-            <StopFromTokyo stationCode="Y 09" location={Y_09} />
-            <StopFromTokyo stationCode="Y 13" location={Y_13} />
-            <StopFromTokyo stationCode="Y 14" location={Y_14} />
-            <StopFromTokyo stationCode="Y 15" location={Y_15} />
-            <StopFromTokyo stationCode="Y 16" location={Y_16} />
-            <StopFromTokyo location={THIS_YURAKUCHO} stationCode="Y 18" />
-            <StopFromTokyo location={GINZA} stationCode="Y 19" textAlignment={TextAlignment.UP} />
-            <StopFromTokyo location={TSUKIJI} stationCode="Y 20" textAlignment={TextAlignment.DOWN} />
-            <StopFromTokyo stationCode="Y 21" location={TSUKISHIMA} />
+            <YurakuchoStop stationCode="Y 09" location={Y_09} />
+            <YurakuchoStop stationCode="Y 13" location={Y_13} />
+            <YurakuchoStop stationCode="Y 14" location={Y_14} />
+            <YurakuchoStop stationCode="Y 15" location={Y_15} />
+            <YurakuchoStop stationCode="Y 16" location={Y_16} />
+            <YurakuchoStop location={THIS_YURAKUCHO} stationCode="Y 18" />
+            <YurakuchoStop location={GINZA} stationCode="Y 19" textAlignment={TextAlignment.UP} />
+            <YurakuchoStop location={TSUKIJI} stationCode="Y 20" textAlignment={TextAlignment.DOWN} />
+            <YurakuchoStop stationCode="Y 21" location={TSUKISHIMA} />
         </g>
     );
 };

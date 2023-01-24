@@ -1,8 +1,53 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    theme: {
+        extend: {
+            colors: {
+                // Subway
+                shinjuku: '#6dc067',
+                oedo: '#b51e82',
+                mita: '#0080c6',
+                asakusa: '#ef5ba1',
+                ginza: '#f7931d',
+                marunouchi: '#ed1c24',
+                hibiya: `#8ba2ae`,
+                tozai: `#00b2dd`,
+                chiyoda: `#00a650`,
+                yurakucho: `#bb8b38`,
+                hanzomon: `#937cb9`,
+                namboku: `#00b5ad`,
+                fukutoshin: `#ba6831`,
+                // JR East
+                'chuo-rapid': '#ff4500',
+                ome: '#ff4500',
+                itsukaichi: '#ff4500',
+                'chuo-sobu': '#ffd700',
+                tokaido: '#ffa500',
+                takasaki: '#ffa500',
+                tohoku: '#ffa500',
+                musashino: '#ff4500',
+                nambu: '#ffd700',
+                yokohama: '#ffd700',
+                negishi: '#00bfff',
+                'keihin-tohoku': '#00bfff',
+                saikyo: '#2e8b57',
+                'shonan-shinjuku': '#ff0000',
+                yamanote: '#9acd32',
+                yokosuka: '#0070b9',
+                'sobu-rapid': '#0070b9',
+                keiyo: '#dc143c',
+                'joban-rapid': `#3cb371`,
+                'joban-local': '#808080',
+            },
+            strokeWidth: {
+                line: '8pt',
+                stop: '2pt',
+            },
+        },
+        fontSize: {
+            base: '1em',
+            subtitle: '0.666em',
+        },
+    },
+    plugins: [],
+};

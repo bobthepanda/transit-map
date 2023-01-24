@@ -1,6 +1,7 @@
+import { Stop, StopDefinition } from '../../symbols/BasicStop';
+import SVGPath from '../../symbols/SVGPath';
 import { CHUO_TOKYO, OFFSET, YAMANOTE_SHIMBASHI, YAMANOTE_UENO } from '../../utils/CommonCoordinates';
-import { lineToLocation, offset, startAtLocation } from '../../utils/PathUtils';
-import StopFromTokyo from '../StopsFromTokyo';
+import { offset } from '../../utils/PathUtils';
 
 const TOKYO = { x: CHUO_TOKYO.x + OFFSET * 3, y: CHUO_TOKYO.y + OFFSET * 0.5 };
 const SHIMBASHI = {
@@ -10,24 +11,21 @@ const SHIMBASHI = {
 const UENO = offset(YAMANOTE_UENO, { dx: OFFSET * 2 });
 
 const TokaidoPath = () => {
-    return (
-        <path
-            d={`
-        ${startAtLocation(SHIMBASHI)}
-        ${lineToLocation(UENO)}
-        `}
-        />
-    );
+    return <SVGPath color="stroke-tokaido" points={[SHIMBASHI, UENO]} />;
+};
+
+const TokaidoStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-tokaido" />;
 };
 
 const Tokaido = () => {
     return (
         <g className="tokaido">
             <TokaidoPath />
-            <StopFromTokyo location={UENO} stationCode="JU 02" />
-            <StopFromTokyo location={offset(TOKYO, { dy: -OFFSET })} stationCode="JU 01" />
-            <StopFromTokyo location={TOKYO} stationCode="JT 01" />
-            <StopFromTokyo location={SHIMBASHI} stationCode="JT 02" />
+            <TokaidoStop location={UENO} stationCode="JU 02" />
+            <TokaidoStop location={offset(TOKYO, { dy: -OFFSET })} stationCode="JU 01" />
+            <TokaidoStop location={TOKYO} stationCode="JT 01" />
+            <TokaidoStop location={SHIMBASHI} stationCode="JT 02" />
         </g>
     );
 };

@@ -1,5 +1,6 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
+import SVGPath from '../../symbols/SVGPath';
 import {
     ASAKUSA_NINGYOCHO,
     HIBIYA,
@@ -14,9 +15,8 @@ import {
     YAMANOTE_UENO,
     YAMANOTE_YURAKUCHO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, S, ESE, startAtLocation, W, offset, WSW, Factor, scale } from '../../utils/PathUtils';
+import { ESE, Factor, offset, S, scale, W, WSW } from '../../utils/PathUtils';
 import { CS_KOIWA } from '../jr-east/ChuoSobu';
-import StopFromTokyo from '../StopsFromTokyo';
 import { E_23 } from '../toei/Oedo';
 
 const HIBIYA_TSUKIJI = { x: HIBIYA_KAYABACHO.x, y: YAMANOTE_YURAKUCHO.y };
@@ -33,68 +33,40 @@ const H_04 = offset(E_23, { dy: -OFFSET });
 
 export const HibiyaPath = () => {
     return (
-        <path
-            d={`
-                ${startAtLocation(HIBIYA_KITA_SENJU)}
-                ${curveFrom({
-                    start: HIBIYA_KITA_SENJU,
-                    end: H_20,
-                    firstDirection: S,
-                    secondDirection: WSW,
-                })}
-                ${curveFrom({
-                    start: H_20,
-                    end: UENO,
-                    firstDirection: WSW,
-                    secondDirection: S,
-                })}
-                ${curveFrom({
-                    start: UENO,
-                    end: NIGYOCHO,
-                    firstDirection: S,
-                    secondDirection: ESE,
-                })}
-                ${curveFrom({
-                    start: NIGYOCHO,
-                    end: HIBIYA_TSUKIJI,
-                    firstDirection: ESE,
-                    secondDirection: S,
-                })}
-                ${curveFrom({
-                    start: HIBIYA_TSUKIJI,
-                    end: HIBIYA,
-                    firstDirection: S,
-                    secondDirection: W,
-                })}
-                ${curveFrom({ start: HIBIYA, end: H_06, firstDirection: W, secondDirection: S })}
-                ${curveFrom({ start: H_06, end: H_04, firstDirection: S, secondDirection: W })}
-            `}
+        <SVGPath
+            color="stroke-hibiya"
+            points={[HIBIYA_KITA_SENJU, H_20, UENO, NIGYOCHO, HIBIYA_TSUKIJI, HIBIYA, H_06, H_04]}
+            directions={[S, WSW, S, ESE, S, W, S, W]}
         />
     );
+};
+
+const HibiyaStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-hibiya" />;
 };
 
 const Hibiya = () => {
     return (
         <g className="hibiya">
             <HibiyaPath />
-            <StopFromTokyo location={HIBIYA} stationCode="H 08" />
-            <StopFromTokyo location={HIBIYA_GINZA} stationCode="H 09" />
-            <StopFromTokyo location={{ ...HIBIYA_GINZA, x: HIBIYA_GINZA.x + MAJOR_LINE + OFFSET }} stationCode="H 10" />
-            <StopFromTokyo location={{ ...HIBIYA_KAYABACHO, y: YAMANOTE_YURAKUCHO.y }} stationCode="H 11" />
-            <StopFromTokyo location={{ ...HIBIYA_KAYABACHO, y: YAMANOTE_TOKYO.y + OFFSET }} stationCode="H 12" />
-            <StopFromTokyo location={HIBIYA_KAYABACHO} stationCode="H 13" />
-            <StopFromTokyo stationCode="H 14" location={NIGYOCHO} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="H 16" location={AKIHABARA} />
-            <StopFromTokyo stationCode="H 17" location={{ x: AKIHABARA.x, y: YAMANOTE_OKACHIMACHI.y }} />
-            <StopFromTokyo stationCode="H 18" location={UENO} />
-            <StopFromTokyo stationCode="H 22" location={HIBIYA_KITA_SENJU} />
-            <StopFromTokyo stationCode="H 21" location={H_21} />
-            <StopFromTokyo stationCode="H 20" location={H_20} />
-            <StopFromTokyo stationCode="H 19" location={H_19} />
-            <StopFromTokyo stationCode="H 07" location={HIBIYA_KASUMIGASEKI} />
-            <StopFromTokyo stationCode="H 06" location={H_06} />
-            <StopFromTokyo stationCode="H 05" location={H_05} />
-            <StopFromTokyo stationCode="H 04" location={H_04} />
+            <HibiyaStop location={HIBIYA} stationCode="H 08" />
+            <HibiyaStop location={HIBIYA_GINZA} stationCode="H 09" />
+            <HibiyaStop location={{ ...HIBIYA_GINZA, x: HIBIYA_GINZA.x + MAJOR_LINE + OFFSET }} stationCode="H 10" />
+            <HibiyaStop location={{ ...HIBIYA_KAYABACHO, y: YAMANOTE_YURAKUCHO.y }} stationCode="H 11" />
+            <HibiyaStop location={{ ...HIBIYA_KAYABACHO, y: YAMANOTE_TOKYO.y + OFFSET }} stationCode="H 12" />
+            <HibiyaStop location={HIBIYA_KAYABACHO} stationCode="H 13" />
+            <HibiyaStop stationCode="H 14" location={NIGYOCHO} textAlignment={TextAlignment.UP} />
+            <HibiyaStop stationCode="H 16" location={AKIHABARA} />
+            <HibiyaStop stationCode="H 17" location={{ x: AKIHABARA.x, y: YAMANOTE_OKACHIMACHI.y }} />
+            <HibiyaStop stationCode="H 18" location={UENO} />
+            <HibiyaStop stationCode="H 22" location={HIBIYA_KITA_SENJU} />
+            <HibiyaStop stationCode="H 21" location={H_21} />
+            <HibiyaStop stationCode="H 20" location={H_20} />
+            <HibiyaStop stationCode="H 19" location={H_19} />
+            <HibiyaStop stationCode="H 07" location={HIBIYA_KASUMIGASEKI} />
+            <HibiyaStop stationCode="H 06" location={H_06} />
+            <HibiyaStop stationCode="H 05" location={H_05} />
+            <HibiyaStop stationCode="H 04" location={H_04} />
         </g>
     );
 };

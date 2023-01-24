@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import './colors/colors.scss';
-import './colors/jr-east-colors.scss';
+import './colors/jr-east-colors.css';
 import ChuoRapid from './jr-east/ChuoRapid';
 import KeihinTohoku from './jr-east/KeihinTohoku';
 import Musashino from './jr-east/Musashino';

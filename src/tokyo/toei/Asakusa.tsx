@@ -1,5 +1,6 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
+import SVGPath from '../../symbols/SVGPath';
 import {
     ASAKUSA_BAKUROCHO,
     ASAKUSA_KURAMAE,
@@ -13,8 +14,7 @@ import {
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, offset, RADIUS, S, startAtLocation, W, WSW } from '../../utils/PathUtils';
-import StopFromTokyo from '../StopsFromTokyo';
+import { offset, RADIUS, S, W, WSW } from '../../utils/PathUtils';
 
 const SHIMBASHI = { x: YAMANOTE_SHIMBASHI.x + OFFSET * 1.5, y: YAMANOTE_SHIMBASHI.y + OFFSET * 2 };
 const GINZA = { x: HIBIYA_GINZA.x + OFFSET * 0.5 + MAJOR_LINE, y: MITA_HIBIYA.y };
@@ -26,38 +26,39 @@ export const A_09 = offset(MITA_HIBIYA, { dx: MAJOR_LINE, dy: MAJOR_LINE * 3 - O
 
 export const AsakusaPath = () => {
     return (
-        <path
-            d={`
-        ${startAtLocation(OSHIAGE)}
-        ${curveFrom({ start: OSHIAGE, end: A_18, firstDirection: W, secondDirection: WSW })}
-        ${curveFrom({ start: A_18, end: ASAKUSA_KURAMAE, firstDirection: WSW, secondDirection: S })}
-        ${curveFrom({ start: ASAKUSA_KURAMAE, end: SHIMBASHI, radius: SHIMBASHI_RADIUS, firstDirection: S, secondDirection: W })}
-        ${curveFrom({ start: SHIMBASHI, end: A_09, firstDirection: W, secondDirection: S })}
-    `}
+        <SVGPath
+            color="stroke-asakusa"
+            points={[OSHIAGE, A_18, ASAKUSA_KURAMAE, SHIMBASHI, A_09]}
+            directions={[W, WSW, S, W, S]}
+            radii={{ 3: SHIMBASHI_RADIUS }}
         />
     );
+};
+
+const AsakusaStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-asakusa" />;
 };
 
 const Asakusa = () => {
     return (
         <g className="asakusa">
             <AsakusaPath />
-            <StopFromTokyo location={A_09} stationCode="A 09" />
-            <StopFromTokyo location={SHIMBASHI} stationCode="A 10" />
-            <StopFromTokyo location={{ ...ASAKUSA_NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="A 12" />
-            <StopFromTokyo location={GINZA} stationCode="A 11" />
-            <StopFromTokyo location={ASAKUSA_NIHOMBASHI} stationCode="A 13" />
-            <StopFromTokyo stationCode="A 14" location={ASAKUSA_NINGYOCHO} />
-            <StopFromTokyo stationCode="A 15" location={ASAKUSA_BAKUROCHO} />
-            <StopFromTokyo stationCode="A 16" location={ASAKUSABASHI} />
-            <StopFromTokyo stationCode="A 17" location={ASAKUSA_KURAMAE} />
-            <StopFromTokyo stationCode="A 18" location={A_18} textAlignment={TextAlignment.DOWN} />
-            <StopFromTokyo
+            <AsakusaStop location={A_09} stationCode="A 09" />
+            <AsakusaStop location={SHIMBASHI} stationCode="A 10" />
+            <AsakusaStop location={{ ...ASAKUSA_NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="A 12" />
+            <AsakusaStop location={GINZA} stationCode="A 11" />
+            <AsakusaStop location={ASAKUSA_NIHOMBASHI} stationCode="A 13" />
+            <AsakusaStop stationCode="A 14" location={ASAKUSA_NINGYOCHO} />
+            <AsakusaStop stationCode="A 15" location={ASAKUSA_BAKUROCHO} />
+            <AsakusaStop stationCode="A 16" location={ASAKUSABASHI} />
+            <AsakusaStop stationCode="A 17" location={ASAKUSA_KURAMAE} />
+            <AsakusaStop stationCode="A 18" location={A_18} textAlignment={TextAlignment.DOWN} />
+            <AsakusaStop
                 stationCode="A 19"
                 location={offset(A_18, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })}
                 textAlignment={TextAlignment.DOWN}
             />
-            <StopFromTokyo stationCode="A 20" location={OSHIAGE} textAlignment={TextAlignment.DOWN} />
+            <AsakusaStop stationCode="A 20" location={OSHIAGE} textAlignment={TextAlignment.DOWN} />
         </g>
     );
 };

@@ -1,6 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import {
     CHUO_OCHANOMIZU,
     HIBIYA_GINZA,
@@ -10,10 +11,9 @@ import {
     OFFSET,
     YAMANOTE_TOKYO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ESE, generatePoint, offset, S, startAtLocation, W, WNW } from '../../utils/PathUtils';
+import { E, ESE, generatePoint, offset, S, W, WNW } from '../../utils/PathUtils';
 import { JB_14 } from '../jr-east/ChuoSobu';
 import { JY_13, JY_17 } from '../jr-east/Yamanote';
-import StopFromTokyo from '../StopsFromTokyo';
 import { E_07, E_08 } from '../toei/Oedo';
 import { F_13 } from './Fukutoshin';
 
@@ -35,45 +35,43 @@ export const M_08 = offset(JY_17, { dx: -OFFSET, dy: OFFSET });
 
 export const MarunouchiPath = () => {
     return (
-        <path
-            d={`${startAtLocation(M_25)}
-            ${curveFrom({ start: M_25, end: M_22, firstDirection: E, secondDirection: ESE })}
-                ${curveFrom({ start: M_22, end: MARUNOUCHI_OTEMACHI, firstDirection: ESE, secondDirection: S })} 
-                ${curveFrom({ start: MARUNOUCHI_OTEMACHI, end: TOKYO, firstDirection: S, secondDirection: E })}
-                ${curveFrom({ start: TOKYO, end: GINZA, firstDirection: E, secondDirection: S })}
-                ${curveFrom({ start: GINZA, end: KASUMIGASEKI, firstDirection: S, secondDirection: W })}
-                ${curveFrom({ start: KASUMIGASEKI, end: M_12, firstDirection: W, secondDirection: WNW })}
-                ${curveFrom({ start: M_12, end: M_08, firstDirection: WNW, secondDirection: W })}
-                `}
+        <SVGPath
+            color="stroke-marunouchi"
+            points={[M_25, M_22, MARUNOUCHI_OTEMACHI, TOKYO, GINZA, KASUMIGASEKI, M_12, M_08]}
+            directions={[E, ESE, S, E, S, W, WNW, W]}
         />
     );
+};
+
+const MarunouchiStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-marunouchi" />;
 };
 
 const Marunouchi = () => {
     return (
         <g className="marunouchi">
             <MarunouchiPath />
-            <StopFromTokyo stationCode="M 08" location={M_08} />
-            <StopFromTokyo stationCode="M 09" location={M_09} />
-            <StopFromTokyo
+            <MarunouchiStop stationCode="M 08" location={M_08} />
+            <MarunouchiStop stationCode="M 09" location={M_09} />
+            <MarunouchiStop
                 stationCode="M 10"
                 location={generatePoint({ start: M_12, slope: WNW, endReference: offset(M_12, { dx: -MAJOR_LINE * 2 }) })}
             />
-            <StopFromTokyo
+            <MarunouchiStop
                 stationCode="M 11"
                 location={generatePoint({ start: M_12, slope: WNW, endReference: offset(M_12, { dx: -MAJOR_LINE }) })}
             />
-            <StopFromTokyo stationCode="M 12" location={M_12} />
-            <StopFromTokyo stationCode="M 13" location={M_13} />
-            <StopFromTokyo stationCode="M 14" location={M_14} />
+            <MarunouchiStop stationCode="M 12" location={M_12} />
+            <MarunouchiStop stationCode="M 13" location={M_13} />
+            <MarunouchiStop stationCode="M 14" location={M_14} />
             <LineSegmentWithStepChange stops={SEGMENT_1} origin={MARUNOUCHI_OTEMACHI} ystep={MAJOR_LINE * -1} />
-            <StopFromTokyo location={TOKYO} stationCode="M 17" />
-            <StopFromTokyo location={GINZA} stationCode="M 16" />
-            <StopFromTokyo location={KASUMIGASEKI} stationCode="M 15" textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="M 20" location={OCHANOMIZU} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="M 21" location={M_21} />
-            <StopFromTokyo stationCode="M 22" location={M_22} />
-            <StopFromTokyo stationCode="M 25" location={M_25} />
+            <MarunouchiStop location={TOKYO} stationCode="M 17" />
+            <MarunouchiStop location={GINZA} stationCode="M 16" />
+            <MarunouchiStop location={KASUMIGASEKI} stationCode="M 15" textAlignment={TextAlignment.UP} />
+            <MarunouchiStop stationCode="M 20" location={OCHANOMIZU} textAlignment={TextAlignment.UP} />
+            <MarunouchiStop stationCode="M 21" location={M_21} />
+            <MarunouchiStop stationCode="M 22" location={M_22} />
+            <MarunouchiStop stationCode="M 25" location={M_25} />
         </g>
     );
 };

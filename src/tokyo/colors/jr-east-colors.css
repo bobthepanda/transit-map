@@ -1,0 +1,9 @@
+text.label-text-bg {
+    stroke: white;
+    paint-order: stroke;
+    stroke-width: 6px;
+}
+
+text {
+    inline-size: 72px;
+}

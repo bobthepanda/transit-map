@@ -1,10 +1,10 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import { OFFSET, YAMANOTE_UENO } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, ENE, offset, RADIUS, scale, SSE, SSW, startAtLocation, WNW } from '../../utils/PathUtils';
+import { E, ENE, N, offset, RADIUS, scale, SSE, SSW, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import StopFromTokyo from '../StopsFromTokyo';
 import { CHIYODA_MICHIYA } from '../tokyo-metro/Chiyoda';
 import { HIBIYA_KITA_SENJU, H_21 } from '../tokyo-metro/Hibiya';
 import { JL_21, JL_22, JL_28, JL_30, JL_32 } from './JobanLocal';
@@ -24,33 +24,36 @@ const NIPPORI_RADIUS = MINOR_LINE * 1.5;
 
 export const JobanRapidPath = () => {
     return (
-        <path
-            d={`
-        ${startAtLocation(UENO)}
-        ${curveFrom({ start: UENO, end: NIPPORI, firstDirection: N, secondDirection: WNW })}
-        ${curveFrom({ start: NIPPORI, end: CURVE_POINT, firstDirection: WNW, secondDirection: N, radius: (NIPPORI_RADIUS * 2) / 3 })}
-        ${curveFrom({ start: CURVE_POINT, end: JJ_03, firstDirection: N, secondDirection: E, radius: NIPPORI_RADIUS })}
-        ${curveFrom({ start: JJ_03, end: JJ_05, firstDirection: E, secondDirection: N })}
-        ${curveFrom({ start: JJ_05, end: LOCAL_CURVE_POINT, firstDirection: N, secondDirection: E })}
-        ${curveFrom({ start: LOCAL_CURVE_POINT, end: JJ_06, firstDirection: E, secondDirection: N, radius: RADIUS + OFFSET })}
-        ${curveFrom({ start: JJ_06, end: JJ_10, firstDirection: N, secondDirection: ENE })}
-    `}
+        <SVGPath
+            color="stroke-joban-rapid"
+            points={[UENO, NIPPORI, CURVE_POINT, JJ_03, JJ_05, LOCAL_CURVE_POINT, JJ_06, JJ_10]}
+            directions={[N, WNW, N, E, N, E, N, ENE]}
+            radii={{ 2: (NIPPORI_RADIUS * 2) / 3, 3: NIPPORI_RADIUS, 6: RADIUS + OFFSET }}
         />
     );
+};
+
+const JobanRapidStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-joban-rapid" />;
 };
 
 const JobanRapid = () => {
     return (
         <g className="joban-rapid">
             <JobanRapidPath />
-            <StopFromTokyo stationCode="JJ 01" location={UENO} />
-            <StopFromTokyo stationCode="JJ 02" location={NIPPORI} />
-            <StopFromTokyo stationCode="JJ 03" location={JJ_03} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="JJ 04" location={offset(H_21, { dx: -OFFSET })} textAlignment={TextAlignment.LEFT} />
-            <StopFromTokyo stationCode="JJ 05" location={JJ_05} />
-            <StopFromTokyo stationCode="JJ 06" location={JJ_06} />
-            <StopFromTokyo stationCode="JJ 07" location={JJ_07} />
-            <LineSegmentWithEndpoint stops={generateStationCodes('JJ', 8, 10)} origin={JJ_08} endpoint={JJ_10} />
+            <JobanRapidStop stationCode="JJ 01" location={UENO} />
+            <JobanRapidStop stationCode="JJ 02" location={NIPPORI} />
+            <JobanRapidStop stationCode="JJ 03" location={JJ_03} textAlignment={TextAlignment.UP} />
+            <JobanRapidStop stationCode="JJ 04" location={offset(H_21, { dx: -OFFSET })} textAlignment={TextAlignment.LEFT} />
+            <JobanRapidStop stationCode="JJ 05" location={JJ_05} />
+            <JobanRapidStop stationCode="JJ 06" location={JJ_06} />
+            <JobanRapidStop stationCode="JJ 07" location={JJ_07} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('JJ', 8, 10)}
+                origin={JJ_08}
+                endpoint={JJ_10}
+                strokeColor="stroke-joban-rapid"
+            />
         </g>
     );
 };

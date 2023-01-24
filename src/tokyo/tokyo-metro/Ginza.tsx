@@ -1,6 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import {
     GINZA_MITSUKOSHIMAE,
     HIBIYA_GINZA,
@@ -12,9 +13,8 @@ import {
     YAMANOTE_SHIMBASHI,
     YAMANOTE_UENO,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, ESE, Factor, N, offset, RADIUS, scale, SSW, startAtLocation, WNW } from '../../utils/PathUtils';
+import { E, ENE, ESE, Factor, N, offset, RADIUS, scale, SSW, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import StopFromTokyo from '../StopsFromTokyo';
 import { A_18 } from '../toei/Asakusa';
 import { E_24 } from '../toei/Oedo';
 import { M_13 } from './Marunouchi';
@@ -36,67 +36,42 @@ export const G_04 = offset(E_24, { dy: -OFFSET });
 
 export const GinzaPath = () => {
     return (
-        <path
-            d={`${startAtLocation(G_04)}
-            ${curveFrom({
-                start: G_04,
-                end: G_05,
-                firstDirection: ENE,
-                secondDirection: ESE,
-            })}
-            ${curveFrom({ start: G_05, end: TORANOMON, firstDirection: ESE, secondDirection: E })}
-                ${curveFrom({
-                    start: TORANOMON,
-                    end: NIHOMBASHI,
-                    radius: SHIMBASHI_RADIUS,
-                    firstDirection: E,
-                    secondDirection: N,
-                })}
-                ${curveFrom({
-                    start: NIHOMBASHI,
-                    end: KANDA,
-                    firstDirection: N,
-                    secondDirection: WNW,
-                })}
-                ${curveFrom({
-                    start: KANDA,
-                    end: G_15,
-                    firstDirection: WNW,
-                    secondDirection: N,
-                })}
-                ${curveFrom({
-                    start: G_15,
-                    end: ASAKUSA,
-                    firstDirection: N,
-                    secondDirection: E,
-                })}
-                `}
+        <SVGPath
+            color="stroke-ginza"
+            points={[G_04, G_05, TORANOMON, NIHOMBASHI, KANDA, G_15, ASAKUSA]}
+            directions={[ENE, ESE, E, N, WNW, N, E]}
+            radii={{ 3: SHIMBASHI_RADIUS }}
         />
     );
+};
+
+const GinzaStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-ginza" />;
 };
 
 const Ginza = () => {
     return (
         <g className="ginza">
             <GinzaPath />
-            <StopFromTokyo stationCode="G 04" location={G_04} />
-            <StopFromTokyo stationCode="G 06" location={G_06} />
-            <StopFromTokyo stationCode="G 05" location={G_05} />
-            <StopFromTokyo location={NIHOMBASHI} stationCode="G 11" />
-            <StopFromTokyo location={{ ...NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="G 10" />
-            <StopFromTokyo location={GINZA} stationCode="G 09" />
-            <StopFromTokyo location={SHIMBASHI} stationCode="G 08" />
-            <StopFromTokyo location={TORANOMON} stationCode="G 07" textAlignment={TextAlignment.UP} />
-            <StopFromTokyo location={KANDA} stationCode="G 13" textAlignment={TextAlignment.LEFT} />
-            <StopFromTokyo location={GINZA_MITSUKOSHIMAE} stationCode="G 12" />
+            <GinzaStop stationCode="G 04" location={G_04} />
+            <GinzaStop stationCode="G 06" location={G_06} />
+            <GinzaStop stationCode="G 05" location={G_05} />
+            <GinzaStop location={NIHOMBASHI} stationCode="G 11" />
+            <GinzaStop location={{ ...NIHOMBASHI, y: NIHOMBASHI.y + OFFSET * 4 }} stationCode="G 10" />
+            <GinzaStop location={GINZA} stationCode="G 09" />
+            <GinzaStop location={SHIMBASHI} stationCode="G 08" />
+            <GinzaStop location={TORANOMON} stationCode="G 07" textAlignment={TextAlignment.UP} />
+            <GinzaStop location={KANDA} stationCode="G 13" textAlignment={TextAlignment.LEFT} />
+            <GinzaStop location={GINZA_MITSUKOSHIMAE} stationCode="G 12" />
             <LineSegmentWithEndpoint
                 origin={UENO}
                 endpoint={ASAKUSA}
                 stops={generateStationCodes('G', 16, 19)}
                 textAlignments={[TextAlignment.UP]}
+                strokeColor="stroke-ginza"
             />
-            <StopFromTokyo stationCode="G 15" location={G_15} textAlignment={TextAlignment.LEFT} />
-            <StopFromTokyo stationCode="G 14" location={offset(G_15, { dy: OFFSET * 5 })} textAlignment={TextAlignment.LEFT} />
+            <GinzaStop stationCode="G 15" location={G_15} textAlignment={TextAlignment.LEFT} />
+            <GinzaStop stationCode="G 14" location={offset(G_15, { dy: OFFSET * 5 })} textAlignment={TextAlignment.LEFT} />
         </g>
     );
 };

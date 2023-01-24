@@ -79,7 +79,7 @@ export const SOBU_KINSCHICHO = generatePoint({
     endReference: offset(KIKUKAWA, { dx: MAJOR_LINE * 0.75, dy: -MAJOR_LINE * 0.5 * 0.75 }),
 });
 
-export const CS_RYOGOKU = offset(YAMANOTE_AKIHABARA, { dy: -OFFSET, dx: MAJOR_LINE * 4.5 });
+export const CS_RYOGOKU = offset(YAMANOTE_AKIHABARA, { dy: -OFFSET, dx: MAJOR_LINE * 4.5 - OFFSET * 1.5 });
 
 export const YAMANOTE_OKACHIMACHI = { x: YAMANOTE_TOKYO.x, y: ASAKUSA_KURAMAE.y + OFFSET };
 export const YAMANOTE_UENO = offset(YAMANOTE_OKACHIMACHI, { dy: -MAJOR_LINE });

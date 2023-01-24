@@ -1,6 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import {
     CHIYODA_OTEMACHI,
     HIBIYA_KASUMIGASEKI,
@@ -9,9 +10,8 @@ import {
     CHIYODA_NISHI_NIPPORI,
     CHIYODA_YUSHIMA,
 } from '../../utils/CommonCoordinates';
-import { curveFrom, E, N, startAtLocation, offset, midPoint, ENE } from '../../utils/PathUtils';
+import { E, N, offset, midPoint, ENE } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import StopFromTokyo from '../StopsFromTokyo';
 import { HIBIYA_KITA_SENJU } from './Hibiya';
 import { M_14 } from './Marunouchi';
 
@@ -28,47 +28,47 @@ const C_07 = offset(M_14, { dy: OFFSET });
 
 export const ChiyodaPath = () => {
     return (
-        <path
-            d={`
-        ${startAtLocation(C_07)}
-        ${curveFrom({ start: C_07, end: CHIYODA_YUSHIMA, firstDirection: E, secondDirection: N })}
-        ${curveFrom({ start: CHIYODA_NISHI_NIPPORI, end: CHIYODA_MICHIYA, firstDirection: N, secondDirection: E })}
-        ${curveFrom({ start: CHIYODA_MICHIYA, end: KITA_SENJU, firstDirection: E, secondDirection: N })}
-        ${curveFrom({ start: KITA_SENJU, end: C_20, firstDirection: N, secondDirection: ENE })}
-
-    `}
+        <SVGPath
+            color="stroke-chiyoda"
+            points={[C_07, CHIYODA_YUSHIMA, CHIYODA_MICHIYA, KITA_SENJU, C_20]}
+            directions={[E, N, E, N, ENE]}
         />
     );
+};
+
+const ChiyodaStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-chiyoda" />;
 };
 
 const Chiyoda = () => {
     return (
         <g className="chiyoda">
             <ChiyodaPath />
-            <StopFromTokyo stationCode="C 07" location={C_07} />
-            <StopFromTokyo stationCode="C 20" location={C_20} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="C 19" location={C_19} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="C 18" location={KITA_SENJU} textAlignment={TextAlignment.LEFT} />
-            <StopFromTokyo stationCode="C 17" location={CHIYODA_MICHIYA} />
+            <ChiyodaStop stationCode="C 07" location={C_07} />
+            <ChiyodaStop stationCode="C 20" location={C_20} textAlignment={TextAlignment.UP} />
+            <ChiyodaStop stationCode="C 19" location={C_19} textAlignment={TextAlignment.UP} />
+            <ChiyodaStop stationCode="C 18" location={KITA_SENJU} textAlignment={TextAlignment.LEFT} />
+            <ChiyodaStop stationCode="C 17" location={CHIYODA_MICHIYA} />
             <LineSegmentWithEndpoint
                 stops={generateStationCodes('C', 13, 16)}
                 origin={CHIYODA_YUSHIMA}
                 endpoint={CHIYODA_NISHI_NIPPORI}
                 textAlignments={[TextAlignment.LEFT]}
+                strokeColor="stroke-chiyoda"
             />
-            <StopFromTokyo
+            <ChiyodaStop
                 stationCode="C 12"
-                location={{ ...CHIYODA_OTEMACHI, y: CHIYODA_OTEMACHI.y - MAJOR_LINE }}
+                location={{ ...CHIYODA_OTEMACHI, y: CHIYODA_OTEMACHI.y - MAJOR_LINE * 2.25 }}
                 textAlignment={TextAlignment.LEFT}
             />
-            <StopFromTokyo stationCode="C 11" location={CHIYODA_OTEMACHI} />
-            <StopFromTokyo
+            <ChiyodaStop stationCode="C 11" location={CHIYODA_OTEMACHI} />
+            <ChiyodaStop
                 stationCode="C 10"
                 location={{ ...CHIYODA_OTEMACHI, y: CHIYODA_OTEMACHI.y + MAJOR_LINE + OFFSET }}
                 textAlignment={TextAlignment.LEFT}
             />
-            <StopFromTokyo stationCode="C 09" location={THIS_HIBIYA} textAlignment={TextAlignment.LEFT} />
-            <StopFromTokyo location={KASUMIGASEKI} stationCode="C 08" />
+            <ChiyodaStop stationCode="C 09" location={THIS_HIBIYA} textAlignment={TextAlignment.LEFT} />
+            <ChiyodaStop location={KASUMIGASEKI} stationCode="C 08" />
         </g>
     );
 };

@@ -1,0 +1,11 @@
+.station-code {
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+line,
+path {
+    stroke: black;
+    fill: none;
+    stroke-linecap: round;
+}

@@ -1,10 +1,11 @@
 import { MAJOR_LINE } from '../../map/GridLines';
+import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, midPoint, N, offset, RADIUS, scale, startAtLocation } from '../../utils/PathUtils';
+import { E, ENE, midPoint, N, offset, RADIUS, scale } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { KS_10 } from '../keisei/Main';
-import StopFromTokyo from '../StopsFromTokyo';
 import { C_19 } from '../tokyo-metro/Chiyoda';
 
 const JL_19 = offset(C_19, { dx: OFFSET });
@@ -18,25 +19,38 @@ export const JL_32 = offset(JL_30, scale({ dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5
 
 export const JobanLocalPath = () => {
     return (
-        <path
-            d={`
-    ${startAtLocation(C_19)}
-    ${curveFrom({ start: JL_19, end: JL_25, firstDirection: E, secondDirection: N })}
-    ${curveFrom({ start: JL_25, end: JL_32, firstDirection: N, secondDirection: ENE, radius: RADIUS + (OFFSET * 2) / 3 })}
-    `}
+        <SVGPath
+            color="stroke-joban-local"
+            points={[JL_19, JL_25, JL_32]}
+            directions={[E, N, ENE]}
+            radii={{ 2: RADIUS + (OFFSET * 2) / 3 }}
         />
     );
+};
+
+const JobanLocalStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-joban-local" />;
 };
 
 const JobanLocal = () => {
     return (
         <g className="joban-local">
             <JobanLocalPath />
-            <StopFromTokyo stationCode="JL 19" location={JL_19} />
-            <StopFromTokyo stationCode="JL 20" location={midPoint(JL_19, JL_21)} />
-            <StopFromTokyo stationCode="JL 21" location={JL_21} />
-            <LineSegmentWithEndpoint origin={JL_22} endpoint={JL_25} stops={generateStationCodes('JL', 22, 25)} />
-            <LineSegmentWithEndpoint origin={JL_26} endpoint={JL_32} stops={generateStationCodes('JL', 26, 32)} />
+            <JobanLocalStop stationCode="JL 19" location={JL_19} />
+            <JobanLocalStop stationCode="JL 20" location={midPoint(JL_19, JL_21)} />
+            <JobanLocalStop stationCode="JL 21" location={JL_21} />
+            <LineSegmentWithEndpoint
+                origin={JL_22}
+                endpoint={JL_25}
+                stops={generateStationCodes('JL', 22, 25)}
+                strokeColor="stroke-joban-local"
+            />
+            <LineSegmentWithEndpoint
+                origin={JL_26}
+                endpoint={JL_32}
+                stops={generateStationCodes('JL', 26, 32)}
+                strokeColor="stroke-joban-local"
+            />
         </g>
     );
 };

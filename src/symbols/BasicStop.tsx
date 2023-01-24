@@ -5,7 +5,7 @@ import { MINOR_LINE } from '../map/GridLines';
 import { RootState } from '../tokyo/redux/store';
 import { useShowGrid } from '../utils/ParameterUtils';
 import STOPS_TO_HIDE_TEXT from '../utils/StopUtils';
-import './basic-stop.scss';
+import './basic-stop.css';
 
 const STOP_ID = 'basic-stop';
 
@@ -20,14 +20,10 @@ export const BasicStopDefinition = (): JSX.Element => {
 };
 
 export enum TextAlignment {
-    UP = 'text-up',
-    DOWN = 'text-down',
-    LEFT = 'text-left',
-    RIGHT = 'text-right',
-    UPPER_RIGHT = 'text-upper-right',
-    UPPER_LEFT = 'text-upper-left',
-    LOWER_RIGHT = 'text-lower-right',
-    LOWER_LEFT = 'text-lower-left',
+    UP = '[text-anchor:middle] -translate-y-8',
+    DOWN = '[text-anchor:middle] translate-y-9',
+    RIGHT = 'translate-x-6',
+    LEFT = '[text-anchor:end] -translate-x-6',
 }
 
 interface TextDefinition {
@@ -36,17 +32,19 @@ interface TextDefinition {
     textAlignment?: string;
 }
 
-interface StopDefinition {
+export interface StopDefinition {
     location: Coordinates;
     stationCode: string;
     hideText?: boolean;
     textAlignment?: string;
+    strokeColor?: string;
+    fillColor?: string;
 }
 
 const StopText = ({ text, subtitleText = '', textAlignment = TextAlignment.RIGHT }: TextDefinition) => {
     const content = (
         <>
-            <tspan>{text}</tspan>
+            <tspan className="text-base">{text}</tspan>
             {subtitleText.length !== 0 && (
                 <tspan className="text-subtitle" x="0" dy="1.2em">
                     {subtitleText}
@@ -62,10 +60,10 @@ const StopText = ({ text, subtitleText = '', textAlignment = TextAlignment.RIGHT
     );
 };
 
-const StationCode = ({ stationCode }: { stationCode: string }) => {
+const StationCode = ({ stationCode, fillColor = 'fill-white' }: { stationCode: string; fillColor?: string }) => {
     const codeArray = stationCode.split(' ');
     return (
-        <text className="station-code">
+        <text className={`font-bold [text-anchor:middle] ${fillColor === 'fill-white' ? 'text-black' : 'text-white'} text-subtitle`}>
             <tspan>{codeArray[0]}</tspan>
             <tspan x="0" dy=".8em">
                 {codeArray[1]}
@@ -79,6 +77,8 @@ const NonMemoStop = ({
     stationCode = '',
     textAlignment = TextAlignment.RIGHT,
     hideText = STOPS_TO_HIDE_TEXT.includes(stationCode),
+    strokeColor = 'stroke-black',
+    fillColor = 'fill-white',
 }: StopDefinition) => {
     const { text, subtitleText } = useSelector((state: RootState) => state?.stops?.[stationCode]) || {};
 
@@ -88,8 +88,8 @@ const NonMemoStop = ({
         <g className="stop-group" transform={`translate(${x} ${y})`} data-stationcode={stationCode}>
             <g>
                 {showGrid && <title>{JSON.stringify({ ...location, stationCode, text, subtitleText, hideText })}</title>}
-                <circle cx="0" cy="0" r={UNIT_SIZE} className="stop-bullet" />
-                <StationCode stationCode={stationCode} />
+                <circle cx="0" cy="0" r={UNIT_SIZE} className={`stop-bullet stroke-stop ${fillColor} ${strokeColor}`} />
+                <StationCode stationCode={stationCode} fillColor={fillColor} />
             </g>
             {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
         </g>

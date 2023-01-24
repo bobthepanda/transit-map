@@ -1,6 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import {
     ASAKUSA_BAKUROCHO,
     ASAKUSA_KURAMAE,
@@ -11,24 +12,8 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import {
-    curveFrom,
-    E,
-    ENE,
-    SSE,
-    offset,
-    scale,
-    startAtLocation,
-    N,
-    RADIUS,
-    generatePoint,
-    W,
-    midPoint,
-    NNE,
-    S,
-} from '../../utils/PathUtils';
+import { E, ENE, generatePoint, midPoint, N, NNE, offset, RADIUS, S, scale, SSE, W } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import StopFromTokyo from '../StopsFromTokyo';
 import { JY_17, JY_18 } from './Yamanote';
 
 const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -1 });
@@ -49,20 +34,17 @@ export const JB_12 = offset(JB_13, { dx: -MAJOR_LINE * 1.5 });
 
 export const ChuoSobuPath = () => {
     return (
-        <path
-            d={`
-            ${startAtLocation(JB_10)}
-            ${curveFrom({ start: JB_10, end: JB_13, firstDirection: S, secondDirection: E })}
-            ${curveFrom({ start: JB_13, end: JB_14, firstDirection: E, secondDirection: N })}
-            ${curveFrom({ start: JB_14, end: JB_17, firstDirection: N, secondDirection: E })}
-            ${curveFrom({ start: JB_17, end: KINSCHICHO, firstDirection: E, secondDirection: ENE })}
-            ${curveFrom({ start: KINSCHICHO, end: CS_KAMEIDO, firstDirection: ENE, secondDirection: N, radius: RADIUS + OFFSET * 0.5 })}
-            ${curveFrom({ start: CS_KAMEIDO, end: CS_NISHI_FUNABASHI, firstDirection: N, secondDirection: E })}
-            ${curveFrom({ start: CS_NISHI_FUNABASHI, end: FUNABASHI_MIDPOINT, firstDirection: E, secondDirection: NNE })}
-            ${curveFrom({ start: FUNABASHI_MIDPOINT, end: JB_31, firstDirection: NNE, secondDirection: E })}
-        `}
+        <SVGPath
+            color="stroke-chuo-sobu"
+            points={[JB_10, JB_13, JB_14, JB_17, KINSCHICHO, CS_KAMEIDO, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT, JB_31]}
+            directions={[S, E, N, E, ENE, N, E, NNE, E]}
+            radii={{ 3: RADIUS + OFFSET, 5: RADIUS + (OFFSET * 2) / 2 }}
         />
     );
+};
+
+const ChuoSobuStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-chuo-sobu" />;
 };
 
 export const CS_KOIWA = offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 });
@@ -70,37 +52,40 @@ export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
             <ChuoSobuPath />
-            <StopFromTokyo stationCode="JB 10" location={JB_10} />
-            <StopFromTokyo stationCode="JB 11" location={offset(JY_18, { dx: OFFSET })} />
-            <StopFromTokyo stationCode="JB 13" location={JB_13} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="JB 12" location={JB_12} textAlignment={TextAlignment.UP} />
-            <StopFromTokyo stationCode="JB 14" location={JB_14} />
-            <StopFromTokyo stationCode="JB 15" location={JB_15} />
-            <StopFromTokyo stationCode="JB 16" location={JB_16} />
-            <StopFromTokyo stationCode="JB 17" location={JB_17} />
-            <StopFromTokyo stationCode="JB 18" location={OCHANOMIZU} />
-            <StopFromTokyo stationCode="JB 19" location={AKIHABARA} />
-            <StopFromTokyo stationCode="JB 20" location={{ y: OCHANOMIZU.y, x: ASAKUSA_BAKUROCHO.x + OFFSET * 0.5 }} />
-            <StopFromTokyo stationCode="JB 21" location={CS_RYOGOKU} />
-            <StopFromTokyo stationCode="JB 22" location={KINSCHICHO} />
+            <ChuoSobuStop stationCode="JB 10" location={JB_10} />
+            <ChuoSobuStop stationCode="JB 11" location={offset(JY_18, { dx: OFFSET })} />
+            <ChuoSobuStop stationCode="JB 13" location={JB_13} textAlignment={TextAlignment.UP} />
+            <ChuoSobuStop stationCode="JB 12" location={JB_12} textAlignment={TextAlignment.UP} />
+            <ChuoSobuStop stationCode="JB 14" location={JB_14} />
+            <ChuoSobuStop stationCode="JB 15" location={JB_15} />
+            <ChuoSobuStop stationCode="JB 16" location={JB_16} />
+            <ChuoSobuStop stationCode="JB 17" location={JB_17} />
+            <ChuoSobuStop stationCode="JB 18" location={OCHANOMIZU} />
+            <ChuoSobuStop stationCode="JB 19" location={AKIHABARA} />
+            <ChuoSobuStop stationCode="JB 20" location={{ y: OCHANOMIZU.y, x: ASAKUSA_BAKUROCHO.x + OFFSET * 0.5 }} />
+            <ChuoSobuStop stationCode="JB 21" location={CS_RYOGOKU} />
+            <ChuoSobuStop stationCode="JB 22" location={KINSCHICHO} />
             <LineSegmentWithEndpoint
                 origin={CS_KAMEIDO}
                 stops={generateStationCodes('JB', 23, 25)}
                 endpoint={offset(generatePoint({ start: CS_KAMEIDO, slope: N, endReference: CS_MOTOYAWATA }), { dy: MAJOR_LINE * 0.5 })}
+                strokeColor="stroke-chuo-sobu"
             />
             <LineSegmentWithEndpoint
                 origin={CS_MOTOYAWATA}
                 stops={generateStationCodes('JB', 28, 26)}
                 endpoint={CS_KOIWA}
                 textAlignments={[TextAlignment.DOWN]}
+                strokeColor="stroke-chuo-sobu"
             />
             <LineSegmentWithEndpoint
                 origin={CS_MOTOYAWATA}
                 stops={generateStationCodes('JB', 28, 30)}
                 endpoint={CS_NISHI_FUNABASHI}
                 textAlignments={[TextAlignment.DOWN]}
+                strokeColor="stroke-chuo-sobu"
             />
-            <StopFromTokyo stationCode="JB 31" location={JB_31} textAlignment={TextAlignment.DOWN} />
+            <ChuoSobuStop stationCode="JB 31" location={JB_31} textAlignment={TextAlignment.DOWN} />
         </g>
     );
 };

@@ -1,9 +1,10 @@
 import { MAJOR_LINE } from '../../map/GridLines';
+import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import { HIBIYA_KAYABACHO, MINOR_LINE, OEDO_MONZEN_NAKACHO, OFFSET, SOBU_KINSCHICHO, YAMANOTE_TOKYO } from '../../utils/CommonCoordinates';
-import { curveFrom, E, ENE, ESE, generatePoint, midPoint, N, offset, startAtLocation, WNW } from '../../utils/PathUtils';
+import { E, ENE, ESE, generatePoint, midPoint, N, offset, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import StopFromTokyo from '../StopsFromTokyo';
 import { CS_NISHI_FUNABASHI } from './ChuoSobu';
 import { JL_25 } from './JobanLocal';
 
@@ -23,26 +24,21 @@ const JM_11 = offset(NISHI_FUNABASHI, { dy: -MAJOR_LINE * 2 + OFFSET * 2 });
 export const JM_14 = offset(midPoint(JM_13, JM_15), { dx: OFFSET * 1.25, dy: OFFSET * 0.625 });
 
 export const MusashinoPath = () => {
-    return (
-        <path
-            d={`
-            ${startAtLocation(TOKYO)}
-            ${curveFrom({ start: TOKYO, end: MUSASHINO_SHIN_KIBA, firstDirection: E, secondDirection: ENE })}
-            ${curveFrom({ start: MUSASHINO_SHIN_KIBA, end: NISHI_FUNABASHI, firstDirection: ENE, secondDirection: N })}
-            ${curveFrom({ start: NISHI_FUNABASHI, end: JM_15, firstDirection: N, secondDirection: WNW })}                
-        `}
-        />
-    );
+    return <SVGPath color="stroke-musashino" points={[TOKYO, MUSASHINO_SHIN_KIBA, NISHI_FUNABASHI, JM_15]} directions={[E, ENE, N, WNW]} />;
+};
+
+const MusashinoStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
+    return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-musashino" />;
 };
 
 const Musashino = () => {
     return (
         <g className="musashino">
             <MusashinoPath />
-            <StopFromTokyo location={TOKYO} stationCode="JE 01" />
-            <StopFromTokyo location={HATCHOBORI} stationCode="JE 02" />
-            <StopFromTokyo stationCode="JE 03" location={{ ...TOKYO, x: OEDO_MONZEN_NAKACHO.x + MAJOR_LINE * 0.5 }} />
-            <StopFromTokyo stationCode="JE 04" location={SHIOMI} />
+            <MusashinoStop location={TOKYO} stationCode="JE 01" />
+            <MusashinoStop location={HATCHOBORI} stationCode="JE 02" />
+            <MusashinoStop stationCode="JE 03" location={{ ...TOKYO, x: OEDO_MONZEN_NAKACHO.x + MAJOR_LINE * 0.5 }} />
+            <MusashinoStop stationCode="JE 04" location={SHIOMI} />
             <LineSegmentWithEndpoint
                 stops={generateStationCodes('JE', 5, 7)}
                 origin={MUSASHINO_SHIN_KIBA}
@@ -51,15 +47,16 @@ const Musashino = () => {
                     slope: ENE,
                     endReference: offset(NISHI_FUNABASHI, { dx: -MAJOR_LINE * 0.5 }),
                 })}
+                strokeColor="stroke-musashino"
             />
-            <StopFromTokyo stationCode="JE 08" location={JE_08} />
-            <StopFromTokyo stationCode="JE 09" location={JE_09} />
-            <StopFromTokyo stationCode="JM 10" location={NISHI_FUNABASHI} />
-            <StopFromTokyo stationCode="JM 11" location={JM_11} />
-            <StopFromTokyo stationCode="JM 12" location={offset(JM_11, { dy: -MAJOR_LINE })} />
-            <StopFromTokyo stationCode="JM 13" location={JM_13} />
-            <StopFromTokyo stationCode="JM 14" location={JM_14} />
-            <StopFromTokyo stationCode="JM 15" location={JM_15} />
+            <MusashinoStop stationCode="JE 08" location={JE_08} />
+            <MusashinoStop stationCode="JE 09" location={JE_09} />
+            <MusashinoStop stationCode="JM 10" location={NISHI_FUNABASHI} />
+            <MusashinoStop stationCode="JM 11" location={JM_11} />
+            <MusashinoStop stationCode="JM 12" location={offset(JM_11, { dy: -MAJOR_LINE })} />
+            <MusashinoStop stationCode="JM 13" location={JM_13} />
+            <MusashinoStop stationCode="JM 14" location={JM_14} />
+            <MusashinoStop stationCode="JM 15" location={JM_15} />
         </g>
     );
 };

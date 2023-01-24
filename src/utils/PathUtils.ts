@@ -148,6 +148,7 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
     const d = c3x * c2y - c3y * c2x;
 
     if (d === 0) {
+        console.log(a1, b1, a2, b2);
         throw new Error('Number of intersection points is zero or infinity.');
     }
 
@@ -168,6 +169,7 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
 const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection, secondDirection }: CurveFromParameters): Coordinates => {
     const a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
     const b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
+
     return findIntersection(a1, a2, b1, b2);
 };
 
