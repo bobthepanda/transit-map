@@ -34,7 +34,6 @@ const MusashinoStop = ({ location, stationCode, textAlignment }: StopDefinition)
 const Musashino = () => {
     return (
         <g className="musashino">
-            <MusashinoPath />
             <MusashinoStop location={TOKYO} stationCode="JE 01" />
             <MusashinoStop location={HATCHOBORI} stationCode="JE 02" />
             <MusashinoStop stationCode="JE 03" location={{ ...TOKYO, x: OEDO_MONZEN_NAKACHO.x + MAJOR_LINE * 0.5 }} />

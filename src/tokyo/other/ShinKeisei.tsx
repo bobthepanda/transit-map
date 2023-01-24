@@ -1,8 +1,9 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { curveFrom, E, NNE, offset, startAtLocation } from '../../utils/PathUtils';
+import { E, NNE, offset } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JL_22 } from '../jr-east/JobanLocal';
 import { JM_14 } from '../jr-east/Musashino';
@@ -13,14 +14,7 @@ const SL_05 = offset(JM_14, { dy: -OFFSET });
 const SL_11 = offset(HS_08, { dy: -OFFSET });
 
 export const ShinKeiseiPath = () => {
-    return (
-        <path
-            d={`
-            ${startAtLocation(SL_01)}
-            ${curveFrom({ start: SL_01, end: SL_11, firstDirection: NNE, secondDirection: E })}
-        `}
-        />
-    );
+    return <SVGPath points={[SL_01, SL_11]} directions={[NNE, E]} />;
 };
 
 const ShinKeisei = () => {

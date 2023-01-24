@@ -12,7 +12,7 @@ import {
     YAMANOTE_OKACHIMACHI,
     YAMANOTE_YURAKUCHO,
 } from '../../utils/CommonCoordinates';
-import { E, generatePoint, N, offset, S, W, WNW } from '../../utils/PathUtils';
+import { E, generatePoint, N, offset, RADIUS, S, W, WNW } from '../../utils/PathUtils';
 import { JB_12, JB_16, JB_17 } from '../jr-east/ChuoSobu';
 import { JY_17, JY_18 } from '../jr-east/Yamanote';
 
@@ -39,7 +39,7 @@ export const OedoPath = () => {
             color="stroke-oedo"
             points={[E_06, E_07, TSUKISHIMA, E_22, E_24, E_25, E_26, E_27]}
             directions={[N, E, S, W, WNW, W, N, W]}
-            radii={{ 1: E_06.y - E_07.y - OFFSET * 3, 2: RYOGOKU.y - KURAMAE.y - OFFSET, 3: RYOGOKU.x - E_18.x - OFFSET }}
+            radii={{ 1: RADIUS + OFFSET * 2, 2: RYOGOKU.y - KURAMAE.y - OFFSET, 3: RYOGOKU.x - E_18.x - OFFSET }}
         />
     );
 };

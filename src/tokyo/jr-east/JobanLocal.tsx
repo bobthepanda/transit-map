@@ -35,7 +35,6 @@ const JobanLocalStop = ({ location, stationCode, textAlignment }: StopDefinition
 const JobanLocal = () => {
     return (
         <g className="joban-local">
-            <JobanLocalPath />
             <JobanLocalStop stationCode="JL 19" location={JL_19} />
             <JobanLocalStop stationCode="JL 20" location={midPoint(JL_19, JL_21)} />
             <JobanLocalStop stationCode="JL 21" location={JL_21} />

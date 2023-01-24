@@ -25,7 +25,7 @@ export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
 export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 1.5 + OFFSET, dy: -OFFSET * 5 });
 export const FUNABASHI_MIDPOINT = offset(midPoint(CS_NISHI_FUNABASHI, JB_31), { dx: OFFSET * 2 });
 export const JB_17 = offset(OCHANOMIZU, { dx: -MAJOR_LINE * 3 + OFFSET * 0.5 });
-export const JB_16 = offset(JB_17, { dy: OFFSET * 2, dx: OFFSET * 0.5 - MAJOR_LINE * 2 - OFFSET * 4 });
+export const JB_16 = offset(JB_17, { dy: MAJOR_LINE - OFFSET, dx: OFFSET * 0.5 - MAJOR_LINE * 2 - OFFSET * 4 });
 export const JB_15 = { x: JB_16.x, y: OTEMACHI.y };
 export const JB_14 = offset(JB_15, { dy: MAJOR_LINE * 1.5 });
 export const JB_10 = offset(JY_17, { dx: OFFSET });
@@ -51,7 +51,6 @@ export const CS_KOIWA = offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, e
 export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
-            <ChuoSobuPath />
             <ChuoSobuStop stationCode="JB 10" location={JB_10} />
             <ChuoSobuStop stationCode="JB 11" location={offset(JY_18, { dx: OFFSET })} />
             <ChuoSobuStop stationCode="JB 13" location={JB_13} textAlignment={TextAlignment.UP} />

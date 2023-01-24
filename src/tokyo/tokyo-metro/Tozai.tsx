@@ -28,7 +28,7 @@ const TOZAI_URAYASU = offset(CS_NISHI_FUNABASHI, { dx: -MAJOR_LINE, dy: OFFSET +
 const KIBA = offset(TOZAI_MONZEN_NAKACHO, { dx: MAJOR_LINE, dy: -OFFSET * 2 });
 const TOYOCHO = generatePoint({ start: KIBA, slope: ENE, endReference: offset(SOBU_KINSCHICHO, { dx: OFFSET }) });
 export const T_07 = offset(offset(I_10, { dx: -MAJOR_LINE * 2 + OFFSET * 1.5, dy: MAJOR_LINE * 0.5 + OFFSET + OFFSET * 0.75 }), {});
-const T_06 = generatePoint({ start: T_07, slope: WNW, endReference: offset(JB_16, { dx: -OFFSET * 4 }) });
+const T_06 = generatePoint({ start: T_07, slope: WNW, endReference: offset(JB_16, { dx: OFFSET * 2 }) });
 const T_03 = offset(JY_15, { dx: -OFFSET * 0.5, dy: -OFFSET });
 const T_04 = offset(T_03, { dx: OFFSET * 0.5 + MAJOR_LINE * 1.5 });
 export const TozaiPath = () => {
@@ -55,7 +55,7 @@ const Tozai = () => {
                 location={generatePoint({ start: T_06, slope: WNW, endReference: midPoint(T_04, T_06) })}
                 textAlignment={TextAlignment.UP}
             />
-            <TozaiStop stationCode="T 06" location={T_06} textAlignment={TextAlignment.LEFT} />
+            <TozaiStop stationCode="T 06" location={T_06} />
             <TozaiStop stationCode="T 07" location={T_07} />
             <TozaiStop stationCode="T 08" location={offset(T_07, { dx: MAJOR_LINE, dy: MAJOR_LINE * 0.5 })} />
             <TozaiStop location={TOZAI_NIHOMBASHI} stationCode="T 10" />

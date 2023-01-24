@@ -1,5 +1,5 @@
-import { MINOR_LINE } from '../map/GridLines';
 import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
+import { MINOR_LINE } from '../map/GridLines';
 
 export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordinates): Coordinates => {
     return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
@@ -148,7 +148,8 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
     const d = c3x * c2y - c3y * c2x;
 
     if (d === 0) {
-        console.log(a1, b1, a2, b2);
+        // eslint-disable-next-line no-console
+        console.error(a1, b1, a2, b2);
         throw new Error('Number of intersection points is zero or infinity.');
     }
 

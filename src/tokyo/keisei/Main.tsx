@@ -1,12 +1,12 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { TextAlignment } from '../../symbols/BasicStop';
+import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
+import SVGPath from '../../symbols/SVGPath';
 import { OFFSET, YAMANOTE_UENO } from '../../utils/CommonCoordinates';
-import { curveFrom, E, generatePoint, N, offset, SSE, SSW, startAtLocation } from '../../utils/PathUtils';
+import { E, generatePoint, N, offset, SSE, SSW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_KOIWA, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT } from '../jr-east/ChuoSobu';
 import { YAMANOTE_NIPPORI } from '../jr-east/Yamanote';
-import StopFromTokyo from '../StopsFromTokyo';
 import { CHIYODA_MICHIYA } from '../tokyo-metro/Chiyoda';
 import { HIBIYA_KITA_SENJU } from '../tokyo-metro/Hibiya';
 
@@ -22,41 +22,32 @@ export const KS_09 = offset(KS_10, { dx: -MAJOR_LINE * 0.5 });
 const KS_22 = offset(KS_20, { dx: OFFSET + MAJOR_LINE * 1.5, dy: MAJOR_LINE - OFFSET });
 
 export const MainPath = () => {
-    return (
-        <path
-            d={`
-    ${startAtLocation(UENO)}
-    ${curveFrom({ start: UENO, end: KS_20, firstDirection: N, secondDirection: E })}
-    ${curveFrom({ start: KS_20, end: FUNABASHI_MIDPOINT, firstDirection: E, secondDirection: SSE })}
-    ${curveFrom({ start: FUNABASHI_MIDPOINT, end: KS_22, firstDirection: SSE, secondDirection: E })}
-    `}
-        />
-    );
+    return <SVGPath points={[UENO, KS_20, FUNABASHI_MIDPOINT, KS_22]} directions={[N, E, SSE, E]} />;
 };
 
 const Main = () => {
     return (
         <g className="keisei-main">
             <MainPath />
-            <StopFromTokyo stationCode="KS 01" location={UENO} />
-            <StopFromTokyo stationCode="KS 02" location={KS_02} />
-            <StopFromTokyo stationCode="KS 04" location={KS_04} />
-            <StopFromTokyo stationCode="KS 06" location={KS_06} textAlignment={TextAlignment.UP} />
+            <Stop stationCode="KS 01" location={UENO} />
+            <Stop stationCode="KS 02" location={KS_02} />
+            <Stop stationCode="KS 04" location={KS_04} />
+            <Stop stationCode="KS 06" location={KS_06} textAlignment={TextAlignment.UP} />
             <LineSegmentWithEndpoint
                 stops={['KS 07', 'KS 08', 'KS 09']}
                 origin={KS_07}
                 endpoint={KS_09}
                 textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
             />
-            <StopFromTokyo stationCode="KS 10" location={KS_10} textAlignment={TextAlignment.UP} />
+            <Stop stationCode="KS 10" location={KS_10} textAlignment={TextAlignment.UP} />
             <LineSegmentWithEndpoint
                 stops={generateStationCodes('KS', 11, 20)}
                 origin={KS_11}
                 endpoint={KS_20}
                 textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
             />
-            <StopFromTokyo stationCode="KS 21" location={offset(KS_20, { dx: OFFSET * 4 })} textAlignment={TextAlignment.DOWN} />
-            <StopFromTokyo stationCode="KS 22" location={KS_22} />
+            <Stop stationCode="KS 21" location={offset(KS_20, { dx: OFFSET * 4 })} textAlignment={TextAlignment.DOWN} />
+            <Stop stationCode="KS 22" location={KS_22} />
         </g>
     );
 };

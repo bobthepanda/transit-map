@@ -24,6 +24,7 @@ export const JY_17 = offset(OTEMACHI, { dx: -MAJOR_LINE * 10.5 });
 export const JY_13 = offset(JY_17, { dx: MAJOR_LINE - OFFSET * 0.5, dy: -MAJOR_LINE * 7 });
 export const JY_15 = offset(JY_17, { dy: -MAJOR_LINE * 1.75 * 2 });
 export const JY_18 = offset(JY_17, { dy: MAJOR_LINE * 1.5 });
+export const JY_09 = offset(YAMANOTE_NISHI_NIPPORI, { dx: -MAJOR_LINE, dy: -MAJOR_LINE * 0.5 });
 
 const YamanotePath = () => {
     return (
@@ -60,7 +61,7 @@ const Yamanote = () => {
             <YamanoteStop location={YAMANOTE_SHIMBASHI} stationCode="JY 29" />
             <YamanoteStop stationCode="JY 11" location={JY_11} />
             <YamanoteStop stationCode="JY 10" location={JY_10} />
-            <YamanoteStop stationCode="JY 09" location={offset(YAMANOTE_NISHI_NIPPORI, { dx: -MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })} />
+            <YamanoteStop stationCode="JY 09" location={JY_09} />
         </g>
     );
 };

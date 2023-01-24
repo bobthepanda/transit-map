@@ -3,9 +3,10 @@ import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { MITA_HIBIYA, OFFSET, OTEMACHI } from '../../utils/CommonCoordinates';
-import { ESE, offset, S } from '../../utils/PathUtils';
+import { ESE, generatePoint, offset, S, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_17 } from '../jr-east/ChuoSobu';
+import { JA_13 } from '../jr-east/Saikyo';
 import { JY_11 } from '../jr-east/Yamanote';
 import { E_07 } from './Oedo';
 
@@ -17,9 +18,10 @@ const I_13 = offset(I_12, { dy: OFFSET - MAJOR_LINE * 1.5 });
 const I_07 = offset(MITA_HIBIYA, { dy: MAJOR_LINE });
 const I_06 = offset(I_07, { dy: MAJOR_LINE * 1.5 });
 const I_04 = offset(I_06, { dy: MAJOR_LINE * 2 });
+const I_17 = generatePoint({ start: I_15, slope: WNW, endReference: JA_13 });
 
 export const MitaPath = () => {
-    return <SVGPath color="stroke-mita" points={[I_15, I_13, I_10, I_04]} directions={[ESE, S, ESE, S]} />;
+    return <SVGPath color="stroke-mita" points={[I_17, I_13, I_10, I_04]} directions={[ESE, S, ESE, S]} />;
 };
 
 const MitaStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
@@ -30,6 +32,11 @@ const Mita = () => {
     return (
         <g className="mita">
             <MitaPath />
+            <MitaStop stationCode="I 17" location={I_17} textAlignment={TextAlignment.LEFT} />
+            <MitaStop
+                stationCode="I 16"
+                location={generatePoint({ start: I_15, slope: WNW, endReference: offset(I_15, { dx: -MAJOR_LINE - OFFSET }) })}
+            />
             <MitaStop stationCode="I 15" location={I_15} />
             <MitaStop stationCode="I 14" location={offset(I_13, { dy: -MAJOR_LINE - OFFSET * 2 })} />
             <MitaStop stationCode="I 13" location={I_13} />

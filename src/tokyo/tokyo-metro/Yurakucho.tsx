@@ -1,8 +1,10 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
+import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { NIHOMBASHI, OEDO_MONZEN_NAKACHO, OFFSET, YAMANOTE_YURAKUCHO } from '../../utils/CommonCoordinates';
-import { E, ESE, NNE, offset, S, scale } from '../../utils/PathUtils';
+import { E, ESE, generatePoint, NNE, offset, S, scale } from '../../utils/PathUtils';
+import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_15, JB_16 } from '../jr-east/ChuoSobu';
 import { E_07 } from '../toei/Oedo';
 import { F_09 } from './Fukutoshin';
@@ -35,7 +37,13 @@ const Yurakucho = () => {
     return (
         <g className="yurakucho">
             <YurakuchoPath />
-            <YurakuchoStop stationCode="Y 09" location={Y_09} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('Y', 9, 11)}
+                origin={Y_09}
+                endpoint={generatePoint({ start: Y_09, slope: ESE, endReference: offset(Y_13, { dx: -MAJOR_LINE }) })}
+                strokeColor="stroke-yurakucho"
+            />
+            <YurakuchoStop stationCode="Y 12" location={offset(Y_13, { dy: OFFSET - MAJOR_LINE * 2.5 })} />
             <YurakuchoStop stationCode="Y 13" location={Y_13} />
             <YurakuchoStop stationCode="Y 14" location={Y_14} />
             <YurakuchoStop stationCode="Y 15" location={Y_15} />

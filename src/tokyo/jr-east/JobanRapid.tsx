@@ -40,7 +40,6 @@ const JobanRapidStop = ({ location, stationCode, textAlignment }: StopDefinition
 const JobanRapid = () => {
     return (
         <g className="joban-rapid">
-            <JobanRapidPath />
             <JobanRapidStop stationCode="JJ 01" location={UENO} />
             <JobanRapidStop stationCode="JJ 02" location={NIPPORI} />
             <JobanRapidStop stationCode="JJ 03" location={JJ_03} textAlignment={TextAlignment.UP} />

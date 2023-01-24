@@ -1,6 +1,6 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import {
     CHUO_OCHANOMIZU,
@@ -12,12 +12,11 @@ import {
     YAMANOTE_TOKYO,
 } from '../../utils/CommonCoordinates';
 import { E, ESE, generatePoint, offset, S, W, WNW } from '../../utils/PathUtils';
+import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_14 } from '../jr-east/ChuoSobu';
 import { JY_13, JY_17 } from '../jr-east/Yamanote';
 import { E_07, E_08 } from '../toei/Oedo';
 import { F_13 } from './Fukutoshin';
-
-const SEGMENT_1 = ['M 18', 'M 19'];
 
 const TOKYO = offset(YAMANOTE_TOKYO, { dx: OFFSET, dy: OFFSET });
 const GINZA = { x: HIBIYA_GINZA.x - OFFSET * 0.5, y: MITA_HIBIYA.y };
@@ -64,13 +63,19 @@ const Marunouchi = () => {
             <MarunouchiStop stationCode="M 12" location={M_12} />
             <MarunouchiStop stationCode="M 13" location={M_13} />
             <MarunouchiStop stationCode="M 14" location={M_14} />
-            <LineSegmentWithStepChange stops={SEGMENT_1} origin={MARUNOUCHI_OTEMACHI} ystep={MAJOR_LINE * -1} />
+            <MarunouchiStop stationCode="M 18" location={MARUNOUCHI_OTEMACHI} />
+            <MarunouchiStop stationCode="M 19" location={offset(MARUNOUCHI_OTEMACHI, { dy: -MAJOR_LINE * 2 + OFFSET * 1.5 })} />
             <MarunouchiStop location={TOKYO} stationCode="M 17" />
             <MarunouchiStop location={GINZA} stationCode="M 16" />
             <MarunouchiStop location={KASUMIGASEKI} stationCode="M 15" textAlignment={TextAlignment.UP} />
             <MarunouchiStop stationCode="M 20" location={OCHANOMIZU} textAlignment={TextAlignment.UP} />
             <MarunouchiStop stationCode="M 21" location={M_21} />
-            <MarunouchiStop stationCode="M 22" location={M_22} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('M', 22, 24)}
+                origin={M_22}
+                endpoint={generatePoint({ start: M_22, slope: WNW, endReference: offset(M_22, { dx: -OFFSET * 2 - MAJOR_LINE * 3 }) })}
+                strokeColor="stroke-marunouchi"
+            />
             <MarunouchiStop stationCode="M 25" location={M_25} />
         </g>
     );

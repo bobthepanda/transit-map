@@ -27,7 +27,6 @@ const ChuoRapidStop = ({ location, stationCode, textAlignment }: StopDefinition)
 const ChuoRapid = () => {
     return (
         <g className="chuo-rapid">
-            <ChuoRapidPath />
             <ChuoRapidStop location={CHUO_TOKYO} stationCode="JC 01" />
             <ChuoRapidStop location={{ x: CHUO_TOKYO.x, y: YAMANOTE_KANDA.y }} stationCode="JC 02" />
             <ChuoRapidStop location={CHUO_OCHANOMIZU} stationCode="JC 03" />
