@@ -31,14 +31,21 @@ export const JB_14 = offset(JB_15, { dy: MAJOR_LINE * 1.5 });
 export const JB_10 = offset(JY_17, { dx: OFFSET });
 export const JB_13 = offset(JB_14, { dy: MAJOR_LINE * 0.5 - OFFSET, dx: OFFSET - MAJOR_LINE * 1.5 });
 export const JB_12 = offset(JB_13, { dx: -MAJOR_LINE * 1.5 });
+export const JB_09 = offset(JY_17, { dy: -MAJOR_LINE * 2, dx: -MAJOR_LINE * 1.5 });
+
+export const CHUO_SPACING = MAJOR_LINE;
+
+export const JB_07 = offset(JB_09, { dx: -CHUO_SPACING * 2 });
+export const JB_04 = offset(JB_07, { dx: -CHUO_SPACING * 3 });
+export const JB_01 = offset(JB_04, { dx: -CHUO_SPACING * 3 });
 
 export const ChuoSobuPath = () => {
     return (
         <SVGPath
             color="stroke-chuo-sobu"
-            points={[JB_10, JB_13, JB_14, JB_17, KINSCHICHO, CS_KAMEIDO, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT, JB_31]}
-            directions={[S, E, N, E, ENE, N, E, NNE, E]}
-            radii={{ 3: RADIUS + OFFSET, 5: RADIUS + (OFFSET * 2) / 2 }}
+            points={[JB_01, JB_10, JB_13, JB_14, JB_17, KINSCHICHO, CS_KAMEIDO, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT, JB_31]}
+            directions={[E, S, E, N, E, ENE, N, E, NNE, E]}
+            radii={{ 1: RADIUS + OFFSET, 4: RADIUS + OFFSET, 6: RADIUS + (OFFSET * 2) / 2 }}
         />
     );
 };
@@ -51,6 +58,12 @@ export const CS_KOIWA = offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, e
 export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
+            <LineSegmentWithEndpoint
+                strokeColor="stroke-chuo-sobu"
+                stops={generateStationCodes('JB', 9, 1)}
+                origin={JB_09}
+                endpoint={JB_01}
+            />
             <ChuoSobuStop stationCode="JB 10" location={JB_10} />
             <ChuoSobuStop stationCode="JB 11" location={offset(JY_18, { dx: OFFSET })} />
             <ChuoSobuStop stationCode="JB 13" location={JB_13} textAlignment={TextAlignment.UP} />

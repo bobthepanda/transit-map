@@ -8,12 +8,13 @@ import Saikyo, { SaikyoPath } from './Saikyo';
 import ShonanShinjuku, { ShonanShinjukuPath } from './ShonanShinjuku';
 import SobuRapid, { SobuRapidPath } from './SobuRapid';
 import Tokaido, { TokaidoPath } from './Tokaido';
-import Yamanote from './Yamanote';
+import Yamanote, { YamanotePath } from './Yamanote';
 
 export const JREastPaths = () => {
     return (
         <>
             <ChuoRapidPath />
+            <YamanotePath />
             <ChuoSobuPath />
             <KeihinTohokuPath />
             <TokaidoPath />

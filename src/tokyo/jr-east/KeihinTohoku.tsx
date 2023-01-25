@@ -22,8 +22,16 @@ const SHIMBASHI = { ...YAMANOTE_SHIMBASHI, x: YAMANOTE_SHIMBASHI.x + OFFSET };
 export const JK_34 = offset(JY_09, scale(NNE, OFFSET));
 export const JK_38 = generatePoint({ start: JK_34, slope: WNW, endReference: offset(JK_34, { dx: -MAJOR_LINE * 5 }) });
 export const JK_36 = midPoint(JK_34, JK_38);
+
+const TOHOKU_SPACING = 1.5 * MAJOR_LINE;
+
+export const JK_39 = generatePoint({ start: JK_38, slope: WNW, endReference: offset(JK_38, { dx: -TOHOKU_SPACING }) });
+export const JK_42 = generatePoint({ start: JK_39, slope: WNW, endReference: offset(JK_39, { dx: -TOHOKU_SPACING * 3 }) });
+export const JK_43 = generatePoint({ start: JK_42, slope: WNW, endReference: offset(JK_42, { dx: -TOHOKU_SPACING }) });
+export const JK_47 = generatePoint({ start: JK_43, slope: WNW, endReference: offset(JK_43, { dx: -TOHOKU_SPACING * 4 }) });
+
 export const KeihinTohokuPath = () => {
-    return <SVGPath color="stroke-keihin-tohoku" points={[JK_38, SHIMBASHI]} directions={[ESE, S]} />;
+    return <SVGPath color="stroke-keihin-tohoku" points={[JK_47, SHIMBASHI]} directions={[ESE, S]} />;
 };
 
 const KeihinTohokuStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
@@ -47,6 +55,12 @@ const KeihinTohoku = () => {
                 stops={generateStationCodes('JK', 34, 38)}
                 origin={JK_34}
                 endpoint={JK_38}
+                strokeColor="stroke-keihin-tohoku"
+            />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('JK', 39, 47)}
+                origin={JK_39}
+                endpoint={JK_47}
                 strokeColor="stroke-keihin-tohoku"
             />
         </g>
