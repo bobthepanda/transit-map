@@ -2,11 +2,11 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
-import { OFFSET } from '../../utils/CommonCoordinates';
-import { ENE, midPoint, N, NNE, offset, scale, W, WNW } from '../../utils/PathUtils';
+import { MINOR_LINE, OFFSET } from '../../utils/CommonCoordinates';
+import { E, ENE, midPoint, N, NNE, offset, scale, W, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_14, JB_15, JB_16 } from '../jr-east/ChuoSobu';
-import { JK_36 } from '../jr-east/KeihinTohoku';
+import { JK_33, JK_36 } from '../jr-east/KeihinTohoku';
 import { JY_10, YAMANOTE_NIPPORI } from '../jr-east/Yamanote';
 import { E_22 } from '../toei/Oedo';
 import { G_06 } from './Ginza';
@@ -22,16 +22,26 @@ const N_08 = offset(JB_14, { dx: OFFSET * -1 });
 const N_07 = offset(Y_16, { dy: OFFSET });
 const N_06 = offset(G_06, { dx: -OFFSET, dy: OFFSET * 0.5 });
 const N_04 = offset(E_22, { dy: -OFFSET, dx: -OFFSET * 0.5 });
-const N_16 = offset(JK_36, { dx: -OFFSET });
+const N_16 = offset(JK_36, { dx: OFFSET, dy: -OFFSET * 0.5 });
 
 const NAMBOKU_SPACING = -MAJOR_LINE * 0.5;
 const N_19 = offset(N_16, { dy: NAMBOKU_SPACING * 3 });
 const SR_19 = offset(N_19, { dy: -OFFSET });
-export const SR_25 = offset(SR_19, { dy: NAMBOKU_SPACING * 6 });
+export const SR_25 = { x: JK_33.x - MINOR_LINE - OFFSET * 2, y: offset(SR_19, { dy: NAMBOKU_SPACING * 6 }).y };
 const SR_26 = offset(SR_25, { dy: NAMBOKU_SPACING - OFFSET });
+const SR_22 = offset(SR_19, { dy: NAMBOKU_SPACING * 3 });
+export const SR_21 = offset(SR_22, { dy: -NAMBOKU_SPACING });
+const SR_24 = offset(SR_25, { dy: -NAMBOKU_SPACING });
+const SR_23 = midPoint(SR_22, SR_24);
 
 export const NambokuPath = () => {
-    return <SVGPath color="stroke-namboku" points={[N_04, N_07, N_08, N_11, N_13, N_14, SR_26]} directions={[N, W, N, ENE, N, WNW, N]} />;
+    return (
+        <SVGPath
+            color="stroke-namboku"
+            points={[N_04, N_07, N_08, N_11, N_13, N_14, N_19, SR_23, SR_26]}
+            directions={[N, W, N, ENE, N, WNW, N, E, N]}
+        />
+    );
 };
 
 const NambokuStop = ({ location, stationCode, textAlignment }: StopDefinition) => {
@@ -57,10 +67,13 @@ const Namboku = () => {
             <LineSegmentWithEndpoint strokeColor="stroke-namboku" stops={generateStationCodes('N', 16, 19)} origin={N_16} endpoint={N_19} />
             <LineSegmentWithEndpoint
                 strokeColor="stroke-namboku"
-                stops={generateStationCodes('SR', 19, 25)}
+                stops={generateStationCodes('SR', 19, 22)}
                 origin={SR_19}
-                endpoint={SR_25}
+                endpoint={SR_22}
             />
+            <NambokuStop stationCode="SR 23" location={SR_23} />
+            <NambokuStop stationCode="SR 24" location={SR_24} />
+            <NambokuStop stationCode="SR 25" location={SR_25} />
             <NambokuStop stationCode="SR 26" location={SR_26} />
         </g>
     );

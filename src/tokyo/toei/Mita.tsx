@@ -13,7 +13,7 @@ import { E_07 } from './Oedo';
 export const I_10 = offset(OTEMACHI, { dx: -MAJOR_LINE, dy: -MAJOR_LINE * 2 + OFFSET * 2 });
 const I_11 = offset(JB_17, { dx: OFFSET * 0.5, dy: -OFFSET });
 const I_12 = offset(E_07, { dy: -OFFSET, dx: OFFSET * 0.5 });
-const I_15 = offset(JY_11, { dy: OFFSET });
+const I_15 = offset(JY_11, { dy: -OFFSET * 0.5, dx: OFFSET });
 const I_13 = offset(I_12, { dy: OFFSET - MAJOR_LINE * 1.5 });
 const I_07 = offset(MITA_HIBIYA, { dy: MAJOR_LINE });
 const I_06 = offset(I_07, { dy: MAJOR_LINE * 1.5 });

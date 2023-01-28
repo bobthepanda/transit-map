@@ -14,26 +14,22 @@ const HS_05 = generatePoint({ start: THIS_KS_10, slope: ENE, endReference: JM_13
 export const HS_08 = generatePoint({ start: THIS_KS_10, slope: ENE, endReference: offset(JB_31, { dx: -OFFSET * 0.5 }) });
 
 export const HokusoPath = () => {
-    return <SVGPath color="stroke-hokuso" points={[THIS_KS_10, HS_08]} />;
+    return <SVGPath points={[THIS_KS_10, HS_08]} />;
 };
 
 const Hokuso = () => {
     return (
         <g className="hokuso">
-            <HokusoPath />
             <Stop location={THIS_KS_10} stationCode="KS 10" hideText />
             <LineSegmentWithEndpoint
                 origin={offset(THIS_KS_10, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })}
                 endpoint={HS_05}
                 stops={[...generateStationCodes('HS', 1, 5)]}
-                strokeColor="stroke-hokuso"
             />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('HS', 8, 6)}
                 origin={HS_08}
-                xstep={-OFFSET * 4}
-                ystep={OFFSET * 2}
-                strokeColor="stroke-hokuso"
+                slope={{ dx: -OFFSET * 4, dy: OFFSET * 2 }}
             />
         </g>
     );

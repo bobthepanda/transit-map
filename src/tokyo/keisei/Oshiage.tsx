@@ -19,7 +19,7 @@ const Oshiage = () => {
         <g className="oshiage">
             <OshiagePath />
             <Stop stationCode="KS 45" location={KS_45} />
-            <LineSegmentWithStepChange origin={KS_44} xstep={OFFSET} ystep={-OFFSET * 2} stops={generateStationCodes('KS', 46, 49)} />
+            <LineSegmentWithStepChange origin={KS_44} slope={{ dx: OFFSET, dy: -OFFSET * 2 }} stops={generateStationCodes('KS', 46, 49)} />
         </g>
     );
 };

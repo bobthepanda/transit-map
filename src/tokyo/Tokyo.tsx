@@ -4,8 +4,7 @@ import './colors/jr-east-colors.css';
 import JREast, { JREastPaths } from './jr-east/JREast';
 import Main from './keisei/Main';
 import Oshiage from './keisei/Oshiage';
-import Hokuso from './other/Hokuso';
-import ShinKeisei from './other/ShinKeisei';
+import Other, { OtherPaths } from './other/Other';
 import loadTokyo from './redux/actions/LoadActions';
 import type { AppDispatch } from './redux/store';
 import Kameido from './tobu/Kameido';
@@ -29,9 +28,11 @@ const Tokyo = (): JSX.Element => {
     return (
         <>
             <g id="tokyo-paths">
+                <OtherPaths />
                 <JREastPaths />
             </g>
             <g id="tokyo">
+                <Other />
                 <JREast />
                 <g id="toei">
                     <Mita />
@@ -48,10 +49,6 @@ const Tokyo = (): JSX.Element => {
                     <Kameido />
                     <Skytree />
                     <UrbanPark />
-                </g>
-                <g id="other">
-                    <Hokuso />
-                    <ShinKeisei />
                 </g>
             </g>
         </>

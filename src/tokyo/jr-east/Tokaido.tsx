@@ -2,8 +2,8 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { CHUO_TOKYO, OFFSET, YAMANOTE_SHIMBASHI, YAMANOTE_UENO } from '../../utils/CommonCoordinates';
-import { N, offset, scale, SSW, W, WNW } from '../../utils/PathUtils';
-import { JK_34, JK_38 } from './KeihinTohoku';
+import { N, NNW, offset, scale, SSW, W, WNW, WSW } from '../../utils/PathUtils';
+import { JK_34, JK_36, JK_38 } from './KeihinTohoku';
 
 const TOKYO = { x: CHUO_TOKYO.x + OFFSET * 3, y: CHUO_TOKYO.y + OFFSET * 0.5 };
 const SHIMBASHI = {
@@ -11,11 +11,12 @@ const SHIMBASHI = {
     x: YAMANOTE_SHIMBASHI.x + OFFSET * 2,
 };
 const UENO = offset(YAMANOTE_UENO, { dx: OFFSET * 2 });
-const JU_04 = offset(JK_38, scale(SSW, OFFSET));
+const JU_04 = offset(JK_38, scale(WSW, OFFSET));
 const JU_03 = offset(JK_34, { dy: -MAJOR_LINE });
+const OJI_CONTROL = offset(JK_36, scale(SSW, OFFSET));
 
 export const TokaidoPath = () => {
-    return <SVGPath color="stroke-tokaido" points={[SHIMBASHI, JU_03, JU_04]} directions={[N, W, WNW]} />;
+    return <SVGPath color="stroke-tokaido" points={[SHIMBASHI, JU_03, OJI_CONTROL, JU_04]} directions={[N, W, WNW, NNW]} />;
 };
 
 const TokaidoStop = ({ location, stationCode, textAlignment }: StopDefinition) => {

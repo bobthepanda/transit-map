@@ -3,7 +3,7 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { ESE, generatePoint, offset } from '../../utils/PathUtils';
+import { ESE, generatePoint, offset, scale } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_KAMEIDO } from '../jr-east/ChuoSobu';
 import { TS_04 } from './Skytree';
@@ -23,8 +23,7 @@ const Kameido = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('TS', 44, 41)}
                 origin={TS_44}
-                xstep={-MAJOR_LINE * 0.5}
-                ystep={-MAJOR_LINE * 0.25}
+                slope={scale({ dx: -MAJOR_LINE, dy: -MAJOR_LINE / 2 }, 0.5)}
                 textAlignments={[TextAlignment.UP, TextAlignment.DOWN]}
             />
         </g>

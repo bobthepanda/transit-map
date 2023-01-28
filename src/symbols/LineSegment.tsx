@@ -1,5 +1,6 @@
-import { Coordinates } from '../interfaces/Dimensions';
+import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
 import { CSVData } from '../interfaces/Stops';
+import { scale } from '../utils/PathUtils';
 import { Stop, TextAlignment } from './BasicStop';
 
 export interface StopMetadata {
@@ -18,13 +19,11 @@ interface LineSegmentData {
 }
 
 interface LineSegmentDataWithStepChange extends LineSegmentData {
-    xstep?: number;
-    ystep?: number;
+    slope: RelativeCoordinates;
 }
 
 interface LineSegmentDataWithTotalChange extends LineSegmentData {
-    dx?: number;
-    dy?: number;
+    totalSlope: RelativeCoordinates;
 }
 
 interface LineSegmentDataWithEndpoint extends LineSegmentData {
@@ -34,8 +33,7 @@ interface LineSegmentDataWithEndpoint extends LineSegmentData {
 export const LineSegmentWithStepChange = ({
     stops,
     origin,
-    xstep = 0,
-    ystep = 0,
+    slope: { dx = 0, dy = 0 } = {},
     textAlignments = [TextAlignment.RIGHT],
     strokeColor,
     fillColor,
@@ -50,7 +48,7 @@ export const LineSegmentWithStepChange = ({
                 return (
                     <Stop
                         key={stationCode}
-                        location={{ x: x + index * xstep, y: y + index * ystep }}
+                        location={{ x: x + index * dx, y: y + index * dy }}
                         stationCode={stationCode}
                         textAlignment={textAlignment}
                         strokeColor={strokeColor}
@@ -65,21 +63,16 @@ export const LineSegmentWithStepChange = ({
 export const LineSegmentWithTotalChange = ({
     stops,
     origin,
-    dx = 0,
-    dy = 0,
+    totalSlope,
     textAlignments,
     strokeColor,
     fillColor,
 }: LineSegmentDataWithTotalChange): JSX.Element => {
-    const xstep = dx / (stops.length - 1);
-    const ystep = dy / (stops.length - 1);
-
     return (
         <LineSegmentWithStepChange
             stops={stops}
             origin={origin}
-            xstep={xstep}
-            ystep={ystep}
+            slope={scale(totalSlope, 1 / (stops.length - 1))}
             textAlignments={textAlignments}
             strokeColor={strokeColor}
             fillColor={fillColor}
@@ -102,8 +95,7 @@ export const LineSegmentWithEndpoint = ({
         <LineSegmentWithTotalChange
             stops={stops}
             origin={origin}
-            dx={endX - originX}
-            dy={endY - originY}
+            totalSlope={{ dx: endX - originX, dy: endY - originY }}
             textAlignments={textAlignments}
             strokeColor={strokeColor}
             fillColor={fillColor}

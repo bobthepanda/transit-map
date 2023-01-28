@@ -11,7 +11,7 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import { E, ENE, generatePoint, midPoint, N, offset } from '../../utils/PathUtils';
+import { E, ENE, generatePoint, midPoint, N, offset, scale } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_MOTOYAWATA, JB_15 } from '../jr-east/ChuoSobu';
 import { JY_17 } from '../jr-east/Yamanote';
@@ -67,8 +67,7 @@ const Shinjuku = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('S', 14, 18)}
                 origin={S_14}
-                ystep={MAJOR_LINE * -0.5 * 0.75}
-                xstep={MAJOR_LINE * 0.75}
+                slope={scale({ dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 }, 0.75)}
                 strokeColor="stroke-shinjuku"
             />
             <LineSegmentWithEndpoint

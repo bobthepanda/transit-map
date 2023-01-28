@@ -73,7 +73,7 @@ const Marunouchi = () => {
             <LineSegmentWithEndpoint
                 stops={generateStationCodes('M', 22, 24)}
                 origin={M_22}
-                endpoint={generatePoint({ start: M_22, slope: WNW, endReference: offset(M_22, { dx: -OFFSET * 2 - MAJOR_LINE * 3 }) })}
+                endpoint={generatePoint({ start: M_22, slope: WNW, endReference: offset(M_22, { dx: -MAJOR_LINE * 4 }) })}
                 strokeColor="stroke-marunouchi"
             />
             <MarunouchiStop stationCode="M 25" location={M_25} />

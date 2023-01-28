@@ -32,6 +32,7 @@ export const E_24 = generatePoint({ start: E_23, slope: WNW, endReference: offse
 const E_25 = offset(JB_12, { dy: OFFSET + MAJOR_LINE });
 const E_26 = offset(JY_18, { dx: OFFSET * 2 });
 const E_27 = offset(JY_17, { dy: OFFSET * 2, dx: -OFFSET });
+export const E_10 = offset(KURAMAE, { dx: -OFFSET * 0.5 - MAJOR_LINE });
 
 export const OedoPath = () => {
     return (
@@ -68,7 +69,7 @@ const Oedo = () => {
             <OedoStop stationCode="E 13" location={{ ...OEDO_MONZEN_NAKACHO, y: ASAKUSA_BAKUROCHO.y - OFFSET }} />
             <OedoStop stationCode="E 12" location={RYOGOKU} />
             <OedoStop stationCode="E 11" location={KURAMAE} />
-            <OedoStop stationCode="E 10" location={offset(KURAMAE, { dx: -OFFSET * 0.5 - MAJOR_LINE })} />
+            <OedoStop stationCode="E 10" location={E_10} />
             <OedoStop stationCode="E 09" location={UENO_OKAMACHI} />
             <OedoStop stationCode="E 08" location={E_08} />
             <OedoStop stationCode="E 07" location={E_07} />

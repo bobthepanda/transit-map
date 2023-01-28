@@ -189,3 +189,10 @@ export const curveFrom = ({ start, end, firstDirection, secondDirection, radius,
         debug,
     });
 };
+
+export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates): RelativeCoordinates => {
+    if (dx === 0) {
+        return { dx: 0, dy: 1 };
+    }
+    return scale({ dx, dy }, 1 / Math.abs(dx));
+};

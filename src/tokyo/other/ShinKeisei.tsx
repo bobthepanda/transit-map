@@ -3,7 +3,7 @@ import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, NNE, offset } from '../../utils/PathUtils';
+import { E, NNE, offset, scale } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JL_22 } from '../jr-east/JobanLocal';
 import { JM_14 } from '../jr-east/Musashino';
@@ -20,10 +20,8 @@ export const ShinKeiseiPath = () => {
 const ShinKeisei = () => {
     return (
         <g>
-            <ShinKeiseiPath />
             <LineSegmentWithStepChange
-                ystep={(-MAJOR_LINE / 3) * 1.5}
-                xstep={(MAJOR_LINE / 6) * 1.5}
+                slope={scale({ dx: MAJOR_LINE, dy: -MAJOR_LINE * 2 }, 1.5 / 6)}
                 origin={SL_01}
                 stops={generateStationCodes('SL', 1, 4)}
             />

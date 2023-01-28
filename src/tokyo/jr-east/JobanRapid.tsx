@@ -1,4 +1,4 @@
-import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
@@ -12,15 +12,14 @@ import { YAMANOTE_NIPPORI } from './Yamanote';
 
 const UENO = offset(YAMANOTE_UENO, { dx: -OFFSET });
 const NIPPORI = offset(YAMANOTE_NIPPORI, scale(SSW, OFFSET));
-const JJ_03 = offset(CHIYODA_MICHIYA, { dy: MAJOR_LINE });
+const JJ_03 = offset(CHIYODA_MICHIYA, { dy: MAJOR_LINE * 0.5 + OFFSET * 2 });
 const JJ_05 = offset(HIBIYA_KITA_SENJU, { dx: -OFFSET });
-const CURVE_POINT = { x: YAMANOTE_NIPPORI.x - OFFSET * 2, y: JJ_03.y + OFFSET * 2 };
+const CURVE_POINT = { x: YAMANOTE_NIPPORI.x - MAJOR_LINE * 0.5, y: JJ_03.y + OFFSET * 1.5 };
 const LOCAL_CURVE_POINT = offset(JL_21, { dy: OFFSET });
 const JJ_06 = offset(JL_22, { dx: OFFSET });
 const JJ_07 = offset(JL_28, scale(SSE, OFFSET));
 const JJ_08 = offset(JL_30, scale(SSE, OFFSET));
 const JJ_10 = offset(JL_32, scale(SSE, OFFSET));
-const NIPPORI_RADIUS = MINOR_LINE * 1.5;
 
 export const JobanRapidPath = () => {
     return (
@@ -28,7 +27,7 @@ export const JobanRapidPath = () => {
             color="stroke-joban-rapid"
             points={[UENO, NIPPORI, CURVE_POINT, JJ_03, JJ_05, LOCAL_CURVE_POINT, JJ_06, JJ_10]}
             directions={[N, WNW, N, E, N, E, N, ENE]}
-            radii={{ 2: (NIPPORI_RADIUS * 2) / 3, 3: NIPPORI_RADIUS, 6: RADIUS + OFFSET }}
+            radii={{ 2: RADIUS - OFFSET, 3: RADIUS - OFFSET, 6: RADIUS + OFFSET }}
         />
     );
 };

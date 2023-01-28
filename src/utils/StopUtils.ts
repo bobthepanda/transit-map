@@ -11,14 +11,14 @@ const STOPS_TO_HIDE_TEXT: string[] = [
   'T 09', 'T 10', 'T 11',
   'G 11',
   'JY 02', 'JC 02', 'JK 27', // Kanda
-  'JY 03', 'JK 28', // Akihabara
+  'JY 03', 'JK 28', 'JB 19', 'H 16', // Akihabara
   'A 14', // Ningyocho
   'Z 09', // Mitsukoshimae
   'JE 01', 'JE 02',
   'M 20', // Ochanomizu,
   'JB 21', 'S 11', 'Z 11', 'T 12', 'Y 21', // Oedo East,
   'TS 03', 'Z 14', 'KS 45', // Oshiage
-  'H 21',
+  'H 21', 'JJ 04', // Mita-senju
   'JJ 05', 'TS 09', 'H 22', // Kita-senju
   'JJ 01', 'JY 05', 'G 16', 'JU 02', // Ueno
 ]

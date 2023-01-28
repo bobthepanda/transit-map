@@ -25,13 +25,17 @@ const JM_15 = offset(JL_25, { dx: -OFFSET * 0.5, dy: OFFSET });
 export const JM_13 = generatePoint({ start: JM_15, slope: ESE, endReference: offset(NISHI_FUNABASHI, { dx: -MAJOR_LINE + OFFSET }) });
 const JM_11 = offset(NISHI_FUNABASHI, { dy: -MAJOR_LINE * 2 + OFFSET * 2 });
 export const JM_14 = offset(midPoint(JM_13, JM_15), { dx: OFFSET * 1.25, dy: OFFSET * 0.625 });
-const JM_25 = offset(JK_42, { dy: -OFFSET });
+const JM_25 = offset(JK_42, { dy: OFFSET });
 const JM_33 = offset(JC_17, { dx: OFFSET * 0.5, dy: -OFFSET });
 const JM_23 = offset(SR_25, { dx: OFFSET * 0.5, dy: -OFFSET });
 
-const NORTH_MUSASHINO_SPACING = MAJOR_LINE * 1.5 + OFFSET * 2;
-const JM_22 = offset(JM_23, { dx: NORTH_MUSASHINO_SPACING });
-const JM_17 = offset(JM_22, { dx: NORTH_MUSASHINO_SPACING * 5 });
+const NORTH_MUSASHINO_SPACING = MAJOR_LINE * 1.5 - OFFSET;
+export const JM_22 = offset(JM_23, { dx: NORTH_MUSASHINO_SPACING });
+const JM_18 = offset(JM_22, { dx: NORTH_MUSASHINO_SPACING * 4 });
+
+const JM_15_OFFSET = { dx: -MAJOR_LINE - OFFSET, dy: (-MAJOR_LINE - OFFSET) * 0.5 };
+export const JM_16 = offset(JM_15, JM_15_OFFSET);
+const JM_17 = offset(JM_16, JM_15_OFFSET);
 
 export const MusashinoPath = () => {
     return (
@@ -72,14 +76,16 @@ const Musashino = () => {
             <MusashinoStop stationCode="JM 13" location={JM_13} />
             <MusashinoStop stationCode="JM 14" location={JM_14} />
             <MusashinoStop stationCode="JM 15" location={JM_15} />
-            <MusashinoStop stationCode="JM 24" location={offset(JM_23, { dx: -MAJOR_LINE * 4 + MINOR_LINE })} />
+            <MusashinoStop stationCode="JM 16" location={JM_16} />
+            <MusashinoStop stationCode="JM 17" location={JM_17} />
+            <MusashinoStop stationCode="JM 24" location={offset(JM_23, { dx: -MAJOR_LINE * 3 + MINOR_LINE })} />
             <MusashinoStop stationCode="JM 25" location={JM_25} />
             <MusashinoStop stationCode="JM 33" location={JM_33} />
             <LineSegmentWithEndpoint
                 strokeColor="stroke-musashino"
-                stops={generateStationCodes('JM', 23, 17)}
+                stops={generateStationCodes('JM', 23, 18)}
                 origin={JM_23}
-                endpoint={JM_17}
+                endpoint={JM_18}
             />
         </g>
     );
