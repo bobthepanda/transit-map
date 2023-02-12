@@ -6,6 +6,7 @@ import { OFFSET, YAMANOTE_AKIHABARA } from '../../utils/CommonCoordinates';
 import { ENE, generatePoint, N, offset, scale, scaleToUnitX, WSW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JM_16 } from '../jr-east/Musashino';
+import { TD_22 } from '../tobu/UrbanPark';
 import { A_18 } from '../toei/Asakusa';
 import { E_10 } from '../toei/Oedo';
 import { HIBIYA_KITA_SENJU, H_21 } from '../tokyo-metro/Hibiya';
@@ -20,9 +21,10 @@ const TX_10 = offset(JM_16, { dy: -OFFSET });
 const TX_10_OFFSET = scale(scaleToUnitX(WSW), MAJOR_LINE);
 const TX_10_CORNER = offset(generatePoint({ start: TX_10, slope: WSW, endReference: TX_05 }), { dy: MAJOR_LINE * 0.5 });
 const TX_10_CORNER_OFFSET = { dy: MAJOR_LINE };
+const TX_12 = offset(TD_22, { dx: -OFFSET, dy: OFFSET * 0.5 });
 
 export const TsukubaExpressPath = () => {
-    return <SVGPath points={[TX_01, TX_02, TX_03, TX_04, TX_10]} directions={[ENE, N, ENE, N, ENE]} />;
+    return <SVGPath points={[TX_01, TX_02, TX_03, TX_04, TX_10, TX_12]} directions={[ENE, N, ENE, N, ENE, N]} />;
 };
 
 const TsukubaExpress = () => {
@@ -40,6 +42,11 @@ const TsukubaExpress = () => {
             />
             <LineSegmentWithStepChange stops={generateStationCodes('TX', 7, 6)} origin={TX_10_CORNER} slope={TX_10_CORNER_OFFSET} />
             <Stop stationCode="TX 10" location={TX_10} />
+            <Stop
+                stationCode="TX 11"
+                location={generatePoint({ start: TX_10, slope: ENE, endReference: offset(TX_10, { dx: OFFSET * 0.5 + MAJOR_LINE }) })}
+            />
+            <Stop stationCode="TX 12" location={TX_12} />
         </g>
     );
 };
