@@ -9,7 +9,7 @@ import {
     OTEMACHI,
     SOBU_KINSCHICHO,
 } from '../../utils/CommonCoordinates';
-import { E, ENE, midPoint, N, NNW, offset, S, scale, SSE, WNW } from '../../utils/PathUtils';
+import { E, ENE, midPoint, N, NNW, offset, RADIUS, S, scale, SSE, WNW } from '../../utils/PathUtils';
 import { CS_KAMEIDO } from '../jr-east/ChuoSobu';
 import { I_10 } from '../toei/Mita';
 import { S_05, S_13 } from '../toei/Shinjuku';
@@ -39,6 +39,7 @@ export const HanzomonPath = () => {
             color="stroke-hanzomon"
             points={[Z_03, Z_04, Z_06, Z_07, OTEMACHI_MIDPOINT, Z_08, MIDPOINT, NINGYOCHO, Z_13, Z_14]}
             directions={[ENE, N, ENE, E, S, E, ENE, E, N, WNW]}
+            radii={{ 8: RADIUS * 4 }}
         />
     );
 };

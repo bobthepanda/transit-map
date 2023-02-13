@@ -1,6 +1,6 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import {
     KIKUKAWA,
@@ -20,11 +20,6 @@ import { T_07 } from '../tokyo-metro/Tozai';
 import { I_10 } from './Mita';
 
 const OGAWAMACHI = { x: OTEMACHI.x + MAJOR_LINE * 0.5 + OFFSET * 0.5, y: SHINJUKU_BAKUROCHO.y };
-
-const ICHINOE = offset(offset(KIKUKAWA, { dx: MAJOR_LINE * 6 * 0.75, dy: MAJOR_LINE * -0.5 * 6 * 0.75 }), {
-    dx: OFFSET * 2,
-    dy: -OFFSET * 3,
-});
 
 export const S_13 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: SOBU_KINSCHICHO });
 const S_14 = generatePoint({ start: KIKUKAWA, slope: ENE, endReference: { ...KIKUKAWA, x: KIKUKAWA.x + MAJOR_LINE * 1.5 } });
@@ -65,17 +60,13 @@ const Shinjuku = () => {
             <ShinjukuStop stationCode="S 13" location={S_13} />
             <ShinjukuStop stationCode="S 06" location={S_06} />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('S', 14, 18)}
+                stops={generateStationCodes('S', 14, 19)}
                 origin={S_14}
                 slope={scale({ dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 }, 0.75)}
                 strokeColor="stroke-shinjuku"
             />
-            <LineSegmentWithEndpoint
-                stops={generateStationCodes('S', 19, 21)}
-                origin={ICHINOE}
-                endpoint={MOTOYAWATA}
-                strokeColor="stroke-shinjuku"
-            />
+            <ShinjukuStop stationCode="S 21" location={MOTOYAWATA} />
+            <ShinjukuStop stationCode="S 20" location={offset(MOTOYAWATA, { dy: MAJOR_LINE * 0.5 - OFFSET })} />
         </g>
     );
 };

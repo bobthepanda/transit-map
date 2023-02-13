@@ -1,17 +1,15 @@
-import { MAJOR_LINE } from '../../map/GridLines';
-import { Stop } from '../../symbols/BasicStop';
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { ENE, generatePoint, offset } from '../../utils/PathUtils';
+import { offset } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import { JB_31 } from '../jr-east/ChuoSobu';
-import { JM_13 } from '../jr-east/Musashino';
+import { CS_NISHI_FUNABASHI, JB_31 } from '../jr-east/ChuoSobu';
 import { KS_10 } from '../keisei/Main';
 
 const THIS_KS_10 = offset(KS_10, { dy: -OFFSET });
-const HS_05 = generatePoint({ start: THIS_KS_10, slope: ENE, endReference: JM_13 });
-export const HS_08 = generatePoint({ start: THIS_KS_10, slope: ENE, endReference: offset(JB_31, { dx: -OFFSET * 0.5 }) });
+export const HS_05 = { x: CS_NISHI_FUNABASHI.x + MINOR_LINE - MAJOR_LINE * 2 + OFFSET * 1.75, y: THIS_KS_10.y };
+export const HS_08 = { x: JB_31.x - MINOR_LINE, y: THIS_KS_10.y };
 
 export const HokusoPath = () => {
     return <SVGPath points={[THIS_KS_10, HS_08]} />;
@@ -20,17 +18,8 @@ export const HokusoPath = () => {
 const Hokuso = () => {
     return (
         <g className="hokuso">
-            <Stop location={THIS_KS_10} stationCode="KS 10" hideText />
-            <LineSegmentWithEndpoint
-                origin={offset(THIS_KS_10, { dx: MAJOR_LINE, dy: -MAJOR_LINE * 0.5 })}
-                endpoint={HS_05}
-                stops={[...generateStationCodes('HS', 1, 5)]}
-            />
-            <LineSegmentWithStepChange
-                stops={generateStationCodes('HS', 8, 6)}
-                origin={HS_08}
-                slope={{ dx: -OFFSET * 4, dy: OFFSET * 2 }}
-            />
+            <LineSegmentWithEndpoint origin={THIS_KS_10} endpoint={HS_05} stops={['KS 10', ...generateStationCodes('HS', 1, 5)]} />
+            <LineSegmentWithStepChange stops={generateStationCodes('HS', 8, 6)} origin={HS_08} slope={{ dx: -OFFSET * 5 }} />
         </g>
     );
 };

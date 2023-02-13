@@ -12,7 +12,7 @@ import {
     SOBU_KINSCHICHO,
     YAMANOTE_AKIHABARA,
 } from '../../utils/CommonCoordinates';
-import { E, ENE, generatePoint, midPoint, N, NNE, offset, RADIUS, S, scale, SSE, W } from '../../utils/PathUtils';
+import { E, ENE, ESE, generatePoint, midPoint, N, offset, RADIUS, S, scale, scaleToUnitX, SSE, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JY_17, JY_18 } from './Yamanote';
 
@@ -20,9 +20,17 @@ const OCHANOMIZU = offset(CHUO_OCHANOMIZU, { dy: OFFSET * -1 });
 const AKIHABARA = offset(YAMANOTE_AKIHABARA, { dx: OFFSET * 1.5, dy: OFFSET * -1 });
 const KINSCHICHO = offset(SOBU_KINSCHICHO, scale(SSE, OFFSET));
 export const CS_KAMEIDO = offset(ASAKUSA_KURAMAE, { dx: MAJOR_LINE * 5, dy: -MAJOR_LINE * 1.5 + OFFSET });
-export const CS_MOTOYAWATA = offset(CS_KAMEIDO, { dx: MAJOR_LINE * 3 - OFFSET, dy: -MAJOR_LINE * 2 - OFFSET });
-export const CS_NISHI_FUNABASHI = offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 });
-export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 1.5 + OFFSET, dy: -OFFSET * 5 });
+export const CS_KOIWA = offset(CS_KAMEIDO, { dy: -OFFSET - MAJOR_LINE * 2, dx: MAJOR_LINE * 0.5 });
+export const CS_MOTOYAWATA = offset(
+    generatePoint({ start: CS_KOIWA, endReference: offset(CS_KOIWA, { dx: MAJOR_LINE * 3.5 }), slope: ESE }),
+    { dy: -MAJOR_LINE * 0.5 }
+);
+export const CS_NISHI_FUNABASHI = generatePoint({
+    start: CS_MOTOYAWATA,
+    endReference: offset(CS_MOTOYAWATA, { dx: MAJOR_LINE * 3 }),
+    slope: ESE,
+});
+export const JB_31 = offset(CS_NISHI_FUNABASHI, { dx: MAJOR_LINE * 2.5, dy: OFFSET });
 export const FUNABASHI_MIDPOINT = offset(midPoint(CS_NISHI_FUNABASHI, JB_31), { dx: OFFSET * 2 });
 export const JB_17 = offset(OCHANOMIZU, { dx: -MAJOR_LINE * 3 + OFFSET * 0.5 });
 export const JB_16 = offset(JB_17, { dy: MAJOR_LINE - OFFSET, dx: OFFSET * 0.5 - MAJOR_LINE * 2 - OFFSET * 4 });
@@ -43,8 +51,8 @@ export const ChuoSobuPath = () => {
     return (
         <SVGPath
             color="stroke-chuo-sobu"
-            points={[JB_01, JB_10, JB_13, JB_14, JB_17, KINSCHICHO, CS_KAMEIDO, CS_NISHI_FUNABASHI, FUNABASHI_MIDPOINT, JB_31]}
-            directions={[E, S, E, N, E, ENE, N, E, NNE, E]}
+            points={[JB_01, JB_10, JB_13, JB_14, JB_17, KINSCHICHO, CS_KAMEIDO, CS_KOIWA, CS_NISHI_FUNABASHI, JB_31]}
+            directions={[E, S, E, N, E, ENE, N, E, ESE, E]}
             radii={{ 1: RADIUS + OFFSET, 4: RADIUS + OFFSET, 6: RADIUS + (OFFSET * 2) / 2 }}
         />
     );
@@ -54,7 +62,6 @@ const ChuoSobuStop = ({ location, stationCode, textAlignment }: StopDefinition) 
     return <Stop location={location} stationCode={stationCode} textAlignment={textAlignment} strokeColor="stroke-chuo-sobu" />;
 };
 
-export const CS_KOIWA = offset(generatePoint({ start: CS_MOTOYAWATA, slope: W, endReference: CS_KAMEIDO }), { dx: MAJOR_LINE * 0.5 });
 export const ChuoSobu = () => {
     return (
         <g className="chuo-sobu">
@@ -80,19 +87,13 @@ export const ChuoSobu = () => {
             <LineSegmentWithEndpoint
                 origin={CS_KAMEIDO}
                 stops={generateStationCodes('JB', 23, 25)}
-                endpoint={offset(generatePoint({ start: CS_KAMEIDO, slope: N, endReference: CS_MOTOYAWATA }), { dy: MAJOR_LINE * 0.5 })}
+                endpoint={offset(generatePoint({ start: CS_KAMEIDO, slope: N, endReference: CS_KOIWA }), { dy: MAJOR_LINE * 0.5 })}
                 strokeColor="stroke-chuo-sobu"
             />
+            <ChuoSobuStop stationCode="JB 26" location={CS_KOIWA} />
             <LineSegmentWithEndpoint
-                origin={CS_MOTOYAWATA}
-                stops={generateStationCodes('JB', 28, 26)}
-                endpoint={CS_KOIWA}
-                textAlignments={[TextAlignment.DOWN]}
-                strokeColor="stroke-chuo-sobu"
-            />
-            <LineSegmentWithEndpoint
-                origin={CS_MOTOYAWATA}
-                stops={generateStationCodes('JB', 28, 30)}
+                origin={offset(CS_MOTOYAWATA, scale(scaleToUnitX(WNW), MAJOR_LINE * 1.5))}
+                stops={generateStationCodes('JB', 27, 30)}
                 endpoint={CS_NISHI_FUNABASHI}
                 textAlignments={[TextAlignment.DOWN]}
                 strokeColor="stroke-chuo-sobu"
