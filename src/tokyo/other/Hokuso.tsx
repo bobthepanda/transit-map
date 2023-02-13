@@ -1,4 +1,5 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
@@ -18,8 +19,18 @@ export const HokusoPath = () => {
 const Hokuso = () => {
     return (
         <g className="hokuso">
-            <LineSegmentWithEndpoint origin={THIS_KS_10} endpoint={HS_05} stops={['KS 10', ...generateStationCodes('HS', 1, 5)]} />
-            <LineSegmentWithStepChange stops={generateStationCodes('HS', 8, 6)} origin={HS_08} slope={{ dx: -OFFSET * 5 }} />
+            <LineSegmentWithEndpoint
+                origin={THIS_KS_10}
+                endpoint={HS_05}
+                stops={['KS 10', ...generateStationCodes('HS', 1, 5)]}
+                textAlignments={[TextAlignment.UP]}
+            />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('HS', 8, 6)}
+                origin={HS_08}
+                slope={{ dx: (-MAJOR_LINE * 4) / 3 }}
+                textAlignments={[TextAlignment.UP]}
+            />
         </g>
     );
 };

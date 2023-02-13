@@ -17,7 +17,7 @@ export const TS_04 = offset(TS_03, { dy: -MAJOR_LINE * 0.5 - OFFSET });
 const TS_09 = offset(HIBIYA_KITA_SENJU, { dx: OFFSET });
 const TS_08 = offset(KS_06, { dy: OFFSET });
 const TS_01 = offset(A_18, { dy: -OFFSET * 2 });
-const TS_20 = offset(JM_22, { dy: OFFSET, dx: OFFSET * 0.5 });
+const TS_20 = offset(JM_22, { dy: OFFSET, dx: -OFFSET * 0.5 });
 const TS_10 = offset(TS_09, { dy: -MAJOR_LINE, dx: -MAJOR_LINE });
 const TS_27 = offset(TD_10, { dy: OFFSET, dx: OFFSET * 0.5 });
 

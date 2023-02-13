@@ -5,7 +5,7 @@ export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;
 
-export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 40, y: MAJOR_LINE * 20 };
+export const OTEMACHI: Coordinates = { x: MAJOR_LINE * 40, y: MAJOR_LINE * 30 };
 export const CHIYODA_OTEMACHI: Coordinates = {
     ...OTEMACHI,
     x: OTEMACHI.x + OFFSET,
