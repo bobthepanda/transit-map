@@ -5,8 +5,9 @@ import SVGPath from '../../symbols/SVGPath';
 import { NIHOMBASHI, OEDO_MONZEN_NAKACHO, OFFSET, OTEMACHI, SOBU_KINSCHICHO } from '../../utils/CommonCoordinates';
 import { E, ENE, ESE, generatePoint, midPoint, offset, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import { CS_NISHI_FUNABASHI, JB_07, JB_16 } from '../jr-east/ChuoSobu';
+import { CS_NISHI_FUNABASHI, JB_07, JB_16, JB_33 } from '../jr-east/ChuoSobu';
 import { JY_15 } from '../jr-east/Yamanote';
+import { KS_31 } from '../keisei/Main';
 import { I_10 } from '../toei/Mita';
 
 const TOZAI_OTEMACHI = {
@@ -30,13 +31,15 @@ const T_06 = generatePoint({ start: T_07, slope: WNW, endReference: offset(JB_16
 const T_03 = offset(JY_15, { dx: OFFSET * 0.5, dy: -OFFSET });
 const T_04 = offset(T_03, { dx: OFFSET * 0.5 + MAJOR_LINE * 1.5 });
 const T_01 = offset(JB_07, { dy: -OFFSET });
+const TR_09 = offset(KS_31, { dx: -OFFSET });
+export const TR_04 = { x: JB_33.x - OFFSET * 2, y: KS_31.y };
 
 export const TozaiPath = () => {
     return (
         <SVGPath
             color="stroke-tozai"
-            points={[T_01, T_03, T_06, TOZAI_OTEMACHI, TOZAI_NISHI_FUNABASHI]}
-            directions={[ENE, E, ESE, E, ENE]}
+            points={[T_01, T_03, T_06, TOZAI_OTEMACHI, TOZAI_NISHI_FUNABASHI, TR_09]}
+            directions={[ENE, E, ESE, E, ENE, E]}
         />
     );
 };
@@ -70,6 +73,20 @@ const Tozai = () => {
                 strokeColor="stroke-tozai"
             />
             <TozaiStop stationCode="T 12" location={TOZAI_MONZEN_NAKACHO} />
+            <TozaiStop stationCode="TR 01" location={offset(TOZAI_NISHI_FUNABASHI, { dx: OFFSET, dy: -OFFSET * 0.5 })} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('TR', 4, 9)}
+                origin={TR_04}
+                endpoint={TR_09}
+                strokeColor="stroke-tozai"
+                textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
+            />
+            <TozaiStop stationCode="TR 03" location={offset(TR_04, { dx: -MAJOR_LINE + OFFSET })} textAlignment={TextAlignment.UP} />
+            <TozaiStop
+                stationCode="TR 02"
+                location={offset(TR_04, { dx: (-MAJOR_LINE + OFFSET) * 2 })}
+                textAlignment={TextAlignment.DOWN}
+            />
         </g>
     );
 };

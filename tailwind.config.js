@@ -34,7 +34,7 @@ module.exports = {
                 'shonan-shinjuku': '#ff0000',
                 yamanote: '#9acd32',
                 yokosuka: '#0070b9',
-                'sobu-rapid': '#0070b9',
+                'sobu-rapid': '#0070B9',
                 keiyo: '#dc143c',
                 'joban-rapid': `#3cb371`,
                 'joban-local': '#808080',

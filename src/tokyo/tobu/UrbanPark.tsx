@@ -30,14 +30,10 @@ const UrbanPark = () => {
     return (
         <g className="urban-park">
             <UrbanParkPath />
-            <LineSegmentWithStepChange
-                origin={TD_30}
-                slope={{ dy: -MAJOR_LINE * 1.5 - OFFSET }}
-                stops={generateStationCodes('TD', 30, 28)}
-            />
+            <LineSegmentWithStepChange origin={TD_30} slope={{ dy: -MAJOR_LINE - OFFSET }} stops={generateStationCodes('TD', 30, 28)} />
             <LineSegmentWithStepChange
                 origin={offset(TD_30, { dy: MAJOR_LINE })}
-                slope={{ dy: (MAJOR_LINE * 2) / 3 }}
+                slope={{ dy: MAJOR_LINE }}
                 stops={generateStationCodes('TD', 31, 34)}
             />
             <Stop location={TD_35} stationCode="TD 35" />
