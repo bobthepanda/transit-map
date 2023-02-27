@@ -47,13 +47,13 @@ export const JB_07 = offset(JB_09, { dx: -CHUO_SPACING * 2 });
 export const JB_04 = offset(JB_07, { dx: -CHUO_SPACING * 3 });
 export const JB_01 = offset(JB_04, { dx: -CHUO_SPACING * 3 });
 export const JB_33 = offset(JB_31, { dx: MAJOR_LINE * 3, dy: MAJOR_LINE });
-const JB_33_SLOPE = scale(scaleToUnitX(ESE), MAJOR_LINE * 1.5);
+const JB_33_SLOPE = scaleToUnitX(ESE, MAJOR_LINE * 1.5);
 export const JB_34 = offset(JB_33, JB_33_SLOPE);
-const JB_34_SLOPE = scale(scaleToUnitX(ESE), MAJOR_LINE);
+const JB_34_SLOPE = scaleToUnitX(ESE, MAJOR_LINE);
 export const JB_35 = offset(JB_34, JB_34_SLOPE);
 export const JB_37 = offset(JB_35, scale(JB_34_SLOPE, 2));
 export const JB_39 = offset(JB_37, scale(JB_34_SLOPE, 2));
-export const JB_27 = offset(CS_MOTOYAWATA, scale(scaleToUnitX(WNW), MAJOR_LINE * 1.5));
+export const JB_27 = offset(CS_MOTOYAWATA, scaleToUnitX(WNW, MAJOR_LINE * 1.5));
 export const JB_25 = offset(generatePoint({ start: CS_KAMEIDO, slope: N, endReference: CS_KOIWA }), { dy: MAJOR_LINE * 0.5 });
 
 export const ChuoSobuPath = () => {
@@ -108,7 +108,7 @@ export const ChuoSobu = () => {
                 strokeColor="stroke-chuo-sobu"
             />
             <ChuoSobuStop stationCode="JB 31" location={JB_31} textAlignment={TextAlignment.DOWN} />
-            <ChuoSobuStop stationCode="JB 32" location={offset(JB_33, scale(scaleToUnitX(WNW), MAJOR_LINE * 1.5))} />
+            <ChuoSobuStop stationCode="JB 32" location={offset(JB_33, scaleToUnitX(WNW, MAJOR_LINE * 1.5))} />
             <ChuoSobuStop stationCode="JB 33" location={JB_33} />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('JB', 34, 39)}

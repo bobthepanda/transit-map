@@ -12,7 +12,7 @@ import { SR_21, SR_25 } from '../tokyo-metro/Namboku';
 const NT_01 = offset(YAMANOTE_NIPPORI, scale(NNE, OFFSET * 2));
 const NT_02 = offset(YAMANOTE_NISHI_NIPPORI, scale(NNE, OFFSET * 2));
 export const NT_03 = { x: SR_25.x, y: NT_02.y - MAJOR_LINE * 0.5 - OFFSET };
-const NT_04 = { x: NT_03.x, y: JK_36.y - MINOR_LINE };
+export const NT_04 = { x: NT_03.x, y: JK_36.y - MINOR_LINE };
 const NT_13 = { x: NT_03.x, y: SR_21.y };
 
 export const NipponToneriPath = () => {
@@ -25,7 +25,12 @@ const NipponToneri = () => {
             <Stop stationCode="NT 01" location={NT_01} />
             <Stop stationCode="NT 02" location={NT_02} />
             <Stop stationCode="NT 03" location={NT_03} />
-            <LineSegmentWithEndpoint stops={generateStationCodes('NT', 4, 13)} origin={NT_04} endpoint={NT_13} />
+            <Stop stationCode="NT 04" location={NT_04} />
+            <LineSegmentWithEndpoint
+                stops={generateStationCodes('NT', 5, 13)}
+                origin={offset(NT_04, { dy: -OFFSET * 2 })}
+                endpoint={NT_13}
+            />
         </g>
     );
 };

@@ -3,7 +3,7 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { ESE, N, offset, scale, scaleToUnitX, W, WNW } from '../../utils/PathUtils';
+import { ESE, N, offset, scaleToUnitX, W, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_31 } from '../jr-east/ChuoSobu';
 import { JL_28 } from '../jr-east/JobanLocal';
@@ -17,8 +17,8 @@ const TD_30 = offset(HS_08, { dx: OFFSET * 0.5, dy: -OFFSET * 2 });
 const TD_01 = offset(JK_47, { dx: OFFSET });
 export const TD_10 = { y: TD_01.y, x: JM_22.x - OFFSET };
 
-const TD_23_OFFSET = scale(scaleToUnitX(WNW), MAJOR_LINE - OFFSET);
-const TD_23 = offset(offset(TD_24, scale(scaleToUnitX(WNW), OFFSET * 2)), TD_23_OFFSET);
+const TD_23_OFFSET = scaleToUnitX(WNW, MAJOR_LINE - OFFSET);
+const TD_23 = offset(offset(TD_24, scaleToUnitX(WNW, OFFSET * 2)), TD_23_OFFSET);
 export const TD_22 = offset(TD_23, TD_23_OFFSET);
 const TD_10_OFFSET = { dx: MAJOR_LINE - OFFSET * 0.75 };
 
@@ -39,7 +39,7 @@ const UrbanPark = () => {
             <Stop location={TD_35} stationCode="TD 35" />
             <LineSegmentWithStepChange
                 origin={TD_24}
-                slope={scale(scaleToUnitX(ESE), MAJOR_LINE * 1.5)}
+                slope={scaleToUnitX(ESE, MAJOR_LINE * 1.5)}
                 stops={generateStationCodes('TD', 24, 27)}
             />
             <LineSegmentWithEndpoint

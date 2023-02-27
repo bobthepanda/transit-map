@@ -14,9 +14,12 @@ const UENO = offset(YAMANOTE_UENO, { dx: OFFSET * 2 });
 const JU_04 = offset(JK_38, scale(WSW, OFFSET));
 const JU_03 = offset(JK_34, { dy: -MAJOR_LINE });
 const OJI_CONTROL = offset(JK_36, scale(SSW, OFFSET));
+const OKU_CONTROL = offset(JU_03, { dx: MAJOR_LINE * 1.5, dy: MAJOR_LINE * 0.25 });
 
 export const TokaidoPath = () => {
-    return <SVGPath color="stroke-tokaido" points={[SHIMBASHI, JU_03, OJI_CONTROL, JU_04]} directions={[N, W, WNW, NNW]} />;
+    return (
+        <SVGPath color="stroke-tokaido" points={[SHIMBASHI, OKU_CONTROL, JU_03, OJI_CONTROL, JU_04]} directions={[N, WNW, W, WNW, NNW]} />
+    );
 };
 
 const TokaidoStop = ({ location, stationCode, textAlignment }: StopDefinition) => {

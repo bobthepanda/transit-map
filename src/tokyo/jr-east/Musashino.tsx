@@ -3,7 +3,7 @@ import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { HIBIYA_KAYABACHO, MINOR_LINE, OFFSET, SOBU_KINSCHICHO, YAMANOTE_TOKYO } from '../../utils/CommonCoordinates';
-import { E, ENE, NNW, offset, RADIUS, S, scale, scaleToUnitX, SSE, W, WSW } from '../../utils/PathUtils';
+import { E, ENE, NNW, offset, RADIUS, scaleToUnitX, SSE, SSW, W } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { HS_05 } from '../other/Hokuso';
 import { SR_25 } from '../tokyo-metro/Namboku';
@@ -22,7 +22,7 @@ const SHIOMI = { ...TOKYO, x: SOBU_KINSCHICHO.x + OFFSET };
 export const MUSASHINO_SHIN_KIBA = offset(SHIOMI, { dx: MAJOR_LINE + MINOR_LINE, dy: -OFFSET * 2 });
 const JM_15 = offset(JL_25, { dx: -OFFSET });
 export const JM_13 = offset(HS_05, { dx: -OFFSET, dy: OFFSET * 0.5 });
-export const JM_14 = offset(JM_13, scale(scaleToUnitX(NNW), MAJOR_LINE - MINOR_LINE * 0.5));
+export const JM_14 = offset(JM_13, scaleToUnitX(NNW, MAJOR_LINE - MINOR_LINE * 0.5));
 const JM_25 = offset(JK_42, { dy: OFFSET });
 const JM_33 = offset(JC_17, { dx: OFFSET * 0.5, dy: -OFFSET });
 const JM_23 = offset(SR_25, { dx: -OFFSET * 0.5, dy: -OFFSET });
@@ -31,14 +31,14 @@ const JE_06 = offset(JE_05, { dx: MAJOR_LINE * 1.5, dy: -MAJOR_LINE * 0.5 });
 
 export const JM_22 = offset(JM_23, { dx: MAJOR_LINE * 1.5 + OFFSET });
 
-export const JM_16 = offset(JM_22, { dx: MAJOR_LINE * 9 - MINOR_LINE * 0.5 });
+export const JM_16 = offset(JM_22, { dx: MAJOR_LINE * 9 - OFFSET * 1.25 });
 
 export const MusashinoPath = () => {
     return (
         <SVGPath
             color="stroke-musashino"
-            points={[TOKYO, JE_06, NISHI_FUNABASHI, JM_23, JM_25, JM_33]}
-            directions={[E, ENE, NNW, W, WSW, S]}
+            points={[TOKYO, JE_06, NISHI_FUNABASHI, JM_25, JM_33]}
+            directions={[E, ENE, NNW, W, SSW]}
             radii={{ 1: RADIUS + (OFFSET * 4) / 3, 2: RADIUS * 3, 3: RADIUS * 3, 4: RADIUS * 3 }}
         />
     );
@@ -59,14 +59,14 @@ const Musashino = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('JE', 6, 9)}
                 origin={JE_06}
-                slope={scale(scaleToUnitX(ENE), MAJOR_LINE * 1.5)}
+                slope={scaleToUnitX(ENE, MAJOR_LINE * 1.5)}
                 strokeColor="stroke-musashino"
             />
             <MusashinoStop stationCode="JM 10" location={NISHI_FUNABASHI} />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('JM', 13, 11)}
                 origin={JM_13}
-                slope={scale(scaleToUnitX(SSE), MAJOR_LINE * 0.5)}
+                slope={scaleToUnitX(SSE, MAJOR_LINE * 0.5)}
                 strokeColor="stroke-musashino"
             />
             <MusashinoStop stationCode="JM 14" location={JM_14} />

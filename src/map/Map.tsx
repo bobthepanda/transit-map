@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import GridLines from './GridLines';
 import { Dimensions } from '../interfaces/Dimensions';
 import Tokyo from '../tokyo/Tokyo';
+import GridLines from './GridLines';
 
 // A0 dimensions.
-export const WIDTH = 2384;
-export const HEIGHT = 3370;
+export const HEIGHT = 2384;
+export const WIDTH = 3370;
 
 const Map = ({ width = WIDTH * 4, height = HEIGHT * 4 }: Dimensions) => {
     return (

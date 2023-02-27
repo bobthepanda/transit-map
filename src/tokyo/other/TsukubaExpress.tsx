@@ -3,7 +3,7 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET, YAMANOTE_AKIHABARA } from '../../utils/CommonCoordinates';
-import { ENE, generatePoint, midPoint, N, NNE, offset, scale, scaleToUnitX, WSW } from '../../utils/PathUtils';
+import { ENE, generatePoint, midPoint, N, NNE, offset, scaleToUnitX, WSW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JM_16 } from '../jr-east/Musashino';
 import { TD_22 } from '../tobu/UrbanPark';
@@ -18,7 +18,7 @@ const TX_04 = offset(H_21, { dx: -OFFSET * 2 });
 const TX_05 = offset(HIBIYA_KITA_SENJU, { dx: -OFFSET * 2 });
 const TX_10 = offset(JM_16, { dy: OFFSET });
 
-const TX_10_OFFSET = scale(scaleToUnitX(WSW), MAJOR_LINE * 1.5);
+const TX_10_OFFSET = scaleToUnitX(WSW, MAJOR_LINE * 1.5);
 const TX_07 = offset(generatePoint({ start: TX_10, slope: WSW, endReference: TX_05 }), { dy: MAJOR_LINE * 0.5 + OFFSET });
 const TX_10_CORNER_OFFSET = { dy: MAJOR_LINE };
 const TX_12 = offset(TD_22, { dy: -OFFSET });

@@ -1,13 +1,13 @@
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { MAJOR_LINE, OFFSET } from '../../utils/CommonCoordinates';
-import { ENE, generatePoint, N, NNW, offset, RADIUS, scale, WSW } from '../../utils/PathUtils';
+import { ENE, generatePoint, N, NNW, offset, RADIUS, scale, scaleToUnitX, WSW } from '../../utils/PathUtils';
 import { JK_38 } from './KeihinTohoku';
 import { JY_13, JY_17 } from './Yamanote';
 
 const JA_11 = offset(JY_17, { dx: -OFFSET * 2 });
 const JA_12 = offset(JY_13, scale(NNW, OFFSET * 2));
-export const JA_13 = generatePoint({ start: JA_12, slope: ENE, endReference: offset(JA_12, { dx: MAJOR_LINE * 4 - OFFSET * 2 }) });
+export const JA_13 = offset(JA_12, scaleToUnitX(ENE, MAJOR_LINE * 2.5 - OFFSET));
 const JA_15 = offset(JK_38, scale(WSW, OFFSET * 3));
 
 export const SaikyoPath = () => {

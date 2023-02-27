@@ -3,7 +3,7 @@ import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithEndpoint } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { NIHOMBASHI, OEDO_MONZEN_NAKACHO, OFFSET, OTEMACHI, SOBU_KINSCHICHO } from '../../utils/CommonCoordinates';
-import { E, ENE, ESE, generatePoint, midPoint, offset, WNW } from '../../utils/PathUtils';
+import { E, ENE, ESE, generatePoint, offset, scaleToUnitX, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { CS_NISHI_FUNABASHI, JB_07, JB_16, JB_33 } from '../jr-east/ChuoSobu';
 import { JY_15 } from '../jr-east/Yamanote';
@@ -29,10 +29,10 @@ const TOYOCHO = generatePoint({ start: TOZAI_NISHI_FUNABASHI, slope: ENE, endRef
 export const T_07 = offset(offset(I_10, { dx: -MAJOR_LINE * 2 + OFFSET * 1.5, dy: MAJOR_LINE * 0.5 + OFFSET + OFFSET * 0.75 }), {});
 const T_06 = generatePoint({ start: T_07, slope: WNW, endReference: offset(JB_16, { dx: OFFSET * 2 }) });
 const T_03 = offset(JY_15, { dx: OFFSET * 0.5, dy: -OFFSET });
-const T_04 = offset(T_03, { dx: OFFSET * 0.5 + MAJOR_LINE * 1.5 });
 const T_01 = offset(JB_07, { dy: -OFFSET });
 const TR_09 = offset(KS_31, { dx: -OFFSET });
 export const TR_04 = { x: JB_33.x - OFFSET * 2, y: KS_31.y };
+export const T_04 = offset(T_06, scaleToUnitX(WNW, (MAJOR_LINE * 8) / 3));
 
 export const TozaiPath = () => {
     return (
@@ -54,11 +54,7 @@ const Tozai = () => {
             <TozaiStop stationCode="T 01" location={T_01} />
             <TozaiStop stationCode="T 03" location={T_03} />
             <TozaiStop stationCode="T 04" location={T_04} textAlignment={TextAlignment.UP} />
-            <TozaiStop
-                stationCode="T 05"
-                location={generatePoint({ start: T_06, slope: WNW, endReference: midPoint(T_04, T_06) })}
-                textAlignment={TextAlignment.UP}
-            />
+            <TozaiStop stationCode="T 05" location={offset(T_06, scaleToUnitX(WNW, MAJOR_LINE * 1.5))} textAlignment={TextAlignment.UP} />
             <TozaiStop stationCode="T 06" location={T_06} />
             <TozaiStop stationCode="T 07" location={T_07} />
             <TozaiStop stationCode="T 08" location={offset(T_07, { dx: MAJOR_LINE, dy: MAJOR_LINE * 0.5 })} />

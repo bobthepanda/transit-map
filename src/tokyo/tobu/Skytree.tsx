@@ -1,6 +1,6 @@
-import { MAJOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
-import { LineSegmentWithEndpoint, LineSegmentWithStepChange } from '../../symbols/LineSegment';
+import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { ENE, N, offset, scale, W, WNW } from '../../utils/PathUtils';
@@ -53,12 +53,12 @@ const Skytree = () => {
             <Stop stationCode="TS 07" location={offset(TS_04, { dy: MAJOR_LINE * -1.375 })} />
             <Stop stationCode="TS 08" location={TS_08} textAlignment={TextAlignment.DOWN} />
             <Stop stationCode="TS 09" location={TS_09} />
-            <LineSegmentWithEndpoint stops={generateStationCodes('TS', 20, 27)} origin={TS_20} endpoint={TS_27} />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('TS', 19, 17)}
-                origin={offset(TS_20, TS_20_OFFSET)}
-                slope={TS_20_OFFSET}
+                stops={generateStationCodes('TS', 27, 21)}
+                slope={{ dy: MAJOR_LINE / 2 - MINOR_LINE * 0.5 }}
+                origin={TS_27}
             />
+            <LineSegmentWithStepChange stops={generateStationCodes('TS', 20, 17)} origin={TS_20} slope={TS_20_OFFSET} />
             <LineSegmentWithStepChange stops={generateStationCodes('TS', 10, 16)} origin={TS_10} slope={TS_10_OFFSET} />
         </g>
     );

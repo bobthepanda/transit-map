@@ -14,7 +14,7 @@ const THIS_KS_10 = offset(KS_10, { dy: -OFFSET });
 export const HS_05 = { x: CS_NISHI_FUNABASHI.x + MINOR_LINE - MAJOR_LINE * 2 + OFFSET * 1.75, y: THIS_KS_10.y };
 export const HS_08 = offset(SL_11, { dy: OFFSET });
 const KS_43 = offset(generatePointY({ start: JL_30, endReference: KS_42, slope: ESE }), { dx: -OFFSET * 2 });
-const HS_08_SLOPE = scale(scaleToUnitX(WSW), MAJOR_LINE + OFFSET * 2);
+const HS_08_SLOPE = scaleToUnitX(WSW, MAJOR_LINE + OFFSET * 2);
 
 export const HokusoPath = () => {
     return <SVGPath points={[THIS_KS_10, HS_08, KS_42]} directions={[E, ENE, E]} />;
@@ -38,7 +38,7 @@ const Hokuso = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('HS', 9, 11)}
                 origin={offset(HS_08, scale(HS_08_SLOPE, -1))}
-                slope={scale(scaleToUnitX(ENE), MAJOR_LINE)}
+                slope={scaleToUnitX(ENE, MAJOR_LINE)}
                 textAlignments={[TextAlignment.UP]}
             />
             <LineSegmentWithStepChange
