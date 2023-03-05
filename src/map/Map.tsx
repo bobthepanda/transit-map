@@ -1,13 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { Dimensions } from '../interfaces/Dimensions';
+import OldTokyo from '../tokyo/OldTokyo';
 import Tokyo from '../tokyo/Tokyo';
+import { HEIGHT, WIDTH } from '../utils/CommonCoordinates';
 import GridLines from './GridLines';
 
-// A0 dimensions.
-export const HEIGHT = 2384;
-export const WIDTH = 3370;
-
-const Map = ({ width = WIDTH * 4, height = HEIGHT * 4 }: Dimensions) => {
+const Map = ({ width = WIDTH, height = HEIGHT }: Dimensions) => {
     return (
         <section id="map">
             <svg
@@ -21,6 +19,7 @@ const Map = ({ width = WIDTH * 4, height = HEIGHT * 4 }: Dimensions) => {
                 <GridLines width={width} height={height} />
                 <Routes>
                     <Route path="/tokyo" element={<Tokyo />} />
+                    <Route path="/oldtokyo" element={<OldTokyo />} />
                 </Routes>
             </svg>
         </section>

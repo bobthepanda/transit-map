@@ -1,6 +1,13 @@
 import { Coordinates } from '../interfaces/Dimensions';
 import { ENE, generatePoint, offset } from './PathUtils';
 
+// A0 dimensions.
+export const A0_HEIGHT = 2384;
+export const A0_WIDTH = 3370;
+
+export const WIDTH = A0_WIDTH * 4;
+export const HEIGHT = A0_HEIGHT * 4;
+
 export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;

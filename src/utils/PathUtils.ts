@@ -5,8 +5,14 @@ export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordi
     return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
 };
 
-export const offset = ({ x, y }: Coordinates, { dx = 0, dy = 0 }: RelativeCoordinates): Coordinates => {
-    return { x: x + dx, y: y + dy };
+export const offset = ({ x, y }: Coordinates, ...coords: RelativeCoordinates[]): Coordinates => {
+    let newX = x;
+    let newY = y;
+    coords.forEach(({ dx = 0, dy = 0 }) => {
+        newX += dx;
+        newY += dy;
+    });
+    return { x: newX, y: newY };
 };
 
 export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, value: number): RelativeCoordinates => {
@@ -192,7 +198,7 @@ export const curveFrom = ({ start, end, firstDirection, secondDirection, radius,
 
 export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, factor: number = 1): RelativeCoordinates => {
     if (dx === 0) {
-        return { dx: 0, dy: factor };
+        return { dx: 0, dy: (Math.abs(dy) / dy) * factor };
     }
     return scale({ dx, dy }, factor / Math.abs(dx));
 };
