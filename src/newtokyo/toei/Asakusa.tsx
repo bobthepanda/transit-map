@@ -3,7 +3,7 @@ import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, ESE, NNE, offset, scaleToUnitX, W } from '../../utils/PathUtils';
+import { E, ESE, NNE, offset, scaleToUnitX, SSW, W } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JY_01 } from '../jr-east/Yamanote';
 
@@ -14,7 +14,8 @@ export const A_15 = offset(A_14, scaleToUnitX(NNE, MAJOR_LINE * 0.5));
 export const A_16 = offset(A_15, scaleToUnitX(NNE, MAJOR_LINE));
 export const A_17 = offset(A_16, scaleToUnitX(NNE, MAJOR_LINE * 0.5));
 export const A_18 = offset(A_17, scaleToUnitX(NNE, MAJOR_LINE * 0.5));
-export const A_20 = offset(A_18, { dy: -MAJOR_LINE, dx: MAJOR_LINE * 3 - OFFSET * 2 });
+export const A_20 = offset(A_18, { dy: -MAJOR_LINE * 0.5, dx: MAJOR_LINE * 3 - OFFSET * 1.5 });
+export const A_11 = offset(A_12, scaleToUnitX(SSW, MAJOR_LINE));
 
 const AsakusaStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-asakusa" />;
@@ -23,6 +24,7 @@ const AsakusaStop = ({ stationCode, location }: StopDefinition) => {
 export const AsakusaStops = () => {
     return (
         <>
+            <AsakusaStop stationCode="A 11" location={A_11} />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('A', 12, 15)}
                 origin={A_12}
@@ -39,5 +41,5 @@ export const AsakusaStops = () => {
 };
 
 export const AsakusaPath = () => {
-    return <SVGPath points={[A_12, A_20]} directions={[NNE, E]} color="stroke-asakusa" />;
+    return <SVGPath points={[A_11, A_20]} directions={[NNE, E]} color="stroke-asakusa" />;
 };

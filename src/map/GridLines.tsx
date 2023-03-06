@@ -1,6 +1,6 @@
+import { Dimensions } from '../interfaces/Dimensions';
 import { useShowGrid } from '../utils/ParameterUtils';
 import './GridLines.scss';
-import { Dimensions } from '../interfaces/Dimensions';
 
 export const MINOR_LINE = 12;
 export const MAJOR_LINE = 12 * 12;

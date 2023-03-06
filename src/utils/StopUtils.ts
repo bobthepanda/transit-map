@@ -22,6 +22,8 @@ const STOPS_TO_HIDE_TEXT: string[] = [
   'JJ 05', 'TS 09', 'H 22', // Kita-senju
   'JJ 01', 'JY 05', 'G 16', 'JU 02', // Ueno
   'JB 30', 'T 23',  // Nishi-Funabashi
+  'JB 14', 'N 08', 'JC 04', // Yotsuya
+  'E 06', 'Y 13', 'N 10', 'JB 16', // Iidabashi
 ]
 
 export default STOPS_TO_HIDE_TEXT;

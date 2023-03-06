@@ -1,7 +1,11 @@
+import { ChiyodaPath, ChiyodaStops } from './Chiyoda';
 import { GinzaPath, GinzaStops } from './Ginza';
 import { HanzomonPath, HanzomonStops } from './Hanzomon';
 import { HibiyaPath, HibiyaStops } from './Hibiya';
 import { MarunouchiPath, MarunouchiStops } from './Marunouchi';
+import { NambokuPath, NambokuStops } from './Namboku';
+import { TozaiPath, TozaiStops } from './Tozai';
+import { YurakuchoPath, YurakuchoStops } from './Yurakucho';
 
 export const MetroStops = () => {
     return (
@@ -10,6 +14,10 @@ export const MetroStops = () => {
             <HibiyaStops />
             <MarunouchiStops />
             <HanzomonStops />
+            <ChiyodaStops />
+            <NambokuStops />
+            <YurakuchoStops />
+            <TozaiStops />
         </>
     );
 };
@@ -21,6 +29,10 @@ export const MetroPaths = () => {
             <HibiyaPath />
             <MarunouchiPath />
             <HanzomonPath />
+            <ChiyodaPath />
+            <NambokuPath />
+            <YurakuchoPath />
+            <TozaiPath />
         </>
     );
 };

@@ -20,10 +20,10 @@ export const JY_06 = offset(YAMANOTE_UENO, { dy: -MAJOR_LINE });
 export const YAMANOTE_NIPPORI = offset(YAMANOTE_NISHI_NIPPORI, scale(ESE, (OFFSET * 8.5) / Factor.DOUBLE_DIAG));
 export const JY_11 = offset(OTEMACHI, { dx: -MAJOR_LINE * 4.5, dy: -MAJOR_LINE * 8 - OFFSET * 2 });
 export const JY_10 = offset(JY_11, { dx: MAJOR_LINE * 2 });
-export const JY_17 = offset(OTEMACHI, { dx: -MAJOR_LINE * 10.5 });
+export const JY_17 = offset(OTEMACHI, { dx: -MAJOR_LINE * 10.5, dy: MAJOR_LINE * 0.5 });
 export const JY_13 = offset(JY_17, { dx: MAJOR_LINE * 0.5, dy: -MAJOR_LINE * 8 });
 export const JY_15 = offset(JY_17, { dy: -MAJOR_LINE * 1.75 * 2 });
-export const JY_18 = offset(JY_17, { dy: MAJOR_LINE * 1.5 });
+export const JY_18 = offset(JY_17, { dy: MAJOR_LINE * 1 });
 export const JY_09 = offset(YAMANOTE_NISHI_NIPPORI, { dx: -MAJOR_LINE, dy: -MAJOR_LINE * 0.5 });
 
 export const YamanotePath = () => {
@@ -45,7 +45,7 @@ const Yamanote = () => {
             <YamanoteStop stationCode="JY 18" location={JY_18} />
             <YamanoteStop stationCode="JY 13" location={JY_13} />
             <YamanoteStop stationCode="JY 17" location={JY_17} />
-            <YamanoteStop stationCode="JY 16" location={offset(JY_17, { dy: -MAJOR_LINE * 2 - OFFSET })} />
+            <YamanoteStop stationCode="JY 16" location={offset(JY_17, { dy: -MAJOR_LINE * 2.5 - OFFSET })} />
             <YamanoteStop stationCode="JY 15" location={JY_15} />
             <YamanoteStop stationCode="JY 14" location={offset(JY_15, { dy: -MAJOR_LINE * 1.75 })} />
             <YamanoteStop location={YAMANOTE_NISHI_NIPPORI} stationCode="JY 08" />
