@@ -8,10 +8,10 @@ import { C_11 } from './Chiyoda';
 import { G_11 } from './Ginza';
 import { H_13 } from './Hibiya';
 import { M_18 } from './Marunouchi';
-import { Y_13 } from './Yurakucho';
+import { N_10 } from './Namboku';
 
 const T_03 = offset(JY_15, { dx: -OFFSET * 0.5, dy: -OFFSET });
-const T_06 = offset(Y_13, { dy: OFFSET }, scaleToUnitX(WNW, OFFSET * 2));
+const T_06 = offset(N_10, { dy: OFFSET }, scaleToUnitX(WNW, OFFSET * 2));
 const T_09 = offset(midPoint(C_11, M_18), { dy: OFFSET * 0.75, dx: -OFFSET * 0.5 });
 const T_10 = offset(midPoint(G_11, A_13), { dy: OFFSET * 0.75, dx: -OFFSET * 0.5 });
 const T_11 = offset(H_13, { dy: OFFSET });

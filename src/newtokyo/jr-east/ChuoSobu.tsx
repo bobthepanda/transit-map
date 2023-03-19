@@ -1,4 +1,4 @@
-import { MAJOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
@@ -11,14 +11,14 @@ export const JB_20 = offset(A_16, scaleToUnitX(N, OFFSET));
 export const JB_21 = offset(JB_20, scaleToUnitX(E, MAJOR_LINE * 2));
 export const JB_22 = offset(JB_21, scaleToUnitX(E, MAJOR_LINE * 2));
 export const JB_18 = offset(JB_19, scaleToUnitX(W, MAJOR_LINE * 3));
-export const JB_17 = offset(JB_18, scaleToUnitX(W, MAJOR_LINE * 1.5));
-export const JB_16 = offset(JY_01, scaleToUnitX(WNW, MAJOR_LINE * 4.75), scaleToUnitX(NNE, MAJOR_LINE * 0.5));
-export const JB_15 = offset(JB_16, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
-export const JB_14 = offset(JB_15, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
+export const JB_17 = offset(JB_18, scaleToUnitX(W, MAJOR_LINE * 2 + OFFSET));
+export const JB_16 = offset(JY_01, scaleToUnitX(WNW, MAJOR_LINE * 5.5), scaleToUnitX(NNE, MAJOR_LINE * 0.5));
+export const JB_15 = offset(JB_16, scaleToUnitX(SSW, MAJOR_LINE * 0.5 + MINOR_LINE * 0.5));
+export const JB_14 = offset(JB_15, scaleToUnitX(SSW, MAJOR_LINE * 0.75 + MINOR_LINE * 0.5));
 export const JB_10 = offset(JY_17, { dx: OFFSET });
 export const JB_11 = offset(JY_18, { dx: OFFSET });
-export const JB_12 = offset(JB_11, { dx: MAJOR_LINE * 1.25, dy: MAJOR_LINE * 0.5 });
-export const JB_13 = offset(JB_12, { dx: MAJOR_LINE * 1.5 });
+export const JB_12 = offset(JB_11, { dx: MAJOR_LINE * 1 + OFFSET * 2, dy: MAJOR_LINE * 0.5 });
+export const JB_13 = offset(JB_12, { dx: MAJOR_LINE * 1 });
 
 const ChuoSobuStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-chuo-sobu" />;

@@ -2,7 +2,7 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { HEIGHT, OFFSET, WIDTH } from '../../utils/CommonCoordinates';
-import { E, midPoint, N, NNE, NNW, offset, RADIUS, S, scaleToUnitX, SE, SSW, W, WSW } from '../../utils/PathUtils';
+import { E, ENE, midPoint, N, NNE, NNW, offset, RADIUS, S, scaleToUnitX, SE, SSW, W, WSW } from '../../utils/PathUtils';
 
 export const JY_01 = { x: WIDTH / 2 - ((WIDTH / 2) % 144), y: HEIGHT / 2 - ((HEIGHT / 2) % 144) };
 export const JY_02 = offset(JY_01, scaleToUnitX(NNE, MAJOR_LINE * 1.25));
@@ -20,21 +20,21 @@ export const JY_15 = offset(JY_16, scaleToUnitX(N, MAJOR_LINE));
 export const JY_14 = offset(JY_15, scaleToUnitX(N, MAJOR_LINE));
 export const JY_13 = offset(JY_14, scaleToUnitX(N, MAJOR_LINE));
 export const JY_12 = { x: JY_17.x + MAJOR_LINE * 2, y: JY_06.y };
-export const JY_11 = offset(JY_10, scaleToUnitX(WSW, MAJOR_LINE * 2.75));
+export const JY_11 = offset(JY_10, scaleToUnitX(WSW, MAJOR_LINE * 2.5));
 export const JY_30 = offset(JY_01, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
-export const JY_29 = offset(JY_30, scaleToUnitX(SSW, MAJOR_LINE));
-export const JY_28 = offset(JY_29, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
-export const JY_27 = offset(JY_28, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
-export const JY_26 = offset(JY_27, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
+export const JY_29 = offset(JY_30, scaleToUnitX(SSW, MAJOR_LINE * 0.75));
+export const JY_28 = offset(JY_29, { dx: -MAJOR_LINE, dy: MAJOR_LINE }, scaleToUnitX(NNE, OFFSET));
+export const JY_27 = offset(JY_28, { dx: -MAJOR_LINE, dy: MAJOR_LINE }, scaleToUnitX(NNE, OFFSET * 1.5));
+export const JY_26 = offset(JY_27, scaleToUnitX(SSW, MAJOR_LINE * 0.875 - OFFSET * 0.75));
 export const JY_25 = offset(JY_26, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
 
 export const JY_18 = offset(JY_17, scaleToUnitX(S, MAJOR_LINE * 1));
 export const JY_19 = offset(JY_18, scaleToUnitX(S, MAJOR_LINE * 1.5));
 export const JY_20 = offset(JY_19, scaleToUnitX(S, MAJOR_LINE * 1.5));
-export const JY_21 = offset(JY_20, { dx: MAJOR_LINE * 0.5, dy: MAJOR_LINE });
-export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE + OFFSET * 2));
-export const JY_23 = offset(JY_22, scaleToUnitX(SE, MAJOR_LINE + OFFSET * 2));
-export const JY_24 = offset(JY_23, scaleToUnitX(SE, MAJOR_LINE + OFFSET * 2));
+export const JY_21 = offset(JY_20, { dx: MAJOR_LINE * 0.5, dy: MAJOR_LINE }, scaleToUnitX(SE, OFFSET * 3));
+export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE));
+export const JY_23 = offset(JY_22, scaleToUnitX(SE, MAJOR_LINE - OFFSET * 1.5));
+export const JY_24 = offset(JY_23, scaleToUnitX(SE, MAJOR_LINE - MINOR_LINE));
 
 const YamanoteStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-yamanote" />;
@@ -80,8 +80,8 @@ export const YamanoteStops = () => {
 export const YamanotePath = () => {
     return (
         <SVGPath
-            points={[JY_29, JY_07, JY_10, JY_12, JY_17, JY_24, offset(midPoint(JY_24, JY_25), { dy: OFFSET * 2 }), JY_29]}
-            directions={[NNE, NNW, WSW, W, S, SE, E, NNE]}
+            points={[JY_29, JY_07, JY_10, JY_12, JY_17, JY_24, offset(midPoint(JY_24, JY_25), { dy: OFFSET * 2 }), JY_27, JY_28, JY_29]}
+            directions={[NNE, NNW, WSW, W, S, SE, E, NNE, ENE, NNE]}
             radii={{ 1: RADIUS + OFFSET * 0.5 }}
             color="stroke-yamanote"
         />

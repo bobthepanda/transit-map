@@ -41,7 +41,11 @@ export interface StopDefinition {
     fillColor?: string;
 }
 
-const StopText = ({ text, subtitleText = '', textAlignment = TextAlignment.RIGHT }: TextDefinition) => {
+const StopText = ({
+    text = 'Placeholder text',
+    subtitleText = 'Placeholder text',
+    textAlignment = TextAlignment.RIGHT,
+}: TextDefinition) => {
     const content = (
         <>
             <tspan className="text-base">{text}</tspan>

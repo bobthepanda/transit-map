@@ -24,6 +24,11 @@ const STOPS_TO_HIDE_TEXT: string[] = [
   'JB 30', 'T 23',  // Nishi-Funabashi
   'JB 14', 'N 08', 'JC 04', // Yotsuya
   'E 06', 'Y 13', 'N 10', 'JB 16', // Iidabashi
+  'Z 07', 'S 06', // Jimbocho,
+  'JY 17', 'JB 10', // Shinjuku
+  'C 07', 
+  'N 07', 'C 04', 'M 13', // Nagatcho
+  'JY 20', 'G 01', // Shibuya
 ]
 
 export default STOPS_TO_HIDE_TEXT;

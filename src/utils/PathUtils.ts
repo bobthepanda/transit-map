@@ -15,7 +15,11 @@ export const offset = ({ x, y }: Coordinates, ...coords: RelativeCoordinates[]):
     return { x: newX, y: newY };
 };
 
-export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, value: number): RelativeCoordinates => {
+export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...values: number[]): RelativeCoordinates => {
+    let value = 1;
+    values.forEach((v) => {
+        value *= v;
+    });
     return { dx: dx * value, dy: dy * value };
 };
 
@@ -196,9 +200,10 @@ export const curveFrom = ({ start, end, firstDirection, secondDirection, radius,
     });
 };
 
-export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, factor: number = 1): RelativeCoordinates => {
+export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors: number[]): RelativeCoordinates => {
     if (dx === 0) {
-        return { dx: 0, dy: (Math.abs(dy) / dy) * factor };
+        return { dx: 0, dy: (Math.abs(dy) / dy) * factors.reduce((a, b) => a * b) };
     }
-    return scale({ dx, dy }, factor / Math.abs(dx));
+
+    return scale({ dx, dy }, ...factors, 1 / Math.abs(dx));
 };
