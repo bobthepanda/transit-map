@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, ENE, N, NNE, NW, offset, S, scale, scaleToUnitX, SSE, W, WNW } from '../../utils/PathUtils';
+import { E, ENE, midPoint, N, NNE, NW, offset, S, scale, scaleToUnitX, SSE, W, WNW } from '../../utils/PathUtils';
 import { JB_17 } from '../jr-east/ChuoSobu';
 import { JY_11, JY_22 } from '../jr-east/Yamanote';
 import { C_09, C_11 } from '../metro/Chiyoda';
@@ -17,8 +17,8 @@ const I_08 = offset(C_09, scale(W, OFFSET));
 const I_07 = offset(C_09, { dx: -MAJOR_LINE * 0.5, dy: MAJOR_LINE * 1.5 });
 export const I_04 = offset(A_08, scale(WNW, OFFSET));
 export const I_01 = offset(JY_22, scale(SSE, OFFSET * 2));
-export const I_02 = offset(I_01, scaleToUnitX(ENE, MAJOR_LINE));
-export const I_03 = offset(I_02, scaleToUnitX(ENE, MAJOR_LINE));
+export const I_02 = offset(I_01, scaleToUnitX(ENE, MAJOR_LINE - OFFSET));
+export const I_03 = offset(I_02, scaleToUnitX(ENE, MAJOR_LINE - OFFSET));
 
 const MitaStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-mita" />;
@@ -45,7 +45,7 @@ export const MitaStops = () => {
 export const MitaPath = () => {
     return (
         <SVGPath
-            points={[I_01, offset(I_03, { dx: MAJOR_LINE, dy: -OFFSET }), I_04, I_08, I_09, I_10, I_15]}
+            points={[I_01, midPoint(I_03, I_04), I_04, I_08, I_09, I_10, I_15]}
             directions={[ENE, E, NNE, N, NNE, NW, N]}
             color="stroke-mita"
         />

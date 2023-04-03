@@ -2,6 +2,8 @@ import { ChuoRapidPath, ChuoRapidStops } from './ChuoRapid';
 import { ChuoSobuPath, ChuoSobuStops } from './ChuoSobu';
 import { KeihinTohokuPath, KeihinTohokuStops } from './KeihinTohoku';
 import { NambuPath, NambuStops } from './Nambu';
+import { SaikyoPath, SaikyoStops } from './Saikyo';
+import { ShonanShinjukuPath, ShonanShinjukuStops } from './ShonanShinjuku';
 import { SobuRapidPath, SobuRapidStops } from './SobuRapid';
 import { TokaidoPath, TokaidoStops } from './Tokaido';
 import { YamanotePath, YamanoteStops } from './Yamanote';
@@ -18,6 +20,8 @@ export const JRStops = () => {
             <TokaidoStops />
             <YokohamaStops />
             <NambuStops />
+            <ShonanShinjukuStops />
+            <SaikyoStops />
         </>
     );
 };
@@ -33,6 +37,8 @@ export const JRPaths = () => {
             <TokaidoPath />
             <YokohamaPath />
             <NambuPath />
+            <ShonanShinjukuPath />
+            <SaikyoPath />
         </>
     );
 };

@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { JRPaths, JRStops } from '../newtokyo/jr-east/JREast';
+import { KeikyuPaths, KeikyuStops } from '../newtokyo/keikyu/Keikyu';
 import { KeioPaths, KeioStops } from '../newtokyo/keio/Keio';
 import { MetroPaths, MetroStops } from '../newtokyo/metro/TokyoMetro';
 import { OdakyuPaths, OdakyuStops } from '../newtokyo/odakyu/Odakyu';
+import { OtherPaths, OtherStops } from '../newtokyo/other/Other';
 import { ToeiPaths, ToeiStops } from '../newtokyo/toei/Toei';
 import { TokyuPath, TokyuStops } from '../newtokyo/tokyu/Tokyu';
 import './colors/jr-east-colors.css';
@@ -22,6 +24,8 @@ const Tokyo = (): JSX.Element => {
     return (
         <>
             <g id="tokyo-paths">
+                <OtherPaths />
+                <KeikyuPaths />
                 <KeioPaths />
                 <TokyuPath />
                 <OdakyuPaths />
@@ -30,6 +34,8 @@ const Tokyo = (): JSX.Element => {
                 <JRPaths />
             </g>
             <g id="tokyo">
+                <OtherStops />
+                <KeikyuStops />
                 <KeioStops />
                 <TokyuStops />
                 <OdakyuStops />

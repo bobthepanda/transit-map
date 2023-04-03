@@ -2,8 +2,8 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, ESE, generatePoint, N, NNE, NNW, offset, RADIUS, scale, scaleToUnitX, SSW, WNW } from '../../utils/PathUtils';
-import { JY_03, JY_04, JY_05, JY_21 } from '../jr-east/Yamanote';
+import { E, ENE, ESE, generatePoint, N, NNE, NNW, offset, scale, scaleToUnitX, SSW, WNW } from '../../utils/PathUtils';
+import { JY_03, JY_04, JY_05, JY_20, JY_21 } from '../jr-east/Yamanote';
 import { A_11, A_12, A_13, A_14 } from '../toei/Asakusa';
 import { C_08, C_09 } from './Chiyoda';
 import { G_07, G_09 } from './Ginza';
@@ -20,10 +20,11 @@ export const H_09 = offset(G_09, scaleToUnitX(SSW, OFFSET * 0.375), scaleToUnitX
 export const H_08 = offset(C_09, { dy: OFFSET });
 export const H_07 = offset(C_08, { dx: OFFSET * 0.5, dy: OFFSET });
 export const H_06 = generatePoint({ start: H_07, slope: SSW, endReference: G_07 });
-export const H_02 = offset(JY_21, { dx: -OFFSET * 0.5, dy: -OFFSET });
-export const H_03 = offset(H_02, { dx: MAJOR_LINE - OFFSET, dy: -MAJOR_LINE * 0.5 });
-export const H_04 = offset(H_03, { dx: MAJOR_LINE - OFFSET, dy: -MAJOR_LINE * 0.5 });
+export const H_02 = offset(JY_21, { dy: OFFSET });
+export const H_03 = offset(H_02, { dx: MAJOR_LINE - OFFSET * 1.5, dy: -MAJOR_LINE + OFFSET * 1.5 });
+export const H_04 = offset(H_03, { dx: MAJOR_LINE - OFFSET, dy: -MAJOR_LINE * 0.5 - OFFSET * 0.5 });
 export const H_05 = offset(H_04, { dx: MAJOR_LINE * 2.5 });
+const H_01 = offset(JY_20, { dx: -MAJOR_LINE + OFFSET * 1.5, dy: MAJOR_LINE * 2 - OFFSET * 1.25 });
 
 const HibiyaStop = ({ stationCode, location, textAlignment }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} textAlignment={textAlignment} strokeColor="stroke-hibiya" />;
@@ -32,6 +33,7 @@ const HibiyaStop = ({ stationCode, location, textAlignment }: StopDefinition) =>
 export const HibiyaStops = () => {
     return (
         <>
+            <HibiyaStop stationCode="H 01" location={H_01} />
             <HibiyaStop stationCode="H 02" location={H_02} />
             <HibiyaStop stationCode="H 03" location={H_03} />
             <HibiyaStop stationCode="H 04" location={H_04} />
@@ -56,10 +58,9 @@ export const HibiyaStops = () => {
 export const HibiyaPath = () => {
     return (
         <SVGPath
-            points={[H_02, H_03, H_04, H_07, H_08, H_12, H_14, H_16]}
+            points={[H_01, H_02, H_03, H_04, H_07, H_08, H_12, H_14, H_16]}
             color="stroke-hibiya"
-            directions={[E, N, E, NNE, ESE, NNE, NNW, NNE]}
-            radii={{ 4: RADIUS * 2 }}
+            directions={[E, ENE, N, E, NNE, ESE, NNE, NNW, NNE]}
         />
     );
 };

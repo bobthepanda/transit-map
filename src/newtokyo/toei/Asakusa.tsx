@@ -20,7 +20,7 @@ export const A_05 = offset(JY_23, { dy: OFFSET });
 export const A_07 = offset(JY_26, scaleToUnitX(WNW, OFFSET * 2));
 export const A_08 = offset(JY_27, scaleToUnitX(WNW, OFFSET * 2));
 export const A_09 = offset(JY_28, scaleToUnitX(NNW, OFFSET));
-export const A_10 = offset(JY_29, { dy: OFFSET }, scale(SSW, OFFSET));
+export const A_10 = offset(JY_29, { dy: OFFSET }, scale(SSW, OFFSET), scaleToUnitX(WNW, OFFSET));
 
 const AsakusaStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-asakusa" />;

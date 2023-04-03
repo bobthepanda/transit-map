@@ -5,8 +5,8 @@ import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { ENE, ESE, NNE, NNW, NW, offset, scale, scaleToUnitX, WNW } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import { JY_01, JY_02, JY_04, JY_20, JY_29 } from '../jr-east/Yamanote';
-import { A_11 } from '../toei/Asakusa';
+import { JY_01, JY_02, JY_04, JY_20 } from '../jr-east/Yamanote';
+import { A_10, A_11 } from '../toei/Asakusa';
 import { C_08 } from './Chiyoda';
 
 export const G_10 = offset(JY_01, scaleToUnitX(ESE, MAJOR_LINE));
@@ -19,7 +19,7 @@ export const G_07 = offset(C_08, { dy: MAJOR_LINE - OFFSET * 1.25 }, scaleToUnit
 export const G_01 = offset(JY_20, { dx: OFFSET * 2 }, scale(NNW, OFFSET));
 export const G_06 = offset(G_07, scaleToUnitX(WNW, MAJOR_LINE * 1.25 + OFFSET * 0.75));
 export const G_05 = offset(G_06, scaleToUnitX(WNW, MAJOR_LINE * 0.5));
-export const G_08 = offset(JY_29, { dy: OFFSET });
+export const G_08 = offset(A_10, scale(NNE, OFFSET));
 export const G_02 = offset(G_01, scaleToUnitX(ENE, MAJOR_LINE - OFFSET));
 export const G_03 = offset(G_02, scaleToUnitX(ENE, MAJOR_LINE - OFFSET));
 export const G_04 = offset(G_03, scaleToUnitX(ENE, MAJOR_LINE - OFFSET));

@@ -24,7 +24,7 @@ export const JY_11 = offset(JY_10, scaleToUnitX(WSW, MAJOR_LINE * 2.5));
 export const JY_30 = offset(JY_01, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
 export const JY_29 = offset(JY_30, scaleToUnitX(SSW, MAJOR_LINE * 0.75));
 export const JY_28 = offset(JY_29, { dx: -MAJOR_LINE, dy: MAJOR_LINE }, scaleToUnitX(NNE, OFFSET));
-export const JY_27 = offset(JY_28, { dx: -MAJOR_LINE, dy: MAJOR_LINE }, scaleToUnitX(NNE, OFFSET * 1.5));
+export const JY_27 = offset(JY_28, { dx: -MAJOR_LINE, dy: MAJOR_LINE }, scaleToUnitX(NNE, OFFSET));
 export const JY_26 = offset(JY_27, scaleToUnitX(SSW, MAJOR_LINE * 0.875 - OFFSET * 0.75));
 export const JY_25 = offset(JY_26, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
 

@@ -16,7 +16,7 @@ const ODAWARA_SLOPE = scaleToUnitX(WSW, MAJOR_LINE * 0.5);
 
 export const OH_07 = offset(OH_06, ODAWARA_SLOPE);
 export const OH_10 = offset(OH_07, scale(ODAWARA_SLOPE, 3));
-export const OH_18 = offset(OH_10, scale(ODAWARA_SLOPE, 8));
+export const OH_18 = offset(OH_10, scale(ODAWARA_SLOPE, 8), scaleToUnitX(WSW, OFFSET * 1.25));
 export const OH_23 = offset(OH_18, scale(ODAWARA_SLOPE, 5));
 export const OH_27 = offset(OH_23, scale(ODAWARA_SLOPE, 4));
 export const OH_28 = offset(OH_27, ODAWARA_SLOPE);

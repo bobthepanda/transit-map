@@ -177,7 +177,7 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
     return p;
 };
 
-const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection, secondDirection }: CurveFromParameters): Coordinates => {
+export const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection, secondDirection }: CurveFromParameters): Coordinates => {
     const a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
     const b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
 
