@@ -3,7 +3,7 @@ import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { ENE, ESE, NE, NNE, NNW, offset, RADIUS, scale, scaleToUnitX, SSE, SW } from '../../utils/PathUtils';
+import { ENE, ESE, NE, NNE, NNW, RADIUS, SSE, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JY_01, JY_02, JY_03, JY_04, JY_05, JY_06, JY_07, JY_08, JY_09, JY_25, JY_26, JY_27, JY_28, JY_29, JY_30 } from './Yamanote';
 
@@ -37,6 +37,10 @@ export const JK_17 = offset(JY_25, { dx: OFFSET * 1.5, dy: OFFSET * 1.5 }, scale
 export const JK_16 = offset(JK_17, scaleToUnitX(SW, MAJOR_LINE * 1.5));
 export const JK_18 = offset(JK_17, scaleToUnitX(NE, MAJOR_LINE * 2));
 export const JK_19 = offset(JK_18, scaleToUnitX(NE, MAJOR_LINE * 1.25));
+export const JK_15 = offset(JK_16, scaleToUnitX(SW, MAJOR_LINE * 1.5));
+export const JK_14 = offset(JK_15, scaleToUnitX(SW, MAJOR_LINE * 1.5));
+export const JK_13 = offset(JK_14, scaleToUnitX(SW, MAJOR_LINE * 1.5));
+export const JK_12 = offset(JK_13, scaleToUnitX(SW, MAJOR_LINE * 1.5));
 const KeihinTohokuStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-keihin-tohoku" />;
 };
@@ -44,6 +48,10 @@ const KeihinTohokuStop = ({ stationCode, location }: StopDefinition) => {
 export const KeihinTohokuStops = () => {
     return (
         <>
+            <KeihinTohokuStop stationCode="JK 12" location={JK_12} />
+            <KeihinTohokuStop stationCode="JK 13" location={JK_13} />
+            <KeihinTohokuStop stationCode="JK 14" location={JK_14} />
+            <KeihinTohokuStop stationCode="JK 15" location={JK_15} />
             <KeihinTohokuStop stationCode="JK 16" location={JK_16} />
             <KeihinTohokuStop stationCode="JK 17" location={JK_17} />
             <KeihinTohokuStop stationCode="JK 18" location={JK_18} />
@@ -76,7 +84,7 @@ export const KeihinTohokuStops = () => {
 export const KeihinTohokuPath = () => {
     return (
         <SVGPath
-            points={[JK_17, JK_20, JK_23, JK_26, JK_47]}
+            points={[JK_12, JK_20, JK_23, JK_26, JK_47]}
             directions={[NE, NNE, ENE, NNE, NNW]}
             radii={{ 4: RADIUS + OFFSET * 0.5 * 2 }}
             color="stroke-keihin-tohoku"

@@ -3,7 +3,7 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { offset, scale, scaleToUnitX, SSW, W, WSW } from '../../utils/PathUtils';
+import { SSW, SW, W, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JC_05 } from '../jr-east/ChuoRapid';
 import { C_01, C_02 } from '../metro/Chiyoda';
@@ -13,16 +13,18 @@ const OH_04 = offset(C_02, { dy: -OFFSET });
 const OH_05 = offset(C_01, { dy: -OFFSET });
 const OH_06 = offset(OH_05, { dx: -MAJOR_LINE, dy: OFFSET * 2 });
 const ODAWARA_SLOPE = scaleToUnitX(WSW, MAJOR_LINE * 0.5);
+const NOBORITO_SLOPE = scaleToUnitX(SW, MAJOR_LINE * 0.5);
 
 export const OH_07 = offset(OH_06, ODAWARA_SLOPE);
 export const OH_10 = offset(OH_07, scale(ODAWARA_SLOPE, 3));
 export const OH_18 = offset(OH_10, scale(ODAWARA_SLOPE, 8), scaleToUnitX(WSW, OFFSET * 1.25));
-export const OH_23 = offset(OH_18, scale(ODAWARA_SLOPE, 5));
-export const OH_27 = offset(OH_23, scale(ODAWARA_SLOPE, 4));
-export const OH_28 = offset(OH_27, ODAWARA_SLOPE);
-export const OH_32 = offset(OH_28, scale(ODAWARA_SLOPE, 4));
-export const OH_33 = offset(OH_32, ODAWARA_SLOPE);
-export const OH_41 = offset(OH_33, scale(ODAWARA_SLOPE, 8));
+const OH_19 = offset(OH_18, ODAWARA_SLOPE, { dy: OFFSET });
+export const OH_23 = offset(OH_19, scale(NOBORITO_SLOPE, 4));
+export const OH_27 = offset(OH_23, scale(NOBORITO_SLOPE, 4));
+export const OH_28 = offset(OH_27, NOBORITO_SLOPE);
+export const OH_32 = offset(OH_28, scale(NOBORITO_SLOPE, 4));
+export const OH_33 = offset(OH_32, NOBORITO_SLOPE);
+export const OH_41 = offset(OH_33, scale(NOBORITO_SLOPE, 8));
 
 export const OdawaraStops = () => {
     return (
@@ -49,5 +51,5 @@ export const OdawaraStops = () => {
 };
 
 export const OdawaraPath = () => {
-    return <SVGPath points={[OH_01, OH_05, OH_41]} directions={[SSW, W, WSW]} />;
+    return <SVGPath points={[OH_01, OH_05, OH_18, OH_41]} directions={[SSW, W, WSW, SW]} />;
 };

@@ -1,5 +1,6 @@
 import { DenEnToshiPath, DenEnToshiStops } from './DenEnToshi';
 import { MeguroPath, MeguroStops } from './Meguro';
+import { OimachiPath, OimachiStops } from './Oimachi';
 import { ToyokoPath, ToyokoStops } from './Toyoko';
 
 export const TokyuStops = () => {
@@ -8,6 +9,7 @@ export const TokyuStops = () => {
             <DenEnToshiStops />
             <ToyokoStops />
             <MeguroStops />
+            <OimachiStops />
         </>
     );
 };
@@ -18,6 +20,7 @@ export const TokyuPath = () => {
             <DenEnToshiPath />
             <ToyokoPath />
             <MeguroPath />
+            <OimachiPath />
         </>
     );
 };

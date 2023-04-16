@@ -6,7 +6,7 @@ import { JK_19 } from '../jr-east/KeihinTohoku';
 import { JA_08 } from '../jr-east/Saikyo';
 
 const R_08 = offset(JA_08, scale(SW, OFFSET));
-const R_07 = offset(JK_19, { dx: -OFFSET });
+export const R_07 = offset(JK_19, { dx: -OFFSET });
 
 export const RinkaiStops = () => {
     return (
