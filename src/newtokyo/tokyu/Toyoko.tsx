@@ -2,7 +2,8 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { S, SSW, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { NW, S, SSW, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { JK_12 } from '../jr-east/KeihinTohoku';
 import { F_16 } from '../metro/Fukutoshin';
 
 const TY_01 = offset(F_16, { dy: OFFSET });
@@ -21,6 +22,7 @@ export const TY_12 = offset(TY_11, DEN_EN_CHOFU_OFFSET);
 export const TY_13 = offset(TY_12, DEN_EN_CHOFU_OFFSET);
 export const TY_15 = offset(TY_13, scale(DEN_EN_CHOFU_OFFSET, 2));
 export const TY_16 = offset(TY_15, DEN_EN_CHOFU_OFFSET);
+export const TY_21 = offset(JK_12, scaleToUnitX(NW, OFFSET * 2));
 
 export const ToyokoStops = () => {
     return (
@@ -37,10 +39,11 @@ export const ToyokoStops = () => {
             <Stop stationCode="TY 13" location={TY_13} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="TY 15" location={TY_15} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="TY 16" location={TY_16} textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="TY 21" location={TY_21} textAlignment={TextAlignment.LEFT} />
         </>
     );
 };
 
 export const ToyokoPath = () => {
-    return <SVGPath points={[TY_01, TY_02, TY_16]} directions={[S, SSW, SW]} />;
+    return <SVGPath points={[TY_01, TY_02, TY_16, TY_21]} directions={[S, SSW, SW, S]} />;
 };
