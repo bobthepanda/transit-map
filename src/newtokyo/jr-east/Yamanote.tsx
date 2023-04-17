@@ -2,7 +2,7 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { HEIGHT, OFFSET, WIDTH } from '../../utils/CommonCoordinates';
-import { E, ENE, midPoint, N, NNE, NNW, offset, RADIUS, S, scaleToUnitX, SE, SSW, W, WSW } from '../../utils/PathUtils';
+import { E, ENE, N, NNE, NNW, RADIUS, S, SE, SSW, W, WSW, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
 
 export const JY_01 = { x: WIDTH / 2 - ((WIDTH / 2) % 144), y: HEIGHT / 2 - ((HEIGHT / 2) % 144) };
 export const JY_02 = offset(JY_01, scaleToUnitX(NNE, MAJOR_LINE * 1.25));
@@ -31,8 +31,8 @@ export const JY_25 = offset(JY_26, scaleToUnitX(SSW, MAJOR_LINE * 0.5));
 export const JY_18 = offset(JY_17, scaleToUnitX(S, MAJOR_LINE * 1));
 export const JY_19 = offset(JY_18, scaleToUnitX(S, MAJOR_LINE * 1.5));
 export const JY_20 = offset(JY_19, scaleToUnitX(S, MAJOR_LINE * 1.5));
-export const JY_21 = offset(JY_20, { dx: MAJOR_LINE * 0.5, dy: MAJOR_LINE }, scaleToUnitX(SE, OFFSET * 3));
-export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE));
+export const JY_21 = offset(JY_20, { dx: MAJOR_LINE * 0.5, dy: MAJOR_LINE }, scaleToUnitX(SE, OFFSET));
+export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE + OFFSET * 2));
 export const JY_23 = offset(JY_22, scaleToUnitX(SE, MAJOR_LINE - OFFSET * 1.5));
 export const JY_24 = offset(JY_23, scaleToUnitX(SE, MAJOR_LINE - MINOR_LINE));
 

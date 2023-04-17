@@ -1,4 +1,5 @@
 import { MAJOR_LINE } from '../../map/GridLines';
+import { H_04 } from '../../newtokyo/metro/Hibiya';
 import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import {
@@ -12,7 +13,7 @@ import {
     YAMANOTE_OKACHIMACHI,
     YAMANOTE_YURAKUCHO,
 } from '../../utils/CommonCoordinates';
-import { E, generatePoint, N, offset, RADIUS, S, W, WNW } from '../../utils/PathUtils';
+import { E, N, RADIUS, S, W, WNW, generatePoint, offset } from '../../utils/PathUtils';
 import { JB_12, JB_16, JB_17 } from '../jr-east/ChuoSobu';
 import { JY_17, JY_18 } from '../jr-east/Yamanote';
 
@@ -27,7 +28,7 @@ export const E_20 = offset(MITA_HIBIYA, { dx: MAJOR_LINE + OFFSET * 0.5, dy: MAJ
 const E_19 = offset(E_20, { dx: MAJOR_LINE * 3 - OFFSET * 0.5 });
 const E_18 = offset(E_19, { dx: MAJOR_LINE * 1.5 });
 export const E_22 = offset(E_20, { dx: -OFFSET - MAJOR_LINE * 3.5 });
-export const E_23 = offset(E_22, { dx: OFFSET * 0.5 - MAJOR_LINE * 1.5, dy: -MAJOR_LINE * 0.5 });
+export const E_23 = offset(H_04, { dy: -OFFSET, dx: -OFFSET * 0.5 });
 export const E_24 = generatePoint({ start: E_23, slope: WNW, endReference: offset(E_23, { dx: -MAJOR_LINE * 2 }) });
 const E_25 = offset(JB_12, { dy: OFFSET + MAJOR_LINE });
 const E_26 = offset(JY_18, { dx: OFFSET * 2 });
