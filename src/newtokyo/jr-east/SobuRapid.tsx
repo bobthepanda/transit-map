@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, ENE, ESE, NNE, offset, S, scale, scaleToUnitX, SSE, WSW } from '../../utils/PathUtils';
+import { E, ENE, ESE, NNE, S, SE, SSE, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { A_15 } from '../toei/Asakusa';
 import { MG_11 } from '../tokyu/Meguro';
 import { JB_22 } from './ChuoSobu';
@@ -15,7 +15,7 @@ export const JO_21 = offset(A_15, { dx: -OFFSET, dy: -OFFSET * 2 });
 export const JO_22 = offset(JB_22, scaleToUnitX(S, OFFSET));
 export const JO_18 = offset(JY_29, YAMANOTE_OFFSET);
 export const JO_17 = offset(JY_25, YAMANOTE_OFFSET);
-export const JO_15 = offset(MG_11, scale(ESE, OFFSET * 3));
+export const JO_15 = offset(MG_11, scale(SE, OFFSET * 3));
 
 const SobuRapidStop = ({ stationCode, location }: StopDefinition) => {
     return <Stop stationCode={stationCode} location={location} strokeColor="stroke-sobu-rapid" />;

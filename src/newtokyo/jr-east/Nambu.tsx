@@ -34,5 +34,5 @@ export const NambuStops = () => {
 };
 
 export const NambuPath = () => {
-    return <SVGPath points={[JN_01, JN_02, JN_07, JN_21]} directions={[NW, N, WNW, N]} color="stroke-nambu" />;
+    return <SVGPath points={[JN_01, JN_02, JN_07, JN_10, JN_21]} directions={[NW, N, NW, WNW, N]} color="stroke-nambu" />;
 };
