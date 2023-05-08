@@ -3,8 +3,7 @@ import { Stop, StopDefinition, TextAlignment } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, ESE, N, NNE, NNW, SSW, SW, WNW, generatePoint, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
-import { JA_09 } from '../jr-east/Saikyo';
-import { JY_03, JY_04, JY_05 } from '../jr-east/Yamanote';
+import { JY_03, JY_04, JY_05, JY_21 } from '../jr-east/Yamanote';
 import { A_11, A_12, A_13, A_14 } from '../toei/Asakusa';
 import { C_08, C_09 } from './Chiyoda';
 import { G_04, G_07, G_09 } from './Ginza';
@@ -21,7 +20,7 @@ export const H_09 = offset(G_09, scaleToUnitX(SSW, OFFSET * 0.375), scaleToUnitX
 export const H_08 = offset(C_09, { dy: OFFSET });
 export const H_07 = offset(C_08, { dx: OFFSET * 0.5, dy: OFFSET });
 export const H_06 = generatePoint({ start: H_07, slope: SSW, endReference: G_07 });
-export const H_02 = offset(JA_09, scaleToUnitX(SW, OFFSET * 0.75));
+export const H_02 = offset(JY_21, scale(SW, OFFSET * 2), scaleToUnitX(SW, OFFSET * 0.75));
 export const H_04 = offset(G_04, { dy: MAJOR_LINE * 1.75 });
 export const H_03 = midPoint(H_02, H_04);
 export const H_05 = offset(H_04, { dx: MAJOR_LINE * 2.5 });

@@ -3,7 +3,7 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { ESE, NNW, S, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { NNW, S, SE, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JK_17 } from '../jr-east/KeihinTohoku';
 import { A_05 } from '../toei/Asakusa';
@@ -29,5 +29,5 @@ export const IkegamiStops = () => {
 };
 
 export const IkegamiPath = () => {
-    return <SVGPath points={[IK_01, IK_05, IK_15]} directions={[WSW, S, ESE]} />;
+    return <SVGPath points={[IK_01, IK_05, IK_15]} directions={[WSW, S, SE]} />;
 };

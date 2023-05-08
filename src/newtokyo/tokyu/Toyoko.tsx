@@ -3,9 +3,9 @@ import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NW, S, SSW, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { ENE, NNW, S, SSE, SSW, SW, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import { JK_12 } from '../jr-east/KeihinTohoku';
+import { JK_11, JK_12 } from '../jr-east/KeihinTohoku';
 import { F_16 } from '../metro/Fukutoshin';
 import { H_01 } from '../metro/Hibiya';
 import { DT_10 } from './DenEnToshi';
@@ -25,8 +25,14 @@ export const TY_07 = offset(TY_03, scale(TOYOKO_OFFSET, 4), scaleToUnitX(SSW, OF
 export const TY_12 = offset(TY_11, DEN_EN_CHOFU_OFFSET);
 export const TY_13 = offset(TY_12, DEN_EN_CHOFU_OFFSET);
 export const TY_15 = offset(TY_13, scale(DEN_EN_CHOFU_OFFSET, 2));
-export const TY_16 = offset(TY_15, DEN_EN_CHOFU_OFFSET);
-export const TY_21 = offset(JK_12, scaleToUnitX(NW, OFFSET * 2));
+export const TY_21 = offset(JK_12, scale(NNW, OFFSET), scaleToUnitX(WSW, OFFSET * 0.5), scale(NNW, OFFSET * 2));
+export const TY_16 = offset(TY_15, { dx: -MAJOR_LINE * 0.5 - OFFSET, dy: MAJOR_LINE * 0.5 + OFFSET * 2 });
+const MM_01 = offset(TY_21, scale(SSE, OFFSET));
+const MM_03 = offset(JK_11, scaleToUnitX(ENE, MAJOR_LINE));
+
+const MM_OFFSET = scaleToUnitX(SSE, OFFSET * 1);
+const MM_06 = offset(MM_03, scale(MM_OFFSET, 3));
+const MM_02 = offset(MM_03, scale(MM_OFFSET, -1));
 
 export const ToyokoStops = () => {
     return (
@@ -41,12 +47,18 @@ export const ToyokoStops = () => {
             <Stop stationCode="TY 12" location={TY_12} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="TY 13" location={TY_13} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="TY 15" location={TY_15} textAlignment={TextAlignment.LEFT} />
-            <Stop stationCode="TY 16" location={TY_16} textAlignment={TextAlignment.LEFT} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('TY', 16, 20)}
+                origin={TY_16}
+                slope={scaleToUnitX(S, MAJOR_LINE * 0.5 + OFFSET * 1.5)}
+            />
             <Stop stationCode="TY 21" location={TY_21} textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="MM 01" location={MM_01} textAlignment={TextAlignment.LEFT} />
+            <LineSegmentWithStepChange stops={generateStationCodes('MM', 2, 6)} origin={MM_02} slope={MM_OFFSET} />
         </>
     );
 };
 
 export const ToyokoPath = () => {
-    return <SVGPath points={[TY_01, TY_03, TY_10, TY_21]} directions={[S, SSW, SW, S]} />;
+    return <SVGPath points={[TY_01, TY_03, TY_10, TY_16, MM_06]} directions={[S, SSW, SW, S, SSE]} />;
 };

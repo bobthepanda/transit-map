@@ -2,12 +2,13 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, StopDefinition } from '../../symbols/BasicStop';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { offset, RADIUS, S, scale, SE, SSE, SW, W, WSW } from '../../utils/PathUtils';
+import { N, NW, S, SE, SSE, SW, W, WSW, offset, scale } from '../../utils/PathUtils';
+import { JS_15, JS_16, OIMACHI_CURVE } from './ShonanShinjuku';
 import { JU_04, JU_07 } from './Tokaido';
 import { JY_13, JY_17, JY_20, JY_21, JY_24 } from './Yamanote';
 
-const SaikyoStop = ({ stationCode, location }: StopDefinition) => {
-    return <Stop stationCode={stationCode} location={location} strokeColor="stroke-saikyo" />;
+const SaikyoStop = ({ stationCode, location, hideText }: StopDefinition) => {
+    return <Stop stationCode={stationCode} location={location} strokeColor="stroke-saikyo" hideText={hideText} />;
 };
 
 export const JA_08 = offset(JY_24, scale(SW, OFFSET * 2));
@@ -19,9 +20,14 @@ export const JA_15 = offset(JU_04, scale(WSW, OFFSET * 2));
 export const JA_26 = offset(JU_07, scale(WSW, OFFSET * 2));
 export const JA_13 = offset(JA_12, { dx: MAJOR_LINE + MINOR_LINE, dy: -MAJOR_LINE * 2.5 });
 
+const THIS_JS_15 = offset(JS_15, scale(NW, OFFSET));
+const THIS_JS_16 = offset(JS_16, scale(N, OFFSET));
+
 export const SaikyoStops = () => {
     return (
         <>
+            <SaikyoStop stationCode="JS 15" location={THIS_JS_15} hideText />
+            <SaikyoStop stationCode="JS 16" location={THIS_JS_16} hideText />
             <SaikyoStop stationCode="JA 08" location={JA_08} />
             <SaikyoStop stationCode="JA 09" location={JA_09} />
             <SaikyoStop stationCode="JA 10" location={JA_10} />
@@ -37,9 +43,8 @@ export const SaikyoStops = () => {
 export const SaikyoPath = () => {
     return (
         <SVGPath
-            points={[JA_26, JA_13, JA_10, JA_08]}
-            directions={[SSE, WSW, S, SE]}
-            radii={{ 1: RADIUS + OFFSET * 0.5 }}
+            points={[JA_26, JA_13, JA_10, JA_08, offset(OIMACHI_CURVE, scale(NW, OFFSET)), THIS_JS_16, THIS_JS_15]}
+            directions={[SSE, WSW, S, SE, SW, W, SW]}
             color="stroke-saikyo"
         />
     );
