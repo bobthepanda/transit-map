@@ -3,8 +3,8 @@ import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { N, NNW, NW, RADIUS, S, SE, SSE, SW, W, WSW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JK_19 } from './KeihinTohoku';
-import { JO_14, JO_15, JO_16 } from './SobuRapid';
-import { JT_05, JU_04, JU_05, JU_07 } from './Tokaido';
+import { JO_09, JO_13, JO_14, JO_15, JO_16 } from './SobuRapid';
+import { JU_04, JU_05, JU_07 } from './Tokaido';
 import { JY_10, JY_12, JY_13, JY_17, JY_20, JY_21, JY_24 } from './Yamanote';
 
 const ShonanShinjukuStop = ({ stationCode, location }: StopDefinition) => {
@@ -23,11 +23,13 @@ export const OIMACHI_CURVE = offset(JK_19, scaleToUnitX(NW, OFFSET * 2));
 export const JS_16 = offset(JO_16, scale(N, OFFSET));
 export const JS_15 = offset(JO_15, scale(NW, OFFSET));
 export const JS_14 = offset(JO_14, scale(SW, OFFSET));
-export const JS_13 = offset(JT_05, scale(SSE, OFFSET));
+export const JS_13 = offset(JO_13, scale(NNW, OFFSET));
+export const JS_09 = offset(JO_09, { dx: -OFFSET });
 
 export const ShonanShinjukuStops = () => {
     return (
         <>
+            <ShonanShinjukuStop stationCode="JS 09" location={JS_09} />
             <ShonanShinjukuStop stationCode="JS 13" location={JS_13} />
             <ShonanShinjukuStop stationCode="JS 14" location={JS_14} />
             <ShonanShinjukuStop stationCode="JS 15" location={JS_15} />
@@ -58,8 +60,9 @@ export const ShonanShinjukuPath = () => {
                 JS_15,
                 JS_14,
                 JS_13,
+                JS_09,
             ]}
-            directions={[SSE, WSW, W, S, SE, SW, W, SW, SE, WSW]}
+            directions={[SSE, WSW, W, S, SE, SW, W, SW, SE, WSW, S]}
             radii={{ 1: RADIUS + OFFSET * 0.5 }}
             color="stroke-shonan-shinjuku"
         />

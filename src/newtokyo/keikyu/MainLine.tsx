@@ -1,11 +1,11 @@
 import { MAJOR_LINE } from '../../map/GridLines';
-import { Stop } from '../../symbols/BasicStop';
+import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { midPoint, offset, scale, scaleToUnitX, SE, SSE, SSW, SW, W, WNW, WSW } from '../../utils/PathUtils';
+import { NNW, SE, SSE, SSW, SW, W, WNW, WSW, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
-import { JK_11, JK_16, JK_17 } from '../jr-east/KeihinTohoku';
+import { JK_05, JK_11, JK_16, JK_17 } from '../jr-east/KeihinTohoku';
 import { JO_13 } from '../jr-east/SobuRapid';
 import { JY_25 } from '../jr-east/Yamanote';
 import { A_07 } from '../toei/Asakusa';
@@ -24,6 +24,8 @@ const KK_35 = offset(KK_29, scale(KAMATA_OFFSET, 6));
 const KK_36 = offset(KK_35, scale(KAMATA_OFFSET, 1));
 const KK_37 = offset(JO_13, scale(SSE, OFFSET));
 const KK_39 = offset(JK_11, scaleToUnitX(WSW, MAJOR_LINE));
+const KK_40 = offset(KK_39, { dy: MAJOR_LINE * 0.5 }, scaleToUnitX(WSW, MAJOR_LINE * 0.5));
+const KK_46 = offset(JK_05, { dx: -OFFSET * 2 });
 export const MainStops = () => {
     return (
         <>
@@ -37,12 +39,22 @@ export const MainStops = () => {
             <LineSegmentWithStepChange stops={generateStationCodes('KK', 20, 18)} origin={KK_20} slope={scale(KAMATA_OFFSET, -1)} />
             <Stop stationCode="KK 37" location={KK_37} />
             <Stop stationCode="KK 39" location={KK_39} />
+            <LineSegmentWithStepChange stops={generateStationCodes('KK', 40, 42)} origin={KK_40} slope={scaleToUnitX(WSW, MAJOR_LINE)} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('KK', 46, 43)}
+                origin={KK_46}
+                textAlignments={[TextAlignment.LEFT]}
+                slope={scaleToUnitX(NNW, OFFSET * 1.5)}
+            />
         </>
     );
 };
 
 export const MainPath = () => {
     return (
-        <SVGPath points={[A_07, KK_01, KK_11, KK_36, midPoint(KK_36, KK_37), KK_37, KK_39]} directions={[SSW, SE, SW, WSW, W, WSW, SSE]} />
+        <SVGPath
+            points={[A_07, KK_01, KK_11, KK_36, midPoint(KK_36, KK_37), KK_37, KK_39, KK_40, KK_46]}
+            directions={[SSW, SE, SW, WSW, W, WSW, SSE, WSW, SSE]}
+        />
     );
 };
