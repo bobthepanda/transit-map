@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { N, offset, scale } from '../../utils/PathUtils';
+import { N, NW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JK_27 } from './Kanda';
 import { JK_24 } from './Shimbashi';
 import { JK_26, TOKYO_VERTICAL_GRID } from './TokyoStation';
@@ -60,6 +60,23 @@ const Suidobashi = () => {
     );
 };
 
+export const JB_16 = offset(JB_17, { dx: -MAJOR_LINE, dy: OFFSET * 2 });
+const IIDABASHI_OFFSET = scale(NW, OFFSET);
+export const N_10 = offset(JB_16, IIDABASHI_OFFSET);
+export const E_06 = offset(N_10, IIDABASHI_OFFSET);
+export const T_06 = offset(JB_16, scaleToUnitX(NW, OFFSET, 2), { dy: -OFFSET * 0.5 });
+
+const Iidabashi = () => {
+    return (
+        <g id="iidabashi">
+            <Stop stationCode="JB 16" location={JB_16} strokeColor="stroke-yamanote" />
+            <Stop stationCode="N 10" location={N_10} strokeColor="stroke-namboku" />
+            <Stop stationCode="E 06" location={E_06} strokeColor="stroke-oedo" />
+            <Stop stationCode="T 06" location={T_06} strokeColor="stroke-tozai" />
+        </g>
+    );
+};
+
 const AkihabaraGroup = () => {
     return (
         <>
@@ -67,6 +84,7 @@ const AkihabaraGroup = () => {
             <Ochanomizu />
             <Asakusabashi />
             <Suidobashi />
+            <Iidabashi />
         </>
     );
 };

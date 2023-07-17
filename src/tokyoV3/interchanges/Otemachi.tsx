@@ -8,8 +8,8 @@ const OTEMACHI_VERTICAL_OFFSET = scale(TOKYO_VERTICAL_GRID, -1 / 2);
 export const M_18 = offset(JK_26, scale(TOKYO_HORIZONTAL_GRID, -1), OTEMACHI_VERTICAL_OFFSET);
 export const I_09 = offset(M_18, scaleToUnitX(NW, OFFSET * 2));
 export const C_11 = offset(I_09, scale(SE, OFFSET));
-export const T_10 = offset(midPoint(M_18, C_11), { dy: OFFSET * 0.5, dx: -OFFSET * 0.5 });
-export const Z_08 = offset(T_10, scaleToUnitX(NE, OFFSET));
+export const T_09 = offset(midPoint(M_18, C_11), { dy: OFFSET * 0.5, dx: -OFFSET * 0.5 });
+export const Z_08 = offset(T_09, scaleToUnitX(NE, OFFSET));
 
 const Otemachi = () => {
     return (
@@ -17,7 +17,7 @@ const Otemachi = () => {
             <Stop stationCode="M 18" location={M_18} strokeColor="stroke-marunouchi" />
             <Stop stationCode="I 09" location={I_09} strokeColor="stroke-mita" />
             <Stop stationCode="C 11" location={C_11} strokeColor="stroke-chiyoda" />
-            <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" />
+            <Stop stationCode="T 09" location={T_09} strokeColor="stroke-tozai" />
             <Stop stationCode="Z 08" location={Z_08} strokeColor="stroke-hanzomon" />
         </g>
     );
@@ -25,26 +25,26 @@ const Otemachi = () => {
 
 export const G_11 = offset(JK_26, TOKYO_HORIZONTAL_GRID, OTEMACHI_VERTICAL_OFFSET);
 export const A_13 = offset(G_11, TOKYO_HORIZONTAL_GRID);
-export const T_11 = offset(midPoint(G_11, A_13), { dy: OFFSET * 0.5, dx: -OFFSET * 0.5 });
+export const T_10 = offset(midPoint(G_11, A_13), { dy: OFFSET * 0.5, dx: -OFFSET * 0.5 });
 
 const Nihombashi = () => {
     return (
         <g id="nihombashi">
             <Stop stationCode="G 11" location={G_11} strokeColor="stroke-ginza" />
             <Stop stationCode="A 13" location={A_13} strokeColor="stroke-asakusa" />
-            <Stop stationCode="T 11" location={T_11} strokeColor="stroke-tozai" />
+            <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" />
         </g>
     );
 };
 
 export const H_13 = offset(A_13, TOKYO_HORIZONTAL_GRID);
-export const T_12 = offset(H_13, { dy: OFFSET });
+export const T_11 = offset(H_13, { dy: OFFSET });
 
 const Kayabacho = () => {
     return (
         <g id="kayabacho">
             <Stop stationCode="H 13" location={H_13} strokeColor="stroke-hibiya" />
-            <Stop stationCode="T 12" location={T_12} strokeColor="stroke-tozai" />
+            <Stop stationCode="T 11" location={T_11} strokeColor="stroke-tozai" />
         </g>
     );
 };
