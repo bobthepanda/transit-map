@@ -112,6 +112,7 @@ export const JY_17 = offset(JB_10, { dx: -OFFSET });
 export const JS_20 = offset(JY_17, { dx: -OFFSET });
 export const JA_11 = offset(JS_20, { dx: -OFFSET });
 export const JC_05 = offset(JA_11, { dx: -OFFSET });
+export const KO_01 = offset(S_01, { dx: -OFFSET });
 export const Shinjuku = () => {
     return (
         <g id="shinjuku">
@@ -123,6 +124,7 @@ export const Shinjuku = () => {
             <Stop stationCode="JC 05" location={JC_05} strokeColor="stroke-chuo-rapid" textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="E 27" location={E_27} strokeColor="stroke-oedo" hideText />
             <Stop stationCode="M 08" location={M_08} strokeColor="stroke-marunouchi" hideText />
+            <Stop stationCode="KO 01" location={KO_01} hideText />
         </g>
     );
 };

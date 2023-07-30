@@ -14,8 +14,11 @@ interface LineSegmentData {
     strokeColor?: string;
     fillColor?: string;
     stops: string[];
+    stopsToHide?: string[];
     origin: Coordinates;
     textAlignments?: TextAlignment[];
+    skipBeginning?: boolean;
+    skipEnd?: boolean;
 }
 
 interface LineSegmentDataWithStepChange extends LineSegmentData {
@@ -37,6 +40,9 @@ export const LineSegmentWithStepChange = ({
     textAlignments = [TextAlignment.RIGHT],
     strokeColor,
     fillColor,
+    stopsToHide = [],
+    skipBeginning = false,
+    skipEnd = false,
 }: LineSegmentDataWithStepChange) => {
     if (stops.length === 0) return null;
     const { x, y } = origin;
@@ -44,17 +50,21 @@ export const LineSegmentWithStepChange = ({
     return (
         <>
             {stops.map((stationCode, index) => {
-                const textAlignment = textAlignments[index % textAlignments.length];
-                return (
-                    <Stop
-                        key={stationCode}
-                        location={{ x: x + index * dx, y: y + index * dy }}
-                        stationCode={stationCode}
-                        textAlignment={textAlignment}
-                        strokeColor={strokeColor}
-                        fillColor={fillColor}
-                    />
-                );
+                if (!(skipBeginning && index === 0) && !(skipEnd && index === stops.length - 1)) {
+                    const textAlignment = textAlignments[index % textAlignments.length];
+                    return (
+                        <Stop
+                            key={stationCode}
+                            location={{ x: x + index * dx, y: y + index * dy }}
+                            stationCode={stationCode}
+                            textAlignment={textAlignment}
+                            strokeColor={strokeColor}
+                            fillColor={fillColor}
+                            hideText={stopsToHide?.includes(stationCode)}
+                        />
+                    );
+                }
+                return undefined;
             })}
         </>
     );
@@ -67,6 +77,9 @@ export const LineSegmentWithTotalChange = ({
     textAlignments,
     strokeColor,
     fillColor,
+    stopsToHide,
+    skipBeginning,
+    skipEnd,
 }: LineSegmentDataWithTotalChange): JSX.Element => {
     return (
         <LineSegmentWithStepChange
@@ -76,6 +89,9 @@ export const LineSegmentWithTotalChange = ({
             textAlignments={textAlignments}
             strokeColor={strokeColor}
             fillColor={fillColor}
+            stopsToHide={stopsToHide}
+            skipBeginning={skipBeginning}
+            skipEnd={skipEnd}
         />
     );
 };
@@ -87,6 +103,9 @@ export const LineSegmentWithEndpoint = ({
     textAlignments,
     strokeColor,
     fillColor,
+    stopsToHide,
+    skipBeginning,
+    skipEnd,
 }: LineSegmentDataWithEndpoint): JSX.Element => {
     const { x: originX, y: originY } = origin;
     const { x: endX, y: endY } = endpoint;
@@ -99,6 +118,9 @@ export const LineSegmentWithEndpoint = ({
             textAlignments={textAlignments}
             strokeColor={strokeColor}
             fillColor={fillColor}
+            stopsToHide={stopsToHide}
+            skipBeginning={skipBeginning}
+            skipEnd={skipEnd}
         />
     );
 };

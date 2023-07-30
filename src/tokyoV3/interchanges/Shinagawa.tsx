@@ -7,12 +7,18 @@ import { JK_21 } from './TakanawaGateway';
 
 export const JK_20 = offset(JK_21, scaleToUnitX(S, MAJOR_LINE));
 export const JY_25 = offset(JK_20, { dx: -OFFSET });
+export const JT_03 = offset(JK_20, { dx: OFFSET });
+export const JO_17 = offset(JT_03, { dx: OFFSET });
+export const KK_01 = offset(JY_25, { dx: -OFFSET, dy: OFFSET * 0.5 });
 
 const Shinagawa = () => {
     return (
         <g id="shinagawa">
-            <Stop stationCode="JK 20" location={JK_20} strokeColor="stroke-keihin-tohoku" />
-            <Stop stationCode="JY 25" location={JY_25} strokeColor="stroke-yamanote" />
+            <Stop stationCode="JK 20" location={JK_20} strokeColor="stroke-keihin-tohoku" hideText />
+            <Stop stationCode="JY 25" location={JY_25} strokeColor="stroke-yamanote" hideText />
+            <Stop stationCode="JT 03" location={JT_03} strokeColor="stroke-tokaido" hideText />
+            <Stop stationCode="JO 17" location={JO_17} strokeColor="stroke-yokosuka" />
+            <Stop stationCode="KK 01" location={KK_01} hideText />
         </g>
     );
 };

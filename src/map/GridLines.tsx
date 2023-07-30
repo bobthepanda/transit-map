@@ -14,11 +14,11 @@ const GridLines = ({ width = 0, height = 0 }: Dimensions): JSX.Element => {
 
     const vertLines: JSX.Element[] = [];
     const horzLines: JSX.Element[] = [];
-    for (let i = 0; i < height; i += MINOR_LINE) {
+    for (let i = 0; i < width; i += MINOR_LINE) {
         horzLines.push(<line x1={i} x2={i} y1="0" y2={width} className={getClassName({ coord: i })} key={`vert-${i}`} />);
     }
 
-    for (let i = 0; i < width; i += MINOR_LINE) {
+    for (let i = 0; i < height; i += MINOR_LINE) {
         vertLines.push(<line y1={i} y2={i} x1="0" x2={height} className={getClassName({ coord: i })} key={`vert-${i}`} />);
     }
 

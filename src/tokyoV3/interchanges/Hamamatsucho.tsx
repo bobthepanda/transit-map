@@ -60,6 +60,7 @@ const Omotesando = () => {
 export const G_01 = offset(G_02, TOKYO_VERTICAL_GRID);
 export const Z_01 = offset(G_01, HANZOMON_OFFSET);
 export const JY_20 = offset(G_01, { dx: -OFFSET, dy: -OFFSET * 0.5 });
+export const IN_01 = offset(JY_20, { dx: -OFFSET * 3 });
 
 const Shibuya = () => {
     return (
@@ -67,6 +68,7 @@ const Shibuya = () => {
             <Stop stationCode="G 01" location={G_01} strokeColor="stroke-ginza" />
             <Stop stationCode="Z 01" location={Z_01} strokeColor="stroke-hanzomon" />
             <Stop stationCode="JY 20" location={JY_20} strokeColor="stroke-yamanote" />
+            <Stop stationCode="IN 01" location={IN_01} hideText />
         </g>
     );
 };

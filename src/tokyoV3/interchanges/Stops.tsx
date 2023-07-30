@@ -1,6 +1,10 @@
 import Akihabara from './Akihabara';
+import Chuo from './Chuo';
 import Hamamatsucho from './Hamamatsucho';
 import Kanda from './Kanda';
+import KeihinTohoku from './KeihinTohoku';
+import KeioGroup from './Keio';
+import Nambu from './Nambu';
 import Nippori from './Nippori';
 import NishiNippori from './NishiNippori';
 import Okachimachi from './Okachimachi';
@@ -30,6 +34,10 @@ const Interchanges = () => {
             <Nippori />
             <NishiNippori />
             <Shinagawa />
+            <KeihinTohoku />
+            <Chuo />
+            <Nambu />
+            <KeioGroup />
         </>
     );
 };

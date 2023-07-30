@@ -21,6 +21,7 @@ const CSVS: string[] = [
     '/jr-east/yamanote.csv',
     '/jr-east/yokohama.csv',
     '/jr-east/narita.csv',
+    '/jr-east/nambu.csv',
     '/other/rinkai.csv',
     '/toei/asakusa.csv',
     '/toei/mita.csv',

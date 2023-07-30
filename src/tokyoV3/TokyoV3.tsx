@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import loadTokyo from '../tokyo/redux/actions/LoadActions';
 import { AppDispatch } from '../tokyo/redux/store';
-import Interchanges from './interchanges/Interchanges';
+import Interchanges from './interchanges/Stops';
 import Lines from './lines/Lines';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
