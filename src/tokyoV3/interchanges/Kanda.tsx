@@ -104,15 +104,16 @@ const Y_15 = offset(Y_14, scaleToUnitX(SW, MAJOR_LINE * 0.5 - MINOR_LINE));
 
 export const Z_05 = offset(Z_06, { dy: MAJOR_LINE + OFFSET, dx: -MAJOR_LINE });
 
-export const S_01 = offset(S_04, scaleToUnitX(W, MAJOR_LINE * 5 + OFFSET * 1.5));
-export const M_08 = offset(S_01, { dy: -OFFSET * 2 });
-export const E_27 = offset(S_01, { dy: -OFFSET, dx: -OFFSET * 0.5 });
-export const JB_10 = offset(E_27, { dx: -OFFSET });
+export const S_01 = offset(S_04, scaleToUnitX(W, MAJOR_LINE * 5 + OFFSET * 3));
+export const E_27 = offset(S_01, { dy: -OFFSET * 2, dx: -OFFSET * 0.5 });
+export const M_08 = offset(E_27, { dy: -OFFSET });
+export const JB_10 = offset(S_01, { dy: -OFFSET });
 export const JY_17 = offset(JB_10, { dx: -OFFSET });
 export const JS_20 = offset(JY_17, { dx: -OFFSET });
 export const JA_11 = offset(JS_20, { dx: -OFFSET });
 export const JC_05 = offset(JA_11, { dx: -OFFSET });
 export const KO_01 = offset(S_01, { dx: -OFFSET });
+export const OH_01 = offset(JC_05, { dx: -OFFSET });
 export const Shinjuku = () => {
     return (
         <g id="shinjuku">
@@ -121,15 +122,16 @@ export const Shinjuku = () => {
             <Stop stationCode="JY 17" location={JY_17} strokeColor="stroke-yamanote" hideText />
             <Stop stationCode="JS 20" location={JS_20} strokeColor="stroke-shonan-shinjuku" hideText />
             <Stop stationCode="JA 11" location={JA_11} strokeColor="stroke-saikyo" hideText />
-            <Stop stationCode="JC 05" location={JC_05} strokeColor="stroke-chuo-rapid" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="OH 01" location={OH_01} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="E 27" location={E_27} strokeColor="stroke-oedo" hideText />
             <Stop stationCode="M 08" location={M_08} strokeColor="stroke-marunouchi" hideText />
             <Stop stationCode="KO 01" location={KO_01} hideText />
+            <Stop stationCode="JC 05" location={JC_05} strokeColor="stroke-chuo-rapid" hideText />
         </g>
     );
 };
 
-export const S_02 = offset(S_01, { dx: MAJOR_LINE * 1.5 });
+export const S_02 = offset(S_01, { dx: MAJOR_LINE * 1.5 + MINOR_LINE });
 export const F_13 = offset(S_02, { dx: -OFFSET * 0.5, dy: OFFSET });
 export const M_09 = offset(F_13, { dx: OFFSET * 0.5, dy: OFFSET });
 

@@ -1,4 +1,4 @@
-import { MAJOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
@@ -9,13 +9,16 @@ import { JC_05 } from './Kanda';
 
 export const JB_09 = { x: JC_05.x - MAJOR_LINE, y: JB_17.y - MAJOR_LINE };
 
-const CHUO_OFFSET = scaleToUnitX(W, MAJOR_LINE);
+const CHUO_OFFSET = scaleToUnitX(W, MAJOR_LINE + MINOR_LINE);
 
 export const JB_01 = offset(JB_09, scale(CHUO_OFFSET, 8));
 export const JC_22 = offset(JB_01, { dy: OFFSET }, scale(CHUO_OFFSET, 10));
 export const JC_19 = offset(JC_22, scale(CHUO_OFFSET, -3));
 export const JC_17 = offset(JC_19, scale(CHUO_OFFSET, -2));
 export const JB_02 = offset(JB_01, scale(CHUO_OFFSET, -1));
+export const JB_04 = offset(JB_02, scale(CHUO_OFFSET, -2));
+export const JB_07 = offset(JB_04, scale(CHUO_OFFSET, -3));
+export const JB_08 = offset(JB_07, scale(CHUO_OFFSET, -1));
 
 const Chuo = () => {
     return (

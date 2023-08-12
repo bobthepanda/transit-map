@@ -1,7 +1,7 @@
 import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NE, S, SE, offset, scaleToUnitX } from '../../utils/PathUtils';
+import { NE, S, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JY_20 } from './Hamamatsucho';
 import { JK_21 } from './TakanawaGateway';
 
@@ -46,8 +46,9 @@ const Osaki = () => {
 };
 
 export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE));
-export const I_01 = offset(JY_22, { dy: -OFFSET });
-export const N_01 = offset(I_01, { dy: -OFFSET });
+export const MG_01 = offset(JY_22, { dx: OFFSET });
+export const N_01 = offset(MG_01, { dx: OFFSET, dy: -OFFSET * 0.5 });
+export const I_01 = offset(N_01, scale(S, OFFSET));
 
 const Meguro = () => {
     return (
@@ -55,6 +56,7 @@ const Meguro = () => {
             <Stop stationCode="JY 22" location={JY_22} strokeColor="stroke-yamanote" />
             <Stop stationCode="I 01" location={I_01} strokeColor="stroke-mita" />
             <Stop stationCode="N 01" location={N_01} strokeColor="stroke-namboku" />
+            <Stop stationCode="MG 01" location={MG_01} hideText />
         </g>
     );
 };

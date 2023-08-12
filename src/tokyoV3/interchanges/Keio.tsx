@@ -23,13 +23,15 @@ const KO_22 = offset(KO_23, { dx: OFFSET * 4, dy: OFFSET * 2 });
 
 const IN_08 = offset(IN_17, scale(INOKASHIRA_SLOPE, 9));
 export const KO_06 = offset(IN_08, { dx: OFFSET });
+const IN_05 = offset(IN_08, scale(INOKASHIRA_SLOPE, 3));
+export const OH_07 = offset(IN_05, { dx: OFFSET });
 
 export const KO_19 = offset(KO_22, scale(CHOFU_SLOPE, 3));
-export const KO_18 = offset(KO_19, { dx: OFFSET * 4, dy: OFFSET * 2 });
+export const KO_18 = offset(KO_19, { dx: OFFSET * 6, dy: OFFSET * 2 });
 
 export const KO_35 = midPoint(KO_18, KO_36);
 const CHOFU_EAST_SLOPE = scaleToUnitX(E, MAJOR_LINE * 0.5);
-const MEIDAIMAE_SLOPE = scaleToUnitX(S, OFFSET * 2);
+const MEIDAIMAE_SLOPE = scaleToUnitX(S, OFFSET * 2.5);
 
 export const KO_05 = offset(KO_06, { dy: -MAJOR_LINE * 0.5 - OFFSET, dx: MAJOR_LINE * 0.5 - OFFSET }, scaleToUnitX(NE, MINOR_LINE));
 const DAITABASHI_SLOPE = scaleToUnitX(NE, OFFSET * 4);
@@ -74,12 +76,16 @@ const KeioLine = () => {
 
 const Inokashira = () => {
     return (
-        <LineSegmentWithStepChange
-            stops={generateStationCodes('IN', 17, 2)}
-            origin={IN_17}
-            slope={INOKASHIRA_SLOPE}
-            stopsToHide={['IN 08']}
-        />
+        <>
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('IN', 17, 2)}
+                origin={IN_17}
+                slope={INOKASHIRA_SLOPE}
+                stopsToHide={['IN 08', 'IN 05']}
+            />
+            <Stop stationCode="KO 02" location={KO_02} textAlignment={TextAlignment.DOWN} />
+            <Stop stationCode="OH 07" location={OH_07} />
+        </>
     );
 };
 

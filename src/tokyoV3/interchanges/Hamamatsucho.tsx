@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NW, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { N, NE, NW, SE, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JK_24 } from './Shimbashi';
 import { TOKYO_HORIZONTAL_GRID, TOKYO_VERTICAL_GRID } from './TokyoStation';
 
@@ -60,27 +60,40 @@ const Omotesando = () => {
 export const G_01 = offset(G_02, TOKYO_VERTICAL_GRID);
 export const Z_01 = offset(G_01, HANZOMON_OFFSET);
 export const JY_20 = offset(G_01, { dx: -OFFSET, dy: -OFFSET * 0.5 });
-export const IN_01 = offset(JY_20, { dx: -OFFSET * 3 });
+export const JS_19 = offset(JY_20, { dx: -OFFSET });
+export const JA_10 = offset(JS_19, { dx: -OFFSET });
+export const DT_01 = offset(Z_01, scale(SW, OFFSET));
+export const F_16 = offset(JA_10, { dx: -OFFSET, dy: -OFFSET * 0.5 });
+export const TY_01 = offset(F_16, { dy: OFFSET });
+export const IN_01 = offset(JA_10, { dx: -OFFSET * 2 });
 
 const Shibuya = () => {
     return (
         <g id="shibuya">
-            <Stop stationCode="G 01" location={G_01} strokeColor="stroke-ginza" />
-            <Stop stationCode="Z 01" location={Z_01} strokeColor="stroke-hanzomon" />
-            <Stop stationCode="JY 20" location={JY_20} strokeColor="stroke-yamanote" />
+            <Stop stationCode="G 01" location={G_01} strokeColor="stroke-ginza" hideText />
+            <Stop stationCode="Z 01" location={Z_01} strokeColor="stroke-hanzomon" hideText />
+            <Stop stationCode="JY 20" location={JY_20} strokeColor="stroke-yamanote" hideText />
+            <Stop stationCode="JS 19" location={JS_19} strokeColor="stroke-shonan-shinjuku" hideText />
+            <Stop stationCode="JA 10" location={JA_10} strokeColor="stroke-saikyo" hideText />
+            <Stop stationCode="DT 01" location={DT_01} />
+            <Stop stationCode="F 16" location={F_16} strokeColor="stroke-fukutoshin" hideText />
+            <Stop stationCode="TY 01" location={TY_01} hideText />
             <Stop stationCode="IN 01" location={IN_01} hideText />
         </g>
     );
 };
 
 export const JY_19 = offset(JY_20, { dy: -MAJOR_LINE * 2 });
-export const C_03 = offset(JY_19, { dx: OFFSET * 2, dy: OFFSET * 2 });
+export const C_03 = offset(JY_19, { dx: OFFSET * 1.5 });
+export const F_15 = offset(C_03, { dy: OFFSET });
+export const F_14 = offset(F_15, scaleToUnitX(N, MAJOR_LINE * 0.5 - OFFSET), scaleToUnitX(NE, MAJOR_LINE * 0.5));
 
 const Harajuku = () => {
     return (
         <g id="harajuku">
-            <Stop stationCode="JY 19" location={JY_19} strokeColor="stroke-yamanote" />
+            <Stop stationCode="JY 19" location={JY_19} strokeColor="stroke-yamanote" textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="C 03" location={C_03} strokeColor="stroke-chiyoda" />
+            <Stop stationCode="F 15" location={F_15} strokeColor="stroke-fukutoshin" hideText />
         </g>
     );
 };
@@ -110,6 +123,7 @@ const HamamatsuchoGroup = () => {
             <Daimon />
             <Harajuku />
             <Stop stationCode="C 05" location={C_05} strokeColor="stroke-chiyoda" />
+            <Stop stationCode="F 14" location={F_14} strokeColor="stroke-fukutoshin" />
         </>
     );
 };

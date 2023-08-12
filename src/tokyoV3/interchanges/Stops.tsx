@@ -4,9 +4,12 @@ import Hamamatsucho from './Hamamatsucho';
 import Kanda from './Kanda';
 import KeihinTohoku from './KeihinTohoku';
 import KeioGroup from './Keio';
+import Marunouchi from './Marunouchi';
 import Nambu from './Nambu';
 import Nippori from './Nippori';
 import NishiNippori from './NishiNippori';
+import Odakyu from './Odakyu';
+import Oedo from './Oedo';
 import Okachimachi from './Okachimachi';
 import Otemachi from './Otemachi';
 import Shimbashi from './Shimbashi';
@@ -14,6 +17,7 @@ import Shinagawa from './Shinagawa';
 import TakanawaGateway from './TakanawaGateway';
 import Tamachi from './Tamachi';
 import TokyoStation from './TokyoStation';
+import TokyuGroup from './Tokyu';
 import Ueno from './Ueno';
 import YurakuchoStation from './YurakuchoStation';
 
@@ -38,6 +42,10 @@ const Interchanges = () => {
             <Chuo />
             <Nambu />
             <KeioGroup />
+            <Marunouchi />
+            <Oedo />
+            <Odakyu />
+            <TokyuGroup />
         </>
     );
 };

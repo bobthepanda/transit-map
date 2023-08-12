@@ -8,7 +8,7 @@ import { JO_17, JY_25 } from './Shinagawa';
 
 const KEIKYU_STOP_SPACING = scaleToUnitX(S, OFFSET * 3);
 
-export const KK_02 = offset(JO_17, { dx: OFFSET * 2, dy: MAJOR_LINE + OFFSET * 2 });
+export const KK_02 = offset(JO_17, { dx: OFFSET * 2, dy: MAJOR_LINE });
 export const KK_04 = offset(KK_02, scale(KEIKYU_STOP_SPACING, 2));
 export const KK_05 = offset(KK_04, KEIKYU_STOP_SPACING);
 export const KK_07 = offset(KK_05, scale(KEIKYU_STOP_SPACING, 2));
