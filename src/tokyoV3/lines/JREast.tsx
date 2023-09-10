@@ -3,13 +3,13 @@ import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NE, NW, S, SE, SW, W, offset } from '../../utils/PathUtils';
 import { JB_20, JC_03, JK_28, JY_03 } from '../interchanges/Akihabara';
 import { JB_01, JC_22 } from '../interchanges/Chuo';
-import { JB_10, JC_05, JO_21, JY_17 } from '../interchanges/Kanda';
+import { JA_11, JB_10, JC_05, JO_21, JS_20, JY_17 } from '../interchanges/Kanda';
 import { JK_12 } from '../interchanges/KeihinTohoku';
 import { JN_01, JN_26 } from '../interchanges/Nambu';
 import { JK_33, JY_08 } from '../interchanges/NishiNippori';
 import { JO_20 } from '../interchanges/Otemachi';
 import { JB_12, JB_14, JC_04, JO_18 } from '../interchanges/Shimbashi';
-import { JY_21, JY_24 } from '../interchanges/Shinagawa';
+import { JA_08, JA_09, JS_17, JS_18, JY_21, JY_24 } from '../interchanges/Shinagawa';
 import { JK_21, JY_26 } from '../interchanges/TakanawaGateway';
 import { JC_01, JK_26, JY_01 } from '../interchanges/TokyoStation';
 
@@ -45,6 +45,14 @@ const Nambu = () => {
     return <SVGPath points={[JN_01, JN_26]} directions={[W, NW]} color="stroke-nambu" />;
 };
 
+const ShonanShinjuku = () => {
+    return <SVGPath points={[JS_17, JS_18, JS_20]} directions={[W, NW, N]} color="stroke-shonan-shinjuku" />;
+};
+
+const Saikyo = () => {
+    return <SVGPath points={[JA_08, JA_09, JA_11]} directions={[W, NW, N]} color="stroke-saikyo" />;
+};
+
 const JREast = () => {
     return (
         <g id="jr-east">
@@ -54,6 +62,8 @@ const JREast = () => {
             <ChuoRapid />
             <ChuoSobu />
             <Nambu />
+            <ShonanShinjuku />
+            <Saikyo />
         </g>
     );
 };

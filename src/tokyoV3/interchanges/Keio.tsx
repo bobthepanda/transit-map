@@ -2,20 +2,20 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, NE, S, SE, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, S, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_02, JB_09 } from './Chuo';
 import { KO_01 } from './Kanda';
 import { JN_16, JN_21 } from './Nambu';
 
-export const KO_36 = offset(JN_16, { dy: -OFFSET * 2 });
+export const KO_36 = offset(JN_16, { dx: -OFFSET * 2 });
 export const KO_25 = offset(JN_21, { dy: -OFFSET });
 
 export const IN_17 = offset(JB_02, { dy: OFFSET * 2 });
 
-const INOKASHIRA_SLOPE = scaleToUnitX(SE, OFFSET * 2.75);
+const INOKASHIRA_SLOPE = scaleToUnitX(SE, OFFSET * 3);
 
-const FUCHU_SLOPE = scaleToUnitX(E, OFFSET * 6);
+const FUCHU_SLOPE = scaleToUnitX(E, OFFSET * 5);
 
 const KO_23 = offset(KO_25, scale(FUCHU_SLOPE, 2));
 const CHOFU_SLOPE = scaleToUnitX(SE, MAJOR_LINE * 0.5);
@@ -27,9 +27,9 @@ const IN_05 = offset(IN_08, scale(INOKASHIRA_SLOPE, 3));
 export const OH_07 = offset(IN_05, { dx: OFFSET });
 
 export const KO_19 = offset(KO_22, scale(CHOFU_SLOPE, 3));
-export const KO_18 = offset(KO_19, { dx: OFFSET * 6, dy: OFFSET * 2 });
+export const KO_18 = offset(KO_19, scaleToUnitX(SE, 2 * OFFSET), scaleToUnitX(E, 3 * OFFSET));
 
-export const KO_35 = midPoint(KO_18, KO_36);
+export const KO_35 = offset(KO_36, scaleToUnitX(N, MAJOR_LINE * 1.5));
 const CHOFU_EAST_SLOPE = scaleToUnitX(E, MAJOR_LINE * 0.5);
 const MEIDAIMAE_SLOPE = scaleToUnitX(S, OFFSET * 2.5);
 
@@ -56,16 +56,16 @@ const KeioLine = () => {
             />
             <Stop stationCode="KO 06" location={KO_06} />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('KO', 6, 11)}
+                stops={generateStationCodes('KO', 6, 10)}
                 origin={KO_06}
                 slope={MEIDAIMAE_SLOPE}
                 textAlignments={[TextAlignment.LEFT]}
                 skipBeginning
             />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('KO', 18, 12)}
+                stops={generateStationCodes('KO', 18, 11)}
                 origin={KO_18}
-                textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
+                textAlignments={[TextAlignment.UP, TextAlignment.DOWN]}
                 slope={CHOFU_EAST_SLOPE}
             />
             <LineSegmentWithStepChange stops={generateStationCodes('KO', 5, 3)} origin={KO_05} slope={DAITABASHI_SLOPE} />
@@ -78,7 +78,7 @@ const Inokashira = () => {
     return (
         <>
             <LineSegmentWithStepChange
-                stops={generateStationCodes('IN', 17, 2)}
+                stops={generateStationCodes('IN', 17, 3)}
                 origin={IN_17}
                 slope={INOKASHIRA_SLOPE}
                 stopsToHide={['IN 08', 'IN 05']}

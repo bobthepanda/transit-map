@@ -10,8 +10,8 @@ const KEIKYU_STOP_SPACING = scaleToUnitX(S, OFFSET * 3);
 
 export const KK_02 = offset(JO_17, { dx: OFFSET * 2, dy: MAJOR_LINE });
 export const KK_04 = offset(KK_02, scale(KEIKYU_STOP_SPACING, 2));
-export const KK_05 = offset(KK_04, KEIKYU_STOP_SPACING);
-export const KK_07 = offset(KK_05, scale(KEIKYU_STOP_SPACING, 2));
+export const KK_03 = offset(KK_02, KEIKYU_STOP_SPACING);
+export const KK_07 = offset(KK_04, scale(KEIKYU_STOP_SPACING, 3));
 export const KK_11 = offset(KK_07, scale(KEIKYU_STOP_SPACING, 4));
 export const KK_18 = offset(KK_11, KEIKYU_STOP_SPACING);
 export const KK_20 = offset(KK_18, scale(KEIKYU_STOP_SPACING, 2), { dx: -OFFSET * 2 });
@@ -48,7 +48,7 @@ const KeikyuMain = () => {
     );
 };
 
-export const R_07 = { x: JY_25.x, y: midPoint(KK_04, KK_05).y };
+export const R_07 = { x: JY_25.x, y: midPoint(KK_03, KK_04).y };
 export const JK_19 = offset(R_07, { dx: OFFSET, dy: -OFFSET * 0.5 });
 
 export const JK_18 = offset(KK_07, { dx: -OFFSET * 4 });
