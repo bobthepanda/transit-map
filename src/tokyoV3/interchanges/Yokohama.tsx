@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { N, NE, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JC_22 } from './Chuo';
 import { JN_07 } from './Nambu';
@@ -15,11 +15,22 @@ export const TY_16 = offset(JH_15, { dx: OFFSET * 0.5, dy: OFFSET });
 export const JH_32 = offset(JC_22, { dy: OFFSET });
 
 const HACHIJOI_SLOPE = scaleToUnitX(S, MAJOR_LINE * 1.75);
-export const JH_28 = offset(JH_32, scale(HACHIJOI_SLOPE, 4));
+const JH_28 = offset(JH_32, scale(HACHIJOI_SLOPE, 4));
 export const JH_27 = offset(JH_28, scale(HACHIJOI_SLOPE), scaleToUnitX(SE, MAJOR_LINE * 0.5));
+export const KO_45 = offset(JH_28, { dx: OFFSET * 0.5, dy: OFFSET });
 
 const KIKUNA_SLOPE = scaleToUnitX(W, MAJOR_LINE * 1.5);
-export const JH_21 = offset(JH_15, scale(KIKUNA_SLOPE, 6));
+const JH_19 = offset(JH_15, scale(KIKUNA_SLOPE, 4));
+export const YG_01 = offset(JH_19, { dy: OFFSET, dx: OFFSET * 0.5 });
+
+const JH_21 = offset(JH_19, scale(KIKUNA_SLOPE, 2));
+export const DT_22 = offset(JH_21, { dy: OFFSET, dx: OFFSET * 0.5 });
+export const KD_01 = offset(DT_22, scaleToUnitX(E, OFFSET));
+
+const JH_23 = offset(JH_27, scale(HACHIJOI_SLOPE, 4));
+export const OH_27 = offset(JH_23, { dy: OFFSET });
+
+export const KO_48 = offset(JH_32, HACHIJOI_SLOPE, { dx: OFFSET * 0.5, dy: OFFSET });
 
 const SAGAMIHARA_SLOPE = scaleToUnitX(SE, MAJOR_LINE * 1.75);
 

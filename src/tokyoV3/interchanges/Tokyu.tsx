@@ -10,11 +10,11 @@ import { JN_07, JN_10 } from './Nambu';
 import { OH_10 } from './Odakyu';
 import { MG_01 } from './Shinagawa';
 import { IK_15, R_07, TM_07 } from './Tokaido';
-import { TY_16 } from './Yokohama';
+import { DT_22, TY_16 } from './Yokohama';
 
 export const OM_01 = offset(R_07, { dy: OFFSET });
 export const OM_16 = offset(JN_10, { dy: -OFFSET * 2 });
-export const OM_DT_09 = offset(OM_16, scaleToUnitX(NE, OFFSET * 2), scale(N, OFFSET * 2));
+export const OM_DT_09 = offset(OM_16, scaleToUnitX(E, OFFSET * 3), scale(N, OFFSET * 3));
 const OIMACHI_SLOPE = scaleToUnitX(W, OFFSET * 3.75);
 const MIZONOKUCHI_SLOPE = scaleToUnitX(N, OFFSET * 2.5);
 
@@ -42,18 +42,29 @@ const Oimachi = () => {
     );
 };
 
-export const DT_10 = offset(OM_16, scale(NW, OFFSET));
+export const DT_10 = offset(OM_16, scale(N, OFFSET));
 export const DT_09 = offset(OM_DT_09, scale(W, OFFSET));
 export const DT_07 = offset(DT_09, scale(MIZONOKUCHI_SLOPE, 2));
 const FUTAKO_OFFSET = scaleToUnitX(N, MAJOR_LINE - OFFSET);
 const SHIBUYA_OFFSET = scaleToUnitX(SW, OFFSET * 5);
 const DT_02 = offset(DT_01, scaleToUnitX(SW, MAJOR_LINE));
 const DT_03 = offset(DT_02, scale(SHIBUYA_OFFSET, 1));
-
+// const MIZONOKUCHI_SLOPE_S = scaleToUnitX(W, MAJOR_LINE);
+// const NAGATSUTA_SLOPE = scaleToUnitX(N, MAJOR_LINE);
+const DT_11 = offset(DT_10, { dx: -MAJOR_LINE - OFFSET * 2 });
+export const DT_12 = offset(DT_11, scaleToUnitX(W, OFFSET * 2), scaleToUnitX(SW, OFFSET * 2));
+const NAGATSUTA_SLOPE = scaleToUnitX(SW, OFFSET * 3);
 const DenEnToshi = () => {
     return (
         <>
             <Stop stationCode="DT 10" location={DT_10} />
+            <Stop stationCode="DT 11" location={DT_11} textAlignment={TextAlignment.DOWN} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('DT', 12, 19)}
+                origin={DT_12}
+                slope={NAGATSUTA_SLOPE}
+                textAlignments={[TextAlignment.LEFT]}
+            />
             <LineSegmentWithStepChange
                 stops={generateStationCodes('DT', 9, 7)}
                 slope={MIZONOKUCHI_SLOPE}
@@ -72,6 +83,7 @@ const DenEnToshi = () => {
                 origin={DT_02}
                 textAlignments={[TextAlignment.LEFT, TextAlignment.RIGHT]}
             />
+            <LineSegmentWithStepChange origin={DT_22} stops={generateStationCodes('DT', 22, 20)} slope={scaleToUnitX(N, OFFSET * 3.5)} />
         </>
     );
 };

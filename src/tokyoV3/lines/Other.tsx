@@ -11,6 +11,7 @@ import { IK_15, KK_04, KK_20, KK_36, KK_37, MM_01, MM_02, TM_07 } from '../inter
 import {
     DT_09,
     DT_10,
+    DT_12,
     IK_05,
     IK_14,
     MG_06,
@@ -27,6 +28,7 @@ import {
     TY_02,
     TY_11,
 } from '../interchanges/Tokyu';
+import { DT_22 } from '../interchanges/Yokohama';
 
 const Keikyu = () => {
     return <SVGPath points={[A_07, KK_01, KK_04, KK_20, KK_36, KK_37]} directions={[S, ESE, S, SW, W, SW]} />;
@@ -49,11 +51,11 @@ const OdakyuOdawara = () => {
 };
 
 const Oimachi = () => {
-    return <SVGPath points={[OM_01, OM_DT_09, OM_16]} directions={[W, S, SW]} />;
+    return <SVGPath points={[OM_01, OM_DT_09, OM_16]} directions={[W, S, W]} />;
 };
 
 const DenEnToshi = () => {
-    return <SVGPath points={[DT_01, DT_09, DT_10]} directions={[SW, S, SW]} />;
+    return <SVGPath points={[DT_01, DT_09, DT_10, DT_12, DT_22]} directions={[SW, S, W, SW, S]} />;
 };
 
 const Meguro = () => {
