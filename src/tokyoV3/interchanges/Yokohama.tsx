@@ -27,12 +27,12 @@ const JH_21 = offset(JH_19, scale(KIKUNA_SLOPE, 2));
 export const DT_22 = offset(JH_21, { dy: OFFSET, dx: OFFSET * 0.5 });
 export const KD_01 = offset(DT_22, scaleToUnitX(E, OFFSET));
 
-const JH_23 = offset(JH_27, scale(HACHIJOI_SLOPE, 4));
-export const OH_27 = offset(JH_23, { dy: OFFSET });
-
 export const KO_48 = offset(JH_32, HACHIJOI_SLOPE, { dx: OFFSET * 0.5, dy: OFFSET });
 
 const SAGAMIHARA_SLOPE = scaleToUnitX(SE, MAJOR_LINE * 1.75);
+
+const JH_23 = offset(JH_27, scale(SAGAMIHARA_SLOPE, 4));
+export const OH_27 = offset(JH_23, { dy: -OFFSET });
 
 export const Yokohama = () => {
     return (

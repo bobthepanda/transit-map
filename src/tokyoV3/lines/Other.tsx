@@ -28,7 +28,7 @@ import {
     TY_02,
     TY_11,
 } from '../interchanges/Tokyu';
-import { DT_22 } from '../interchanges/Yokohama';
+import { DT_22, OH_27 } from '../interchanges/Yokohama';
 
 const Keikyu = () => {
     return <SVGPath points={[A_07, KK_01, KK_04, KK_20, KK_36, KK_37]} directions={[S, ESE, S, SW, W, SW]} />;
@@ -47,7 +47,7 @@ const Samigahara = () => {
 };
 
 const OdakyuOdawara = () => {
-    return <SVGPath points={[OH_01, OH_06, OH_07, OH_18]} directions={[S, SW, S, SW]} />;
+    return <SVGPath points={[OH_01, OH_06, OH_07, OH_18, OH_27]} directions={[S, SW, S, SW, W]} />;
 };
 
 const Oimachi = () => {
