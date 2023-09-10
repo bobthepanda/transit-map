@@ -10,10 +10,12 @@ import { OH_18 } from './Nambu';
 import { E_26 } from './Shimbashi';
 
 export const SHINJUKU_SLOPE = scaleToUnitX(NE, OFFSET * 3);
+export const GOTOKUJI_SLOPE = scaleToUnitX(NE, OFFSET * 2.5);
 
 export const OH_06 = offset(OH_07, scale(NE, MAJOR_LINE * 0.5), scale(N, MAJOR_LINE * 0.5));
 export const C_01 = offset(OH_06, SHINJUKU_SLOPE, scale(SE, OFFSET));
 const OH_02 = { x: OH_01.x, y: E_26.y - OFFSET };
+export const OH_10 = offset(OH_18, scale(GOTOKUJI_SLOPE, 8));
 const Odakyu = () => {
     return (
         <>
@@ -26,12 +28,13 @@ const Odakyu = () => {
                 skipBeginning
                 textAlignments={[TextAlignment.LEFT]}
             />
-            <LineSegmentWithStepChange stops={generateStationCodes('OH', 16, 9)} origin={OH_18} skipBeginning slope={SHINJUKU_SLOPE} />
+            <LineSegmentWithStepChange stops={generateStationCodes('OH', 18, 11)} origin={OH_18} skipBeginning slope={GOTOKUJI_SLOPE} />
+            <Stop stationCode="OH 10" location={OH_10} textAlignment={TextAlignment.LEFT} />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('OH', 7, 8)}
+                stops={generateStationCodes('OH', 7, 9)}
                 skipBeginning
                 origin={OH_07}
-                slope={scaleToUnitX(S, MAJOR_LINE - OFFSET)}
+                slope={scaleToUnitX(S, OFFSET * 3)}
                 textAlignments={[TextAlignment.LEFT]}
             />
             <Stop stationCode="C 01" location={C_01} strokeColor="stroke-chiyoda" hideText />

@@ -16,6 +16,7 @@ export const JN_21 = offset(JN_26, scale(JN_26_SLOPE, 5));
 export const JN_14 = offset(JN_16, scale(JN_26_SLOPE, 2));
 export const OH_18 = offset(JN_14, { dx: OFFSET });
 export const JN_10 = offset(JN_14, scale(JN_26_SLOPE, 4));
+export const JN_07 = offset(JN_01, scale(JN_01_SLOPE, 6));
 
 const Nambu = () => {
     return (

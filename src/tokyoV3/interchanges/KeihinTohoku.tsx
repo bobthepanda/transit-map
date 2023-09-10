@@ -63,11 +63,15 @@ const Oimachi = () => {
 };
 
 export const JK_17 = offset(KK_11, { dx: -OFFSET * 4 });
+export const TM_07 = offset(JK_17, { dx: -OFFSET, dy: OFFSET * 0.5 });
+export const IK_15 = offset(TM_07, { dy: -OFFSET });
 
 const Kamata = () => {
     return (
         <g id="kamata">
-            <Stop stationCode="JK 17" location={JK_17} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JK 17" location={JK_17} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.LEFT} hideText />
+            <Stop stationCode="IK 15" location={IK_15} textAlignment={TextAlignment.UP} />
+            <Stop stationCode="TM 07" location={TM_07} hideText />
         </g>
     );
 };

@@ -2,11 +2,13 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NE, NW, SW, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { DT_01 } from './Hamamatsucho';
-import { R_07 } from './KeihinTohoku';
-import { JN_10 } from './Nambu';
+import { IK_15, R_07, TM_07 } from './KeihinTohoku';
+import { KO_07 } from './Keio';
+import { JN_07, JN_10 } from './Nambu';
+import { OH_10 } from './Odakyu';
 import { MG_01 } from './Shinagawa';
 
 export const OM_01 = offset(R_07, { dy: OFFSET });
@@ -44,6 +46,8 @@ export const DT_09 = offset(OM_DT_09, scale(W, OFFSET));
 export const DT_07 = offset(DT_09, scale(MIZONOKUCHI_SLOPE, 2));
 const FUTAKO_OFFSET = scaleToUnitX(N, MAJOR_LINE - OFFSET);
 const SHIBUYA_OFFSET = scaleToUnitX(SW, OFFSET * 5);
+const DT_02 = offset(DT_01, scaleToUnitX(SW, MAJOR_LINE));
+const DT_03 = offset(DT_02, scale(SHIBUYA_OFFSET, 1));
 
 const DenEnToshi = () => {
     return (
@@ -64,34 +68,17 @@ const DenEnToshi = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('DT', 2, 4)}
                 slope={SHIBUYA_OFFSET}
-                origin={offset(DT_01, scaleToUnitX(SW, MAJOR_LINE))}
-                textAlignments={[TextAlignment.LEFT]}
+                origin={DT_02}
+                textAlignments={[TextAlignment.LEFT, TextAlignment.RIGHT]}
             />
         </>
     );
 };
 
 const OM_08 = offset(OM_01, scale(OIMACHI_SLOPE, 7));
-export const MG_06 = offset(OM_08, { dx: -OFFSET * 0.5, dy: OFFSET });
-const MEGURO_SLOPE = scaleToUnitX(N, OFFSET * 3);
-export const MG_02 = offset(MG_01, scaleToUnitX(SW, OFFSET * 4));
-
-const Meguro = () => {
-    return (
-        <>
-            <Stop stationCode="MG 06" location={MG_06} />
-            <LineSegmentWithStepChange
-                stops={generateStationCodes('MG', 5, 3)}
-                slope={MEGURO_SLOPE}
-                origin={offset(MG_06, MEGURO_SLOPE, { dy: -OFFSET * 0.5 })}
-            />
-            <Stop stationCode="MG 02" location={MG_02} textAlignment={TextAlignment.LEFT} />
-        </>
-    );
-};
 
 const OM_10 = offset(OM_08, scale(OIMACHI_SLOPE, 2));
-export const TY_07 = offset(OM_10, { dx: -OFFSET * 0.5, dy: OFFSET });
+export const TY_07 = offset(OM_10, { dx: OFFSET * 0.5, dy: OFFSET });
 
 const JIYUGAYOKA_SLOPE_N = scaleToUnitX(N, OFFSET * 4);
 
@@ -99,6 +86,9 @@ const OFFSET_TY_07 = offset(TY_07, { dy: -MINOR_LINE });
 export const TY_03 = offset(OFFSET_TY_07, scale(JIYUGAYOKA_SLOPE_N, 4));
 export const H_01 = offset(TY_03, scale(E, OFFSET));
 export const TY_02 = offset(TY_03, scaleToUnitX(NW, OFFSET * 2), scaleToUnitX(N, OFFSET * 2));
+export const TY_11 = offset(JN_07, { dx: OFFSET * 0.5, dy: OFFSET });
+const JIYUGAYOKA_SLOPE_S = scaleToUnitX(N, MAJOR_LINE);
+export const TY_08 = offset(TY_11, scale(JIYUGAYOKA_SLOPE_S, 3), { dx: OFFSET * 2 });
 
 const Toyoko = () => {
     return (
@@ -113,6 +103,60 @@ const Toyoko = () => {
             <Stop stationCode="TY 07" location={TY_07} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="TY 02" location={TY_02} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="H 01" location={H_01} strokeColor="stroke-hibiya" hideText />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('TY', 11, 9)}
+                origin={TY_11}
+                slope={JIYUGAYOKA_SLOPE_S}
+                stopsToHide={generateStationCodes('TY', 11, 9)}
+            />
+            <Stop stationCode="TY 08" location={TY_08} hideText />
+        </>
+    );
+};
+
+export const MG_06 = offset(OM_08, { dx: -OFFSET * 0.5, dy: OFFSET });
+const MEGURO_SLOPE = scaleToUnitX(N, OFFSET * 3);
+export const MG_02 = offset(MG_01, scaleToUnitX(SW, OFFSET * 4));
+export const MG_11 = offset(TY_11, scale(E, OFFSET));
+export const MG_08 = offset(TY_08, scale(SE, OFFSET));
+export const MG_07 = offset(MG_08, scaleToUnitX(NE, OFFSET * 4.5));
+
+const Meguro = () => {
+    return (
+        <>
+            <Stop stationCode="MG 06" location={MG_06} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('MG', 5, 3)}
+                slope={MEGURO_SLOPE}
+                origin={offset(MG_06, MEGURO_SLOPE, { dy: -OFFSET * 0.5 })}
+            />
+            <Stop stationCode="MG 02" location={MG_02} textAlignment={TextAlignment.LEFT} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('MG', 11, 9)}
+                origin={MG_11}
+                slope={JIYUGAYOKA_SLOPE_S}
+                stopsToHide={['MG 09']}
+            />
+            <Stop stationCode="MG 08" location={MG_08} />
+            <Stop stationCode="MG 07" location={MG_07} />
+        </>
+    );
+};
+
+export const TM_01 = offset(MG_11, scale(JIYUGAYOKA_SLOPE_S, 2), { dx: OFFSET });
+const TAMAGAWA_SLOPE = scaleToUnitX(W, OFFSET * 5.5);
+
+const Tamagawa = () => {
+    return (
+        <>
+            <Stop stationCode="TM 01" location={TM_01} />
+            <LineSegmentWithStepChange
+                skipBeginning
+                origin={TM_07}
+                stops={generateStationCodes('TM', 7, 2)}
+                slope={TAMAGAWA_SLOPE}
+                textAlignments={[TextAlignment.DOWN]}
+            />
         </>
     );
 };
@@ -122,15 +166,24 @@ const OM_04 = offset(OM_06, scale(OIMACHI_SLOPE, -2));
 export const A_03 = offset(OM_04, { dx: -OFFSET * 0.5, dy: OFFSET });
 export const IK_05 = offset(OM_06, { dx: -OFFSET * 0.5, dy: OFFSET });
 const GOTANDA_SLOPE = scaleToUnitX(N, OFFSET * 2);
+export const IK_14 = offset(IK_15, scaleToUnitX(NW, OFFSET * 2), scaleToUnitX(W, OFFSET * 2));
+const KAMATA_SLOPE = scaleToUnitX(W, OFFSET * 4);
+const HATANODAI_SLOPE = scaleToUnitX(S, OFFSET * 3);
 
 const Ikegami = () => {
     return (
         <>
-            <Stop stationCode="IK 05" location={IK_05} />
+            <LineSegmentWithStepChange stops={generateStationCodes('IK', 5, 10)} origin={IK_05} slope={HATANODAI_SLOPE} />
             <LineSegmentWithStepChange
                 origin={offset(IK_05, { dy: -OFFSET * 3.5 })}
                 slope={GOTANDA_SLOPE}
                 stops={generateStationCodes('IK', 4, 2)}
+            />
+            <LineSegmentWithStepChange
+                origin={IK_14}
+                slope={KAMATA_SLOPE}
+                stops={generateStationCodes('IK', 14, 11)}
+                textAlignments={[TextAlignment.UP]}
             />
         </>
     );
@@ -138,6 +191,33 @@ const Ikegami = () => {
 
 const AsakusaStops = () => {
     return <Stop stationCode="A 03" location={A_03} strokeColor="stroke-asakusa" />;
+};
+
+export const SG_01 = offset(DT_03, { dx: -OFFSET });
+export const SG_08 = offset(OH_10, { dy: -OFFSET * 2 });
+export const SG_10 = offset(KO_07, { dx: OFFSET });
+const SETAGAYA_SLOPE = scaleToUnitX(N, OFFSET * 2);
+const YAMASHITA_SLOPE = scaleToUnitX(W, OFFSET * 4);
+export const SG_03 = offset(SG_01, YAMASHITA_SLOPE, scaleToUnitX(NW, OFFSET * 1.5));
+export const SG_06 = offset(SG_03, scale(SETAGAYA_SLOPE, 3));
+
+const Setagaya = () => {
+    return (
+        <>
+            <LineSegmentWithStepChange
+                origin={SG_01}
+                stops={generateStationCodes('SG', 1, 2)}
+                slope={YAMASHITA_SLOPE}
+                textAlignments={[TextAlignment.DOWN]}
+                stopsToHide={['SG 01']}
+            />
+            <LineSegmentWithStepChange origin={SG_03} stops={generateStationCodes('SG', 3, 6)} slope={SETAGAYA_SLOPE} />
+            <Stop stationCode="SG 07" location={offset(SG_08, scaleToUnitX(SE, OFFSET * 2))} />
+            <Stop stationCode="SG 08" location={SG_08} textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="SG 09" location={offset(SG_08, scaleToUnitX(NW, OFFSET * 3))} textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="SG 10" location={SG_10} />
+        </>
+    );
 };
 
 const TokyuGroup = () => {
@@ -149,6 +229,8 @@ const TokyuGroup = () => {
             <Toyoko />
             <Ikegami />
             <AsakusaStops />
+            <Tamagawa />
+            <Setagaya />
         </>
     );
 };

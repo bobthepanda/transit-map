@@ -39,6 +39,8 @@ const DAITABASHI_SLOPE = scaleToUnitX(NE, OFFSET * 4);
 
 const KO_02 = { y: KO_01.y, x: JB_09.x };
 
+export const KO_07 = offset(KO_06, MEIDAIMAE_SLOPE);
+
 const KeioLine = () => {
     return (
         <>
