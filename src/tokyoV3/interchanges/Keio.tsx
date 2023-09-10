@@ -2,9 +2,10 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NE, S, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_02, JB_09 } from './Chuo';
+import { IN_01 } from './Hamamatsucho';
 import { KO_01 } from './Kanda';
 import { JN_16, JN_21 } from './Nambu';
 
@@ -74,6 +75,8 @@ const KeioLine = () => {
     );
 };
 
+export const IN_02 = offset(IN_01, scaleToUnitX(W, OFFSET * 4));
+
 const Inokashira = () => {
     return (
         <>
@@ -83,6 +86,7 @@ const Inokashira = () => {
                 slope={INOKASHIRA_SLOPE}
                 stopsToHide={['IN 08', 'IN 05']}
             />
+            <Stop stationCode="IN 02" location={IN_02} textAlignment={TextAlignment.DOWN} />
             <Stop stationCode="KO 02" location={KO_02} textAlignment={TextAlignment.DOWN} />
             <Stop stationCode="OH 07" location={OH_07} />
         </>

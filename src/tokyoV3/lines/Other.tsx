@@ -6,9 +6,9 @@ import { KK_04, KK_20 } from '../interchanges/KeihinTohoku';
 import { IN_17, KO_05, KO_06, KO_18, KO_19, KO_25, KO_36, OH_07 } from '../interchanges/Keio';
 import { OH_18 } from '../interchanges/Nambu';
 import { OH_06 } from '../interchanges/Odakyu';
-import { KK_01, MG_01 } from '../interchanges/Shinagawa';
+import { IK_01, KK_01, MG_01 } from '../interchanges/Shinagawa';
 import { A_07 } from '../interchanges/TakanawaGateway';
-import { DT_09, DT_10, MG_06, OM_01, OM_16, OM_DT_09, TY_02, TY_07 } from '../interchanges/Tokyu';
+import { DT_09, DT_10, IK_05, MG_06, OM_01, OM_16, OM_DT_09, TY_02, TY_07 } from '../interchanges/Tokyu';
 
 const Keikyu = () => {
     return <SVGPath points={[A_07, KK_01, KK_04, KK_20]} directions={[S, ESE, S, SW]} />;
@@ -46,6 +46,10 @@ const Toyoko = () => {
     return <SVGPath points={[TY_01, TY_02, TY_07]} directions={[S, SE, S]} />;
 };
 
+const Ikegami = () => {
+    return <SVGPath points={[IK_01, IK_05]} directions={[W, S]} />;
+};
+
 const Other = () => {
     return (
         <>
@@ -58,6 +62,7 @@ const Other = () => {
             <DenEnToshi />
             <Meguro />
             <Toyoko />
+            <Ikegami />
         </>
     );
 };

@@ -7,6 +7,7 @@ import { generateStationCodes } from '../../utils/StopUtils';
 import { DT_01 } from './Hamamatsucho';
 import { R_07 } from './KeihinTohoku';
 import { JN_10 } from './Nambu';
+import { MG_01 } from './Shinagawa';
 
 export const OM_01 = offset(R_07, { dy: OFFSET });
 export const OM_16 = offset(JN_10, { dy: -OFFSET * 2 });
@@ -72,9 +73,21 @@ const DenEnToshi = () => {
 
 const OM_08 = offset(OM_01, scale(OIMACHI_SLOPE, 7));
 export const MG_06 = offset(OM_08, { dx: -OFFSET * 0.5, dy: OFFSET });
+const MEGURO_SLOPE = scaleToUnitX(N, OFFSET * 3);
+export const MG_02 = offset(MG_01, scaleToUnitX(SW, OFFSET * 4));
 
 const Meguro = () => {
-    return <Stop stationCode="MG 06" location={MG_06} />;
+    return (
+        <>
+            <Stop stationCode="MG 06" location={MG_06} />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('MG', 5, 3)}
+                slope={MEGURO_SLOPE}
+                origin={offset(MG_06, MEGURO_SLOPE, { dy: -OFFSET * 0.5 })}
+            />
+            <Stop stationCode="MG 02" location={MG_02} textAlignment={TextAlignment.LEFT} />
+        </>
+    );
 };
 
 const OM_10 = offset(OM_08, scale(OIMACHI_SLOPE, 2));
@@ -108,9 +121,19 @@ const OM_06 = offset(OM_08, scale(OIMACHI_SLOPE, -2));
 const OM_04 = offset(OM_06, scale(OIMACHI_SLOPE, -2));
 export const A_03 = offset(OM_04, { dx: -OFFSET * 0.5, dy: OFFSET });
 export const IK_05 = offset(OM_06, { dx: -OFFSET * 0.5, dy: OFFSET });
+const GOTANDA_SLOPE = scaleToUnitX(N, OFFSET * 2);
 
 const Ikegami = () => {
-    return <Stop stationCode="IK 05" location={IK_05} />;
+    return (
+        <>
+            <Stop stationCode="IK 05" location={IK_05} />
+            <LineSegmentWithStepChange
+                origin={offset(IK_05, { dy: -OFFSET * 3.5 })}
+                slope={GOTANDA_SLOPE}
+                stops={generateStationCodes('IK', 4, 2)}
+            />
+        </>
+    );
 };
 
 const AsakusaStops = () => {

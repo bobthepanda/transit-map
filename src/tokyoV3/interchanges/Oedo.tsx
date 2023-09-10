@@ -20,7 +20,7 @@ const Oedo = () => {
             <Stop location={E_29} stationCode="E 29" strokeColor="stroke-oedo" textAlignment={TextAlignment.LEFT} />
             <Stop location={E_30} stationCode="E 30" strokeColor="stroke-oedo" textAlignment={TextAlignment.LEFT} />
             <Stop location={E_31} stationCode="E 31" strokeColor="stroke-oedo" textAlignment={TextAlignment.LEFT} />
-            <Stop location={E_01} stationCode="E 01" strokeColor="stroke-oedo" hideText />
+            <Stop location={E_01} stationCode="E 01" strokeColor="stroke-oedo" textAlignment={TextAlignment.UP} />
         </>
     );
 };

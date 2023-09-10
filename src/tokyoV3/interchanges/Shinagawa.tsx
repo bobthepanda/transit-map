@@ -71,12 +71,14 @@ const Meguro = () => {
 
 export const JY_23 = offset(JY_24, scaleToUnitX(W, MAJOR_LINE + MINOR_LINE * 0.5));
 export const A_05 = offset(JY_23, { dx: OFFSET * 0.5, dy: -OFFSET });
+export const IK_01 = offset(A_05, scaleToUnitX(W, OFFSET));
 
 const Gotanda = () => {
     return (
         <g id="gotanda">
             <Stop stationCode="JY 23" location={JY_23} strokeColor="stroke-yamanote" hideText />
             <Stop stationCode="A 05" location={A_05} strokeColor="stroke-asakusa" />
+            <Stop stationCode="IK 01" location={IK_01} hideText />
         </g>
     );
 };
