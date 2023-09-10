@@ -61,9 +61,9 @@ export const I_01 = offset(N_01, scale(SE, OFFSET));
 const Meguro = () => {
     return (
         <g id="meguro">
-            <Stop stationCode="JY 22" location={JY_22} strokeColor="stroke-yamanote" />
+            <Stop stationCode="JY 22" location={JY_22} strokeColor="stroke-yamanote" hideText />
             <Stop stationCode="I 01" location={I_01} strokeColor="stroke-mita" />
-            <Stop stationCode="N 01" location={N_01} strokeColor="stroke-namboku" />
+            <Stop stationCode="N 01" location={N_01} strokeColor="stroke-namboku" hideText />
             <Stop stationCode="MG 01" location={MG_01} hideText />
         </g>
     );
@@ -81,26 +81,26 @@ const Gotanda = () => {
     );
 };
 
-export const I_02 = offset(I_01, scaleToUnitX(NE, OFFSET * 2), scaleToUnitX(E, OFFSET * 2));
-export const N_02 = offset(I_02, scale(N, OFFSET));
+export const I_02 = offset(I_01, scaleToUnitX(NE, OFFSET * 3));
+export const N_02 = offset(I_02, scale(NW, OFFSET));
 
 const Shirokanedai = () => {
     return (
         <g id="shirokanedai">
             <Stop stationCode="I 02" location={I_02} strokeColor="stroke-mita" />
-            <Stop stationCode="N 02" location={N_02} strokeColor="stroke-namboku" />
+            <Stop stationCode="N 02" location={N_02} strokeColor="stroke-namboku" hideText />
         </g>
     );
 };
 
-export const I_03 = offset(I_02, scale(E, MAJOR_LINE));
+export const I_03 = offset(I_02, scaleToUnitX(NE, OFFSET * 2), scaleToUnitX(E, OFFSET * 2));
 export const N_03 = offset(I_03, scale(N, OFFSET));
 
 const ShirokaneTakanawa = () => {
     return (
         <g id="shirokane-takanawa">
-            <Stop stationCode="I 03" location={I_03} strokeColor="stroke-mita" />
-            <Stop stationCode="N 03" location={N_03} strokeColor="stroke-namboku" />
+            <Stop stationCode="I 03" location={I_03} strokeColor="stroke-mita" hideText />
+            <Stop stationCode="N 03" location={N_03} strokeColor="stroke-namboku" textAlignment={TextAlignment.UP} />
         </g>
     );
 };
@@ -118,7 +118,7 @@ const Roppongi = () => {
     );
 };
 
-export const E_22 = offset(E_23, scaleToUnitX(E, MAJOR_LINE + OFFSET * 2), scaleToUnitX(S, MAJOR_LINE * 0.5));
+export const E_22 = offset(E_23, scaleToUnitX(E, MAJOR_LINE), scaleToUnitX(S, MAJOR_LINE * 0.5));
 export const N_04 = offset(E_22, { dx: OFFSET * 0.5, dy: OFFSET });
 
 export const E_21 = offset(E_22, scaleToUnitX(E, OFFSET * 2), scaleToUnitX(NE, OFFSET * 2));
