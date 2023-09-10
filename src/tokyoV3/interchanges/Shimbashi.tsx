@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NE, NW, SE, SW, findIntersectionFromSlopes, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { NE, NW, SE, SW, W, findIntersectionFromSlopes, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JB_15 } from './Kanda';
 import { TOKYO_HORIZONTAL_GRID, TOKYO_VERTICAL_GRID } from './TokyoStation';
 import { JK_25, M_15 } from './YurakuchoStation';
@@ -95,7 +95,7 @@ const Nagatacho = () => {
 
 export const Y_17 = offset(Y_16, { dy: OFFSET * 3, dx: MAJOR_LINE + OFFSET * 2 });
 
-export const H_05 = offset(H_06, { dx: (-MAJOR_LINE * 4) / 3, dy: OFFSET * 1.5 });
+export const H_05 = offset(H_06, scaleToUnitX(SW, OFFSET * 5), scaleToUnitX(W, OFFSET * 1.5));
 
 export const JB_11 = offset(JB_14, { dx: -MAJOR_LINE * 4.5 - OFFSET });
 export const JY_18 = offset(JB_11, { dx: -OFFSET });

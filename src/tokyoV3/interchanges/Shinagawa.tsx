@@ -125,7 +125,7 @@ export const N_04 = offset(E_22, { dx: OFFSET * 0.5, dy: OFFSET });
 
 export const E_21 = offset(E_22, scaleToUnitX(E, OFFSET * 2), scaleToUnitX(NE, OFFSET * 2));
 
-export const N_05 = offset(N_04, { dy: (-MAJOR_LINE * 5) / 3, dx: MAJOR_LINE * 0.5 });
+export const N_05 = offset(N_04, { dy: -MAJOR_LINE * 1.5 });
 
 const AzabuJuban = () => {
     return (

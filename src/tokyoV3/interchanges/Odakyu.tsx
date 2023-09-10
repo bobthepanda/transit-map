@@ -1,8 +1,8 @@
-import { MAJOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { N, NE, S, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, S, SE, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { OH_01 } from './Kanda';
 import { OH_07 } from './Keio';
@@ -37,7 +37,14 @@ const Odakyu = () => {
                 slope={scaleToUnitX(S, OFFSET * 3)}
                 textAlignments={[TextAlignment.LEFT]}
             />
-            <Stop stationCode="C 01" location={C_01} strokeColor="stroke-chiyoda" hideText />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('C', 1, 2)}
+                origin={C_01}
+                strokeColor="stroke-chiyoda"
+                stopsToHide={['C 01']}
+                textAlignments={[TextAlignment.UP]}
+                slope={scaleToUnitX(E, MAJOR_LINE - MINOR_LINE * 0.5)}
+            />
         </>
     );
 };

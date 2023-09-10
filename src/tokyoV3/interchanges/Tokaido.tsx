@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NW, S, SE, SW, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { NE, NW, S, SE, SW, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JO_17, JY_25 } from './Shinagawa';
 
@@ -101,23 +101,47 @@ const Tsurumi = () => {
 };
 
 export const JK_13 = offset(KK_35, JK_DIAGONAL_OFFSET);
+export const JH_13 = offset(JK_13, scale(NW, OFFSET));
 
 const HigashiKanagawa = () => {
     return (
         <g id="tsurumi">
             <Stop stationCode="JK 13" location={JK_13} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JH 13" location={JH_13} strokeColor="stroke-yokohama" />
         </g>
     );
 };
 
 export const JK_12 = offset(JK_13, scale(KEIKYU_KANAGAWA_SPACING, 2));
+export const JH_12 = offset(JK_12, scale(NW, OFFSET));
+export const JO_13 = offset(JH_12, scale(NW, OFFSET));
+export const JS_13 = offset(JO_13, scale(NW, OFFSET));
+export const JT_05 = offset(JK_12, scale(SE, OFFSET));
+export const KK_37 = offset(JT_05, scale(SE, OFFSET));
+export const TY_21 = offset(JS_13, scale(NW, OFFSET), scale(NE, OFFSET * 0.5));
+export const MM_01 = offset(TY_21, scale(SW, OFFSET));
 const Yokohama = () => {
     return (
         <g id="yokohama">
             <Stop stationCode="JK 12" location={JK_12} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JK 12" location={JH_12} strokeColor="stroke-yokohama" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JO 13" location={JO_13} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JS 13" location={JS_13} strokeColor="stroke-shonan-shinjuku" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JT 05" location={JT_05} strokeColor="stroke-tokaido" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="KK 37" location={KK_37} />
+            <Stop stationCode="TY 21" location={TY_21} />
+            <Stop stationCode="MM 01" location={MM_01} />
         </g>
     );
 };
+
+export const MM_02 = offset(JK_12, scaleToUnitX(SE, MAJOR_LINE), scaleToUnitX(SW, MAJOR_LINE * 0.5));
+
+const MinatoMirai = () => {
+    return <Stop stationCode="MM 02" location={MM_02} />;
+};
+
+export const KK_36 = midPoint(KK_35, KK_37);
 
 const KeihinTohokuGroup = () => {
     return (
@@ -137,7 +161,8 @@ const KeihinTohokuGroup = () => {
                 strokeColor="stroke-keihin-tohoku"
                 textAlignment={TextAlignment.LEFT}
             />
-            <Stop stationCode="KK 36" location={offset(KK_35, KEIKYU_KANAGAWA_SPACING)} />
+            <Stop stationCode="KK 36" location={KK_36} />
+            <MinatoMirai />
         </>
     );
 };

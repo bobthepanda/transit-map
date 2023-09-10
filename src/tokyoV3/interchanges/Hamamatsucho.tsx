@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { N, NE, NW, SE, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { N, NE, NW, S, SE, SW, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { JK_24 } from './Shimbashi';
 import { TOKYO_HORIZONTAL_GRID, TOKYO_VERTICAL_GRID } from './TokyoStation';
 
@@ -38,7 +38,7 @@ export const G_03 = offset(G_04, TOKYO_VERTICAL_GRID);
 const Gaiemmae = () => {
     return (
         <g id="gaiemmae">
-            <Stop stationCode="G 03" location={G_03} strokeColor="stroke-ginza" />
+            <Stop stationCode="G 03" location={G_03} strokeColor="stroke-ginza" textAlignment={TextAlignment.LEFT} />
         </g>
     );
 };
@@ -110,7 +110,7 @@ const Daimon = () => {
     );
 };
 
-export const C_05 = offset(G_03, scaleToUnitX(SE, OFFSET * 3));
+export const C_05 = offset(G_04, scaleToUnitX(S, OFFSET * 8));
 
 const HamamatsuchoGroup = () => {
     return (
@@ -123,6 +123,7 @@ const HamamatsuchoGroup = () => {
             <Daimon />
             <Harajuku />
             <Stop stationCode="C 05" location={C_05} strokeColor="stroke-chiyoda" />
+            <Stop stationCode="C 06" location={offset(C_05, scaleToUnitX(NE, MAJOR_LINE - OFFSET))} strokeColor="stroke-chiyoda" />
             <Stop stationCode="F 14" location={F_14} strokeColor="stroke-fukutoshin" />
         </>
     );

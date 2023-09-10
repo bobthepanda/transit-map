@@ -5,11 +5,12 @@ import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { DT_01 } from './Hamamatsucho';
-import { IK_15, R_07, TM_07 } from './KeihinTohoku';
 import { KO_07 } from './Keio';
 import { JN_07, JN_10 } from './Nambu';
 import { OH_10 } from './Odakyu';
 import { MG_01 } from './Shinagawa';
+import { IK_15, R_07, TM_07 } from './Tokaido';
+import { TY_16 } from './Yokohama';
 
 export const OM_01 = offset(R_07, { dy: OFFSET });
 export const OM_16 = offset(JN_10, { dy: -OFFSET * 2 });
@@ -77,8 +78,8 @@ const DenEnToshi = () => {
 
 const OM_08 = offset(OM_01, scale(OIMACHI_SLOPE, 7));
 
-const OM_10 = offset(OM_08, scale(OIMACHI_SLOPE, 2));
-export const TY_07 = offset(OM_10, { dx: OFFSET * 0.5, dy: OFFSET });
+const OM_10 = offset(OM_08, scale(OIMACHI_SLOPE, 2), { dx: MINOR_LINE * 0.5 });
+export const TY_07 = offset(OM_10, { dx: -OFFSET * 0.5, dy: OFFSET });
 
 const JIYUGAYOKA_SLOPE_N = scaleToUnitX(N, OFFSET * 4);
 
@@ -88,7 +89,9 @@ export const H_01 = offset(TY_03, scale(E, OFFSET));
 export const TY_02 = offset(TY_03, scaleToUnitX(NW, OFFSET * 2), scaleToUnitX(N, OFFSET * 2));
 export const TY_11 = offset(JN_07, { dx: OFFSET * 0.5, dy: OFFSET });
 const JIYUGAYOKA_SLOPE_S = scaleToUnitX(N, MAJOR_LINE);
-export const TY_08 = offset(TY_11, scale(JIYUGAYOKA_SLOPE_S, 3), { dx: OFFSET * 2 });
+export const TY_08 = offset(TY_11, scale(JIYUGAYOKA_SLOPE_S, 3));
+const YOKOHAMA_SLOPE = scaleToUnitX(S, OFFSET * 2.5);
+const KIKUNA_SLOPE = scaleToUnitX(S, OFFSET * 2.75);
 
 const Toyoko = () => {
     return (
@@ -109,6 +112,19 @@ const Toyoko = () => {
                 slope={JIYUGAYOKA_SLOPE_S}
                 stopsToHide={generateStationCodes('TY', 11, 9)}
             />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('TY', 11, 15)}
+                skipBeginning
+                origin={TY_11}
+                slope={KIKUNA_SLOPE}
+                textAlignments={[TextAlignment.LEFT]}
+            />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('TY', 16, 20)}
+                origin={TY_16}
+                slope={YOKOHAMA_SLOPE}
+                textAlignments={[TextAlignment.LEFT]}
+            />
             <Stop stationCode="TY 08" location={TY_08} hideText />
         </>
     );
@@ -118,8 +134,8 @@ export const MG_06 = offset(OM_08, { dx: -OFFSET * 0.5, dy: OFFSET });
 const MEGURO_SLOPE = scaleToUnitX(N, OFFSET * 3);
 export const MG_02 = offset(MG_01, scaleToUnitX(SW, OFFSET * 4));
 export const MG_11 = offset(TY_11, scale(E, OFFSET));
-export const MG_08 = offset(TY_08, scale(SE, OFFSET));
-export const MG_07 = offset(MG_08, scaleToUnitX(NE, OFFSET * 4.5));
+export const MG_08 = offset(TY_08, scale(E, OFFSET));
+export const MG_07 = offset(MG_08, scaleToUnitX(NE, OFFSET * 3), scaleToUnitX(N, OFFSET * 2));
 
 const Meguro = () => {
     return (
@@ -189,8 +205,21 @@ const Ikegami = () => {
     );
 };
 
+const ASAKUSA_SLOPE = scaleToUnitX(S, OFFSET * 3);
+export const A_01 = offset(A_03, scale(ASAKUSA_SLOPE, 2));
+
 const AsakusaStops = () => {
-    return <Stop stationCode="A 03" location={A_03} strokeColor="stroke-asakusa" />;
+    return (
+        <>
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('A', 3, 1)}
+                origin={A_03}
+                strokeColor="stroke-asakusa"
+                slope={ASAKUSA_SLOPE}
+            />
+            <Stop stationCode="A 04" location={offset(A_03, scaleToUnitX(S, OFFSET * -4.5))} strokeColor="stroke-asakusa" />
+        </>
+    );
 };
 
 export const SG_01 = offset(DT_03, { dx: -OFFSET });
@@ -215,7 +244,7 @@ const Setagaya = () => {
             <Stop stationCode="SG 07" location={offset(SG_08, scaleToUnitX(SE, OFFSET * 2))} />
             <Stop stationCode="SG 08" location={SG_08} textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="SG 09" location={offset(SG_08, scaleToUnitX(NW, OFFSET * 3))} textAlignment={TextAlignment.LEFT} />
-            <Stop stationCode="SG 10" location={SG_10} />
+            <Stop stationCode="SG 10" location={SG_10} hideText />
         </>
     );
 };

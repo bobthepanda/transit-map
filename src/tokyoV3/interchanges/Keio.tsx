@@ -2,7 +2,7 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NE, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, NW, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JB_02, JB_09 } from './Chuo';
 import { IN_01 } from './Hamamatsucho';
@@ -83,9 +83,22 @@ const Inokashira = () => {
     return (
         <>
             <LineSegmentWithStepChange
-                stops={generateStationCodes('IN', 17, 3)}
+                stops={generateStationCodes('IN', 17, 8)}
                 origin={IN_17}
                 slope={INOKASHIRA_SLOPE}
+                stopsToHide={['IN 08', 'IN 05']}
+            />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('IN', 5, 3)}
+                origin={IN_05}
+                slope={INOKASHIRA_SLOPE}
+                stopsToHide={['IN 08', 'IN 05']}
+            />
+            <LineSegmentWithStepChange
+                stops={generateStationCodes('IN', 5, 7)}
+                skipBeginning
+                origin={IN_05}
+                slope={scaleToUnitX(NW, OFFSET * 2.5)}
                 stopsToHide={['IN 08', 'IN 05']}
             />
             <Stop stationCode="IN 02" location={IN_02} textAlignment={TextAlignment.DOWN} />

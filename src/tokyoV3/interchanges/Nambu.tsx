@@ -4,13 +4,13 @@ import { OFFSET } from '../../utils/CommonCoordinates';
 import { SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JC_19 } from './Chuo';
-import { JK_16 } from './KeihinTohoku';
+import { JK_16 } from './Tokaido';
 
 export const JN_26 = offset(JC_19, { dy: OFFSET });
 export const JN_01 = offset(JK_16, { dx: -OFFSET });
 
 const JN_26_SLOPE = scaleToUnitX(SE, OFFSET * 5.5);
-const JN_01_SLOPE = scaleToUnitX(W, OFFSET * 6);
+const JN_01_SLOPE = scaleToUnitX(W, OFFSET * 5.5);
 export const JN_16 = offset(JN_26, scale(JN_26_SLOPE, 10));
 export const JN_21 = offset(JN_26, scale(JN_26_SLOPE, 5));
 export const JN_14 = offset(JN_16, scale(JN_26_SLOPE, 2));

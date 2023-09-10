@@ -15,7 +15,7 @@ import { E_21, E_22, H_02, I_01, I_03, N_01, N_03, N_04, N_05 } from '../interch
 import { A_06, A_07 } from '../interchanges/TakanawaGateway';
 import { I_04 } from '../interchanges/Tamachi';
 import { G_10, M_17 } from '../interchanges/TokyoStation';
-import { A_03, H_01 } from '../interchanges/Tokyu';
+import { A_01, H_01 } from '../interchanges/Tokyu';
 import { C_07, C_08, C_09, H_07, H_08, I_08, M_14, M_15, M_16, Y_20 } from '../interchanges/YurakuchoStation';
 
 const Ginza = () => {
@@ -29,7 +29,7 @@ const Ginza = () => {
 };
 
 const Asakusa = () => {
-    return <SVGPath points={[A_03, A_06, A_07, A_09, A_10, A_14, A_16]} directions={[N, E, N, NE, SE, NE, N]} color="stroke-asakusa" />;
+    return <SVGPath points={[A_01, A_06, A_07, A_09, A_10, A_14, A_16]} directions={[N, E, N, NE, SE, NE, N]} color="stroke-asakusa" />;
 };
 
 const Hibiya = () => {
@@ -74,7 +74,13 @@ const Mita = () => {
 };
 
 const Namboku = () => {
-    return <SVGPath points={[N_01, N_03, N_04, N_05, N_06, N_08, N_10]} directions={[NE, E, N, NE, N, NW, NE]} color="stroke-namboku" />;
+    return (
+        <SVGPath
+            points={[N_01, N_03, N_04, midPoint(N_05, N_06), N_06, N_08, N_10]}
+            directions={[NE, E, N, NE, N, NW, NE]}
+            color="stroke-namboku"
+        />
+    );
 };
 
 const Oedo = () => {
