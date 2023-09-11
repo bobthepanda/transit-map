@@ -4,7 +4,7 @@ import { E, N, NE, NW, S, SE, SW, W, offset } from '../../utils/PathUtils';
 import { JB_20, JC_03, JK_28, JY_03 } from '../interchanges/Akihabara';
 import { JB_01, JC_22 } from '../interchanges/Chuo';
 import { JA_11, JB_10, JC_05, JO_21, JS_20, JY_17 } from '../interchanges/Kanda';
-import { JN_01, JN_26 } from '../interchanges/Nambu';
+import { JN_01, JN_21, JN_26 } from '../interchanges/Nambu';
 import { JK_33, JY_08 } from '../interchanges/NishiNippori';
 import { JO_20 } from '../interchanges/Otemachi';
 import { JB_12, JB_14, JC_04, JO_18 } from '../interchanges/Shimbashi';
@@ -43,7 +43,7 @@ const ChuoSobu = () => {
 };
 
 const Nambu = () => {
-    return <SVGPath points={[JN_01, JN_26]} directions={[W, NW]} color="stroke-nambu" />;
+    return <SVGPath points={[JN_01, JN_21, JN_26]} directions={[W, NW, N]} color="stroke-nambu" />;
 };
 
 const ShonanShinjuku = () => {

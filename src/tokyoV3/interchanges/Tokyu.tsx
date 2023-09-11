@@ -236,7 +236,7 @@ const AsakusaStops = () => {
 
 export const SG_01 = offset(DT_03, { dx: -OFFSET });
 export const SG_08 = offset(OH_10, { dy: -OFFSET * 2 });
-export const SG_10 = offset(KO_07, { dx: OFFSET });
+export const SG_10 = offset(KO_07, { dy: OFFSET });
 const SETAGAYA_SLOPE = scaleToUnitX(N, OFFSET * 2);
 const YAMASHITA_SLOPE = scaleToUnitX(W, OFFSET * 4);
 export const SG_03 = offset(SG_01, YAMASHITA_SLOPE, scaleToUnitX(NW, OFFSET * 1.5));

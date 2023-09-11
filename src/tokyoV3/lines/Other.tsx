@@ -2,7 +2,7 @@ import SVGPath from '../../symbols/SVGPath';
 import { E, ESE, N, NW, S, SE, SW, W } from '../../utils/PathUtils';
 import { DT_01, IN_01, TY_01 } from '../interchanges/Hamamatsucho';
 import { KO_01, OH_01 } from '../interchanges/Kanda';
-import { IN_17, KO_05, KO_06, KO_18, KO_19, KO_25, KO_36, OH_07 } from '../interchanges/Keio';
+import { IN_17, KO_06, KO_07, KO_12, KO_18, KO_19, KO_25, KO_36, OH_07 } from '../interchanges/Keio';
 import { OH_18 } from '../interchanges/Nambu';
 import { OH_06 } from '../interchanges/Odakyu';
 import { IK_01, KK_01, MG_01 } from '../interchanges/Shinagawa';
@@ -39,7 +39,7 @@ const Inokashira = () => {
 };
 
 const KeioLine = () => {
-    return <SVGPath points={[KO_01, KO_05, KO_06, KO_18, KO_19, KO_25]} directions={[W, SW, S, W, NW, W]} />;
+    return <SVGPath points={[KO_01, KO_06, KO_07, KO_12, KO_19, KO_25]} directions={[W, SW, NW, SW, NW, W]} />;
 };
 
 const Samigahara = () => {
