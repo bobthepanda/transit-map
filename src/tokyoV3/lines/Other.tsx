@@ -1,10 +1,11 @@
 import SVGPath from '../../symbols/SVGPath';
-import { E, ESE, N, NW, S, SE, SW, W } from '../../utils/PathUtils';
+import { OFFSET } from '../../utils/CommonCoordinates';
+import { E, ESE, N, NW, RADIUS, S, SE, SW, W } from '../../utils/PathUtils';
 import { DT_01, IN_01, TY_01 } from '../interchanges/Hamamatsucho';
 import { KO_01, OH_01 } from '../interchanges/Kanda';
-import { IN_17, KO_06, KO_07, KO_12, KO_18, KO_19, KO_25, KO_36, OH_07 } from '../interchanges/Keio';
+import { IN_17, KO_06, KO_07, KO_11, KO_18, KO_19, KO_25, KO_35, KO_36, OH_07 } from '../interchanges/Keio';
 import { OH_18 } from '../interchanges/Nambu';
-import { OH_06 } from '../interchanges/Odakyu';
+import { OH_17 } from '../interchanges/Odakyu';
 import { IK_01, KK_01, MG_01 } from '../interchanges/Shinagawa';
 import { A_07 } from '../interchanges/TakanawaGateway';
 import { IK_15, KK_04, KK_20, KK_36, KK_37, MM_01, MM_02, TM_07 } from '../interchanges/Tokaido';
@@ -21,12 +22,10 @@ import {
     OM_16,
     OM_DT_09,
     SG_01,
-    SG_06,
     SG_08,
     SG_10,
     TM_01,
-    TY_02,
-    TY_11,
+    TY_20,
 } from '../interchanges/Tokyu';
 import { DT_22, OH_27 } from '../interchanges/Yokohama';
 
@@ -39,19 +38,19 @@ const Inokashira = () => {
 };
 
 const KeioLine = () => {
-    return <SVGPath points={[KO_01, KO_06, KO_07, KO_12, KO_19, KO_25]} directions={[W, SW, NW, SW, NW, W]} />;
+    return <SVGPath points={[KO_01, KO_06, KO_07, KO_11, KO_19, KO_25]} directions={[W, SW, NW, SW, NW, W]} />;
 };
 
 const Samigahara = () => {
-    return <SVGPath points={[KO_18, KO_36]} directions={[W, S]} />;
+    return <SVGPath points={[KO_18, KO_35, KO_36]} directions={[SW, S, SW]} />;
 };
 
 const OdakyuOdawara = () => {
-    return <SVGPath points={[OH_01, OH_06, OH_07, OH_18, OH_27]} directions={[S, SW, S, SW, W]} />;
+    return <SVGPath points={[OH_01, OH_07, OH_17, OH_18, OH_27]} directions={[S, SW, S, SW, W]} />;
 };
 
 const Oimachi = () => {
-    return <SVGPath points={[OM_01, OM_DT_09, OM_16]} directions={[W, S, W]} />;
+    return <SVGPath points={[OM_01, OM_DT_09, OM_16]} directions={[W, S, W]} radii={{ 2: RADIUS + OFFSET }} />;
 };
 
 const DenEnToshi = () => {
@@ -59,11 +58,11 @@ const DenEnToshi = () => {
 };
 
 const Meguro = () => {
-    return <SVGPath points={[MG_01, MG_06, MG_07, MG_11]} directions={[SW, S, SW, S]} />;
+    return <SVGPath points={[MG_01, MG_06, MG_07, MG_11]} directions={[SW, S, W, S]} />;
 };
 
 const Toyoko = () => {
-    return <SVGPath points={[TY_01, TY_02, TY_11, MM_01, MM_02]} directions={[S, SE, S, SW, SE]} color="stroke-fukutoshin" />;
+    return <SVGPath points={[TY_01, TY_20, MM_01, MM_02]} directions={[S, SE, SW, SE]} color="stroke-fukutoshin" />;
 };
 
 const Ikegami = () => {
@@ -75,7 +74,7 @@ const Tamagawa = () => {
 };
 
 const Setagaya = () => {
-    return <SVGPath points={[SG_01, SG_06, SG_08, SG_10]} directions={[W, N, NW, N]} />;
+    return <SVGPath points={[SG_01, SG_08, SG_10]} directions={[W, NW, N]} />;
 };
 
 const Other = () => {

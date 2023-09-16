@@ -33,7 +33,7 @@ export const JY_19 = offset(JY_18, scaleToUnitX(S, MAJOR_LINE * 1.5));
 export const JY_20 = offset(JY_19, scaleToUnitX(S, MAJOR_LINE * 1.5));
 export const JY_21 = offset(JY_20, { dx: MAJOR_LINE * 0.5, dy: MAJOR_LINE }, scaleToUnitX(SE, OFFSET));
 export const JY_22 = offset(JY_21, scaleToUnitX(SE, MAJOR_LINE + OFFSET * 2));
-export const JY_23 = offset(JY_22, scaleToUnitX(SE, MAJOR_LINE - OFFSET * 1.5));
+export const JY_23 = offset(JY_22, scaleToUnitX(SE, MAJOR_LINE));
 export const JY_24 = offset(JY_23, scaleToUnitX(SE, MAJOR_LINE - MINOR_LINE));
 
 const YamanoteStop = ({ stationCode, location }: StopDefinition) => {

@@ -1,4 +1,4 @@
-import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
+import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
@@ -69,7 +69,7 @@ const Meguro = () => {
     );
 };
 
-export const JY_23 = offset(JY_24, scaleToUnitX(W, MAJOR_LINE + MINOR_LINE * 0.5));
+export const JY_23 = offset(JY_24, scaleToUnitX(W, MAJOR_LINE + OFFSET));
 export const A_05 = offset(JY_23, { dx: OFFSET * 0.5, dy: -OFFSET });
 export const IK_01 = offset(A_05, scaleToUnitX(W, OFFSET));
 

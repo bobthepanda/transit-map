@@ -2,13 +2,13 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NE, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, NE, NW, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JC_22 } from './Chuo';
 import { JN_07 } from './Nambu';
 import { JK_13 } from './Tokaido';
 
-export const JH_14 = offset(JK_13, scaleToUnitX(NE, OFFSET), scaleToUnitX(N, MAJOR_LINE));
+export const JH_14 = offset(JK_13, scaleToUnitX(NE, MAJOR_LINE * 0.5), scaleToUnitX(NW, MAJOR_LINE));
 
 export const JH_15 = offset(JN_07, scaleToUnitX(S, MAJOR_LINE * 2.5));
 export const TY_16 = offset(JH_15, { dx: OFFSET * 0.5, dy: OFFSET });

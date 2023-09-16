@@ -33,7 +33,7 @@ const Asakusa = () => {
 };
 
 const Hibiya = () => {
-    return <SVGPath points={[H_01, H_02, H_05, H_07, H_08, H_13, H_16]} directions={[N, NE, E, NE, SE, NE, N]} color="stroke-hibiya" />;
+    return <SVGPath points={[H_01, H_02, H_05, H_07, H_08, H_13, H_16]} directions={[E, NE, E, NE, SE, NE, N]} color="stroke-hibiya" />;
 };
 
 const Yurakucho = () => {
