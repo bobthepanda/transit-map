@@ -3,9 +3,27 @@ import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, ESE, N, NW, RADIUS, S, SE, SW, W } from '../../utils/PathUtils';
 import { DT_01, IN_01, TY_01 } from '../interchanges/Hamamatsucho';
 import { KO_01, OH_01 } from '../interchanges/Kanda';
-import { IN_17, KO_06, KO_07, KO_11, KO_18, KO_19, KO_25, KO_35, KO_36, OH_07 } from '../interchanges/Keio';
-import { OH_18 } from '../interchanges/Nambu';
-import { OH_17 } from '../interchanges/Odakyu';
+import {
+    IN_17,
+    KO_06,
+    KO_07,
+    KO_11,
+    KO_18,
+    KO_19,
+    KO_25,
+    KO_34,
+    KO_35,
+    KO_36,
+    KO_37,
+    KO_45,
+    OH_07,
+    OT_04,
+    OT_05,
+    OT_07,
+    TT_01,
+    TT_12,
+} from '../interchanges/Keio';
+import { OH_17, OH_23 } from '../interchanges/Odakyu';
 import { IK_01, KK_01, MG_01 } from '../interchanges/Shinagawa';
 import { A_07 } from '../interchanges/TakanawaGateway';
 import { IK_15, KK_04, KK_20, KK_36, KK_37, MM_01, MM_02, TM_07 } from '../interchanges/Tokaido';
@@ -38,15 +56,21 @@ const Inokashira = () => {
 };
 
 const KeioLine = () => {
-    return <SVGPath points={[KO_01, KO_06, KO_07, KO_11, KO_19, KO_25]} directions={[W, SW, NW, SW, NW, W]} />;
+    return (
+        <SVGPath
+            points={[KO_01, KO_06, KO_07, KO_11, KO_19, KO_25, KO_34]}
+            directions={[W, SW, NW, SW, NW, W, NW]}
+            color="stroke-shinjuku"
+        />
+    );
 };
 
 const Samigahara = () => {
-    return <SVGPath points={[KO_18, KO_35, KO_36]} directions={[SW, S, SW]} />;
+    return <SVGPath points={[KO_18, KO_35, KO_36, KO_37, KO_45]} directions={[SW, S, SW, W, NW]} color="stroke-shinjuku" />;
 };
 
 const OdakyuOdawara = () => {
-    return <SVGPath points={[OH_01, OH_07, OH_17, OH_18, OH_27]} directions={[S, SW, S, SW, W]} />;
+    return <SVGPath points={[OH_01, OH_07, OH_17, OH_27]} directions={[S, SW, S, SW]} />;
 };
 
 const Oimachi = () => {
@@ -77,6 +101,14 @@ const Setagaya = () => {
     return <SVGPath points={[SG_01, SG_08, SG_10]} directions={[W, NW, N]} />;
 };
 
+const Tama = () => {
+    return <SVGPath points={[OH_23, OT_04, OT_05, OT_07]} directions={[SW, NW, W, SW]} />;
+};
+
+const TamaToshi = () => {
+    return <SVGPath points={[TT_01, TT_12]} directions={[NW, N]} />;
+};
+
 const Other = () => {
     return (
         <>
@@ -92,6 +124,8 @@ const Other = () => {
             <Ikegami />
             <Tamagawa />
             <Setagaya />
+            <Tama />
+            <TamaToshi />
         </>
     );
 };

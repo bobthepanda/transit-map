@@ -12,12 +12,11 @@ export const JH_14 = offset(JK_13, scaleToUnitX(NE, MAJOR_LINE * 0.5), scaleToUn
 
 export const JH_15 = offset(JN_07, scaleToUnitX(S, MAJOR_LINE * 2.5));
 export const TY_16 = offset(JH_15, { dx: OFFSET * 0.5, dy: OFFSET });
-export const JH_32 = offset(JC_22, { dy: OFFSET });
+export const JH_32 = offset(JC_22, { dx: -OFFSET, dy: OFFSET * 0.5 });
 
-const HACHIJOI_SLOPE = scaleToUnitX(S, MAJOR_LINE * 1.75);
-const JH_28 = offset(JH_32, scale(HACHIJOI_SLOPE, 4));
-export const JH_27 = offset(JH_28, scale(HACHIJOI_SLOPE), scaleToUnitX(SE, MAJOR_LINE * 0.5));
-export const KO_45 = offset(JH_28, { dx: OFFSET * 0.5, dy: OFFSET });
+const HACHIJOI_SLOPE = scaleToUnitX(S, MAJOR_LINE * 1.5);
+export const JH_28 = offset(JH_32, scale(HACHIJOI_SLOPE, 4));
+export const JH_27 = offset(JH_28, scale(HACHIJOI_SLOPE), scaleToUnitX(SE, MAJOR_LINE * 0.5), scaleToUnitX(E, OFFSET));
 
 const KIKUNA_SLOPE = scaleToUnitX(W, MAJOR_LINE * 1.5);
 const JH_19 = offset(JH_15, scale(KIKUNA_SLOPE, 4));

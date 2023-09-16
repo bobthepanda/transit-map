@@ -23,6 +23,8 @@ const OH_16 = offset(OH_07, scale(GOTOKUJI_SLOPE, -9));
 
 export const OH_17 = midPoint(OH_16, OH_18);
 
+export const OH_23 = offset(OH_18, scale(NOBORITO_SLOPE, 5));
+
 const Odakyu = () => {
     return (
         <>
@@ -40,7 +42,7 @@ const Odakyu = () => {
                 skipBeginning
                 slope={scale(GOTOKUJI_SLOPE, -1)}
             />
-            <LineSegmentWithStepChange stops={generateStationCodes('OH', 18, 25)} origin={OH_18} skipBeginning slope={NOBORITO_SLOPE} />
+            <LineSegmentWithStepChange stops={generateStationCodes('OH', 18, 26)} origin={OH_18} skipBeginning slope={NOBORITO_SLOPE} />
             <Stop stationCode="OH 07" location={OH_07} />
             <Stop stationCode="OH 17" location={OH_17} />
             <LineSegmentWithStepChange
@@ -52,7 +54,6 @@ const Odakyu = () => {
                 slope={scaleToUnitX(E, MAJOR_LINE - MINOR_LINE * 0.5)}
             />
             <Stop location={OH_27} stationCode="OH 27" />
-            <Stop location={offset(OH_27, scaleToUnitX(E, MAJOR_LINE))} stationCode="OH 26" textAlignment={TextAlignment.DOWN} />
         </>
     );
 };

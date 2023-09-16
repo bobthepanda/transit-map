@@ -9,7 +9,7 @@ interface PathParameters {
     radii?: any;
 }
 
-const SVGPath = ({ color = 'stroke-black', strokeWidth = `stroke-line`, points, directions, radii }: PathParameters) => {
+const SVGPath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`, points, directions, radii }: PathParameters) => {
     const d: string[] = [startAtLocation(points[0])];
 
     if (directions?.length === points.length) {

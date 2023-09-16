@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { N, S, SE, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { JC_19 } from './Chuo';
 import { JA_10 } from './Hamamatsucho';
@@ -14,9 +14,10 @@ const TACHIKAWA_SLOPE = scaleToUnitX(S, MAJOR_LINE);
 
 const YAGAWA_SLOPE = scaleToUnitX(SE, OFFSET * 6);
 const JN_01_SLOPE = scaleToUnitX(W, OFFSET * 6);
-const JN_24 = offset(JN_26, scale(TACHIKAWA_SLOPE, 2));
-const JN_23 = offset(JN_24, scaleToUnitX(S, MAJOR_LINE * 0.5), scaleToUnitX(SE, MAJOR_LINE * 0.5));
-export const JN_21 = offset(JN_23, scale(YAGAWA_SLOPE, 2));
+export const JN_25 = offset(JN_26, YAGAWA_SLOPE, scaleToUnitX(W, OFFSET * 2), scaleToUnitX(N, OFFSET));
+
+const JN_22 = offset(JN_26, scale(TACHIKAWA_SLOPE, 2), scaleToUnitX(S, MAJOR_LINE * 0.5), scaleToUnitX(SE, MAJOR_LINE * 0.5), YAGAWA_SLOPE);
+export const JN_21 = offset(JN_22, scale(YAGAWA_SLOPE, 1));
 export const JN_16 = offset(JN_21, scale(YAGAWA_SLOPE, 5));
 export const JN_14 = offset(JN_16, scale(YAGAWA_SLOPE, 2));
 export const OH_18 = offset(JN_14, { dx: OFFSET });
@@ -27,15 +28,16 @@ const Nambu = () => {
     return (
         <>
             <LineSegmentWithStepChange
-                stops={generateStationCodes('JN', 26, 24)}
-                origin={JN_26}
+                stops={generateStationCodes('JN', 25, 23)}
+                origin={JN_25}
                 slope={TACHIKAWA_SLOPE}
                 strokeColor="stroke-nambu"
-                textAlignments={[TextAlignment.LEFT]}
+                stopsToHide={['JN 26']}
             />
+            <Stop stationCode="JN 26" location={JN_26} strokeColor="stroke-nambu" hideText />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('JN', 23, 10)}
-                origin={JN_23}
+                stops={generateStationCodes('JN', 22, 10)}
+                origin={JN_22}
                 slope={YAGAWA_SLOPE}
                 strokeColor="stroke-nambu"
                 textAlignments={[TextAlignment.LEFT]}
