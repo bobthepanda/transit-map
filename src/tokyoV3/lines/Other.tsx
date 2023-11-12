@@ -1,6 +1,6 @@
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, ESE, N, NW, RADIUS, S, SE, SW, W } from '../../utils/PathUtils';
+import { E, ESE, N, NE, NW, RADIUS, S, SE, SW, W, midPoint } from '../../utils/PathUtils';
 import { DT_01, IN_01, TY_01 } from '../interchanges/Hamamatsucho';
 import { KO_01, OH_01 } from '../interchanges/Kanda';
 import {
@@ -26,7 +26,23 @@ import {
 import { OH_17, OH_23 } from '../interchanges/Odakyu';
 import { IK_01, KK_01, MG_01 } from '../interchanges/Shinagawa';
 import { A_07 } from '../interchanges/TakanawaGateway';
-import { IK_15, KK_04, KK_20, KK_36, KK_37, MM_01, MM_02, TM_07 } from '../interchanges/Tokaido';
+import {
+    IK_15,
+    KK_04,
+    KK_20,
+    KK_36,
+    KK_37,
+    KK_38,
+    KK_39,
+    KK_44,
+    MM_01,
+    MM_06,
+    TM_07,
+    YB_01,
+    YB_11,
+    YB_19,
+    YB_20,
+} from '../interchanges/Tokaido';
 import {
     DT_09,
     DT_10,
@@ -48,7 +64,9 @@ import {
 import { DT_22, OH_27 } from '../interchanges/Yokohama';
 
 const Keikyu = () => {
-    return <SVGPath points={[A_07, KK_01, KK_04, KK_20, KK_36, KK_37]} directions={[S, ESE, S, SW, W, SW]} />;
+    return (
+        <SVGPath points={[A_07, KK_01, KK_04, KK_20, KK_36, KK_37, KK_38, KK_39, KK_44]} directions={[S, ESE, S, SW, W, SW, SE, SW, SE]} />
+    );
 };
 
 const Inokashira = () => {
@@ -86,7 +104,7 @@ const Meguro = () => {
 };
 
 const Toyoko = () => {
-    return <SVGPath points={[TY_01, TY_20, MM_01, MM_02]} directions={[S, SE, SW, SE]} color="stroke-fukutoshin" />;
+    return <SVGPath points={[TY_01, TY_20, MM_01, MM_06]} directions={[S, SE, SW, SE]} color="stroke-fukutoshin" />;
 };
 
 const Ikegami = () => {
@@ -109,6 +127,16 @@ const TamaToshi = () => {
     return <SVGPath points={[TT_01, TT_12]} directions={[NW, N]} />;
 };
 
+const YokohamaBlue = () => {
+    return (
+        <SVGPath
+            points={[YB_01, YB_11, YB_19, midPoint(YB_19, KK_37), YB_20]}
+            directions={[E, NE, NW, NE, NW]}
+            color="stroke-yokohama-blue"
+        />
+    );
+};
+
 const Other = () => {
     return (
         <>
@@ -126,6 +154,7 @@ const Other = () => {
             <Setagaya />
             <Tama />
             <TamaToshi />
+            <YokohamaBlue />
         </>
     );
 };

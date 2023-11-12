@@ -2,12 +2,13 @@ import { MAJOR_LINE, MINOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../symbols/LineSegment';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, NE, SE, SW, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, SE, SW, W, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 import { generateStationCodes } from '../../utils/StopUtils';
 import { OH_01 } from './Kanda';
 import { OH_07 } from './Keio';
 import { OH_18 } from './Nambu';
 import { E_26 } from './Shimbashi';
+import { YB_01 } from './Tokaido';
 import { OH_27 } from './Yokohama';
 
 export const SHINJUKU_SLOPE = scaleToUnitX(NE, OFFSET * 3);
@@ -24,6 +25,8 @@ const OH_16 = offset(OH_07, scale(GOTOKUJI_SLOPE, -9));
 export const OH_17 = midPoint(OH_16, OH_18);
 
 export const OH_23 = offset(OH_18, scale(NOBORITO_SLOPE, 5));
+export const OH_28 = offset(OH_27, NOBORITO_SLOPE);
+export const OE_09 = offset(YB_01, scaleToUnitX(W, OFFSET), scaleToUnitX(N, OFFSET * 0.5));
 
 const Odakyu = () => {
     return (
@@ -54,6 +57,8 @@ const Odakyu = () => {
                 slope={scaleToUnitX(E, MAJOR_LINE - MINOR_LINE * 0.5)}
             />
             <Stop location={OH_27} stationCode="OH 27" />
+            <Stop location={OH_28} stationCode="OH 28" />
+            <Stop location={OE_09} stationCode="OE 09" />
         </>
     );
 };

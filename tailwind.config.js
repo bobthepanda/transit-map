@@ -38,6 +38,8 @@ module.exports = {
                 keiyo: '#dc143c',
                 'joban-rapid': `#3cb371`,
                 'joban-local': '#808080',
+                'yokohama-blue': '#2F56A5',
+                'yokohama-green': '#28846E',
             },
             strokeWidth: {
                 line: '8pt',

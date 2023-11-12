@@ -178,8 +178,13 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
 };
 
 export const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection, secondDirection }: CurveFromParameters): Coordinates => {
-    const a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
-    const b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
+    let a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
+    let b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
+
+    if (a1.x === b1.x) {
+        a2 = generatePointY({ start: a1, slope: firstDirection, endReference: b1 });
+        b2 = generatePointY({ start: b1, slope: secondDirection, endReference: a1 });
+    }
 
     return findIntersection(a1, a2, b1, b2);
 };

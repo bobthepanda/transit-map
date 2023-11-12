@@ -10,7 +10,22 @@ import { JO_20 } from '../interchanges/Otemachi';
 import { JB_12, JB_14, JC_04, JO_18 } from '../interchanges/Shimbashi';
 import { JA_08, JA_09, JO_17, JS_17, JS_18, JY_21, JY_24 } from '../interchanges/Shinagawa';
 import { JK_21, JY_26 } from '../interchanges/TakanawaGateway';
-import { JH_12, JK_12, JO_13, JS_13 } from '../interchanges/Tokaido';
+import {
+    JH_12,
+    JK_01,
+    JK_01_YOKOHAMA,
+    JK_05,
+    JK_05_YOKOHAMA,
+    JK_11,
+    JK_11_YOKOHAMA,
+    JK_12,
+    JO_04,
+    JO_08,
+    JO_10,
+    JO_13,
+    JS_10,
+    JS_13,
+} from '../interchanges/Tokaido';
 import { JC_01, JK_26, JY_01 } from '../interchanges/TokyoStation';
 import {
     JO_14,
@@ -28,7 +43,13 @@ import {
 import { JH_14, JH_15, JH_27, JH_32 } from '../interchanges/Yokohama';
 
 const KeihinTohoku = () => {
-    return <SVGPath points={[JK_33, JK_28, JK_26, JK_21, JK_12]} directions={[SE, S, SW, S, SW]} color="stroke-keihin-tohoku" />;
+    return (
+        <SVGPath
+            points={[JK_33, JK_28, JK_26, JK_21, JK_12, JK_11, JK_05, JK_01]}
+            directions={[SE, S, SW, S, SW, SE, SW, W]}
+            color="stroke-keihin-tohoku"
+        />
+    );
 };
 
 const Yamanote = () => {
@@ -40,8 +61,23 @@ const Yamanote = () => {
 const SobuRapid = () => {
     return (
         <SVGPath
-            points={[JO_13, JO_14, JO_15, JO_15_CURVE, JO_16, JO_17_SECOND_CURVE, JO_17_FIRST_CURVE, JO_17, JO_18, JO_20, JO_21]}
-            directions={[NE, NW, N, NE, E, N, E, N, NE, E, NE]}
+            points={[
+                JO_04,
+                JO_08,
+                JO_10,
+                JO_13,
+                JO_14,
+                JO_15,
+                JO_15_CURVE,
+                JO_16,
+                JO_17_SECOND_CURVE,
+                JO_17_FIRST_CURVE,
+                JO_17,
+                JO_18,
+                JO_20,
+                JO_21,
+            ]}
+            directions={[W, NW, N, NE, NW, N, NE, E, N, E, N, NE, E, NE]}
             color="stroke-sobu-rapid"
         />
     );
@@ -77,8 +113,8 @@ const Nambu = () => {
 const ShonanShinjuku = () => {
     return (
         <SVGPath
-            points={[JS_13, JS_14, JS_15, JS_15_CURVE, JS_16, JS_17_CURVE, JS_17, JS_18, JS_20]}
-            directions={[NE, NW, N, NE, E, N, W, NW, N]}
+            points={[JS_10, JS_13, JS_14, JS_15, JS_15_CURVE, JS_16, JS_17_CURVE, JS_17, JS_18, JS_20]}
+            directions={[N, NE, NW, N, NE, E, N, W, NW, N]}
             color="stroke-shonan-shinjuku"
         />
     );
@@ -89,7 +125,13 @@ const Saikyo = () => {
 };
 
 const Yokohama = () => {
-    return <SVGPath points={[JH_12, JH_14, JH_15, JH_27, JH_32]} directions={[NE, NW, W, NW, N]} color="stroke-yokohama" />;
+    return (
+        <SVGPath
+            points={[JK_01_YOKOHAMA, JK_05_YOKOHAMA, JK_11_YOKOHAMA, JH_12, JH_14, JH_15, JH_27, JH_32]}
+            directions={[E, NE, NW, NE, NW, W, NW, N]}
+            color="stroke-yokohama"
+        />
+    );
 };
 
 const JREast = () => {
