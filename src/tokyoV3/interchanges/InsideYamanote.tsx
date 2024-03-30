@@ -279,6 +279,32 @@ const Ogawamachi = () => {
     );
 };
 
+export const JB_17 = offset(JB_16, scaleToUnitX(N, OFFSET * 2), scaleToUnitX(E, MAJOR_LINE * 2));
+export const I_11 = offset(JB_17, scaleToUnitX(N, OFFSET * 0.5), scaleToUnitX(W, OFFSET));
+
+const Suidobashi = () => {
+    return (
+        <g id="ogawamachi">
+            <Stop stationCode="JB 17" location={JB_17} strokeColor="stroke-chuo-sobu" />
+            <Stop stationCode="I 11" location={I_11} strokeColor="stroke-mita" />
+        </g>
+    );
+};
+
+export const JB_18 = offset(JB_17, scaleToUnitX(E, MAJOR_LINE * 2));
+export const JC_03 = offset(JB_18, scaleToUnitX(S, OFFSET));
+export const M_20 = offset(JC_03, scaleToUnitX(S, OFFSET));
+
+const Ochanomizu = () => {
+    return (
+        <g id="ogawamachi">
+            <Stop stationCode="JB 18" location={JB_18} strokeColor="stroke-chuo-sobu" />
+            <Stop stationCode="JC 03" location={JC_03} strokeColor="stroke-chuo-rapid" />
+            <Stop stationCode="M 20" location={M_20} strokeColor="stroke-marunouchi" />
+        </g>
+    );
+};
+
 const InsideYamanote = () => {
     return (
         <g id="inside-yamanote">
@@ -300,6 +326,8 @@ const InsideYamanote = () => {
             <Kudanshita />
             <Jimbocho />
             <Ogawamachi />
+            <Suidobashi />
+            <Ochanomizu />
         </g>
     );
 };

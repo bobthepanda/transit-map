@@ -14,6 +14,7 @@ import {
     I_08,
     I_09,
     I_10,
+    I_11,
     M_12,
     M_13,
     M_14,
@@ -22,11 +23,12 @@ import {
     M_17,
     M_18,
     M_19,
+    M_20,
     N_06,
     N_08,
     N_10,
     S_04,
-    S_06,
+    S_07,
     T_06,
     T_09,
     Y_13,
@@ -48,8 +50,8 @@ const Marunouchi = () => {
     return (
         <SVGPath
             color="stroke-marunouchi"
-            points={[M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_19]}
-            directions={[S, SE, E, SE, NE, N, NE, N]}
+            points={[M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_19, M_20]}
+            directions={[S, SE, E, SE, NE, N, NE, N, NW]}
         />
     );
 };
@@ -81,15 +83,15 @@ const Tozai = () => {
 };
 
 const Shinjuku = () => {
-    return <SVGPath color="stroke-shinjuku" points={[S_04, S_06]} />;
+    return <SVGPath color="stroke-shinjuku" points={[S_04, S_07]} />;
 };
 
 const Mita = () => {
     return (
         <SVGPath
             color="stroke-mita"
-            points={[I_08, offset(I_09, scaleToUnitX(NE, OFFSET), scaleToUnitX(N, OFFSET * 2)), I_10]}
-            directions={[NE, N, NW]}
+            points={[I_08, offset(I_09, scaleToUnitX(NE, OFFSET), scaleToUnitX(N, OFFSET * 2)), I_10, I_11]}
+            directions={[NE, N, NW, N]}
         />
     );
 };
