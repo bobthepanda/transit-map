@@ -265,6 +265,20 @@ const Jimbocho = () => {
     );
 };
 
+export const S_07 = offset(S_06, scaleToUnitX(E, MAJOR_LINE * 2));
+export const C_12 = offset(S_07, scaleToUnitX(N, OFFSET * 2), scaleToUnitX(W, OFFSET * 2));
+export const M_19 = offset(S_07, scaleToUnitX(S, OFFSET * 2), scaleToUnitX(E, OFFSET * 2));
+
+const Ogawamachi = () => {
+    return (
+        <g id="ogawamachi">
+            <Stop stationCode="S 07" location={S_07} strokeColor="stroke-shinjuku" />
+            <Stop stationCode="C 12" location={C_12} strokeColor="stroke-chiyoda" />
+            <Stop stationCode="M 19" location={M_19} strokeColor="stroke-marunouchi" />
+        </g>
+    );
+};
+
 const InsideYamanote = () => {
     return (
         <g id="inside-yamanote">
@@ -285,6 +299,7 @@ const InsideYamanote = () => {
             <Otemachi />
             <Kudanshita />
             <Jimbocho />
+            <Ogawamachi />
         </g>
     );
 };

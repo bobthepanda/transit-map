@@ -5,6 +5,7 @@ import {
     C_07,
     C_08,
     C_11,
+    C_12,
     G_04,
     G_08,
     G_09,
@@ -20,6 +21,7 @@ import {
     M_16,
     M_17,
     M_18,
+    M_19,
     N_06,
     N_08,
     N_10,
@@ -43,7 +45,13 @@ const Ginza = () => {
 };
 
 const Marunouchi = () => {
-    return <SVGPath color="stroke-marunouchi" points={[M_12, M_13, M_14, M_15, M_16, M_17, M_18]} directions={[S, SE, E, SE, NE, N, NE]} />;
+    return (
+        <SVGPath
+            color="stroke-marunouchi"
+            points={[M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_19]}
+            directions={[S, SE, E, SE, NE, N, NE, N]}
+        />
+    );
 };
 
 const Namboku = () => {
@@ -61,7 +69,7 @@ const Yurakucho = () => {
 };
 
 const Chiyoda = () => {
-    return <SVGPath color="stroke-chiyoda" points={[C_07, C_08, C_11]} directions={[E, SE, NE]} />;
+    return <SVGPath color="stroke-chiyoda" points={[C_07, C_08, C_11, C_12]} directions={[E, SE, NE, N]} />;
 };
 
 const Hibiya = () => {
