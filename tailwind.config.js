@@ -50,6 +50,13 @@ module.exports = {
             base: '1em',
             subtitle: '0.666em',
         },
+        spacing: {
+            vertical: '12pt',
+            horizontal: '12pt',
+            diagonal: '8.4852pt',
+            'diagonal-down': '20.4852pt',
+            'vertical-double': '24pt',
+        },
     },
     plugins: [],
 };

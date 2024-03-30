@@ -4,7 +4,6 @@ import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
 import { RootState } from '../tokyo/redux/store';
 import { useShowGrid } from '../utils/ParameterUtils';
-import STOPS_TO_HIDE_TEXT from '../utils/StopUtils';
 import './basic-stop.css';
 
 const STOP_ID = 'basic-stop';
@@ -20,10 +19,14 @@ export const BasicStopDefinition = (): JSX.Element => {
 };
 
 export enum TextAlignment {
-    UP = '[text-anchor:middle] -translate-y-8',
-    DOWN = '[text-anchor:middle] translate-y-9',
-    RIGHT = 'translate-x-6',
-    LEFT = '[text-anchor:end] -translate-x-6',
+    UP = '[text-anchor:middle] -translate-y-vertical-double',
+    DOWN = '[text-anchor:middle] translate-y-vertical-double',
+    RIGHT = 'translate-x-horizontal',
+    LEFT = '[text-anchor:end] -translate-x-horizontal',
+    NW = `[text-anchor:end] -translate-x-diagonal -translate-y-diagonal-down`,
+    SW = `[text-anchor:end] -translate-x-diagonal translate-y-diagonal-down`,
+    NE = 'translate-x-diagonal -translate-y-diagonal-down',
+    SE = 'translate-x-diagonal translate-y-diagonal-down',
 }
 
 interface TextDefinition {
@@ -80,7 +83,7 @@ const NonMemoStop = ({
     location,
     stationCode = '',
     textAlignment = TextAlignment.RIGHT,
-    hideText = STOPS_TO_HIDE_TEXT.includes(stationCode),
+    hideText,
     strokeColor = 'stroke-black',
     fillColor = 'fill-white',
 }: StopDefinition) => {

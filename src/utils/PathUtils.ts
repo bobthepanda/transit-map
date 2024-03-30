@@ -44,9 +44,12 @@ export enum Factor {
     NEGATIVE = -1,
     ZERO = 0,
     DIAG = Math.sin(Math.atan(1)),
-    HALF_DIAG = Math.sin(Math.atan(0.5)),
-    DOUBLE_DIAG = Math.cos(Math.atan(0.5)),
+    HALF_DIAG = Math.sin(Math.atan(2 / 3)),
+    DOUBLE_DIAG = Math.cos(Math.atan(2 / 3)),
 }
+
+const X_FACTOR: Factor = Factor.DIAG;
+const Y_FACTOR: Factor = Factor.DIAG;
 
 export const E = { dx: Factor.POSITIVE };
 
@@ -56,13 +59,13 @@ export const N = { dy: Factor.NEGATIVE };
 
 export const S = { dy: Factor.POSITIVE };
 
-export const SE = { dx: Factor.DIAG, dy: Factor.DIAG };
+export const SE = { dx: X_FACTOR, dy: Y_FACTOR };
 
-export const SW = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG };
+export const SW = { dx: Factor.NEGATIVE * X_FACTOR, dy: Y_FACTOR };
 
-export const NE = { dx: Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
+export const NE = { dx: X_FACTOR, dy: Y_FACTOR * Factor.NEGATIVE };
 
-export const NW = { dx: Factor.NEGATIVE * Factor.DIAG, dy: Factor.DIAG * Factor.NEGATIVE };
+export const NW = { dx: Factor.NEGATIVE * X_FACTOR, dy: Y_FACTOR * Factor.NEGATIVE };
 
 export const NNW = { dx: Factor.NEGATIVE * Factor.HALF_DIAG, dy: Factor.NEGATIVE * Factor.DOUBLE_DIAG };
 
