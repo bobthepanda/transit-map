@@ -2,7 +2,7 @@ import { Coordinates } from '../../interfaces/Dimensions';
 import { MAJOR_LINE } from '../../map/GridLines';
 import { Stop, TextAlignment } from '../../symbols/BasicStop';
 import { HEIGHT, OFFSET, WIDTH } from '../../utils/CommonCoordinates';
-import { E, N, NE, NW, SE, SW, W, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
+import { E, N, NE, NW, S, SE, SW, W, findIntersectionFromSlopes, midPoint, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
 
 export const G_06: Coordinates = { x: WIDTH / 2 - ((WIDTH / 2) % MAJOR_LINE), y: HEIGHT / 2 - ((HEIGHT / 2) % MAJOR_LINE) };
 export const M_14: Coordinates = offset(G_06, scale(N, MAJOR_LINE * 0.5));
@@ -210,7 +210,8 @@ const C_10 = offset(C_09, scaleToUnitX(NE, MAJOR_LINE + OFFSET));
 export const C_11 = offset(C_10, scaleToUnitX(NE, MAJOR_LINE));
 export const I_09 = offset(C_11, scale(SE, OFFSET));
 export const M_18 = offset(C_11, scaleToUnitX(SE, MAJOR_LINE * 0.5));
-export const T_09 = offset(C_11, scaleToUnitX(W, OFFSET));
+export const T_09 = offset(C_11, scaleToUnitX(W, OFFSET), scaleToUnitX(SE, OFFSET * 2));
+export const Z_08 = offset(T_09, scaleToUnitX(NE, OFFSET));
 
 const Otemachi = () => {
     return (
@@ -221,12 +222,48 @@ const Otemachi = () => {
                 <Stop stationCode="I 09" location={I_09} strokeColor="stroke-mita" />
                 <Stop stationCode="M 18" location={M_18} strokeColor="stroke-marunouchi" />
                 <Stop stationCode="T 09" location={T_09} strokeColor="stroke-tozai" />
+                <Stop stationCode="Z 08" location={Z_08} strokeColor="stroke-hanzomon" />
             </g>
         </>
     );
 };
 
 export const Y_15 = offset(Y_16, scaleToUnitX(W, OFFSET * 2), scaleToUnitX(N, MAJOR_LINE));
+
+const KudanshitaIntersection = findIntersectionFromSlopes({ start: T_06, end: S_04, firstDirection: SE, secondDirection: E });
+
+export const T_07 = offset(KudanshitaIntersection, scaleToUnitX(NW, OFFSET));
+export const S_05 = offset(T_07, scaleToUnitX(S, OFFSET));
+export const Z_06 = offset(S_05, scaleToUnitX(S, OFFSET));
+
+export const Z_05 = midPoint(Z_04, Z_06);
+
+const Kudanshita = () => {
+    return (
+        <>
+            <Stop stationCode="Z 05" location={Z_05} strokeColor="stroke-hanzomon" />
+            <g id="kudanshita">
+                <Stop stationCode="T 07" location={T_07} strokeColor="stroke-tozai" />
+                <Stop stationCode="S 05" location={S_05} strokeColor="stroke-shinjuku" />
+                <Stop stationCode="Z 06" location={Z_06} strokeColor="stroke-hanzomon" />
+            </g>
+        </>
+    );
+};
+
+export const S_06 = offset(S_05, scaleToUnitX(E, MAJOR_LINE * 2));
+export const Z_07 = offset(S_06, scaleToUnitX(S, OFFSET));
+export const I_10 = offset(S_06, scaleToUnitX(N, OFFSET));
+
+const Jimbocho = () => {
+    return (
+        <g id="jimbocho">
+            <Stop stationCode="I 10" location={I_10} strokeColor="stroke-mita" />
+            <Stop stationCode="S 06" location={S_06} strokeColor="stroke-shinjuku" />
+            <Stop stationCode="Z 07" location={Z_07} strokeColor="stroke-hanzomon" />
+        </g>
+    );
+};
 
 const InsideYamanote = () => {
     return (
@@ -246,6 +283,8 @@ const InsideYamanote = () => {
             <Ginza />
             <Tokyo />
             <Otemachi />
+            <Kudanshita />
+            <Jimbocho />
         </g>
     );
 };
