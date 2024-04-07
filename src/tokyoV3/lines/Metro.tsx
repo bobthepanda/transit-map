@@ -22,8 +22,8 @@ import { I_11 } from '../interchanges/InsideYamanote/Suidobashi';
 import { C_07, M_14, N_06 } from '../interchanges/InsideYamanote/TameikeSanno';
 import { M_17 } from '../interchanges/InsideYamanote/Tokyo';
 import { H_06 } from '../interchanges/InsideYamanote/Toranomon';
+import { H_11, Y_20 } from '../interchanges/InsideYamanote/Tsukiji';
 import { M_12, N_08 } from '../interchanges/InsideYamanote/Yotsuya';
-import { Y_18 } from '../interchanges/InsideYamanote/Yurakucho';
 
 const Ginza = () => {
     return <SVGPath color="stroke-ginza" points={[G_04, G_08, G_09, G_13]} directions={[NE, SE, NE, N]} />;
@@ -54,7 +54,7 @@ const Hanzomon = () => {
 };
 
 const Yurakucho = () => {
-    return <SVGPath color="stroke-yurakucho" points={[Y_13, Y_15, Y_16, Y_18]} directions={[SW, S, E, SE]} />;
+    return <SVGPath color="stroke-yurakucho" points={[Y_13, Y_15, Y_16, Y_20]} directions={[SW, S, E, SE]} />;
 };
 
 const Chiyoda = () => {
@@ -62,7 +62,7 @@ const Chiyoda = () => {
 };
 
 const Hibiya = () => {
-    return <SVGPath color="stroke-hibiya" points={[H_06, H_09]} directions={[NE, SE]} />;
+    return <SVGPath color="stroke-hibiya" points={[H_06, H_09, H_11]} directions={[NE, SE, NE]} />;
 };
 
 const Tozai = () => {

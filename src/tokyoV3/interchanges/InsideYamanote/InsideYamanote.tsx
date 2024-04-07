@@ -6,6 +6,7 @@ import { Asakusabashi } from './Asakusabashi';
 import { Bakurocho } from './Bakurocho';
 import { Ginza } from './Ginza';
 import { Hibiya } from './Hibiya';
+import { HigashiGinza } from './HigashiGinza';
 import { Ichigaya } from './Ichigaya';
 import { Iidabashi } from './Iidabashi';
 import { Jimbocho } from './Jimbocho';
@@ -22,6 +23,7 @@ import { Suidobashi } from './Suidobashi';
 import { TameikeSanno } from './TameikeSanno';
 import { Tokyo } from './Tokyo';
 import { Toranomon } from './Toranomon';
+import { Tsukiji } from './Tsukiji';
 import { Yotsuya } from './Yotsuya';
 import { Yurakucho } from './Yurakucho';
 
@@ -54,6 +56,8 @@ const InsideYamanote = () => {
             <Asakusabashi />
             <Bakurocho />
             <Mitsukomae />
+            <HigashiGinza />
+            <Tsukiji />
         </g>
     );
 };

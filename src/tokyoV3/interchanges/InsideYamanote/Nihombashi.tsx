@@ -1,4 +1,4 @@
-import { Stop } from '../../../symbols/BasicStop';
+import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { NE, SE, SW, findIntersectionFromSlopes, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { G_09 } from './Ginza';
@@ -12,9 +12,9 @@ export const A_13 = offset(T_10, scaleToUnitX(SE, OFFSET * 2), scaleToUnitX(NE, 
 export const Nihombashi = () => {
     return (
         <g id="nihombashi">
-            <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" />
-            <Stop stationCode="G 11" location={G_11} strokeColor="stroke-ginza" />
-            <Stop stationCode="A 13" location={A_13} strokeColor="stroke-asakusa" />
+            <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" textAlignment={TextAlignment.NE} />
+            <Stop stationCode="G 11" location={G_11} strokeColor="stroke-ginza" hideText />
+            <Stop stationCode="A 13" location={A_13} strokeColor="stroke-asakusa" hideText />
         </g>
     );
 };
