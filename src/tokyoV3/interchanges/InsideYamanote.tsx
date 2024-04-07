@@ -305,6 +305,52 @@ const Ochanomizu = () => {
     );
 };
 
+export const JB_19 = offset(JB_18, scaleToUnitX(E, MAJOR_LINE * 2.5));
+export const JY_03 = offset(JB_19, scaleToUnitX(E, OFFSET), scaleToUnitX(S, OFFSET * 0.5));
+export const JK_28 = offset(JY_03, scaleToUnitX(E, OFFSET));
+
+const Akihabara = () => {
+    return (
+        <g id="akihabara">
+            <Stop stationCode="JB 19" location={JB_19} strokeColor="stroke-chuo-sobu" />
+            <Stop stationCode="JY 03" location={JY_03} strokeColor="stroke-yamanote" />
+            <Stop stationCode="JK 28" location={JK_28} strokeColor="stroke-keihin-tohoku" />
+        </g>
+    );
+};
+
+export const JY_02 = offset(JY_01, scaleToUnitX(NE, MAJOR_LINE * 2.5));
+export const JC_02 = offset(JY_02, scale(NW, OFFSET));
+export const G_13 = offset(JY_02, scaleToUnitX(NW, OFFSET * 1.5));
+export const JK_27 = offset(JY_02, scale(SE, OFFSET));
+
+const Kanda = () => {
+    return (
+        <g id="kanda">
+            <Stop stationCode="JY 02" location={JY_02} strokeColor="stroke-yamanote" />
+            <Stop stationCode="JK 27" location={JK_27} strokeColor="stroke-keihin-tohoku" />
+            <Stop stationCode="JC 02" location={JC_02} strokeColor="stroke-chuo-rapid" />
+            <Stop stationCode="G 13" location={G_13} strokeColor="stroke-ginza" />
+        </g>
+    );
+};
+
+const NihombashiIntersection = findIntersectionFromSlopes({ start: T_09, firstDirection: SE, end: G_09, secondDirection: NE });
+
+export const T_10 = offset(NihombashiIntersection, scaleToUnitX(SE, OFFSET * 2));
+export const G_11 = offset(NihombashiIntersection, scaleToUnitX(SW, OFFSET));
+export const A_13 = offset(T_10, scaleToUnitX(SE, OFFSET * 2), scaleToUnitX(NE, OFFSET));
+
+const Nihombashi = () => {
+    return (
+        <g id="nihombashi">
+            <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" />
+            <Stop stationCode="G 11" location={G_11} strokeColor="stroke-ginza" />
+            <Stop stationCode="A 13" location={A_13} strokeColor="stroke-asakusa" />
+        </g>
+    );
+};
+
 const InsideYamanote = () => {
     return (
         <g id="inside-yamanote">
@@ -328,6 +374,9 @@ const InsideYamanote = () => {
             <Ogawamachi />
             <Suidobashi />
             <Ochanomizu />
+            <Akihabara />
+            <Kanda />
+            <Nihombashi />
         </g>
     );
 };

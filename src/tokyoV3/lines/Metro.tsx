@@ -2,6 +2,8 @@ import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NE, NW, S, SE, SW, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
 import {
+    A_10,
+    A_13,
     C_07,
     C_08,
     C_11,
@@ -9,6 +11,7 @@ import {
     G_04,
     G_08,
     G_09,
+    G_13,
     H_06,
     H_09,
     I_08,
@@ -30,7 +33,7 @@ import {
     S_04,
     S_07,
     T_06,
-    T_09,
+    T_10,
     Y_13,
     Y_15,
     Y_16,
@@ -43,7 +46,7 @@ import {
 } from '../interchanges/InsideYamanote';
 
 const Ginza = () => {
-    return <SVGPath color="stroke-ginza" points={[G_04, G_08, G_09]} directions={[NE, SE, NE]} />;
+    return <SVGPath color="stroke-ginza" points={[G_04, G_08, G_09, G_13]} directions={[NE, SE, NE, N]} />;
 };
 
 const Marunouchi = () => {
@@ -79,7 +82,7 @@ const Hibiya = () => {
 };
 
 const Tozai = () => {
-    return <SVGPath color="stroke-tozai" points={[T_06, T_09]} />;
+    return <SVGPath color="stroke-tozai" points={[T_06, T_10]} />;
 };
 
 const Shinjuku = () => {
@@ -96,6 +99,10 @@ const Mita = () => {
     );
 };
 
+const Asakusa = () => {
+    return <SVGPath color="stroke-asakusa" points={[A_10, A_13]} directions={[SE, NE]} />;
+};
+
 const Metro = () => {
     return (
         <g id="tokyo-metro">
@@ -109,6 +116,7 @@ const Metro = () => {
             <Tozai />
             <Shinjuku />
             <Mita />
+            <Asakusa />
         </g>
     );
 };
