@@ -265,22 +265,22 @@ const Jimbocho = () => {
     );
 };
 
-export const S_07 = offset(S_06, scaleToUnitX(E, MAJOR_LINE * 2));
-export const C_12 = offset(S_07, scaleToUnitX(N, OFFSET * 2), scaleToUnitX(W, OFFSET * 2));
-export const M_19 = offset(S_07, scaleToUnitX(S, OFFSET * 2), scaleToUnitX(E, OFFSET * 2));
+export const S_07 = offset(S_06, scaleToUnitX(E, MAJOR_LINE), scaleToUnitX(SE, MAJOR_LINE));
+export const C_12 = offset(S_07, scaleToUnitX(W, OFFSET * 2));
+export const M_19 = offset(S_07, scaleToUnitX(E, OFFSET * 2));
 
 const Ogawamachi = () => {
     return (
         <g id="ogawamachi">
-            <Stop stationCode="S 07" location={S_07} strokeColor="stroke-shinjuku" />
-            <Stop stationCode="C 12" location={C_12} strokeColor="stroke-chiyoda" />
+            <Stop stationCode="S 07" location={S_07} strokeColor="stroke-shinjuku" textAlignment={TextAlignment.DOWN} />
+            <Stop stationCode="C 12" location={C_12} strokeColor="stroke-chiyoda" textAlignment={TextAlignment.LEFT} />
             <Stop stationCode="M 19" location={M_19} strokeColor="stroke-marunouchi" />
         </g>
     );
 };
 
-export const JB_17 = offset(JB_16, scaleToUnitX(N, OFFSET * 2), scaleToUnitX(E, MAJOR_LINE * 2));
-export const I_11 = offset(JB_17, scaleToUnitX(N, OFFSET * 0.5), scaleToUnitX(W, OFFSET));
+export const JB_17 = offset(JB_16, scaleToUnitX(NE, MAJOR_LINE * 2), scaleToUnitX(SE, OFFSET * 2));
+export const I_11 = offset(JB_17, scaleToUnitX(E, OFFSET));
 
 const Suidobashi = () => {
     return (
@@ -291,9 +291,9 @@ const Suidobashi = () => {
     );
 };
 
-export const JB_18 = offset(JB_17, scaleToUnitX(E, MAJOR_LINE * 2));
-export const JC_03 = offset(JB_18, scaleToUnitX(S, OFFSET));
-export const M_20 = offset(JC_03, scaleToUnitX(S, OFFSET));
+export const JB_18 = offset(JB_17, scaleToUnitX(SE, MAJOR_LINE * 2));
+export const JC_03 = offset(JB_18, scale(SW, OFFSET));
+export const M_20 = offset(JB_18, scaleToUnitX(E, OFFSET));
 
 const Ochanomizu = () => {
     return (
@@ -305,9 +305,10 @@ const Ochanomizu = () => {
     );
 };
 
-export const JB_19 = offset(JB_18, scaleToUnitX(E, MAJOR_LINE * 2.5));
-export const JY_03 = offset(JB_19, scaleToUnitX(E, OFFSET), scaleToUnitX(S, OFFSET * 0.5));
-export const JK_28 = offset(JY_03, scaleToUnitX(E, OFFSET));
+const AKIHABARA_INTERSECTION = findIntersectionFromSlopes({ start: JB_18, firstDirection: SE, secondDirection: NE, end: JY_01 });
+export const JB_19 = offset(AKIHABARA_INTERSECTION, scaleToUnitX(NW, OFFSET * 0.5));
+export const JY_03 = offset(JB_19, scaleToUnitX(E, OFFSET));
+export const JK_28 = offset(JY_03, scale(SE, OFFSET));
 
 const Akihabara = () => {
     return (
@@ -319,7 +320,7 @@ const Akihabara = () => {
     );
 };
 
-export const JY_02 = offset(JY_01, scaleToUnitX(NE, MAJOR_LINE * 2.5));
+export const JY_02 = offset(JY_01, scaleToUnitX(NE, MAJOR_LINE * 2));
 export const JC_02 = offset(JY_02, scale(NW, OFFSET));
 export const G_13 = offset(JY_02, scaleToUnitX(NW, OFFSET * 1.5));
 export const JK_27 = offset(JY_02, scale(SE, OFFSET));
@@ -335,10 +336,10 @@ const Kanda = () => {
     );
 };
 
-const NihombashiIntersection = findIntersectionFromSlopes({ start: T_09, firstDirection: SE, end: G_09, secondDirection: NE });
+const NIHOMBASHI_INTERSECTION = findIntersectionFromSlopes({ start: T_09, firstDirection: SE, end: G_09, secondDirection: NE });
 
-export const T_10 = offset(NihombashiIntersection, scaleToUnitX(SE, OFFSET * 2));
-export const G_11 = offset(NihombashiIntersection, scaleToUnitX(SW, OFFSET));
+export const T_10 = offset(NIHOMBASHI_INTERSECTION, scaleToUnitX(SE, OFFSET * 2));
+export const G_11 = offset(NIHOMBASHI_INTERSECTION, scaleToUnitX(SW, OFFSET));
 export const A_13 = offset(T_10, scaleToUnitX(SE, OFFSET * 2), scaleToUnitX(NE, OFFSET));
 
 const Nihombashi = () => {
@@ -347,6 +348,49 @@ const Nihombashi = () => {
             <Stop stationCode="T 10" location={T_10} strokeColor="stroke-tozai" />
             <Stop stationCode="G 11" location={G_11} strokeColor="stroke-ginza" />
             <Stop stationCode="A 13" location={A_13} strokeColor="stroke-asakusa" />
+        </g>
+    );
+};
+
+const ASAKUSABASHI_INTERSECTION = findIntersectionFromSlopes({ firstDirection: SE, start: JB_19, secondDirection: NE, end: A_13 });
+export const JB_20 = offset(ASAKUSABASHI_INTERSECTION, scaleToUnitX(NW, OFFSET * 0.5));
+export const A_16 = offset(JB_20, scaleToUnitX(E, OFFSET));
+
+const Asakusabashi = () => {
+    return (
+        <g id="asakusabashi">
+            <Stop stationCode="A 16" location={A_16} strokeColor="stroke-asakusa" />
+            <Stop stationCode="JB 20" location={JB_20} strokeColor="stroke-chuo-sobu" />
+        </g>
+    );
+};
+
+const BAKUROCHO_INTERSECTION = findIntersectionFromSlopes({ start: S_07, firstDirection: SE, secondDirection: NE, end: A_13 });
+export const A_15 = offset(BAKUROCHO_INTERSECTION, scaleToUnitX(NE, OFFSET));
+export const S_09 = offset(A_15, scaleToUnitX(W, OFFSET * 2));
+export const JO_21 = offset(S_09, scaleToUnitX(N, OFFSET * 2));
+
+const Bakurocho = () => {
+    return (
+        <g id="bakurocho">
+            <Stop stationCode="A 15" location={A_15} strokeColor="stroke-asakusa" textAlignment={TextAlignment.SE} />
+            <Stop stationCode="JO 21" location={JO_21} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.UP} />
+            <Stop stationCode="S 09" location={S_09} strokeColor="stroke-shinjuku" textAlignment={TextAlignment.SW} />
+        </g>
+    );
+};
+
+const MITSUKOMAE_INTERSECTION = findIntersectionFromSlopes({ start: G_13, firstDirection: S, secondDirection: W, end: JO_21 });
+export const G_12 = offset(MITSUKOMAE_INTERSECTION, scaleToUnitX(S, OFFSET * 2));
+export const Z_09 = offset(G_12, scaleToUnitX(E, OFFSET));
+export const JO_20 = offset(MITSUKOMAE_INTERSECTION, scaleToUnitX(E, OFFSET * 2));
+
+const Mitsukomae = () => {
+    return (
+        <g id="bakurocho">
+            <Stop stationCode="G 12" location={G_12} strokeColor="stroke-ginza" hideText />
+            <Stop stationCode="JO 20" location={JO_20} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.UP} />
+            <Stop stationCode="Z 09" location={Z_09} strokeColor="stroke-hanzomon" textAlignment={TextAlignment.DOWN} />
         </g>
     );
 };
@@ -377,6 +421,9 @@ const InsideYamanote = () => {
             <Akihabara />
             <Kanda />
             <Nihombashi />
+            <Asakusabashi />
+            <Bakurocho />
+            <Mitsukomae />
         </g>
     );
 };
