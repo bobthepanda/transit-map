@@ -1,4 +1,4 @@
-import InsideYamanote from './InsideYamanote';
+import InsideYamanote from './InsideYamanote/InsideYamanote';
 
 const Interchanges = () => {
     return (

@@ -1,6 +1,12 @@
 import SVGPath from '../../symbols/SVGPath';
 import { E, NE, NW, SE, SW } from '../../utils/PathUtils';
-import { JB_14, JB_20, JC_01, JC_03, JC_04, JK_24, JK_28, JO_18, JO_21, JT_01, JT_02, JY_03, JY_29 } from '../interchanges/InsideYamanote';
+import { JK_28, JY_03 } from '../interchanges/InsideYamanote/Akihabara';
+import { JB_20 } from '../interchanges/InsideYamanote/Asakusabashi';
+import { JO_21 } from '../interchanges/InsideYamanote/Bakurocho';
+import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
+import { JK_24, JO_18, JT_02, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
+import { JC_01, JT_01 } from '../interchanges/InsideYamanote/Tokyo';
+import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
 
 const Yamanote = () => {
     return <SVGPath color="stroke-yamanote" points={[JY_29, JY_03]} />;
