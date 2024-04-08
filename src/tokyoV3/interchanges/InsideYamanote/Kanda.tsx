@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { NE, NW, SE, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
-import { JY_01 } from './Tokyo';
+import { JY_01 } from './TokyoStation';
 
 export const JY_02 = offset(JY_01, scaleToUnitX(NE, MAJOR_LINE * 2));
 export const JC_02 = offset(JY_02, scale(NW, OFFSET));

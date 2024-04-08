@@ -3,9 +3,10 @@ import { E, NE, NW, SE, SW } from '../../utils/PathUtils';
 import { JK_28, JY_03 } from '../interchanges/InsideYamanote/Akihabara';
 import { JB_20 } from '../interchanges/InsideYamanote/Asakusabashi';
 import { JO_21 } from '../interchanges/InsideYamanote/Bakurocho';
+import { JE_02, JM_02 } from '../interchanges/InsideYamanote/Hatchobori';
 import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
 import { JK_24, JO_18, JT_02, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
-import { JC_01, JT_01 } from '../interchanges/InsideYamanote/Tokyo';
+import { JC_01, JE_01, JM_01, JT_01 } from '../interchanges/InsideYamanote/TokyoStation';
 import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
 
 const Yamanote = () => {
@@ -32,6 +33,14 @@ const ChuoRapid = () => {
     return <SVGPath color="stroke-chuo-rapid" points={[JC_01, JC_03, JC_04]} directions={[NE, NW, SW]} />;
 };
 
+const Keiyo = () => {
+    return <SVGPath color="stroke-keiyo" points={[JE_01, JE_02]} />;
+};
+
+const Musashino = () => {
+    return <SVGPath color="stroke-musashino" points={[JM_01, JM_02]} />;
+};
+
 const JREast = () => {
     return (
         <g id="jr-east">
@@ -41,6 +50,8 @@ const JREast = () => {
             <Tokaido />
             <SobuRapid />
             <ChuoRapid />
+            <Musashino />
+            <Keiyo />
         </g>
     );
 };

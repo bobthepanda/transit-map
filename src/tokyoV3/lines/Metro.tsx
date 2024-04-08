@@ -1,28 +1,31 @@
 import SVGPath from '../../symbols/SVGPath';
 import { E, N, NE, NW, S, SE, SW, midPoint } from '../../utils/PathUtils';
+import { H_16 } from '../interchanges/InsideYamanote/Akihabara';
 import { G_04, Z_03 } from '../interchanges/InsideYamanote/AoyamaItchome';
 import { M_13, Y_16, Z_04 } from '../interchanges/InsideYamanote/AsakasaMitsukae';
 import { A_16 } from '../interchanges/InsideYamanote/Asakusabashi';
 import { S_09 } from '../interchanges/InsideYamanote/Bakurocho';
 import { G_09, H_09, M_16 } from '../interchanges/InsideYamanote/Ginza';
+import { H_12 } from '../interchanges/InsideYamanote/Hatchobori';
 import { I_08 } from '../interchanges/InsideYamanote/Hibiya';
 import { S_04 } from '../interchanges/InsideYamanote/Ichigaya';
 import { N_10, T_06, Y_13 } from '../interchanges/InsideYamanote/Iidabashi';
 import { I_10, Z_07 } from '../interchanges/InsideYamanote/Jimbocho';
 import { G_13 } from '../interchanges/InsideYamanote/Kanda';
 import { C_08, M_15 } from '../interchanges/InsideYamanote/Kasumigaseki';
+import { T_11 } from '../interchanges/InsideYamanote/Kayabacho';
 import { Y_15, Z_05 } from '../interchanges/InsideYamanote/Kudanshita';
 import { Z_09 } from '../interchanges/InsideYamanote/Mitsukomae';
-import { T_10 } from '../interchanges/InsideYamanote/Nihombashi';
+import { H_14, Z_10 } from '../interchanges/InsideYamanote/Ningyocho';
 import { M_20 } from '../interchanges/InsideYamanote/Ochanomizu';
 import { C_12 } from '../interchanges/InsideYamanote/Ogawamachi';
 import { C_11, I_09, M_18, Z_08 } from '../interchanges/InsideYamanote/Otemachi';
 import { A_10, G_08 } from '../interchanges/InsideYamanote/Shimbashi';
 import { I_11 } from '../interchanges/InsideYamanote/Suidobashi';
 import { C_07, M_14, N_06 } from '../interchanges/InsideYamanote/TameikeSanno';
-import { M_17 } from '../interchanges/InsideYamanote/Tokyo';
+import { M_17 } from '../interchanges/InsideYamanote/TokyoStation';
 import { H_06 } from '../interchanges/InsideYamanote/Toranomon';
-import { H_11, Y_20 } from '../interchanges/InsideYamanote/Tsukiji';
+import { Y_20 } from '../interchanges/InsideYamanote/Tsukiji';
 import { M_12, N_08 } from '../interchanges/InsideYamanote/Yotsuya';
 
 const Ginza = () => {
@@ -47,7 +50,7 @@ const Hanzomon = () => {
     return (
         <SVGPath
             color="stroke-hanzomon"
-            points={[Z_03, Z_04, Z_05, Z_07, midPoint(Z_07, C_11), Z_08, midPoint(Z_08, Z_09), Z_09]}
+            points={[Z_03, Z_04, Z_05, Z_07, midPoint(Z_07, C_11), Z_08, midPoint(Z_08, Z_09), Z_10]}
             directions={[NE, E, N, E, S, SE, E, SE]}
         />
     );
@@ -62,11 +65,11 @@ const Chiyoda = () => {
 };
 
 const Hibiya = () => {
-    return <SVGPath color="stroke-hibiya" points={[H_06, H_09, H_11]} directions={[NE, SE, NE]} />;
+    return <SVGPath color="stroke-hibiya" points={[H_06, H_09, H_12, H_14, H_16]} directions={[NE, SE, NE, N, NE]} />;
 };
 
 const Tozai = () => {
-    return <SVGPath color="stroke-tozai" points={[T_06, T_10]} />;
+    return <SVGPath color="stroke-tozai" points={[T_06, T_11]} />;
 };
 
 const Shinjuku = () => {

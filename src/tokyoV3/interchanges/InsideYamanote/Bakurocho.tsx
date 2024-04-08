@@ -12,7 +12,7 @@ export const Bakurocho = () => {
     return (
         <g id="bakurocho">
             <Stop stationCode="A 15" location={A_15} strokeColor="stroke-asakusa" textAlignment={TextAlignment.SE} />
-            <Stop stationCode="JO 21" location={JO_21} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.UP} />
+            <Stop stationCode="JO 21" location={JO_21} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.DOWN} />
             <Stop stationCode="S 09" location={S_09} strokeColor="stroke-shinjuku" textAlignment={TextAlignment.SW} />
         </g>
     );

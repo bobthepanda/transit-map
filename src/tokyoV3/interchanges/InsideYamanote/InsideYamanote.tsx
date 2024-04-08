@@ -5,6 +5,7 @@ import { AsakasaMitsukae } from './AsakasaMitsukae';
 import { Asakusabashi } from './Asakusabashi';
 import { Bakurocho } from './Bakurocho';
 import { Ginza } from './Ginza';
+import { Hatchobori } from './Hatchobori';
 import { Hibiya } from './Hibiya';
 import { HigashiGinza } from './HigashiGinza';
 import { Ichigaya } from './Ichigaya';
@@ -12,16 +13,18 @@ import { Iidabashi } from './Iidabashi';
 import { Jimbocho } from './Jimbocho';
 import { Kanda } from './Kanda';
 import { Kasumigaseki } from './Kasumigaseki';
+import { Kayabacho } from './Kayabacho';
 import { Kudanshita, Y_15 } from './Kudanshita';
 import { Mitsukomae } from './Mitsukomae';
 import { Nihombashi } from './Nihombashi';
+import { Ningyocho } from './Ningyocho';
 import { Ochanomizu } from './Ochanomizu';
 import { Ogawamachi } from './Ogawamachi';
 import { Otemachi } from './Otemachi';
 import { Shimbashi } from './Shimbashi';
 import { Suidobashi } from './Suidobashi';
 import { TameikeSanno } from './TameikeSanno';
-import { Tokyo } from './Tokyo';
+import { Tokyo } from './TokyoStation';
 import { Toranomon } from './Toranomon';
 import { Tsukiji } from './Tsukiji';
 import { Yotsuya } from './Yotsuya';
@@ -58,6 +61,9 @@ const InsideYamanote = () => {
             <Mitsukomae />
             <HigashiGinza />
             <Tsukiji />
+            <Hatchobori />
+            <Kayabacho />
+            <Ningyocho />
         </g>
     );
 };
