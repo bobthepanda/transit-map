@@ -5,7 +5,7 @@ import { OFFSET } from '../../../utils/CommonCoordinates';
 import { N, NE, NW, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { G_06 } from './TameikeSanno';
 
-export const G_05: Coordinates = offset(G_06, scaleToUnitX(NW, MAJOR_LINE));
+export const G_05: Coordinates = offset(G_06, scaleToUnitX(NW, OFFSET * 5));
 export const M_13: Coordinates = offset(G_05, scale(NE, OFFSET));
 export const N_07: Coordinates = offset(G_05, scaleToUnitX(NE, MAJOR_LINE * 0.5));
 export const Z_04: Coordinates = offset(N_07, scale(N, OFFSET));

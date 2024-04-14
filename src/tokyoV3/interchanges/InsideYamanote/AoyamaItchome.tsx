@@ -2,11 +2,11 @@ import { Coordinates } from '../../../interfaces/Dimensions';
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { SE, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
-import { G_05 } from './AsakasaMitsukae';
+import { S, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { Z_04 } from './AsakasaMitsukae';
 
-export const G_04: Coordinates = offset(G_05, scaleToUnitX(W, MAJOR_LINE + OFFSET * 2));
-export const Z_03: Coordinates = offset(G_04, scale(SE, OFFSET));
+export const Z_03: Coordinates = offset(Z_04, scale(W, MAJOR_LINE * 2));
+export const G_04: Coordinates = offset(Z_03, scaleToUnitX(S, OFFSET));
 export const AoyamaItchome = () => {
     return (
         <g id="aoyama-itchome">

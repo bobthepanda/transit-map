@@ -1,10 +1,9 @@
-import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { NW, SE, SW, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { G_06 } from './TameikeSanno';
 
-export const G_07 = offset(G_06, scaleToUnitX(SE, MAJOR_LINE));
+export const G_07 = offset(G_06, scaleToUnitX(SE, OFFSET * 4));
 export const H_06 = offset(G_07, scaleToUnitX(NW, OFFSET), scaleToUnitX(SW, OFFSET));
 export const Toranomon = () => {
     return (
