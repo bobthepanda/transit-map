@@ -11,7 +11,7 @@ export const Asakusabashi = () => {
     return (
         <g id="asakusabashi">
             <Stop stationCode="A 16" location={A_16} strokeColor="stroke-asakusa" />
-            <Stop stationCode="JB 20" location={JB_20} strokeColor="stroke-chuo-sobu" />
+            <Stop stationCode="JB 20" location={JB_20} strokeColor="stroke-chuo-sobu" hideText />
         </g>
     );
 };
