@@ -1,10 +1,10 @@
 import SVGPath from '../../symbols/SVGPath';
 import { E, NE, NW, SE, SW } from '../../utils/PathUtils';
 import { JK_28, JY_03 } from '../interchanges/InsideYamanote/Akihabara';
-import { JB_20 } from '../interchanges/InsideYamanote/Asakusabashi';
 import { JO_21 } from '../interchanges/InsideYamanote/Bakurocho';
 import { JE_02, JM_02 } from '../interchanges/InsideYamanote/Hatchobori';
 import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
+import { JB_21 } from '../interchanges/InsideYamanote/Ryogoku';
 import { JK_24, JO_18, JT_02, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
 import { JC_01, JE_01, JM_01, JT_01 } from '../interchanges/InsideYamanote/TokyoStation';
 import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
@@ -14,7 +14,7 @@ const Yamanote = () => {
 };
 
 const ChuoSobu = () => {
-    return <SVGPath color="stroke-chuo-sobu" points={[JB_14, JB_20]} directions={[NE, SE]} />;
+    return <SVGPath color="stroke-chuo-sobu" points={[JB_14, JB_21]} directions={[NE, SE]} />;
 };
 
 const KeihinTohoku = () => {
