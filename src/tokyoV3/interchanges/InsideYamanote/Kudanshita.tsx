@@ -17,6 +17,7 @@ export const Z_05 = midPoint(Z_04, Z_06);
 export const Kudanshita = () => {
     return (
         <>
+            <Stop stationCode="Y 15" location={Y_15} strokeColor="stroke-yurakucho" />
             <Stop stationCode="Z 05" location={Z_05} strokeColor="stroke-hanzomon" />
             <g id="kudanshita">
                 <Stop stationCode="T 07" location={T_07} strokeColor="stroke-tozai" textAlignment={TextAlignment.NE} />

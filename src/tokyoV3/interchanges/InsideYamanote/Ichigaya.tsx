@@ -14,8 +14,8 @@ export const Ichigaya = () => {
         <g id="itchigaya">
             <Stop stationCode="N 09" location={N_09} strokeColor="stroke-namboku" hideText />
             <Stop stationCode="JB 15" location={JB_15} strokeColor="stroke-chuo-sobu" hideText />
-            <Stop stationCode="Y 14" location={Y_14} strokeColor="stroke-yurakucho" textAlignment={TextAlignment.NW} />
-            <Stop stationCode="S 04" location={S_04} strokeColor="stroke-shinjuku" hideText />
+            <Stop stationCode="Y 14" location={Y_14} strokeColor="stroke-yurakucho" hideText />
+            <Stop stationCode="S 04" location={S_04} strokeColor="stroke-shinjuku" textAlignment={TextAlignment.UP} />
         </g>
     );
 };

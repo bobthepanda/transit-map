@@ -1,13 +1,14 @@
 import SVGPath from '../../symbols/SVGPath';
 import { E, N, NE, NW, S, SE, SW, W, midPoint } from '../../utils/PathUtils';
-import { G_04, Z_03 } from '../interchanges/InsideYamanote/AoyamaItchome';
+import { E_24 } from '../interchanges/InsideYamanote/AoyamaItchome';
 import { M_13, Y_16 } from '../interchanges/InsideYamanote/AsakasaMitsukae';
 import { G_09, H_09, M_16 } from '../interchanges/InsideYamanote/Ginza';
 import { H_12 } from '../interchanges/InsideYamanote/Hatchobori';
 import { I_08 } from '../interchanges/InsideYamanote/Hibiya';
 import { S_04 } from '../interchanges/InsideYamanote/Ichigaya';
 import { E_06, N_10, Y_13 } from '../interchanges/InsideYamanote/Iidabashi';
-import { MARUNOUCHI_MIDPOINT, M_25, T_03, Y_09 } from '../interchanges/InsideYamanote/InsideYamanote';
+import { F_09, MARUNOUCHI_MIDPOINT, M_25, Y_09 } from '../interchanges/InsideYamanote/Ikebukuro';
+import { C_03, E_02, E_28, E_28_START, F_13, F_14 } from '../interchanges/InsideYamanote/InsideYamanote';
 import { I_10, Z_07 } from '../interchanges/InsideYamanote/Jimbocho';
 import { G_13 } from '../interchanges/InsideYamanote/Kanda';
 import { E_07, M_22, N_11 } from '../interchanges/InsideYamanote/Kasuga';
@@ -23,26 +24,31 @@ import { H_14 } from '../interchanges/InsideYamanote/Ningyocho';
 import { C_16 } from '../interchanges/InsideYamanote/NishiNippori';
 import { M_20 } from '../interchanges/InsideYamanote/Ochanomizu';
 import { E_09, G_15 } from '../interchanges/InsideYamanote/Okachimachi';
+import { C_04 } from '../interchanges/InsideYamanote/Omotesando';
 import { C_11, I_09, M_18, Z_08 } from '../interchanges/InsideYamanote/Otemachi';
+import { F_16, G_01, Z_01 } from '../interchanges/InsideYamanote/Shibuya';
 import { A_10, G_08 } from '../interchanges/InsideYamanote/Shimbashi';
+import { E_27, M_08, S_01 } from '../interchanges/InsideYamanote/Shinjuku';
 import { I_15 } from '../interchanges/InsideYamanote/Sugamo';
+import { T_03 } from '../interchanges/InsideYamanote/Takadanobaba';
 import { C_07, M_14, N_06 } from '../interchanges/InsideYamanote/TameikeSanno';
 import { M_17 } from '../interchanges/InsideYamanote/TokyoStation';
 import { H_06 } from '../interchanges/InsideYamanote/Toranomon';
 import { E_16, Y_21 } from '../interchanges/InsideYamanote/Tsukishima';
 import { G_16, H_18 } from '../interchanges/InsideYamanote/Ueno';
 import { M_12, N_08 } from '../interchanges/InsideYamanote/Yotsuya';
+import { E_25, E_26 } from '../interchanges/InsideYamanote/Yoyogi';
 
 const Ginza = () => {
-    return <SVGPath color="stroke-ginza" points={[G_04, G_08, G_09, G_13, G_15, G_16]} directions={[E, SE, NE, N, NE, SE]} />;
+    return <SVGPath color="stroke-ginza" points={[G_01, G_08, G_09, G_13, G_15, G_16]} directions={[E, SE, NE, N, NE, SE]} />;
 };
 
 const Marunouchi = () => {
     return (
         <SVGPath
             color="stroke-marunouchi"
-            points={[M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_20, M_22, MARUNOUCHI_MIDPOINT, M_25]}
-            directions={[S, SE, E, SE, NE, N, NE, N, W, N, W]}
+            points={[M_08, M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_20, M_22, MARUNOUCHI_MIDPOINT, M_25]}
+            directions={[SE, S, SE, E, SE, NE, N, NE, N, W, N, W]}
         />
     );
 };
@@ -55,7 +61,7 @@ const Hanzomon = () => {
     return (
         <SVGPath
             color="stroke-hanzomon"
-            points={[Z_03, Z_05, Z_07, midPoint(Z_07, C_11), Z_08, midPoint(Z_08, Z_09), Z_11]}
+            points={[Z_01, Z_05, Z_07, midPoint(Z_07, C_11), Z_08, midPoint(Z_08, Z_09), Z_11]}
             directions={[E, N, E, S, SE, E, SE]}
         />
     );
@@ -66,7 +72,7 @@ const Yurakucho = () => {
 };
 
 const Chiyoda = () => {
-    return <SVGPath color="stroke-chiyoda" points={[C_07, C_08, C_11, C_16]} directions={[E, SE, NE, E]} />;
+    return <SVGPath color="stroke-chiyoda" points={[C_03, C_04, C_07, C_08, C_11, C_16]} directions={[S, SE, E, SE, NE, E]} />;
 };
 
 const Hibiya = () => {
@@ -78,7 +84,7 @@ const Tozai = () => {
 };
 
 const Shinjuku = () => {
-    return <SVGPath color="stroke-shinjuku" points={[S_04, S_11]} directions={[E, SE]} />;
+    return <SVGPath color="stroke-shinjuku" points={[S_01, S_04, S_11]} directions={[SE, E, SE]} />;
 };
 
 const Mita = () => {
@@ -91,7 +97,17 @@ const Asakusa = () => {
 };
 
 const Oedo = () => {
-    return <SVGPath color="stroke-oedo" points={[E_06, E_07, E_09, E_16]} directions={[NE, E, SE, SW]} />;
+    return (
+        <SVGPath
+            color="stroke-oedo"
+            points={[E_28_START, E_02, E_06, E_07, E_09, E_16, E_24, E_25, E_26, E_27, E_28]}
+            directions={[E, SE, NE, E, SE, SW, N, NW, NE, NW, W]}
+        />
+    );
+};
+
+const Fukutoshin = () => {
+    return <SVGPath color="stroke-fukutoshin" points={[F_09, F_13, F_14, F_16]} directions={[S, SW, W, SW]} />;
 };
 
 const Metro = () => {
@@ -109,6 +125,7 @@ const Metro = () => {
             <Mita />
             <Asakusa />
             <Oedo />
+            <Fukutoshin />
         </g>
     );
 };
