@@ -9,7 +9,7 @@ import { JY_13 } from './Ikebukuro';
 
 const TAKADANOBABA_SCALE = OFFSET * 4;
 
-const JY_14 = offset(JY_13, scaleToUnitX(W, MAJOR_LINE * 1.5), scaleToUnitX(SW, MAJOR_LINE * 0.5));
+export const JY_14 = offset(JY_13, scaleToUnitX(W, MAJOR_LINE * 1.5), scaleToUnitX(SW, MAJOR_LINE * 0.5));
 export const T_03 = offset(T_06, scaleToUnitX(NW, TAKADANOBABA_SCALE, 3));
 const TAKADANOBABA_INTERSECTION = findIntersectionFromSlopes({ start: JY_14, firstDirection: SW, secondDirection: NW, end: T_06 });
 offset(TAKADANOBABA_INTERSECTION, scaleToUnitX(SE, OFFSET * 0.5));
