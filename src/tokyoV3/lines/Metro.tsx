@@ -10,6 +10,7 @@ import { E_02 } from '../interchanges/InsideYamanote/HigashiShinjuku';
 import { S_04 } from '../interchanges/InsideYamanote/Ichigaya';
 import { E_06, N_10, Y_13 } from '../interchanges/InsideYamanote/Iidabashi';
 import { F_09, MARUNOUCHI_MIDPOINT, M_25, Y_09 } from '../interchanges/InsideYamanote/Ikebukuro';
+import { A_07, A_09, E_20, H_04, I_03, I_04, N_03 } from '../interchanges/InsideYamanote/InsideYamanote';
 import { I_10, Z_07 } from '../interchanges/InsideYamanote/Jimbocho';
 import { G_13 } from '../interchanges/InsideYamanote/Kanda';
 import { E_07, M_22, N_11 } from '../interchanges/InsideYamanote/Kasuga';
@@ -60,7 +61,7 @@ const Marunouchi = () => {
 };
 
 const Namboku = () => {
-    return <SVGPath color="stroke-namboku" points={[N_06, N_08, N_10, N_11, N_14, N_16]} directions={[NE, NW, NE, E, N, NE]} />;
+    return <SVGPath color="stroke-namboku" points={[N_03, N_06, N_08, N_10, N_11, N_14, N_16]} directions={[E, NE, NW, NE, E, N, NE]} />;
 };
 
 const Hanzomon = () => {
@@ -82,7 +83,7 @@ const Chiyoda = () => {
 };
 
 const Hibiya = () => {
-    return <SVGPath color="stroke-hibiya" points={[H_06, H_09, H_12, H_14, H_18]} directions={[NE, SE, NE, N, NE]} />;
+    return <SVGPath color="stroke-hibiya" points={[H_04, H_06, H_09, H_12, H_14, H_18]} directions={[E, NE, SE, NE, N, NE]} />;
 };
 
 const Tozai = () => {
@@ -95,19 +96,25 @@ const Shinjuku = () => {
 
 const Mita = () => {
     const OTEMACHI_NORTHWEST = midPoint(I_10, I_09);
-    return <SVGPath color="stroke-mita" points={[I_08, OTEMACHI_NORTHWEST, I_17]} directions={[NE, NW, N]} />;
+    return (
+        <SVGPath
+            color="stroke-mita"
+            points={[I_03, midPoint(I_03, I_04), I_04, I_08, OTEMACHI_NORTHWEST, I_17]}
+            directions={[E, SE, E, NE, NW, N]}
+        />
+    );
 };
 
 const Asakusa = () => {
-    return <SVGPath color="stroke-asakusa" points={[A_10, A_17]} directions={[SE, NE]} />;
+    return <SVGPath color="stroke-asakusa" points={[A_07, A_09, A_10, A_17]} directions={[E, NE, SE, NE]} />;
 };
 
 const Oedo = () => {
     return (
         <SVGPath
             color="stroke-oedo"
-            points={[E_28_START, E_02, E_06, E_07, E_09, E_16, E_24, E_25, E_26, E_27, E_31]}
-            directions={[E, SE, NE, E, SE, SW, N, NW, NE, NW, NE]}
+            points={[E_28_START, E_02, E_06, E_07, E_09, E_16, E_20, E_24, E_25, E_26, E_27, E_31]}
+            directions={[E, SE, NE, E, SE, SW, NW, N, NW, NE, NW, NE]}
         />
     );
 };

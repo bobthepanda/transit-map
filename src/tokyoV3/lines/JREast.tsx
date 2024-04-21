@@ -4,6 +4,7 @@ import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../u
 import { JO_21 } from '../interchanges/InsideYamanote/Bakurocho';
 import { JE_02, JM_02 } from '../interchanges/InsideYamanote/Hatchobori';
 import { JA_12, JS_21 } from '../interchanges/InsideYamanote/Ikebukuro';
+import { JK_20, JK_21, JY_25, JY_26 } from '../interchanges/InsideYamanote/InsideYamanote';
 import { JK_33, JY_08 } from '../interchanges/InsideYamanote/NishiNippori';
 import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
 import { JB_21 } from '../interchanges/InsideYamanote/Ryogoku';
@@ -23,7 +24,23 @@ import { JB_01 } from '../interchanges/jr/Mitaka';
 import { JA_13, JK_47 } from '../interchanges/jr/Tohoku';
 
 const Yamanote = () => {
-    return <SVGPath color="stroke-yamanote" points={[JY_29, JY_08, JY_11, JY_15, JY_20, JY_29]} directions={[NE, NW, W, SW, S, NE]} />;
+    return (
+        <SVGPath
+            color="stroke-yamanote"
+            points={[
+                JY_29,
+                JY_08,
+                JY_11,
+                JY_15,
+                JY_20,
+                offset(JY_25, scaleToUnitX(SW, OFFSET * 3), scaleToUnitX(W, OFFSET * 3)),
+                JY_25,
+                JY_26,
+                JY_29,
+            ]}
+            directions={[NE, NW, W, SW, S, E, NE, E, NE]}
+        />
+    );
 };
 
 const ChuoSobu = () => {
@@ -31,7 +48,7 @@ const ChuoSobu = () => {
 };
 
 const KeihinTohoku = () => {
-    return <SVGPath color="stroke-keihin-tohoku" points={[JK_24, JK_33, JK_47]} directions={[NE, NW, N]} />;
+    return <SVGPath color="stroke-keihin-tohoku" points={[JK_20, JK_21, JK_24, JK_33, JK_47]} directions={[NE, E, NE, NW, N]} />;
 };
 
 const Tokaido = () => {
