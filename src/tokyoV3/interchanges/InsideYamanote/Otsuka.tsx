@@ -5,7 +5,8 @@ import { S, W, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { JY_11 } from './Sugamo';
 
 export const JY_12 = offset(JY_11, scaleToUnitX(W, MAJOR_LINE + OFFSET * 1.5));
-export const SA_23 = offset(JY_12, scaleToUnitX(S, OFFSET));
+export const OTSUKA_SAKURA_OFFSET = offset(JY_12, scaleToUnitX(S, OFFSET));
+export const SA_23 = OTSUKA_SAKURA_OFFSET;
 export const Otsuka = () => {
     return (
         <g id="otsuka">

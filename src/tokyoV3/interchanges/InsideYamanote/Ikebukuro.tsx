@@ -11,9 +11,9 @@ export const JA_12 = offset(JS_21, scaleToUnitX(N, OFFSET));
 export const Y_09 = offset(JA_12, scaleToUnitX(N, OFFSET), scaleToUnitX(W, OFFSET * 0.5));
 export const F_09 = offset(Y_09, scaleToUnitX(W, OFFSET));
 export const M_25 = offset(JY_13, scaleToUnitX(S, OFFSET));
-export const MARUNOUCHI_MIDPOINT = midPoint(M_25, M_22);
-export const M_24 = offset(MARUNOUCHI_MIDPOINT, scaleToUnitX(N, OFFSET * 2.5));
-export const M_23 = offset(MARUNOUCHI_MIDPOINT, scaleToUnitX(S, OFFSET * 2.5));
+export const MARUNOUCHI_MIDPOINT = { y: midPoint(M_25, M_22).y, x: JY_12.x - OFFSET * 2 };
+export const M_24 = offset(MARUNOUCHI_MIDPOINT, scaleToUnitX(N, OFFSET));
+export const M_23 = offset(MARUNOUCHI_MIDPOINT, scaleToUnitX(S, OFFSET * 3));
 
 export const Ikebukuro = () => {
     return (

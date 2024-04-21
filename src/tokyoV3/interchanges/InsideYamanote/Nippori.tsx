@@ -1,10 +1,10 @@
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, N, offset, scaleToUnitX } from '../../../utils/PathUtils';
+import { NE, NW, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { JY_06, TABATA_SCALE } from './Uguisuidani';
 
-export const JY_07 = offset(JY_06, scaleToUnitX(N, TABATA_SCALE));
-export const JK_32 = offset(JY_07, scaleToUnitX(E, OFFSET));
+export const JY_07 = offset(JY_06, scaleToUnitX(NW, TABATA_SCALE));
+export const JK_32 = offset(JY_07, scale(NE, OFFSET));
 export const Nippori = () => {
     return (
         <g id="nippori">

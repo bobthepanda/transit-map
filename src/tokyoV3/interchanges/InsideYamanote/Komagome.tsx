@@ -1,13 +1,15 @@
+import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { S, SW, midPoint, offset, scaleToUnitX } from '../../../utils/PathUtils';
+import { S, SW, W, midPoint, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { generateStationCodes } from '../../../utils/StopUtils';
 import { JY_11 } from './Sugamo';
 import { JY_09 } from './Tabata';
 
 export const JY_10 = { ...JY_11, x: midPoint(JY_11, JY_09).x };
-export const N_14 = offset(JY_10, scaleToUnitX(S, OFFSET));
+export const N_14 = offset(JY_10, scaleToUnitX(S, OFFSET), scaleToUnitX(W, OFFSET * 0.5));
+export const N_13 = offset(N_14, scaleToUnitX(S, OFFSET * 2), scaleToUnitX(SW, OFFSET * 2));
 export const Komagome = () => {
     return (
         <>
@@ -17,10 +19,9 @@ export const Komagome = () => {
             </g>
             <LineSegmentWithStepChange
                 stops={generateStationCodes('N', 14, 12)}
-                skipBeginning
                 origin={N_14}
-                slope={scaleToUnitX(SW, OFFSET * 4.5)}
-                textAlignments={[TextAlignment.SE]}
+                skipBeginning
+                slope={scaleToUnitX(S, MAJOR_LINE - OFFSET * 0.5)}
                 strokeColor="stroke-namboku"
             />
         </>

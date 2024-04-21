@@ -2,9 +2,9 @@ import { Coordinates } from '../../../interfaces/Dimensions';
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { HEIGHT, OFFSET, WIDTH } from '../../../utils/CommonCoordinates';
-import { N, W, offset, scale } from '../../../utils/PathUtils';
+import { N, W, offset, roundCoordinate, scale } from '../../../utils/PathUtils';
 
-export const G_06: Coordinates = { x: WIDTH / 2 - ((WIDTH / 2) % MAJOR_LINE), y: HEIGHT / 2 - ((HEIGHT / 2) % MAJOR_LINE) };
+export const G_06: Coordinates = roundCoordinate({ x: WIDTH / 2, y: (HEIGHT * 2) / 3 }, MAJOR_LINE);
 export const M_14: Coordinates = offset(G_06, scale(N, MAJOR_LINE * 0.5));
 export const N_06: Coordinates = offset(G_06, scale(W, OFFSET));
 export const C_07: Coordinates = offset(M_14, scale(N, OFFSET));

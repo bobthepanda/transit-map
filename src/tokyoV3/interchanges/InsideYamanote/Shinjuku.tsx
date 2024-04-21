@@ -1,11 +1,10 @@
-import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { N, NE, NW, SE, SW, W, findIntersectionFromSlopes, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { S_04 } from './Ichigaya';
 import { JY_15 } from './Takadanobaba';
 
-export const S_03 = offset(S_04, scaleToUnitX(W, MAJOR_LINE * 0.5), scaleToUnitX(NW, MAJOR_LINE * 0.5));
+export const S_03 = offset(S_04, scaleToUnitX(W, OFFSET * 3), scaleToUnitX(NW, OFFSET * 3));
 const SHINJUKU_INTERSECTION = findIntersectionFromSlopes({ firstDirection: SW, start: JY_15, secondDirection: NW, end: S_03 });
 export const JY_17 = offset(SHINJUKU_INTERSECTION, scale(NE, OFFSET));
 export const JB_10 = offset(JY_17, scale(SE, OFFSET));

@@ -1,12 +1,17 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, N, NE, offset, scaleToUnitX } from '../../../utils/PathUtils';
+import { NE, NW, SW, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { JY_05 } from './Ueno';
 
-export const TABATA_SCALE = OFFSET * 5;
-export const JY_06 = offset(JY_05, scaleToUnitX(NE, MAJOR_LINE * 0.5), scaleToUnitX(N, TABATA_SCALE - MAJOR_LINE * 0.5));
-export const JK_31 = offset(JY_06, scaleToUnitX(E, OFFSET));
+export const TABATA_SCALE = MAJOR_LINE;
+export const JY_06 = offset(
+    JY_05,
+    scaleToUnitX(NE, MAJOR_LINE * 0.5),
+    scaleToUnitX(NW, TABATA_SCALE - MAJOR_LINE * 0.5),
+    scale(SW, OFFSET)
+);
+export const JK_31 = offset(JY_06, scale(NE, OFFSET));
 export const Uguisuidani = () => {
     return (
         <g id="uguisuidani">

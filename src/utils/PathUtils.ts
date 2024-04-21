@@ -215,3 +215,9 @@ export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors
 
     return scale({ dx, dy }, ...factors, 1 / Math.abs(dx));
 };
+
+export const roundCoordinate = (coords: Coordinates, numberToRound: number): Coordinates => {
+    const { x, y } = coords;
+
+    return { x: Math.round(x / numberToRound) * numberToRound, y: Math.round(y / numberToRound) * numberToRound };
+};

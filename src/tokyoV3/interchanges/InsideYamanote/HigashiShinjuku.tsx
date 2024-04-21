@@ -5,9 +5,9 @@ import { NE, SE, W, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { generateStationCodes } from '../../../utils/StopUtils';
 import { F_13 } from './ShinjukuSanchome';
 
-const F_12 = offset(F_13, scaleToUnitX(NE, OFFSET * 4));
+export const F_12 = offset(F_13, scaleToUnitX(NE, OFFSET * 4));
 export const E_02 = offset(F_12, scaleToUnitX(W, OFFSET));
-const F_11 = offset(F_12, scaleToUnitX(NE, OFFSET * 4));
+export const F_11 = offset(F_12, scaleToUnitX(NE, OFFSET * 4));
 export const HigashiShinjuku = () => {
     return (
         <>

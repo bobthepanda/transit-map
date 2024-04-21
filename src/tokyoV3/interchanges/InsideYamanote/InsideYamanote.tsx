@@ -1,6 +1,3 @@
-import { Stop, TextAlignment } from '../../../symbols/BasicStop';
-import { OFFSET } from '../../../utils/CommonCoordinates';
-import { NE, S, SE, SW, findIntersectionFromSlopes, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { Akihabara } from './Akihabara';
 import { AoyamaItchome } from './AoyamaItchome';
 import { AsakasaMitsukae } from './AsakasaMitsukae';
@@ -36,6 +33,7 @@ import { NishiNippori } from './NishiNippori';
 import { Ochanomizu } from './Ochanomizu';
 import { Ogawamachi } from './Ogawamachi';
 import { Okachimachi } from './Okachimachi';
+import { Okubo } from './Okubo';
 import { Omotesando } from './Omotesando';
 import { Otemachi } from './Otemachi';
 import { Otsuka } from './Otsuka';
@@ -44,11 +42,11 @@ import { Shibuya } from './Shibuya';
 import { Shimbashi } from './Shimbashi';
 import { ShinOkachimachi } from './ShinOkachimachi';
 import { Shinjuku } from './Shinjuku';
-import { F_13, ShinjukuSanchome } from './ShinjukuSanchome';
+import { ShinjukuSanchome } from './ShinjukuSanchome';
 import { Sugamo } from './Sugamo';
 import { Suidobashi } from './Suidobashi';
 import { Tabata } from './Tabata';
-import { JY_14, Takadanobaba } from './Takadanobaba';
+import { Takadanobaba } from './Takadanobaba';
 import { TameikeSanno } from './TameikeSanno';
 import { Tochomae } from './Tochomae';
 import { Tokyo } from './TokyoStation';
@@ -60,28 +58,7 @@ import { Uguisuidani } from './Uguisuidani';
 import { Yotsuya } from './Yotsuya';
 import { Yoyogi } from './Yoyogi';
 import { Yurakucho } from './Yurakucho';
-
-const F_10 = findIntersectionFromSlopes({ start: F_13, firstDirection: NE, end: JY_14, secondDirection: SE });
-export const SA_27 = offset(F_10, scaleToUnitX(SE, OFFSET));
-const SA_26 = offset(SA_27, scaleToUnitX(NE, OFFSET * 2));
-export const SA_28 = offset(SA_27, scaleToUnitX(SW, OFFSET), scaleToUnitX(S, OFFSET));
-const SA_29 = offset(SA_28, scaleToUnitX(SE, OFFSET), scaleToUnitX(S, OFFSET));
-export const SA_30 = offset(SA_29, scaleToUnitX(SE, OFFSET * 2));
-
-const Zoshigaya = () => {
-    return (
-        <>
-            <Stop stationCode="SA 26" location={SA_26} textAlignment={TextAlignment.SE} />
-            <Stop stationCode="SA 28" location={SA_28} textAlignment={TextAlignment.LEFT} />
-            <Stop stationCode="SA 29" location={SA_29} textAlignment={TextAlignment.NE} />
-            <Stop stationCode="SA 30" location={SA_30} textAlignment={TextAlignment.NE} />
-            <g id="zoshigaya">
-                <Stop stationCode="F 10" strokeColor="stroke-fukutoshin" location={F_10} textAlignment={TextAlignment.NW} />
-                <Stop stationCode="SA 27" location={SA_27} textAlignment={TextAlignment.SE} />
-            </g>
-        </>
-    );
-};
+import { Zoshigaya } from './Zoshigaya';
 
 const InsideYamanote = () => {
     return (
@@ -146,6 +123,7 @@ const InsideYamanote = () => {
             <HigashiIkebukuro />
             <Otsuka />
             <Zoshigaya />
+            <Okubo />
         </g>
     );
 };
