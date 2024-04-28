@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { N, W, offset, scaleToUnitX } from '../../../utils/PathUtils';
+import { N, SE, W, offset, scaleToUnitX } from '../../../utils/PathUtils';
 import { G_04 } from './AoyamaItchome';
 
 const G_03 = offset(G_04, scaleToUnitX(W, MAJOR_LINE));
@@ -13,6 +13,12 @@ export const Omotesando = () => {
     return (
         <>
             <Stop stationCode="G 03" location={G_03} strokeColor="stroke-ginza" textAlignment={TextAlignment.DOWN} />
+            <Stop
+                stationCode="C 05"
+                location={offset(C_04, scaleToUnitX(SE, MAJOR_LINE))}
+                strokeColor="stroke-chiyoda"
+                textAlignment={TextAlignment.SW}
+            />
             <g id="aoyama-itchome">
                 <Stop stationCode="G 02" location={G_02} strokeColor="stroke-ginza" hideText />
                 <Stop stationCode="Z 02" location={Z_02} strokeColor="stroke-hanzomon" hideText />
