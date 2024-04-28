@@ -16,7 +16,7 @@ export const Iidabashi = () => {
     return (
         <>
             <LineSegmentWithStepChange
-                stops={generateStationCodes('T', 4, 6)}
+                stops={generateStationCodes('T', 6, 4)}
                 slope={scaleToUnitX(NW, OFFSET * 3)}
                 origin={T_06}
                 skipBeginning

@@ -2,8 +2,10 @@ import SVGPath from '../../symbols/SVGPath';
 import { E, SE, SW, W } from '../../utils/PathUtils';
 import { TX_01 } from '../interchanges/InsideYamanote/Akihabara';
 import { SA_25 } from '../interchanges/InsideYamanote/HigashiIkebukuro';
+import { R_08 } from '../interchanges/InsideYamanote/Osaki';
 import { TX_02 } from '../interchanges/InsideYamanote/ShinOkachimachi';
 import { SA_26, SA_27, SA_30 } from '../interchanges/InsideYamanote/Zoshigaya';
+import { R_07 } from '../interchanges/jr/Oimachi';
 import { SA_16 } from '../interchanges/jr/Oji';
 
 const TsukubaExpress = () => {
@@ -21,11 +23,16 @@ const Arakawa = () => {
     );
 };
 
+const Rinkai = () => {
+    return <SVGPath points={[R_07, R_08]} />;
+};
+
 const Other = () => {
     return (
         <g id="other">
             <TsukubaExpress />
             <Arakawa />
+            <Rinkai />
         </g>
     );
 };

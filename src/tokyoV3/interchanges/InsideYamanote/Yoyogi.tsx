@@ -9,9 +9,9 @@ export const JY_18 = findIntersectionFromSlopes({ start: JY_17, firstDirection: 
 export const JB_11 = offset(JY_18, scale(SE, OFFSET));
 export const E_26 = offset(JB_11, scale(SE, OFFSET));
 
-export const JB_12 = offset(JY_18, scaleToUnitX(SW, MAJOR_LINE * 0.5), scaleToUnitX(SE, MAJOR_LINE));
-export const JB_13 = offset(JB_12, scaleToUnitX(SE, MAJOR_LINE * 0.75));
-export const E_25 = offset(midPoint(JB_12, JB_13), scaleToUnitX(SW, OFFSET * 2));
+export const JB_12 = offset(JY_18, scaleToUnitX(SW, MAJOR_LINE * 0.5), scaleToUnitX(SE, MAJOR_LINE * 0.75));
+export const JB_13 = offset(JB_12, scaleToUnitX(SE, MAJOR_LINE * 1.25));
+export const E_25 = offset(midPoint(JB_12, JB_13), scaleToUnitX(SW, OFFSET * 2), scaleToUnitX(SE, OFFSET));
 export const Yoyogi = () => {
     return (
         <>

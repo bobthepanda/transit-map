@@ -4,16 +4,19 @@ import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../u
 import { JO_21 } from '../interchanges/InsideYamanote/Bakurocho';
 import { JE_02, JM_02 } from '../interchanges/InsideYamanote/Hatchobori';
 import { JA_12, JS_21 } from '../interchanges/InsideYamanote/Ikebukuro';
-import { JK_20, JK_21, JY_25, JY_26 } from '../interchanges/InsideYamanote/InsideYamanote';
+import { TAMACHI_OFFSET } from '../interchanges/InsideYamanote/Mita';
 import { JK_33, JY_08 } from '../interchanges/InsideYamanote/NishiNippori';
 import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
+import { JA_08, JS_17, OSAKI_CORNER } from '../interchanges/InsideYamanote/Osaki';
 import { JB_21 } from '../interchanges/InsideYamanote/Ryogoku';
-import { JA_10, JS_19, JY_20 } from '../interchanges/InsideYamanote/Shibuya';
-import { JK_24, JO_18, JT_02, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
+import { JY_20 } from '../interchanges/InsideYamanote/Shibuya';
+import { JK_24, JO_18, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
+import { JO_17, JT_03, JY_25 } from '../interchanges/InsideYamanote/Shinagawa.tsx';
 import { JA_11, JB_10, JC_05, JS_20 } from '../interchanges/InsideYamanote/Shinjuku';
 import { JY_11 } from '../interchanges/InsideYamanote/Sugamo';
 import { JB_17 } from '../interchanges/InsideYamanote/Suidobashi';
 import { JY_15 } from '../interchanges/InsideYamanote/Takadanobaba';
+import { JK_21, JY_26 } from '../interchanges/InsideYamanote/TakanawaGateway';
 import { JC_01, JE_01, JM_01 } from '../interchanges/InsideYamanote/TokyoStation';
 import { JU_02 } from '../interchanges/InsideYamanote/Ueno';
 import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
@@ -21,23 +24,14 @@ import { JB_12 } from '../interchanges/InsideYamanote/Yoyogi';
 import { JA_15, JS_22 } from '../interchanges/jr/Akabane';
 import { JC_23 } from '../interchanges/jr/Chuo';
 import { JB_01 } from '../interchanges/jr/Mitaka';
+import { JK_19 } from '../interchanges/jr/Oimachi';
 import { JA_13, JK_47 } from '../interchanges/jr/Tohoku';
 
 const Yamanote = () => {
     return (
         <SVGPath
             color="stroke-yamanote"
-            points={[
-                JY_29,
-                JY_08,
-                JY_11,
-                JY_15,
-                JY_20,
-                offset(JY_25, scaleToUnitX(SW, OFFSET * 3), scaleToUnitX(W, OFFSET * 3)),
-                JY_25,
-                JY_26,
-                JY_29,
-            ]}
+            points={[JY_29, JY_08, JY_11, JY_15, JY_20, OSAKI_CORNER, JY_25, JY_26, JY_29]}
             directions={[NE, NW, W, SW, S, E, NE, E, NE]}
         />
     );
@@ -48,15 +42,21 @@ const ChuoSobu = () => {
 };
 
 const KeihinTohoku = () => {
-    return <SVGPath color="stroke-keihin-tohoku" points={[JK_20, JK_21, JK_24, JK_33, JK_47]} directions={[NE, E, NE, NW, N]} />;
+    return <SVGPath color="stroke-keihin-tohoku" points={[JK_19, JK_21, JK_24, JK_33, JK_47]} directions={[NE, E, NE, NW, N]} />;
 };
 
 const Tokaido = () => {
-    return <SVGPath color="stroke-tokaido" points={[JU_02, JT_02]} />;
+    return <SVGPath color="stroke-tokaido" points={[JU_02, TAMACHI_OFFSET, JT_03]} directions={[SW, W, SW]} />;
 };
 
 const SobuRapid = () => {
-    return <SVGPath color="stroke-sobu-rapid" points={[JO_18, JO_21]} directions={[NE, E]} />;
+    return (
+        <SVGPath
+            color="stroke-sobu-rapid"
+            points={[offset(OSAKI_CORNER, scale(S, OFFSET)), JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
+            directions={[E, NE, E, NE, E]}
+        />
+    );
 };
 
 const ChuoRapid = () => {
@@ -78,11 +78,11 @@ const Musashino = () => {
 };
 
 const Saikyo = () => {
-    return <SVGPath color="stroke-saikyo" points={[JA_10, JA_11, JA_12, JA_13, JA_15]} directions={[N, NE, E, NE, N]} />;
+    return <SVGPath color="stroke-saikyo" points={[JA_08, JA_11, JA_12, JA_13, JA_15]} directions={[N, NE, E, NE, N]} />;
 };
 
 const ShonanShinjuku = () => {
-    return <SVGPath color="stroke-shonan-shinjuku" points={[JS_19, JS_20, JS_21, JS_22]} directions={[N, NE, E, N]} />;
+    return <SVGPath color="stroke-shonan-shinjuku" points={[JS_17, JS_20, JS_21, JS_22]} directions={[N, NE, E, N]} />;
 };
 
 const JREast = () => {

@@ -1,13 +1,11 @@
 import InsideYamanote from './InsideYamanote/InsideYamanote';
-import { Chuo } from './jr/Chuo';
-import { Tohoku } from './jr/Tohoku';
+import JR from './jr/JR';
 
 const Interchanges = () => {
     return (
         <g id="interchanges">
             <InsideYamanote />;
-            <Tohoku />
-            <Chuo />
+            <JR />
         </g>
     );
 };

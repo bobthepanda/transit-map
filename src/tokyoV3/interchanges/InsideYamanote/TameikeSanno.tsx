@@ -5,9 +5,9 @@ import { HEIGHT, OFFSET, WIDTH } from '../../../utils/CommonCoordinates';
 import { N, SW, W, offset, roundCoordinate, scale, scaleToUnitX } from '../../../utils/PathUtils';
 
 export const G_06: Coordinates = roundCoordinate({ x: WIDTH / 2, y: (HEIGHT * 2) / 3 }, MAJOR_LINE);
-export const M_14: Coordinates = offset(G_06, scale(N, MAJOR_LINE * 0.5));
+export const C_07: Coordinates = offset(G_06, scale(N, MAJOR_LINE * 0.5));
 export const N_06: Coordinates = offset(G_06, scale(W, OFFSET));
-export const C_07: Coordinates = offset(M_14, scale(N, OFFSET));
+export const M_14: Coordinates = offset(C_07, scale(N, OFFSET));
 export const TameikeSanno = () => {
     return (
         <>
@@ -19,9 +19,9 @@ export const TameikeSanno = () => {
             />
             <g id="tameike-sanno">
                 <Stop stationCode="G 06" location={G_06} strokeColor="stroke-ginza" hideText />
-                <Stop stationCode="M 14" location={M_14} strokeColor="stroke-marunouchi" hideText />
+                <Stop stationCode="M 14" location={M_14} strokeColor="stroke-marunouchi" textAlignment={TextAlignment.UP} />
                 <Stop stationCode="N 06" location={N_06} strokeColor="stroke-namboku" textAlignment={TextAlignment.NW} />
-                <Stop stationCode="C 07" location={C_07} strokeColor="stroke-chiyoda" textAlignment={TextAlignment.UP} />
+                <Stop stationCode="C 07" location={C_07} strokeColor="stroke-chiyoda" hideText />
             </g>
         </>
     );
