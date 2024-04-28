@@ -7,7 +7,7 @@ import { generateStationCodes } from '../../../utils/StopUtils';
 import { JK_34 } from '../InsideYamanote/Tabata';
 
 export const OJI_OFFSET = scaleToUnitX(NW, OFFSET * 5);
-export const AKABANE_OFFSET = scaleToUnitX(N, MAJOR_LINE * 1.5);
+export const AKABANE_OFFSET = scaleToUnitX(N, MAJOR_LINE * 2);
 
 export const JK_35 = offset(JK_34, scale(AKABANE_OFFSET, 0.5), scale(OJI_OFFSET, 0.5));
 export const JK_36 = offset(JK_35, scale(AKABANE_OFFSET, 1));

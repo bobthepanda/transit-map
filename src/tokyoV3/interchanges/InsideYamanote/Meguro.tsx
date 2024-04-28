@@ -15,6 +15,7 @@ export const JY_22 = offset(MEGURO_INTERSECTION, scale(N, OFFSET));
 
 export const N_01 = offset(MEGURO_INTERSECTION, scale(E, OFFSET * 0.5));
 export const I_01 = offset(N_01, scale(S, OFFSET));
+export const MG_01 = offset(midPoint(N_01, I_01), scale(W, OFFSET));
 const Shirokanedai = () => {
     return (
         <g id="shirokanedai">
@@ -31,6 +32,7 @@ export const Meguro = () => {
                 <Stop stationCode="JY 22" location={JY_22} strokeColor="stroke-yamanote" />
                 <Stop stationCode="N 01" location={N_01} strokeColor="stroke-namboku" hideText />
                 <Stop stationCode="I 01" location={I_01} strokeColor="stroke-mita" hideText />
+                <Stop stationCode="MG 01" location={MG_01} />
             </g>
         </>
     );

@@ -7,11 +7,11 @@ import { JA_12, JS_21 } from '../interchanges/InsideYamanote/Ikebukuro';
 import { TAMACHI_OFFSET } from '../interchanges/InsideYamanote/Mita';
 import { JK_33, JY_08 } from '../interchanges/InsideYamanote/NishiNippori';
 import { JC_03 } from '../interchanges/InsideYamanote/Ochanomizu';
-import { JA_08, JS_17, OSAKI_CORNER } from '../interchanges/InsideYamanote/Osaki';
+import { JA_08, JS_17, OSAKI_CORNER, SOBU_OSAKI_CORNER } from '../interchanges/InsideYamanote/Osaki';
 import { JB_21 } from '../interchanges/InsideYamanote/Ryogoku';
 import { JY_20 } from '../interchanges/InsideYamanote/Shibuya';
 import { JK_24, JO_18, JY_29 } from '../interchanges/InsideYamanote/Shimbashi';
-import { JO_17, JT_03, JY_25 } from '../interchanges/InsideYamanote/Shinagawa.tsx';
+import { JO_17, JY_25 } from '../interchanges/InsideYamanote/Shinagawa';
 import { JA_11, JB_10, JC_05, JS_20 } from '../interchanges/InsideYamanote/Shinjuku';
 import { JY_11 } from '../interchanges/InsideYamanote/Sugamo';
 import { JB_17 } from '../interchanges/InsideYamanote/Suidobashi';
@@ -22,9 +22,11 @@ import { JU_02 } from '../interchanges/InsideYamanote/Ueno';
 import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
 import { JB_12 } from '../interchanges/InsideYamanote/Yoyogi';
 import { JA_15, JS_22 } from '../interchanges/jr/Akabane';
-import { JC_23 } from '../interchanges/jr/Chuo';
+import { JC_23, JM_33 } from '../interchanges/jr/Chuo';
+import { JK_16, JN_01, JT_04 } from '../interchanges/jr/Keihin';
 import { JB_01 } from '../interchanges/jr/Mitaka';
-import { JK_19 } from '../interchanges/jr/Oimachi';
+import { JM_34, JM_35, JO_14 } from '../interchanges/jr/Nambu';
+import { JN_26 } from '../interchanges/jr/Tachikawa';
 import { JA_13, JK_47 } from '../interchanges/jr/Tohoku';
 
 const Yamanote = () => {
@@ -42,19 +44,19 @@ const ChuoSobu = () => {
 };
 
 const KeihinTohoku = () => {
-    return <SVGPath color="stroke-keihin-tohoku" points={[JK_19, JK_21, JK_24, JK_33, JK_47]} directions={[NE, E, NE, NW, N]} />;
+    return <SVGPath color="stroke-keihin-tohoku" points={[JK_16, JK_21, JK_24, JK_33, JK_47]} directions={[NE, E, NE, NW, N]} />;
 };
 
 const Tokaido = () => {
-    return <SVGPath color="stroke-tokaido" points={[JU_02, TAMACHI_OFFSET, JT_03]} directions={[SW, W, SW]} />;
+    return <SVGPath color="stroke-tokaido" points={[JU_02, TAMACHI_OFFSET, JT_04]} directions={[SW, W, SW]} />;
 };
 
 const SobuRapid = () => {
     return (
         <SVGPath
             color="stroke-sobu-rapid"
-            points={[offset(OSAKI_CORNER, scale(S, OFFSET)), JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
-            directions={[E, NE, E, NE, E]}
+            points={[JO_14, SOBU_OSAKI_CORNER, JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
+            directions={[N, E, NE, E, NE, E]}
         />
     );
 };
@@ -74,7 +76,12 @@ const Keiyo = () => {
 };
 
 const Musashino = () => {
-    return <SVGPath color="stroke-musashino" points={[JM_01, JM_02]} />;
+    return (
+        <>
+            <SVGPath color="stroke-musashino" points={[JM_01, JM_02]} />
+            <SVGPath color="stroke-musashino" points={[JM_33, JM_34, JM_35]} directions={[SW, S, SW]} />
+        </>
+    );
 };
 
 const Saikyo = () => {
@@ -83,6 +90,10 @@ const Saikyo = () => {
 
 const ShonanShinjuku = () => {
     return <SVGPath color="stroke-shonan-shinjuku" points={[JS_17, JS_20, JS_21, JS_22]} directions={[N, NE, E, N]} />;
+};
+
+const Nambu = () => {
+    return <SVGPath color="stroke-nambu" points={[JN_01, JN_26]} directions={[NW, N]} />;
 };
 
 const JREast = () => {
@@ -98,6 +109,7 @@ const JREast = () => {
             <Keiyo />
             <Saikyo />
             <ShonanShinjuku />
+            <Nambu />
         </g>
     );
 };

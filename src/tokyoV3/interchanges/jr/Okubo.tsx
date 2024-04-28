@@ -10,4 +10,4 @@ export const JB_09 = offset(
     scaleToUnitX(SW, OFFSET * 1.5),
     scaleToUnitX(E, OFFSET * 0.5)
 );
-export const CHUO_OFFSET = scaleToUnitX(NW, OFFSET * 4);
+export const CHUO_OFFSET = scaleToUnitX(NW, MAJOR_LINE);

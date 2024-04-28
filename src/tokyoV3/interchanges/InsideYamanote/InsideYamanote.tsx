@@ -1,4 +1,3 @@
-import { Oimachi } from '../jr/Oimachi';
 import { Akihabara } from './Akihabara';
 import { AoyamaItchome } from './AoyamaItchome';
 import { AsakasaMitsukae } from './AsakasaMitsukae';
@@ -50,7 +49,7 @@ import { Ryogoku } from './Ryogoku';
 import { Shibuya } from './Shibuya';
 import { Shimbashi } from './Shimbashi';
 import { ShinOkachimachi } from './ShinOkachimachi';
-import { Shinagawa } from './Shinagawa.tsx';
+import { Shinagawa } from './Shinagawa';
 import { Shinjuku } from './Shinjuku';
 import { ShinjukuSanchome } from './ShinjukuSanchome';
 import { ShirokaneTakanawa } from './ShirokaneTakanawa';
@@ -147,7 +146,6 @@ const InsideYamanote = () => {
             <Meguro />
             <Gotanda />
             <Osaki />
-            <Oimachi />
         </g>
     );
 };

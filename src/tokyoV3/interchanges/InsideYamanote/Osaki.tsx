@@ -3,7 +3,7 @@ import { Stop } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { S, SW, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { JY_23 } from './Gotanda';
-import { JY_25 } from './Shinagawa.tsx';
+import { JK_20 } from './Shinagawa';
 
 export const JY_24 = offset(JY_23, scaleToUnitX(S, MAJOR_LINE + OFFSET));
 export const JS_17 = offset(JY_24, scale(W, OFFSET));
@@ -19,4 +19,5 @@ export const Osaki = () => {
         </g>
     );
 };
-export const OSAKI_CORNER = offset(JY_25, scaleToUnitX(SW, OFFSET * 3), scaleToUnitX(W, OFFSET * 3));
+export const OSAKI_CORNER = offset(JK_20, scaleToUnitX(SW, OFFSET * 3), scaleToUnitX(W, OFFSET * 4));
+export const SOBU_OSAKI_CORNER = offset(OSAKI_CORNER, scale(S, OFFSET));
