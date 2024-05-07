@@ -4,9 +4,11 @@ import { NE, NW, S, SW, W, findIntersectionFromSlopes, midPoint, offset, scaleTo
 import { MG_01 } from '../interchanges/InsideYamanote/Meguro';
 import { DT_01, TY_01 } from '../interchanges/InsideYamanote/Shibuya';
 import { KK_01 } from '../interchanges/InsideYamanote/Shinagawa';
+import { OH_01 } from '../interchanges/InsideYamanote/Shinjuku';
 import { A_07 } from '../interchanges/InsideYamanote/TakanawaGateway';
+import { OH_02 } from '../interchanges/InsideYamanote/Yoyogi';
 import { KK_20, OM_01 } from '../interchanges/jr/Keihin';
-import { DT_10, MG_11, OM_16, TY_11 } from '../interchanges/jr/Nambu';
+import { DT_10, MG_11, OH_18, OM_16, TY_11 } from '../interchanges/jr/Nambu';
 
 const Keikyu = () => {
     return (
@@ -37,6 +39,10 @@ const Oimachi = () => {
     return <SVGPath points={[OM_01, OM_16]} directions={[NW, SW]} />;
 };
 
+const Odawara = () => {
+    return <SVGPath points={[OH_01, OH_02, OH_18]} directions={[W, SW, W]} />;
+};
+
 const Private = () => {
     return (
         <>
@@ -45,6 +51,7 @@ const Private = () => {
             <Meguro />
             <Toyoko />
             <Oimachi />
+            <Odawara />
         </>
     );
 };

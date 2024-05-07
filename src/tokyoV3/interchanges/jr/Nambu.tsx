@@ -2,7 +2,7 @@ import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, NE, NW, S, SE, W, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { E, N, NE, NW, S, SE, W, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { generateStationCodes } from '../../../utils/StopUtils';
 import { JM_33, JN_26 } from './Chuo';
 
@@ -59,7 +59,7 @@ const Inadazutsumi = () => {
     );
 };
 const JN_14 = offset(JN_16, scale(NAMBU_SLOPE, 2)); // Odawara
-export const OH_18 = offset(JN_14, scale(E, OFFSET));
+export const OH_18 = offset(JN_14, scale(E, OFFSET * 0.5), scale(N, OFFSET));
 
 const Noborito = () => {
     return (
@@ -94,9 +94,9 @@ export const JS_15 = offset(JO_15, scale(W, OFFSET));
 const MusashiKosugi = () => {
     return (
         <g id="musashi-kosugi">
-            <Stop stationCode="JN 10" location={JN_10} strokeColor="stroke-nambu" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JN 07" location={JN_07} strokeColor="stroke-nambu" hideText />
             <Stop stationCode="JS 15" location={JS_15} strokeColor="stroke-shonan-shinjuku" textAlignment={TextAlignment.LEFT} />
-            <Stop stationCode="JO 15" location={JO_15} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JO 15" location={JO_15} strokeColor="stroke-sobu-rapid" hideText />
             <Stop stationCode="MG 11" location={MG_11} hideText />
             <Stop stationCode="TY 11" location={TY_11} hideText />
         </g>
@@ -110,9 +110,9 @@ export const JS_14 = offset(JO_14, scale(W, OFFSET));
 const ShinKawasaki = () => {
     return (
         <g id="shin-kawasaki">
-            <Stop stationCode="JN 04" location={JN_10} strokeColor="stroke-nambu" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JN 04" location={JN_04} strokeColor="stroke-nambu" />
             <Stop stationCode="JS 14" location={JS_14} strokeColor="stroke-shonan-shinjuku" textAlignment={TextAlignment.LEFT} />
-            <Stop stationCode="JO 14" location={JO_14} strokeColor="stroke-sobu-rapid" textAlignment={TextAlignment.LEFT} />
+            <Stop stationCode="JO 14" location={JO_14} strokeColor="stroke-sobu-rapid" hideText />
         </g>
     );
 };
@@ -131,11 +131,19 @@ export const Nambu = () => {
             <LineSegmentWithStepChange
                 origin={JN_26}
                 slope={NAMBU_SLOPE}
-                stops={generateStationCodes('JN', 26, 4)}
+                stops={generateStationCodes('JN', 26, 11)}
                 skipBeginning
                 strokeColor="stroke-nambu"
-                stopsToHide={['JN 21', 'JN 20', 'JN 19', 'JN 16', 'JN 14', 'JN 10']}
+                stopsToSkip={['JN 21', 'JN 20', 'JN 19', 'JN 16', 'JN 14', 'JN 10', 'JN 04', 'JN 07']}
                 textAlignments={[TextAlignment.LEFT]}
+            />
+            <LineSegmentWithStepChange
+                origin={JN_10}
+                slope={NAMBU_SLOPE}
+                stops={generateStationCodes('JN', 10, 4)}
+                skipBeginning
+                strokeColor="stroke-nambu"
+                stopsToSkip={['JN 21', 'JN 20', 'JN 19', 'JN 16', 'JN 14', 'JN 10', 'JN 04', 'JN 07']}
             />
         </>
     );

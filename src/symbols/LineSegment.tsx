@@ -19,6 +19,7 @@ interface LineSegmentData {
     textAlignments?: TextAlignment[];
     skipBeginning?: boolean;
     skipEnd?: boolean;
+    stopsToSkip?: string[];
 }
 
 interface LineSegmentDataWithStepChange extends LineSegmentData {
@@ -41,6 +42,7 @@ export const LineSegmentWithStepChange = ({
     strokeColor,
     fillColor,
     stopsToHide = [],
+    stopsToSkip = [],
     skipBeginning = false,
     skipEnd = false,
 }: LineSegmentDataWithStepChange) => {
@@ -50,7 +52,7 @@ export const LineSegmentWithStepChange = ({
     return (
         <>
             {stops.map((stationCode, index) => {
-                if (!(skipBeginning && index === 0) && !(skipEnd && index === stops.length - 1)) {
+                if (!(skipBeginning && index === 0) && !(skipEnd && index === stops.length - 1) && !stopsToSkip?.includes(stationCode)) {
                     const textAlignment = textAlignments[index % textAlignments.length];
                     return (
                         <Stop
@@ -80,6 +82,7 @@ export const LineSegmentWithTotalChange = ({
     stopsToHide,
     skipBeginning,
     skipEnd,
+    stopsToSkip,
 }: LineSegmentDataWithTotalChange): JSX.Element => {
     return (
         <LineSegmentWithStepChange
@@ -92,6 +95,7 @@ export const LineSegmentWithTotalChange = ({
             stopsToHide={stopsToHide}
             skipBeginning={skipBeginning}
             skipEnd={skipEnd}
+            stopsToSkip={stopsToSkip}
         />
     );
 };
@@ -106,6 +110,7 @@ export const LineSegmentWithEndpoint = ({
     stopsToHide,
     skipBeginning,
     skipEnd,
+    stopsToSkip,
 }: LineSegmentDataWithEndpoint): JSX.Element => {
     const { x: originX, y: originY } = origin;
     const { x: endX, y: endY } = endpoint;
@@ -121,6 +126,7 @@ export const LineSegmentWithEndpoint = ({
             stopsToHide={stopsToHide}
             skipBeginning={skipBeginning}
             skipEnd={skipEnd}
+            stopsToSkip={stopsToSkip}
         />
     );
 };

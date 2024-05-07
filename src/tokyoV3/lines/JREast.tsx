@@ -1,3 +1,4 @@
+import { MAJOR_LINE } from '../../map/GridLines';
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NE, NW, S, SE, SW, W, offset, scale, scaleToUnitX } from '../../utils/PathUtils';
@@ -25,7 +26,7 @@ import { JA_15, JS_22 } from '../interchanges/jr/Akabane';
 import { JC_23, JM_33 } from '../interchanges/jr/Chuo';
 import { JK_16, JN_01, JT_04 } from '../interchanges/jr/Keihin';
 import { JB_01 } from '../interchanges/jr/Mitaka';
-import { JM_34, JM_35, JO_14 } from '../interchanges/jr/Nambu';
+import { JM_34, JM_35, JO_14, JS_14 } from '../interchanges/jr/Nambu';
 import { JN_26 } from '../interchanges/jr/Tachikawa';
 import { JA_13, JK_47 } from '../interchanges/jr/Tohoku';
 
@@ -89,7 +90,13 @@ const Saikyo = () => {
 };
 
 const ShonanShinjuku = () => {
-    return <SVGPath color="stroke-shonan-shinjuku" points={[JS_17, JS_20, JS_21, JS_22]} directions={[N, NE, E, N]} />;
+    return (
+        <SVGPath
+            color="stroke-shonan-shinjuku"
+            points={[JS_14, offset(OSAKI_CORNER, { dx: -MAJOR_LINE }), JS_17, JS_20, JS_21, JS_22]}
+            directions={[N, E, N, NE, E, N]}
+        />
+    );
 };
 
 const Nambu = () => {
