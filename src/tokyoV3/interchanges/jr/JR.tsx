@@ -1,6 +1,6 @@
 import { Chuo } from './Chuo';
 import { Keihin } from './Keihin';
-import { Nambu } from './Nambu';
+import Nambu from './Nambu';
 import { Tohoku } from './Tohoku';
 
 const JR = () => {

@@ -50,6 +50,7 @@ import { E_31 } from '../interchanges/jr/HigashiNakano';
 import { T_01 } from '../interchanges/jr/Nakano';
 import { N_16 } from '../interchanges/jr/Oji';
 import { I_17 } from '../interchanges/jr/Tohoku';
+import { C_01 } from '../interchanges/jr/YoyogiUehara';
 
 const Ginza = () => {
     return <SVGPath color="stroke-ginza" points={[G_01, G_08, G_09, G_13, G_15, G_16]} directions={[E, SE, NE, N, NE, SE]} />;
@@ -84,7 +85,13 @@ const Yurakucho = () => {
 };
 
 const Chiyoda = () => {
-    return <SVGPath color="stroke-chiyoda" points={[C_03, C_04, C_07, C_08, C_11, C_15, C_16]} directions={[S, SE, E, SE, NE, N, E]} />;
+    return (
+        <SVGPath
+            color="stroke-chiyoda"
+            points={[C_01, C_03, C_04, C_07, C_08, C_11, C_15, C_16]}
+            directions={[E, S, SE, E, SE, NE, N, E]}
+        />
+    );
 };
 
 const Hibiya = () => {

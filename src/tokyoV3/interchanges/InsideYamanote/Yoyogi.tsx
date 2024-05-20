@@ -1,7 +1,9 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
+import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { NW, SE, SW, findIntersectionFromSlopes, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { generateStationCodes } from '../../../utils/StopUtils';
 import { JY_17 } from './Shinjuku';
 import { JB_14 } from './Yotsuya';
 
@@ -19,7 +21,12 @@ export const Yoyogi = () => {
             <Stop strokeColor="stroke-chuo-sobu" location={JB_12} stationCode="JB 12" textAlignment={TextAlignment.NE} />
             <Stop strokeColor="stroke-chuo-sobu" location={JB_13} stationCode="JB 13" textAlignment={TextAlignment.NE} />
             <Stop strokeColor="stroke-oedo" location={E_25} stationCode="E 25" textAlignment={TextAlignment.SW} />
-            <Stop location={OH_02} stationCode="OH 02" textAlignment={TextAlignment.NW} />
+            <LineSegmentWithStepChange
+                origin={OH_02}
+                stops={generateStationCodes('OH', 2, 4)}
+                slope={scaleToUnitX(SW, MAJOR_LINE)}
+                textAlignments={[TextAlignment.NW]}
+            />
             <g id="yoyogi">
                 <Stop strokeColor="stroke-yamanote" location={JY_18} stationCode="JY 18" hideText />
                 <Stop strokeColor="stroke-chuo-sobu" location={JB_11} stationCode="JB 11" hideText />

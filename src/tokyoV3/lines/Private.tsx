@@ -1,14 +1,19 @@
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { NE, NW, S, SW, W, findIntersectionFromSlopes, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
+import { N, NE, NW, S, SW, W, findIntersectionFromSlopes, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
 import { MG_01 } from '../interchanges/InsideYamanote/Meguro';
 import { DT_01, TY_01 } from '../interchanges/InsideYamanote/Shibuya';
 import { KK_01 } from '../interchanges/InsideYamanote/Shinagawa';
-import { OH_01 } from '../interchanges/InsideYamanote/Shinjuku';
+import { KO_01, OH_01 } from '../interchanges/InsideYamanote/Shinjuku';
 import { A_07 } from '../interchanges/InsideYamanote/TakanawaGateway';
 import { OH_02 } from '../interchanges/InsideYamanote/Yoyogi';
+import { KO_25 } from '../interchanges/jr/Bubaigawara';
+import { KO_18, KO_19 } from '../interchanges/jr/Chofu';
+import { KO_36 } from '../interchanges/jr/Inadazutsumi';
 import { KK_20, OM_01 } from '../interchanges/jr/Keihin';
-import { DT_10, MG_11, OH_18, OM_16, TY_11 } from '../interchanges/jr/Nambu';
+import { DT_10, OM_16 } from '../interchanges/jr/Mizonokuchi';
+import { MG_11, TY_11 } from '../interchanges/jr/MusashiKosugi';
+import { OH_18 } from '../interchanges/jr/Noborito';
 
 const Keikyu = () => {
     return (
@@ -43,6 +48,14 @@ const Odawara = () => {
     return <SVGPath points={[OH_01, OH_02, OH_18]} directions={[W, SW, W]} />;
 };
 
+const Keio = () => {
+    return <SVGPath points={[KO_01, KO_18, KO_19, KO_25]} directions={[NW, W, N, NW]} />;
+};
+
+const Samigarhara = () => {
+    return <SVGPath points={[KO_18, KO_36]} directions={[W, SW]} />;
+};
+
 const Private = () => {
     return (
         <>
@@ -52,6 +65,8 @@ const Private = () => {
             <Toyoko />
             <Oimachi />
             <Odawara />
+            <Keio />
+            <Samigarhara />
         </>
     );
 };
