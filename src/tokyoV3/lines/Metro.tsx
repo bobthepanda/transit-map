@@ -48,6 +48,8 @@ import { M_12, N_08 } from '../interchanges/InsideYamanote/Yotsuya';
 import { E_25, E_26 } from '../interchanges/InsideYamanote/Yoyogi';
 import { E_31 } from '../interchanges/jr/HigashiNakano';
 import { T_01 } from '../interchanges/jr/Nakano';
+import { MB_03, M_06, M_07 } from '../interchanges/jr/NakanoSakue';
+import { M_01 } from '../interchanges/jr/Ogikubo';
 import { N_16 } from '../interchanges/jr/Oji';
 import { I_17 } from '../interchanges/jr/Tohoku';
 import { C_01 } from '../interchanges/jr/YoyogiUehara';
@@ -58,11 +60,30 @@ const Ginza = () => {
 
 const Marunouchi = () => {
     return (
-        <SVGPath
-            color="stroke-marunouchi"
-            points={[M_08, M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_20, M_22, MARUNOUCHI_MIDPOINT, M_25]}
-            directions={[SE, S, SE, E, SE, NE, N, NE, N, W, N, W]}
-        />
+        <>
+            <SVGPath
+                color="stroke-marunouchi"
+                points={[
+                    M_01,
+                    M_06,
+                    midPoint(M_07, M_08),
+                    M_08,
+                    M_12,
+                    M_13,
+                    M_14,
+                    M_15,
+                    M_16,
+                    M_17,
+                    M_18,
+                    M_20,
+                    M_22,
+                    MARUNOUCHI_MIDPOINT,
+                    M_25,
+                ]}
+                directions={[S, SE, S, SE, S, SE, E, SE, NE, N, NE, N, W, N, W]}
+            />
+            <SVGPath color="stroke-marunouchi" points={[MB_03, M_06]} directions={[E, SE]} />
+        </>
     );
 };
 

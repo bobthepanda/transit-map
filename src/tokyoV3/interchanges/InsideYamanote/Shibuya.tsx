@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, N, S, SW, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { E, N, NW, S, SW, W, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { C_04 } from './Omotesando';
 
 export const JY_20 = offset(C_04, scaleToUnitX(W, MAJOR_LINE + OFFSET));
@@ -12,6 +12,7 @@ export const JA_10 = offset(JS_19, scaleToUnitX(W, OFFSET));
 export const F_16 = offset(JA_10, scaleToUnitX(N, OFFSET), scaleToUnitX(W, OFFSET * 0.5));
 export const TY_01 = offset(F_16, scale(SW, OFFSET));
 export const DT_01 = offset(Z_01, scale(W, OFFSET));
+export const IN_01 = offset(midPoint(F_16, TY_01), scale(NW, OFFSET));
 export const Shibuya = () => {
     return (
         <g id="shibuya">
@@ -23,6 +24,7 @@ export const Shibuya = () => {
             <Stop stationCode="JA 10" location={JA_10} strokeColor="stroke-saikyo" hideText />
             <Stop stationCode="TY 01" location={TY_01} hideText />
             <Stop stationCode="DT 01" location={DT_01} hideText />
+            <Stop stationCode="IN 01" location={IN_01} hideText />
         </g>
     );
 };

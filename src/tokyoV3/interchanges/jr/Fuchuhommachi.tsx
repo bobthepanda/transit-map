@@ -2,7 +2,7 @@ import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { E, midPoint, offset, scale } from '../../../utils/PathUtils';
 import { JN_21, NAMBU_SLOPE } from './Bubaigawara';
-import { JM_33 } from './Chuo';
+import { JM_33 } from './NishiKokubunji';
 
 export const JN_20 = offset(JN_21, NAMBU_SLOPE); // Musashino
 

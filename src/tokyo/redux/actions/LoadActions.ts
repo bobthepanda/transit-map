@@ -87,6 +87,7 @@ const CSVS: string[] = [
     '/tokyu/tamagawa.csv',
     '/tokyu/toyoko.csv',
     '/tokyu/setagaya.csv',
+    '/seibu/tamagawa.csv',
 ];
 
 const parsePromise = (file): Promise<CSVData[]> => {

@@ -21,7 +21,8 @@ export const Noborito = () => {
                 stops={generateStationCodes('OH', 18, 5)}
                 skipBeginning
                 skipEnd
-                slope={scaleToUnitX(E, OFFSET * 4.5)}
+                stopsToSkip={['OH 07']}
+                slope={NOBORITO_SLOPE}
                 origin={OH_18}
                 textAlignments={[TextAlignment.UP, TextAlignment.DOWN]}
             />
