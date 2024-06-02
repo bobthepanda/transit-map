@@ -6,8 +6,6 @@ const EditorHeader = () => {
     return (
         <div id="header">
             <nav>
-                <Link to="/tokyo">Tokyo</Link>
-                <Link to="/oldtokyo">OldTokyo</Link>
                 <Link to="/tokyoV3">TokyoV3</Link>
             </nav>
             <section>

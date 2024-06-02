@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { Dimensions } from '../interfaces/Dimensions';
-import OldTokyo from '../tokyo/OldTokyo';
-import Tokyo from '../tokyo/Tokyo';
 import TokyoV3 from '../tokyoV3/TokyoV3';
 import { HEIGHT, WIDTH } from '../utils/CommonCoordinates';
 import GridLines from './GridLines';
@@ -19,8 +17,6 @@ const Map = ({ width = WIDTH, height = HEIGHT }: Dimensions) => {
             >
                 <GridLines width={width} height={height} />
                 <Routes>
-                    <Route path="/tokyo" element={<Tokyo />} />
-                    <Route path="/oldtokyo" element={<OldTokyo />} />
                     <Route path="/tokyoV3" element={<TokyoV3 />} />
                 </Routes>
             </svg>
