@@ -47,6 +47,7 @@ import { G_16, H_18 } from '../interchanges/InsideYamanote/Ueno';
 import { M_12, N_08 } from '../interchanges/InsideYamanote/Yotsuya';
 import { E_25, E_26 } from '../interchanges/InsideYamanote/Yoyogi';
 import { E_31 } from '../interchanges/jr/HigashiNakano';
+import { H_01 } from '../interchanges/jr/NakaMeguro';
 import { T_01 } from '../interchanges/jr/Nakano';
 import { MB_03, M_06, M_07 } from '../interchanges/jr/NakanoSakue';
 import { M_01 } from '../interchanges/jr/Ogikubo';
@@ -116,7 +117,7 @@ const Chiyoda = () => {
 };
 
 const Hibiya = () => {
-    return <SVGPath color="stroke-hibiya" points={[H_02, H_06, H_09, H_12, H_14, H_18]} directions={[E, NE, SE, NE, N, NE]} />;
+    return <SVGPath color="stroke-hibiya" points={[H_01, H_02, H_06, H_09, H_12, H_14, H_18]} directions={[SE, E, NE, SE, NE, N, NE]} />;
 };
 
 const Tozai = () => {

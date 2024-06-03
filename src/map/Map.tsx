@@ -17,6 +17,7 @@ const Map = ({ width = WIDTH, height = HEIGHT }: Dimensions) => {
             >
                 <GridLines width={width} height={height} />
                 <Routes>
+                    <Route path="/" element={<TokyoV3 />} />
                     <Route path="/tokyoV3" element={<TokyoV3 />} />
                 </Routes>
             </svg>

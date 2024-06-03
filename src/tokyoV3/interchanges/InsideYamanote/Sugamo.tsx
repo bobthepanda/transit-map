@@ -1,13 +1,13 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { N, W, findIntersectionFromSlopes, offset, roundCoordinate, scaleToUnitX } from '../../../utils/PathUtils';
+import { N, W, findIntersectionFromSlopes, offset, roundPoint, scaleToUnitX } from '../../../utils/PathUtils';
 import { I_11 } from './Suidobashi';
 import { JY_09 } from './Tabata';
 import { TABATA_SCALE } from './Uguisuidani';
 
 export const I_15 = findIntersectionFromSlopes({
-    start: roundCoordinate(offset(JY_09, scaleToUnitX(N, TABATA_SCALE - MAJOR_LINE * 0.5)), OFFSET),
+    start: roundPoint(offset(JY_09, scaleToUnitX(N, TABATA_SCALE - MAJOR_LINE * 0.5)), OFFSET),
     firstDirection: W,
     end: I_11,
     secondDirection: N,

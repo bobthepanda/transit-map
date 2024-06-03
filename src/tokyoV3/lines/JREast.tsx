@@ -27,6 +27,7 @@ import { JC_23 } from '../interchanges/jr/Chuo';
 import { JM_34, JM_35 } from '../interchanges/jr/Fuchuhommachi';
 import { JK_16, JN_01, JT_04 } from '../interchanges/jr/Keihin';
 import { JB_01 } from '../interchanges/jr/Mitaka';
+import { JO_15, JS_15 } from '../interchanges/jr/MusashiKosugi';
 import { JM_33 } from '../interchanges/jr/NishiKokubunji';
 import { JO_14, JS_14 } from '../interchanges/jr/ShinKawasaki';
 import { JN_26 } from '../interchanges/jr/Tachikawa';
@@ -58,8 +59,8 @@ const SobuRapid = () => {
     return (
         <SVGPath
             color="stroke-sobu-rapid"
-            points={[JO_14, SOBU_OSAKI_CORNER, JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
-            directions={[N, E, NE, E, NE, E]}
+            points={[JO_14, JO_15, SOBU_OSAKI_CORNER, JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
+            directions={[N, NE, E, NE, E, NE, E]}
         />
     );
 };
@@ -95,8 +96,8 @@ const ShonanShinjuku = () => {
     return (
         <SVGPath
             color="stroke-shonan-shinjuku"
-            points={[JS_14, offset(OSAKI_CORNER, { dx: -MAJOR_LINE }), JS_17, JS_20, JS_21, JS_22]}
-            directions={[N, E, N, NE, E, N]}
+            points={[JS_14, JS_15, offset(OSAKI_CORNER, { dx: -MAJOR_LINE }), JS_17, JS_20, JS_21, JS_22]}
+            directions={[N, NE, E, N, NE, E, N]}
         />
     );
 };

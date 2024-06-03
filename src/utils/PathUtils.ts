@@ -1,5 +1,6 @@
 import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
+import { OFFSET } from './CommonCoordinates';
 
 export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordinates): Coordinates => {
     return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
@@ -216,7 +217,7 @@ export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors
     return scale({ dx, dy }, ...factors, 1 / Math.abs(dx));
 };
 
-export const roundCoordinate = (coords: Coordinates, numberToRound: number): Coordinates => {
+export const roundPoint = (coords: Coordinates, numberToRound: number = OFFSET): Coordinates => {
     const { x, y } = coords;
 
     return { x: Math.round(x / numberToRound) * numberToRound, y: Math.round(y / numberToRound) * numberToRound };

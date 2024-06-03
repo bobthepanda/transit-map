@@ -7,8 +7,8 @@ import { Fuchuhommachi } from './Fuchuhommachi';
 import { Inadazutsumi } from './Inadazutsumi';
 import { Meidaimae } from './Meidaimae';
 import { MinamiTama } from './MinamiTama';
-import { JN_10, Mizonokuchi } from './Mizonokuchi';
-import { MusashiKosugi } from './MusashiKosugi';
+import { Mizonokuchi } from './Mizonokuchi';
+import { JN_07, MusashiKosugi } from './MusashiKosugi';
 import { Noborito } from './Noborito';
 import { ShimoKitazawa } from './ShimoKitazawa';
 import { ShinKawasaki } from './ShinKawasaki';
@@ -30,16 +30,16 @@ const Nambu = () => {
             <LineSegmentWithStepChange
                 origin={JN_26}
                 slope={NAMBU_SLOPE}
-                stops={generateStationCodes('JN', 26, 11)}
+                stops={generateStationCodes('JN', 26, 8)}
                 skipBeginning
                 strokeColor="stroke-nambu"
                 stopsToSkip={['JN 21', 'JN 20', 'JN 19', 'JN 16', 'JN 14', 'JN 10', 'JN 04', 'JN 07']}
                 textAlignments={[TextAlignment.LEFT]}
             />
             <LineSegmentWithStepChange
-                origin={JN_10}
+                origin={JN_07}
                 slope={NAMBU_SLOPE}
-                stops={generateStationCodes('JN', 10, 4)}
+                stops={generateStationCodes('JN', 7, 4)}
                 skipBeginning
                 strokeColor="stroke-nambu"
                 stopsToSkip={['JN 21', 'JN 20', 'JN 19', 'JN 16', 'JN 14', 'JN 10', 'JN 04', 'JN 07']}

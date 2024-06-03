@@ -1,11 +1,11 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { S, SW, W, findIntersectionFromSlopes, offset, roundCoordinate, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { S, SW, W, findIntersectionFromSlopes, offset, roundPoint, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { A_09 } from './Hamamatsucho';
 import { I_08 } from './Hibiya';
 
-export const I_04 = roundCoordinate(
+export const I_04 = roundPoint(
     findIntersectionFromSlopes({
         firstDirection: SW,
         start: offset(I_08, scaleToUnitX(W, OFFSET * 3)),

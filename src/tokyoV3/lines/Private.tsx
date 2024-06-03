@@ -1,6 +1,6 @@
 import SVGPath from '../../symbols/SVGPath';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { N, NE, NW, S, SW, W, findIntersectionFromSlopes, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
+import { N, NE, NW, S, SW, W, midPoint, offset, scaleToUnitX } from '../../utils/PathUtils';
 import { MG_01 } from '../interchanges/InsideYamanote/Meguro';
 import { DT_01, IN_01, TY_01 } from '../interchanges/InsideYamanote/Shibuya';
 import { KK_01 } from '../interchanges/InsideYamanote/Shinagawa';
@@ -10,6 +10,7 @@ import { OH_02 } from '../interchanges/InsideYamanote/Yoyogi';
 import { KO_25 } from '../interchanges/jr/Bubaigawara';
 import { KO_18, KO_19 } from '../interchanges/jr/Chofu';
 import { KO_36 } from '../interchanges/jr/Inadazutsumi';
+import { TY_04 } from '../interchanges/jr/Jiyugaoka';
 import { KK_20, OM_01 } from '../interchanges/jr/Keihin';
 import { IN_17 } from '../interchanges/jr/Kichijoji';
 import { IN_06, IN_08 } from '../interchanges/jr/Meidaimae';
@@ -33,16 +34,8 @@ const DenEnToshi = () => {
 const Meguro = () => {
     return <SVGPath points={[MG_01, MG_11]} directions={[W, SW]} />;
 };
-
-const TOYOKO_MEGURO_CORNER = findIntersectionFromSlopes({
-    firstDirection: W,
-    start: MG_01,
-    end: TY_11,
-    secondDirection: NE,
-});
-
 const Toyoko = () => {
-    return <SVGPath points={[TY_01, midPoint(TY_01, TOYOKO_MEGURO_CORNER), TY_11]} directions={[SW, W, SW]} />;
+    return <SVGPath points={[TY_01, TY_04, TY_11]} directions={[SW, W, SW]} />;
 };
 
 const Oimachi = () => {

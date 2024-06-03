@@ -1,17 +1,23 @@
 import InsideYamanote from './InsideYamanote/InsideYamanote';
 import { Asagaya } from './jr/Asagaya';
+import { DenEnChofu } from './jr/DenEnChofu';
 import { HigashiNakano } from './jr/HigashiNakano';
 import JR from './jr/JR';
+import { Jiyugaoka } from './jr/Jiyugaoka';
 import { Kichijoji } from './jr/Kichijoji';
 import { Koenji } from './jr/Koenji';
 import { Mitaka } from './jr/Mitaka';
 import { MusashiSakai } from './jr/MusashiSakai';
+import { NakaMeguro } from './jr/NakaMeguro';
 import { Nakano } from './jr/Nakano';
 import { NakanoSakue } from './jr/NakanoSakue';
 import { NishiKokubunji } from './jr/NishiKokubunji';
 import { NishiOgikubo } from './jr/NishiOgikubo';
 import { Ogikubo } from './jr/Ogikubo';
+import { Ookayama } from './jr/Ookayama';
+import { ShinMaruko } from './jr/ShinMaruko';
 import { Tachikawa } from './jr/Tachikawa';
+import { Tamagawa } from './jr/Tamagawa';
 
 const WesternTokyo = () => {
     return (
@@ -28,6 +34,12 @@ const WesternTokyo = () => {
             <NishiKokubunji />
             <NakanoSakue />
             <MusashiSakai />
+            <ShinMaruko />
+            <Tamagawa />
+            <DenEnChofu />
+            <Jiyugaoka />
+            <Ookayama />
+            <NakaMeguro />
         </>
     );
 };

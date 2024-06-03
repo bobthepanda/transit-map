@@ -18,13 +18,13 @@ export const Noborito = () => {
                 <Stop stationCode="OH 18" location={OH_18} hideText />
             </g>
             <LineSegmentWithStepChange
-                stops={generateStationCodes('OH', 18, 5)}
+                stops={generateStationCodes('OH', 18, 7)}
                 skipBeginning
                 skipEnd
                 stopsToSkip={['OH 07']}
                 slope={NOBORITO_SLOPE}
                 origin={OH_18}
-                textAlignments={[TextAlignment.UP, TextAlignment.DOWN]}
+                textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
             />
         </>
     );
