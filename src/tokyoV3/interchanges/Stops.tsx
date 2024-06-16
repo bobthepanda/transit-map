@@ -7,6 +7,7 @@ import { Jiyugaoka } from './jr/Jiyugaoka';
 import { Kichijoji } from './jr/Kichijoji';
 import { Koenji } from './jr/Koenji';
 import { Mitaka } from './jr/Mitaka';
+import { FutakoTamagawa, Futakoshinchi, Takatsu } from './jr/Mizonokuchi';
 import { MusashiSakai } from './jr/MusashiSakai';
 import { NakaMeguro } from './jr/NakaMeguro';
 import { Nakano } from './jr/Nakano';
@@ -15,6 +16,7 @@ import { NishiKokubunji } from './jr/NishiKokubunji';
 import { NishiOgikubo } from './jr/NishiOgikubo';
 import { Ogikubo } from './jr/Ogikubo';
 import { Ookayama } from './jr/Ookayama';
+import { Sangenjaya } from './jr/Sangenjaya';
 import { ShinMaruko } from './jr/ShinMaruko';
 import { Tachikawa } from './jr/Tachikawa';
 import { Tamagawa } from './jr/Tamagawa';
@@ -40,6 +42,10 @@ const WesternTokyo = () => {
             <Jiyugaoka />
             <Ookayama />
             <NakaMeguro />
+            <Takatsu />
+            <Futakoshinchi />
+            <FutakoTamagawa />
+            <Sangenjaya />
         </>
     );
 };

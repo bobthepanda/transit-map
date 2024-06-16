@@ -1,7 +1,9 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
+import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { OFFSET } from '../../../utils/CommonCoordinates';
 import { E, NE, NW, SW, W, findIntersectionFromSlopes, midPoint, offset, roundPoint, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { generateStationCodes } from '../../../utils/StopUtils';
 import { F_16 } from '../InsideYamanote/Shibuya';
 import { OM_01 } from './Keihin';
 import { TY_11 } from './MusashiKosugi';
@@ -22,6 +24,13 @@ export const Jiyugaoka = () => {
             <Stop stationCode="TY 05" location={offset(TY_04, scaleToUnitX(W, MAJOR_LINE))} textAlignment={TextAlignment.UP} />
             <Stop stationCode="TY 04" location={TY_04} textAlignment={TextAlignment.UP} />
             <Stop stationCode="TY 02" location={offset(F_16, scaleToUnitX(SW, MAJOR_LINE + OFFSET))} textAlignment={TextAlignment.SE} />
+            <LineSegmentWithStepChange
+                origin={OM_10}
+                stops={generateStationCodes('OM', 10, 14)}
+                skipBeginning
+                textAlignments={[TextAlignment.NE]}
+                slope={scaleToUnitX(NW, OFFSET * 3.5)}
+            />
         </>
     );
 };

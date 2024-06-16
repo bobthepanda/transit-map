@@ -33,7 +33,7 @@ export const NakanoSakue = () => {
                 slope={scaleToUnitX(E, OFFSET * 5)}
                 stops={generateStationCodes('Mb', 3, 5)}
                 strokeColor="stroke-marunouchi"
-                textAlignments={[TextAlignment.UP, TextAlignment.DOWN]}
+                textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
             />
         </>
     );
