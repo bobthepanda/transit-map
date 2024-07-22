@@ -60,7 +60,7 @@ const SobuRapid = () => {
         <SVGPath
             color="stroke-sobu-rapid"
             points={[JO_14, JO_15, SOBU_OSAKI_CORNER, JO_17, offset(TAMACHI_OFFSET, scale(S, OFFSET)), JO_18, JO_21]}
-            directions={[N, NE, E, NE, E, NE, E]}
+            directions={[NW, NE, E, NE, E, NE, E]}
         />
     );
 };
@@ -97,7 +97,7 @@ const ShonanShinjuku = () => {
         <SVGPath
             color="stroke-shonan-shinjuku"
             points={[JS_14, JS_15, offset(OSAKI_CORNER, { dx: -MAJOR_LINE }), JS_17, JS_20, JS_21, JS_22]}
-            directions={[N, NE, E, N, NE, E, N]}
+            directions={[NW, NE, E, N, NE, E, N]}
         />
     );
 };

@@ -15,7 +15,7 @@ import { NakanoSakue } from './jr/NakanoSakue';
 import { NishiKokubunji } from './jr/NishiKokubunji';
 import { NishiOgikubo } from './jr/NishiOgikubo';
 import { Ogikubo } from './jr/Ogikubo';
-import { Ookayama } from './jr/Ookayama';
+import { IkegamiLine, OimachiLine, Ookayama, TokyuKamataLines } from './jr/Ookayama';
 import { Sangenjaya } from './jr/Sangenjaya';
 import { ShinMaruko } from './jr/ShinMaruko';
 import { Tachikawa } from './jr/Tachikawa';
@@ -46,6 +46,9 @@ const WesternTokyo = () => {
             <Futakoshinchi />
             <FutakoTamagawa />
             <Sangenjaya />
+            <OimachiLine />
+            <IkegamiLine />
+            <TokyuKamataLines />
         </>
     );
 };

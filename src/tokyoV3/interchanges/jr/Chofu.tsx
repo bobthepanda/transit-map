@@ -14,7 +14,7 @@ export const Chofu = () => {
             <LineSegmentWithStepChange
                 stops={generateStationCodes('KO', 18, 2)}
                 origin={KO_18}
-                stopsToSkip={['KO 06']}
+                stopsToSkip={['KO 06', 'KO 07']}
                 textAlignments={[TextAlignment.DOWN, TextAlignment.UP]}
                 slope={CHOFU_EAST_SCALE}
             />

@@ -4,7 +4,7 @@ import { OFFSET } from '../../../utils/CommonCoordinates';
 import { E, S, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { TY_04 } from './Jiyugaoka';
 
-const TY_03 = offset(TY_04, scaleToUnitX(E, MAJOR_LINE));
+const TY_03 = offset(TY_04, scaleToUnitX(E, MAJOR_LINE - OFFSET));
 export const H_01 = offset(TY_03, scale(S, OFFSET));
 
 export const NakaMeguro = () => {

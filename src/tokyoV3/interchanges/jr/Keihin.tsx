@@ -13,7 +13,7 @@ export const R_07 = offset(OIMACHI_INTERSECTION, scaleToUnitX(N, OFFSET));
 export const OM_01 = offset(R_07, scale(W, OFFSET));
 export const JK_19 = offset(OIMACHI_INTERSECTION, scaleToUnitX(NE, OFFSET));
 const KEIKYU_SW_OFFSET = scaleToUnitX(SE, OFFSET * 3);
-const KEIKYU_SE_STOP_SPACING = scaleToUnitX(SW, MAJOR_LINE);
+const KEIKYU_SE_STOP_SPACING = scaleToUnitX(SW, OFFSET * 3);
 const SHINAGAWA_NE_STOP_SPACING = scaleToUnitX(NE, MAJOR_LINE * 0.5);
 export const KK_04 = offset(JK_19, KEIKYU_SW_OFFSET);
 const Oimachi = () => {
@@ -53,6 +53,8 @@ const Omori = () => {
 
 export const JK_17 = offset(JK_18, scale(KEIKYU_SE_STOP_SPACING, 4));
 export const KK_11 = offset(JK_17, KEIKYU_SW_OFFSET);
+export const TM_07 = offset(JK_17, scale(N, OFFSET));
+export const IK_15 = offset(TM_07, scale(NE, OFFSET));
 
 const Kamata = () => {
     return (
@@ -65,8 +67,10 @@ const Kamata = () => {
                 slope={scale(KEIKYU_SE_STOP_SPACING, -1)}
             />
             <g id="kamata">
-                <Stop stationCode="JK 17" location={JK_17} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.NW} />
+                <Stop stationCode="JK 17" location={JK_17} strokeColor="stroke-keihin-tohoku" textAlignment={TextAlignment.LEFT} />
                 <Stop stationCode="KK 11" location={KK_11} textAlignment={TextAlignment.SE} />
+                <Stop stationCode="TM 07" location={TM_07} hideText />
+                <Stop stationCode="IK 15" location={IK_15} hideText />
             </g>
         </>
     );
@@ -76,6 +80,9 @@ export const JK_16 = offset(JK_17, scale(KEIKYU_SE_STOP_SPACING, 3));
 export const JT_04 = offset(JK_16, scale(SE, OFFSET));
 export const JN_01 = offset(JK_16, scale(W, OFFSET));
 export const KK_20 = offset(JK_16, KEIKYU_SW_OFFSET);
+export const NAMBU_KAWASAKI_SLOPE = scaleToUnitX(NW, MAJOR_LINE - OFFSET * 0.5);
+
+export const JN_06 = offset(JN_01, scale(NAMBU_KAWASAKI_SLOPE, 5));
 
 const Kawasaki = () => {
     return (
@@ -88,12 +95,12 @@ const Kawasaki = () => {
                 slope={scale(KEIKYU_SE_STOP_SPACING, -1)}
             />
             <LineSegmentWithStepChange
-                stops={generateStationCodes('JN', 1, 3)}
-                slope={scaleToUnitX(NW, MAJOR_LINE - OFFSET * 0.5)}
-                skipBeginning
+                stops={generateStationCodes('JN', 1, 8)}
+                slope={NAMBU_KAWASAKI_SLOPE}
+                stopsToSkip={['JN 01', 'JN 07', 'JN 04']}
                 strokeColor="stroke-nambu"
                 origin={JN_01}
-                textAlignments={[TextAlignment.SW]}
+                textAlignments={[TextAlignment.NE]}
             />
             <g id="kawasaki">
                 <Stop stationCode="JK 16" location={JK_16} strokeColor="stroke-keihin-tohoku" hideText />

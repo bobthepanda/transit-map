@@ -1,27 +1,33 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
+import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, S, SE, W, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
-import { JY_20 } from '../InsideYamanote/Shibuya';
-import { NOBORITO_SLOPE, OH_18 } from './Noborito';
-import { C_01 } from './YoyogiUehara';
+import { N, NW, midPoint, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { generateStationCodes } from '../../../utils/StopUtils';
+import { IN_01 } from '../InsideYamanote/Shibuya';
+import { OH_01 } from '../InsideYamanote/Shinjuku';
+import { OH_YOYOGI_SLOPE } from './Noborito';
 
-export const OH_07 = offset(OH_18, scale(NOBORITO_SLOPE, 11));
-export const IN_05 = offset(OH_07, scale(W, OFFSET * 0.5), scale(S, OFFSET));
-const IN_04 = offset(IN_05, scaleToUnitX(SE, OFFSET * 4));
-export const IN_03 = { y: midPoint(IN_05, JY_20).y, x: C_01.x };
+export const OH_07 = offset(OH_01, scale(OH_YOYOGI_SLOPE, 6));
+export const IN_05 = offset(OH_07, scale(N, OFFSET));
+export const IN_04 = { y: midPoint(IN_05, offset(IN_01, scaleToUnitX(NW, MAJOR_LINE, 2))).y, x: IN_05.x - OFFSET };
 
 export const ShimoKitazawa = () => {
     return (
         <>
             <g id="shimo-kitazawa">
                 <Stop stationCode="OH 07" location={OH_07} hideText />
-                <Stop stationCode="IN 05" location={IN_05} />
+                <Stop stationCode="IN 05" location={IN_05} textAlignment={TextAlignment.NW} />
             </g>
-            <Stop stationCode="IN 04" location={IN_04} textAlignment={TextAlignment.SW} />
-            <Stop stationCode="IN 03" location={IN_03} textAlignment={TextAlignment.DOWN} />
-            <Stop stationCode="IN 02" location={offset(IN_03, scaleToUnitX(E, MAJOR_LINE))} textAlignment={TextAlignment.DOWN} />
-            <Stop stationCode="OH 06" location={offset(OH_07, NOBORITO_SLOPE)} textAlignment={TextAlignment.UP} />
+            <LineSegmentWithStepChange
+                origin={IN_01}
+                slope={scaleToUnitX(NW, MAJOR_LINE)}
+                skipBeginning
+                stops={generateStationCodes('IN', 1, 3)}
+                textAlignments={[TextAlignment.NE]}
+            />
+            <Stop stationCode="IN 04" location={IN_04} />
+            <Stop stationCode="OH 06" location={offset(OH_07, scale(OH_YOYOGI_SLOPE, -1))} textAlignment={TextAlignment.DOWN} />
         </>
     );
 };

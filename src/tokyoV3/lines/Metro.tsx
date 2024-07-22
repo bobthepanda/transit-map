@@ -52,6 +52,8 @@ import { T_01 } from '../interchanges/jr/Nakano';
 import { MB_03, M_06, M_07 } from '../interchanges/jr/NakanoSakue';
 import { M_01 } from '../interchanges/jr/Ogikubo';
 import { N_16 } from '../interchanges/jr/Oji';
+import { A_03 } from '../interchanges/jr/Ookayama';
+import { A_01 } from '../interchanges/jr/Tamagawa';
 import { I_17 } from '../interchanges/jr/Tohoku';
 import { C_01 } from '../interchanges/jr/YoyogiUehara';
 
@@ -111,7 +113,7 @@ const Chiyoda = () => {
         <SVGPath
             color="stroke-chiyoda"
             points={[C_01, C_03, C_04, C_07, C_08, C_11, C_15, C_16]}
-            directions={[E, S, SE, E, SE, NE, N, E]}
+            directions={[SE, S, SE, E, SE, NE, N, E]}
         />
     );
 };
@@ -140,7 +142,7 @@ const Mita = () => {
 };
 
 const Asakusa = () => {
-    return <SVGPath color="stroke-asakusa" points={[A_05, A_09, A_10, A_17]} directions={[E, NE, SE, NE]} />;
+    return <SVGPath color="stroke-asakusa" points={[A_01, A_03, A_05, A_09, A_10, A_17]} directions={[N, NE, E, NE, SE, NE]} />;
 };
 
 const Oedo = () => {
