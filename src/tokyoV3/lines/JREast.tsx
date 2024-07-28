@@ -23,12 +23,13 @@ import { JU_02 } from '../interchanges/InsideYamanote/Ueno';
 import { JB_14, JC_04 } from '../interchanges/InsideYamanote/Yotsuya';
 import { JB_12 } from '../interchanges/InsideYamanote/Yoyogi';
 import { JA_15, JS_22 } from '../interchanges/jr/Akabane';
-import { JC_23 } from '../interchanges/jr/Chuo';
-import { JM_34, JM_35 } from '../interchanges/jr/Fuchuhommachi';
+import { JC_22 } from '../interchanges/jr/Chuo';
+import { JM_35, JN_20 } from '../interchanges/jr/Fuchuhommachi';
 import { JK_16, JN_01, JT_04 } from '../interchanges/jr/Keihin';
-import { JB_01 } from '../interchanges/jr/Mitaka';
+import { JB_01, JC_12 } from '../interchanges/jr/Mitaka';
 import { JO_15, JS_15 } from '../interchanges/jr/MusashiKosugi';
 import { JM_33 } from '../interchanges/jr/NishiKokubunji';
+import { JN_14 } from '../interchanges/jr/Noborito';
 import { JO_14, JS_14 } from '../interchanges/jr/ShinKawasaki';
 import { JN_26 } from '../interchanges/jr/Tachikawa';
 import { JA_13, JK_47 } from '../interchanges/jr/Tohoku';
@@ -69,8 +70,8 @@ const ChuoRapid = () => {
     return (
         <SVGPath
             color="stroke-chuo-rapid"
-            points={[JC_01, JC_03, offset(JB_17, scaleToUnitX(S, OFFSET)), JC_04, offset(JB_12, scale(SW, OFFSET)), JC_05, JC_23]}
-            directions={[NE, NW, W, SW, NW, NE, NW]}
+            points={[JC_01, JC_03, offset(JB_17, scaleToUnitX(S, OFFSET)), JC_04, offset(JB_12, scale(SW, OFFSET)), JC_05, JC_12, JC_22]}
+            directions={[NE, NW, W, SW, NW, NE, NW, W]}
         />
     );
 };
@@ -83,7 +84,7 @@ const Musashino = () => {
     return (
         <>
             <SVGPath color="stroke-musashino" points={[JM_01, JM_02]} />
-            <SVGPath color="stroke-musashino" points={[JM_33, JM_34, JM_35]} directions={[SW, S, SW]} />
+            <SVGPath color="stroke-musashino" points={[JM_33, JM_35]} directions={[SW, S]} />
         </>
     );
 };
@@ -103,7 +104,7 @@ const ShonanShinjuku = () => {
 };
 
 const Nambu = () => {
-    return <SVGPath color="stroke-nambu" points={[JN_01, JN_26]} directions={[NW, N]} />;
+    return <SVGPath color="stroke-nambu" points={[JN_01, JN_14, JN_20, JN_26]} directions={[NW, N, NW, N]} />;
 };
 
 const JREast = () => {

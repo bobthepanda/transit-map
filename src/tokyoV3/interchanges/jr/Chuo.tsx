@@ -2,19 +2,19 @@ import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { LineSegmentWithStepChange } from '../../../symbols/LineSegment';
 import { offset, scale } from '../../../utils/PathUtils';
 import { generateStationCodes } from '../../../utils/StopUtils';
-import { JC_12 } from './Mitaka';
-import { CHUO_OFFSET, JB_09 } from './Okubo';
+import { JC_13, MITAKA_OFFSET } from './MusashiSakai';
+import { JB_09 } from './Okubo';
 import { JC_19 } from './Tachikawa';
 
-export const JC_23 = offset(JC_19, scale(CHUO_OFFSET, 4));
+export const JC_22 = offset(JC_19, scale(MITAKA_OFFSET, 3));
 
 export const Chuo = () => {
     return (
         <>
             <LineSegmentWithStepChange
-                slope={CHUO_OFFSET}
-                stops={generateStationCodes('JC', 12, 23)}
-                origin={JC_12}
+                slope={MITAKA_OFFSET}
+                stops={generateStationCodes('JC', 13, 22)}
+                origin={JC_13}
                 stopsToSkip={['JC 12', 'JC 13', 'JC 19', 'JC 17']}
                 strokeColor="stroke-chuo-rapid"
                 textAlignments={[TextAlignment.SW]}

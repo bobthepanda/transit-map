@@ -20,7 +20,7 @@ export const Oji = () => {
             <LineSegmentWithStepChange
                 slope={scaleToUnitX(W, OFFSET * 4)}
                 origin={SA_16}
-                stops={generateStationCodes('JA', 16, 18)}
+                stops={generateStationCodes('SA', 16, 17)}
                 textAlignments={[TextAlignment.UP]}
                 skipBeginning
             />

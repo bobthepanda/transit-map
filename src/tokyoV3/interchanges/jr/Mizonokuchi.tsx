@@ -1,10 +1,10 @@
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { MAJOR_LINE, OFFSET } from '../../../utils/CommonCoordinates';
 import { NE, NW, SE, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
-import { NAMBU_SLOPE } from './Bubaigawara';
-import { JN_14 } from './Noborito';
+import { JN_09 } from './Keihin';
+import { NAMBU_SLOPE } from './NAMBU_SLOPE';
 
-export const JN_10 = offset(JN_14, scale(NAMBU_SLOPE, 4)); // Den-en-toshi/Oimachi\
+export const JN_10 = offset(JN_09, scale(NAMBU_SLOPE, -1)); // Den-en-toshi/Oimachi\
 
 export const DT_10 = offset(JN_10, scaleToUnitX(NW, OFFSET * 3));
 export const OM_16 = offset(DT_10, scale(SE, OFFSET));

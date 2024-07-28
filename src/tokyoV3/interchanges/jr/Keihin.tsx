@@ -6,6 +6,7 @@ import { N, NE, NW, S, SE, SW, W, findIntersectionFromSlopes, offset, scale, sca
 import { generateStationCodes } from '../../../utils/StopUtils';
 import { R_08 } from '../InsideYamanote/Osaki';
 import { JK_20 } from '../InsideYamanote/Shinagawa';
+import { NAMBU_SLOPE } from './NAMBU_SLOPE';
 
 const OIMACHI_INTERSECTION = findIntersectionFromSlopes({ start: R_08, firstDirection: S, secondDirection: SW, end: JK_20 });
 
@@ -83,6 +84,8 @@ export const KK_20 = offset(JK_16, KEIKYU_SW_OFFSET);
 export const NAMBU_KAWASAKI_SLOPE = scaleToUnitX(NW, MAJOR_LINE - OFFSET * 0.5);
 
 export const JN_06 = offset(JN_01, scale(NAMBU_KAWASAKI_SLOPE, 5));
+const JN_08 = offset(JN_06, scale(NAMBU_KAWASAKI_SLOPE, 2));
+export const JN_09 = offset(JN_08, scale(NAMBU_KAWASAKI_SLOPE, 0.5), scale(NAMBU_SLOPE, -0.5));
 
 const Kawasaki = () => {
     return (

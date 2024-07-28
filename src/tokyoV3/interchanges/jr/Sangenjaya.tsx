@@ -7,7 +7,7 @@ import { DT_01 } from '../InsideYamanote/Shibuya';
 import { H_01 } from './NakaMeguro';
 
 const DT_SHIBUYA_OFFSET = scaleToUnitX(W, MAJOR_LINE * 1.5);
-const DT_02 = { y: DT_01.y, x: H_01.x };
+const DT_02 = { y: DT_01.y, x: H_01.x + MAJOR_LINE * 0.5 };
 const DT_03 = offset(DT_02, DT_SHIBUYA_OFFSET);
 export const SG_01 = offset(DT_03, scale(N, OFFSET));
 

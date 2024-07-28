@@ -3,7 +3,7 @@ import { OFFSET } from '../../../utils/CommonCoordinates';
 import { N, midPoint, offset, scale } from '../../../utils/PathUtils';
 import { OH_01 } from '../InsideYamanote/Shinjuku';
 import { OH_YOYOGI_SLOPE } from './Noborito';
-import { SG_10 } from './Setagaya';
+import { SG_10 } from './ShimoTokaido';
 
 const OH_10 = offset(OH_01, scale(OH_YOYOGI_SLOPE, 9));
 export const SG_08 = offset(OH_10, scale(N, OFFSET * 2));

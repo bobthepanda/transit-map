@@ -15,7 +15,7 @@ export const JK_43 = offset(JK_42, AKABANE_OFFSET);
 export const JK_47 = offset(JK_43, scale(AKABANE_OFFSET, 4));
 
 const ITABASHI_INTERSECTION = findIntersectionFromSlopes({
-    start: offset(JA_12, scaleToUnitX(E, OFFSET * 4)),
+    start: offset(JA_12, scaleToUnitX(E, OFFSET * 1.5)),
     firstDirection: NE,
     end: I_15,
     secondDirection: N,
@@ -29,7 +29,7 @@ const Itabashi = () => {
         <>
             <Stop stationCode="JA 14" location={JA_14} strokeColor="stroke-saikyo" textAlignment={TextAlignment.NW} />
             <g id="itabashi">
-                <Stop stationCode="JA 13" location={JA_13} strokeColor="stroke-saikyo" textAlignment={TextAlignment.LEFT} />
+                <Stop stationCode="JA 13" location={JA_13} strokeColor="stroke-saikyo" textAlignment={TextAlignment.NW} />
                 <Stop stationCode="I 17" location={I_17} strokeColor="stroke-mita" />
             </g>
         </>
@@ -49,7 +49,7 @@ const NigashiSugamo = () => {
             </g>
             <LineSegmentWithStepChange
                 slope={scaleToUnitX(NE, OFFSET * 3)}
-                stops={generateStationCodes('SA', 20, 19)}
+                stops={generateStationCodes('SA', 20, 18)}
                 origin={SA_20}
                 skipBeginning
                 textAlignments={[TextAlignment.SE]}

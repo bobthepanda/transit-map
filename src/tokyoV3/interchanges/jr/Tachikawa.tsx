@@ -1,11 +1,10 @@
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { W, offset, scale } from '../../../utils/PathUtils';
-import { JC_12 } from './Mitaka';
-import { CHUO_OFFSET } from './Okubo';
+import { S, offset, scale } from '../../../utils/PathUtils';
+import { JC_13, MITAKA_OFFSET } from './MusashiSakai';
 
-export const JC_19 = offset(JC_12, scale(CHUO_OFFSET, 7));
-export const JN_26 = offset(JC_19, scale(W, OFFSET));
+export const JC_19 = offset(JC_13, scale(MITAKA_OFFSET, 6));
+export const JN_26 = offset(JC_19, scale(S, OFFSET));
 export const Tachikawa = () => {
     return (
         <g id="tachikawa">
