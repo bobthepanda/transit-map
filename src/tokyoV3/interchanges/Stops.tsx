@@ -1,13 +1,17 @@
 import InsideYamanote from './InsideYamanote/InsideYamanote';
 import { Asagaya } from './jr/Asagaya';
 import { DenEnChofu } from './jr/DenEnChofu';
+import { Hachioji } from './jr/Hachioji';
 import { HigashiNakano } from './jr/HigashiNakano';
+import { Hiyoshi } from './jr/Hiyoshi';
 import JR from './jr/JR';
 import { Jiyugaoka } from './jr/Jiyugaoka';
 import { Kichijoji } from './jr/Kichijoji';
+import { Kikuna } from './jr/Kikuna';
 import { Koenji } from './jr/Koenji';
 import { Mitaka } from './jr/Mitaka';
 import { FutakoTamagawa, Futakoshinchi, Takatsu } from './jr/Mizonokuchi';
+import { Motosumiyoshi } from './jr/Motosumiyoshi';
 import { MusashiSakai } from './jr/MusashiSakai';
 import { NakaMeguro } from './jr/NakaMeguro';
 import { Nakano } from './jr/Nakano';
@@ -49,6 +53,10 @@ const WesternTokyo = () => {
             <OimachiLine />
             <IkegamiLine />
             <TokyuKamataLines />
+            <Motosumiyoshi />
+            <Hiyoshi />
+            <Kikuna />
+            <Hachioji />
         </>
     );
 };

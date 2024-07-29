@@ -28,6 +28,7 @@ module.exports = {
                 musashino: '#ff4500',
                 nambu: '#ffd700',
                 yokohama: '#ffd700',
+                tsurumi: '#ffd700',
                 negishi: '#00bfff',
                 'keihin-tohoku': '#00bfff',
                 saikyo: '#2e8b57',

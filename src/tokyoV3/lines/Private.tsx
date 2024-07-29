@@ -10,14 +10,15 @@ import { A_07 } from '../interchanges/InsideYamanote/TakanawaGateway';
 import { KO_19, KO_25 } from '../interchanges/jr/Bubaigawara';
 import { KO_18 } from '../interchanges/jr/Chofu';
 import { SG_08, SG_09 } from '../interchanges/jr/Gotokuji';
+import { MG_13 } from '../interchanges/jr/Hiyoshi';
 import { KO_35, KO_36 } from '../interchanges/jr/Inadazutsumi';
 import { TY_04 } from '../interchanges/jr/Jiyugaoka';
-import { IK_15, KK_20, OM_01, TM_07 } from '../interchanges/jr/Keihin';
+import { IK_15, KK_20, KK_37, OM_01, TM_07, TY_21 } from '../interchanges/jr/Keihin';
 import { IN_17 } from '../interchanges/jr/Kichijoji';
 import { IN_08 } from '../interchanges/jr/Meidaimae';
 import { SW_06 } from '../interchanges/jr/MinamiTama';
 import { DT_10, OM_16 } from '../interchanges/jr/Mizonokuchi';
-import { MG_11, TY_11 } from '../interchanges/jr/MusashiKosugi';
+import { TY_11 } from '../interchanges/jr/MusashiKosugi';
 import { SW_01 } from '../interchanges/jr/MusashiSakai';
 import { OH_18 } from '../interchanges/jr/Noborito';
 import { IK_05, IK_13 } from '../interchanges/jr/Ookayama';
@@ -28,7 +29,10 @@ import { TM_01 } from '../interchanges/jr/Tamagawa';
 
 const Keikyu = () => {
     return (
-        <SVGPath points={[A_07, offset(midPoint(A_07, KK_01), scaleToUnitX(W, OFFSET * 3)), KK_01, KK_20]} directions={[W, SW, S, SW]} />
+        <SVGPath
+            points={[A_07, offset(midPoint(A_07, KK_01), scaleToUnitX(W, OFFSET * 3)), KK_01, KK_20, KK_37]}
+            directions={[W, SW, S, SW, W]}
+        />
     );
 };
 
@@ -37,10 +41,10 @@ const DenEnToshi = () => {
 };
 
 const Meguro = () => {
-    return <SVGPath points={[MG_01, MG_11]} directions={[W, SW]} />;
+    return <SVGPath points={[MG_01, MG_13]} directions={[W, SW]} />;
 };
 const Toyoko = () => {
-    return <SVGPath points={[TY_01, TY_04, TY_11]} directions={[SW, W, SW]} />;
+    return <SVGPath points={[TY_01, TY_04, TY_11, TY_21]} directions={[SW, W, SW, S]} />;
 };
 
 const Oimachi = () => {

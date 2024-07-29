@@ -15,9 +15,9 @@ export const Chuo = () => {
                 slope={MITAKA_OFFSET}
                 stops={generateStationCodes('JC', 13, 22)}
                 origin={JC_13}
-                stopsToSkip={['JC 12', 'JC 13', 'JC 19', 'JC 17']}
+                stopsToSkip={['JC 12', 'JC 13', 'JC 19', 'JC 17', 'JC 22']}
                 strokeColor="stroke-chuo-rapid"
-                textAlignments={[TextAlignment.SW]}
+                textAlignments={[TextAlignment.DOWN]}
             />
             <Stop stationCode="JB 09" location={JB_09} textAlignment={TextAlignment.NE} strokeColor="stroke-chuo-sobu" />
         </>

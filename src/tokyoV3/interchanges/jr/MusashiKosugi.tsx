@@ -1,6 +1,6 @@
 import { Stop, TextAlignment } from '../../../symbols/BasicStop';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { NE, NW, SE, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
+import { NE, NW, SE, SW, W, offset, scale, scaleToUnitX } from '../../../utils/PathUtils';
 import { JN_06, NAMBU_KAWASAKI_SLOPE } from './Keihin';
 
 export const JN_07 = offset(JN_06, NAMBU_KAWASAKI_SLOPE); // Musashi-Kosugi
@@ -10,6 +10,7 @@ export const TY_11 = offset(MG_11, scale(NW, OFFSET));
 
 export const JS_15 = offset(MG_11, scaleToUnitX(SE, OFFSET * 2));
 export const JO_15 = offset(JS_15, scale(SE, OFFSET));
+export const TY_MUSASHI_KOSUGI_SLOPE = scaleToUnitX(SW, OFFSET * 3);
 export const MusashiKosugi = () => {
     return (
         <g id="musashi-kosugi">
