@@ -1,12 +1,13 @@
+import { useSelector } from 'react-redux';
+import { Stop } from '../../symbols/BasicStop';
+import { RootState } from '../../tokyo/redux/store';
+
 const Interchanges = () => {
-    return null;
-    // return (
-    //     <g id="interchanges">
-    //         <InsideYamanote />;
-    //         <JR />
-    //         <WesternTokyo />;
-    //     </g>
-    // );
+    const stationCodes: string[] = useSelector((state: RootState) => Object.keys(state?.stopDefinition));
+
+    return stationCodes.map((code) => {
+        return <Stop stationCode={code} />;
+    });
 };
 
 export default Interchanges;

@@ -2,7 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
-import { selectStopSubtitleText, selectStopText, TextData } from '../tokyo/redux/slice/StopText';
+import {
+    selectStopFillColor,
+    selectStopHideText,
+    selectStopLocation,
+    selectStopStrokeColor,
+    selectStopTextAlignment,
+    TextAlignment,
+    TextDefinition,
+} from '../tokyo/redux/slice/StopLocation';
+import { selectStopSubtitleText, selectStopText } from '../tokyo/redux/slice/StopText';
 import { useShowGrid } from '../utils/ParameterUtils';
 import './basic-stop.css';
 
@@ -17,30 +26,6 @@ export const BasicStopDefinition = (): JSX.Element => {
         </defs>
     );
 };
-
-export enum TextAlignment {
-    UP = '[text-anchor:middle] -translate-y-vertical-double',
-    DOWN = '[text-anchor:middle] translate-y-vertical-double',
-    RIGHT = 'translate-x-horizontal',
-    LEFT = '[text-anchor:end] -translate-x-horizontal',
-    NW = `[text-anchor:end] -translate-x-diagonal -translate-y-diagonal-down`,
-    SW = `[text-anchor:end] -translate-x-diagonal translate-y-diagonal-down`,
-    NE = 'translate-x-diagonal -translate-y-diagonal-down',
-    SE = 'translate-x-diagonal translate-y-diagonal-down',
-}
-
-interface TextDefinition extends TextData {
-    textAlignment?: string;
-}
-
-export interface StopDefinition {
-    location: Coordinates;
-    stationCode: string;
-    hideText?: boolean;
-    textAlignment?: string;
-    strokeColor?: string;
-    fillColor?: string;
-}
 
 const StopText = ({
     text = 'Placeholder text',
@@ -77,28 +62,30 @@ const StationCode = ({ stationCode, fillColor = 'fill-white' }: { stationCode: s
     );
 };
 
-const NonMemoStop = ({
-    location,
-    stationCode = '',
-    textAlignment = TextAlignment.RIGHT,
-    hideText,
-    strokeColor = 'stroke-black',
-    fillColor = 'fill-white',
-}: StopDefinition) => {
+const NonMemoStop = ({ stationCode }: { stationCode: string }) => {
     const text = useSelector((state) => selectStopText(state, stationCode));
     const subtitleText = useSelector((state) => selectStopSubtitleText(state, stationCode));
-    const { x, y }: Coordinates = location;
+    const location = useSelector((state) => selectStopLocation(state, stationCode));
+    const textAlignment = useSelector((state) => selectStopTextAlignment(state, stationCode));
+    const hideText = useSelector((state) => selectStopHideText(state, stationCode));
+    const strokeColor = useSelector((state) => selectStopStrokeColor(state, stationCode));
+    const fillColor = useSelector((state) => selectStopFillColor(state, stationCode));
     const showGrid = useShowGrid();
-    return (
-        <g className="stop-group" transform={`translate(${x} ${y})`} data-stationcode={stationCode}>
-            <g>
-                {showGrid && <title>{JSON.stringify({ ...location, stationCode, text, subtitleText, hideText })}</title>}
-                <circle cx="0" cy="0" r={UNIT_SIZE} className={`stop-bullet stroke-stop ${fillColor} ${strokeColor}`} />
-                <StationCode stationCode={stationCode} fillColor={fillColor} />
+
+    if (location) {
+        const { x, y }: Coordinates = location;
+        return (
+            <g className="stop-group" transform={`translate(${x} ${y})`} data-stationcode={stationCode}>
+                <g>
+                    {showGrid && <title>{JSON.stringify({ ...location, stationCode, text, subtitleText, hideText })}</title>}
+                    <circle cx="0" cy="0" r={UNIT_SIZE} className={`stop-bullet stroke-stop ${fillColor} ${strokeColor}`} />
+                    <StationCode stationCode={stationCode} fillColor={fillColor} />
+                </g>
+                {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
             </g>
-            {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
-        </g>
-    );
+        );
+    }
+    return null;
 };
 
 export const Stop = React.memo(NonMemoStop);

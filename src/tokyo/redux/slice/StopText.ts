@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { CSVData } from '../../../interfaces/Stops';
+import { CSVData } from '../../../interfaces/CSVData';
 
 export interface TextData {
     text?: string;

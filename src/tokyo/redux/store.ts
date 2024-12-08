@@ -5,7 +5,7 @@ import stopTextReducer from './slice/StopText';
 export const store = configureStore({
     reducer: {
         stopText: stopTextReducer,
-        stopLocation: stopLocationReducer,
+        stopDefinition: stopLocationReducer,
     },
 });
 
