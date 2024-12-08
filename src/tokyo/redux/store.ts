@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import stopReducer from './slice/StopSlice';
+import stopLocationReducer from './slice/StopLocation';
+import stopTextReducer from './slice/StopText';
 
 export const store = configureStore({
     reducer: {
-        stops: stopReducer,
+        stopText: stopTextReducer,
+        stopLocation: stopLocationReducer,
     },
 });
 

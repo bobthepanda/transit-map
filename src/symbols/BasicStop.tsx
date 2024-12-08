@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
-import { RootState } from '../tokyo/redux/store';
+import { selectStopSubtitleText, selectStopText, TextData } from '../tokyo/redux/slice/StopText';
 import { useShowGrid } from '../utils/ParameterUtils';
 import './basic-stop.css';
 
@@ -29,9 +29,7 @@ export enum TextAlignment {
     SE = 'translate-x-diagonal translate-y-diagonal-down',
 }
 
-interface TextDefinition {
-    text?: string;
-    subtitleText?: string;
+interface TextDefinition extends TextData {
     textAlignment?: string;
 }
 
@@ -87,8 +85,8 @@ const NonMemoStop = ({
     strokeColor = 'stroke-black',
     fillColor = 'fill-white',
 }: StopDefinition) => {
-    const { text, subtitleText } = useSelector((state: RootState) => state?.stops?.[stationCode]) || {};
-
+    const text = useSelector((state) => selectStopText(state, stationCode));
+    const subtitleText = useSelector((state) => selectStopSubtitleText(state, stationCode));
     const { x, y }: Coordinates = location;
     const showGrid = useShowGrid();
     return (
