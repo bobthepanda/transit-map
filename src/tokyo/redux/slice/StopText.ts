@@ -12,7 +12,7 @@ export const stopTextSlice = createSlice({
     name: 'stopText',
     initialState: {},
     reducers: {
-        load: (state, action: PayloadAction<CSVData[]>) => {
+        loadCSVData: (state, action: PayloadAction<CSVData[]>) => {
             const data: CSVData[] = action.payload;
             data.forEach((d) => {
                 state[d.stationCode] = {
@@ -25,7 +25,7 @@ export const stopTextSlice = createSlice({
     },
 });
 
-export const { load } = stopTextSlice.actions;
+export const { loadCSVData } = stopTextSlice.actions;
 
 export default stopTextSlice.reducer;
 
