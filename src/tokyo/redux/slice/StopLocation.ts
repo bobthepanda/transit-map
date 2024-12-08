@@ -27,7 +27,7 @@ export const stopDefinitionSlice = createSlice({
     name: 'stopDefinition',
     initialState: {},
     reducers: {
-        addStopLocation: (state, action: PayloadAction<StopDefinition[]>) => {
+        addStopDefinition: (state, action: PayloadAction<StopDefinition[]>) => {
             const data: StopDefinition[] = action.payload;
             data.forEach((d) => {
                 state[d.stationCode] = d;
@@ -36,11 +36,11 @@ export const stopDefinitionSlice = createSlice({
     },
 });
 
-export const { addStopLocation } = stopDefinitionSlice.actions;
+export const { addStopDefinition } = stopDefinitionSlice.actions;
 
 export default stopDefinitionSlice.reducer;
 
-const selectStopDefinition = (state, stationCode: string): StopDefinition => state?.StopDefinition?.[stationCode];
+const selectStopDefinition = (state, stationCode: string): StopDefinition => state?.stopDefinition?.[stationCode];
 export const selectStopLocation = (state, stationCode: string): Coordinates => selectStopDefinition(state, stationCode)?.location;
 export const selectStopTextAlignment = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.textAlignment || TextAlignment.RIGHT;

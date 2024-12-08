@@ -1,6 +1,7 @@
 import Papa from 'papaparse';
 import { CSVData } from '../../../interfaces/CSVData';
 import { loadCSVData } from '../slice/StopText';
+import { addAllStops } from './StopActions';
 
 const prefixFolder = './data';
 
@@ -102,6 +103,7 @@ const loadTokyo = (dispatch) => {
 
     Promise.all(promises).then((values) => {
         dispatch(loadCSVData(values.map((value) => value.data).flat()));
+        dispatch(addAllStops);
     });
 };
 
