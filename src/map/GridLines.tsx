@@ -15,7 +15,7 @@ const GridLines = ({ width = 0, height = 0 }: Dimensions): JSX.Element => {
     }
 
     for (let i = 0; i < width; i += MINOR_LINE) {
-        horzLines.push(<line y1={i} y2={i} x1="0" x2={height} className="grid-line" key={`vert-${i}`} />);
+        horzLines.push(<line y1={i} y2={i} x1="0" x2={height} className="grid-line" key={`horz-${i}`} />);
     }
 
     return (

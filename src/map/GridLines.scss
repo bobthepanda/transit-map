@@ -2,7 +2,7 @@
     stroke: rgb(0, 0, 0, 0.125);
     stroke-width: 0.5pt;
 
-    &:nth-child(12n) {
+    &:nth-child(12n + 1) {
         stroke: rgb(0, 0, 0, 0.25);
         stroke-width: 1pt;
     }

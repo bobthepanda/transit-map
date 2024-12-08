@@ -27,16 +27,20 @@ export const stopDefinitionSlice = createSlice({
     name: 'stopDefinition',
     initialState: {},
     reducers: {
-        addStopDefinition: (state, action: PayloadAction<StopDefinition[]>) => {
-            const data: StopDefinition[] = action.payload;
-            data.forEach((d) => {
-                state[d.stationCode] = d;
-            });
+        addStopDefinition: (state, action: PayloadAction<StopDefinition>) => {
+            const data = action.payload;
+            state[data.stationCode] = data;
         },
     },
 });
 
 export const { addStopDefinition } = stopDefinitionSlice.actions;
+
+export const addStopDefinitions = (stops: StopDefinition[]) => {
+    return (dispatch) => {
+        stops.forEach((stop) => dispatch(addStopDefinition(stop)));
+    };
+};
 
 export default stopDefinitionSlice.reducer;
 
