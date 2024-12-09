@@ -1,5 +1,5 @@
 import LinePath from '../../symbols/LinePath';
-import { NNE } from '../../utils/PathUtils';
+import { NNE, NNW } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -8,6 +8,7 @@ const Ginza = () => {
             points={[
                 { location: 'G 10', direction: NNE },
                 { location: 'G 11', direction: NNE },
+                { location: 'G 13', direction: NNW },
             ]}
         />
     );

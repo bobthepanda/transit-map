@@ -2,7 +2,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { Coordinates, RelativeCoordinates } from '../../../interfaces/Dimensions';
-import { offsetCoordinates, scale } from '../../../utils/PathUtils';
+import { midPoint, offsetCoordinates, scale } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
 
 export interface StopMetadata {
@@ -54,6 +54,17 @@ export const selectStopFillColor = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.fillColor || 'fill-white';
 export const selectDisplayStationCode = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.displayStationCode || stationCode;
+export const selectMidpoint = (state, firstStationCode: string, secondStationCode: string): Coordinates => {
+    const firstStop = selectStopLocation(state, firstStationCode);
+    const secondStop = selectStopLocation(state, secondStationCode);
+    if (!firstStop) {
+        throw new Error(`could not find undefined location ${firstStationCode}`);
+    }
+    if (!secondStop) {
+        throw new Error(`could not find undefined location ${secondStationCode}`);
+    }
+    return midPoint(firstStop, secondStop);
+};
 
 export interface TextDefinition extends TextData {
     textAlignment?: string;
@@ -93,5 +104,19 @@ export const offsetEquallySpacedStops = (originStationCode: string, newStationDa
                 })
             )
         );
+    };
+};
+
+interface GridOffsetStop {
+    stationCode: string;
+    newStationData: StopMetadata;
+}
+
+export const offsetGridOfStops = (gridOffsetStops: GridOffsetStop[], ...offsets: RelativeCoordinates[]) => {
+    return (dispatch) => {
+        gridOffsetStops.forEach((gridOffsetStop) => {
+            const { stationCode, newStationData } = gridOffsetStop;
+            dispatch(offsetSingleStop(stationCode, newStationData, ...offsets));
+        });
     };
 };

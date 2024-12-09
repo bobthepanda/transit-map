@@ -1,12 +1,16 @@
+import LinePath from '../../symbols/LinePath';
+import { NNE } from '../../utils/PathUtils';
+
 const Yamanote = () => {
-    // return (
-    //     <SVGPath
-    //         color="stroke-yamanote"
-    //         points={[JY_29, JY_08, JY_11, JY_15, JY_20, OSAKI_CORNER, JY_25, JY_26, JY_29]}
-    //         directions={[NE, NW, W, SW, S, E, NE, E, NE]}
-    //     />
-    // );
-    return null;
+    return (
+        <LinePath
+            color="stroke-yamanote"
+            points={[
+                { location: 'JY 01', direction: NNE },
+                { location: 'JY 02', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const ChuoSobu = () => {
@@ -15,8 +19,15 @@ const ChuoSobu = () => {
 };
 
 const KeihinTohoku = () => {
-    // return <SVGPath color="stroke-keihin-tohoku" points={[JK_12, JK_16, JK_21, JK_24, JK_33, JK_47]} directions={[E, NE, E, NE, NW, N]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-keihin-tohoku"
+            points={[
+                { location: 'JK 26', direction: NNE },
+                { location: 'JK 27', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const Tokaido = () => {
@@ -48,15 +59,15 @@ const SobuRapid = () => {
 };
 
 const ChuoRapid = () => {
-    // return (
-    //     <SVGPath
-    //         color="stroke-chuo-rapid"
-    //         points={[JC_01, JC_03, offset(JB_17, scaleToUnitX(S, OFFSET)), JC_04, offset(JB_12, scale(SW, OFFSET)), JC_05, JC_12, JC_22]}
-    //         directions={[NE, NW, W, SW, NW, NE, NW, W]}
-    //     />
-    // );
-
-    return null;
+    return (
+        <LinePath
+            color="stroke-chuo-rapid"
+            points={[
+                { location: 'JC 01', direction: NNE },
+                { location: 'JC 02', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const Keiyo = () => {

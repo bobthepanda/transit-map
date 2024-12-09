@@ -70,7 +70,10 @@ const LinePath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`, poin
             .filter((point) => point.location);
     });
 
-    return <BasicLinePath color={color} strokeWidth={strokeWidth} points={pointsWithLocations} />;
+    if (pointsWithLocations.length) {
+        return <BasicLinePath color={color} strokeWidth={strokeWidth} points={pointsWithLocations} />;
+    }
+    return null;
 };
 
 export default LinePath;
