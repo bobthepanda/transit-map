@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Coordinates } from '../interfaces/Dimensions';
 import { MINOR_LINE } from '../map/GridLines';
 import {
+    selectDisplayStationCode,
     selectStopFillColor,
     selectStopHideText,
     selectStopLocation,
@@ -70,6 +71,7 @@ const NonMemoStop = ({ stationCode }: { stationCode: string }) => {
     const hideText = useSelector((state) => selectStopHideText(state, stationCode));
     const strokeColor = useSelector((state) => selectStopStrokeColor(state, stationCode));
     const fillColor = useSelector((state) => selectStopFillColor(state, stationCode));
+    const displayStationCode = useSelector((state) => selectDisplayStationCode(state, stationCode));
     const showGrid = useShowGrid();
 
     if (location) {
@@ -79,7 +81,7 @@ const NonMemoStop = ({ stationCode }: { stationCode: string }) => {
                 <g>
                     {showGrid && <title>{JSON.stringify({ ...location, stationCode, text, subtitleText, hideText })}</title>}
                     <circle cx="0" cy="0" r={UNIT_SIZE} className={`stop-bullet stroke-stop ${fillColor} ${strokeColor}`} />
-                    <StationCode stationCode={stationCode} fillColor={fillColor} />
+                    <StationCode stationCode={displayStationCode} fillColor={fillColor} />
                 </g>
                 {!hideText && <StopText text={text} subtitleText={subtitleText} textAlignment={textAlignment} />}
             </g>

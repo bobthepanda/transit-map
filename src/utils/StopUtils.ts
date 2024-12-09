@@ -1,38 +1,3 @@
-// prettier-ignore
-const STOPS_TO_HIDE_TEXT: string[] = [
-  'C 11', 'C 09', 'C 08',
-  'H 08', 'H 09',
-  'M 17',
-  'JC 01', 'JY 01',  'JK 26', 'JT 01', // Tokyo
-  'JY 30', 'Y 18', // Yurakucho
-  'JY 29', 'JK 24', 'JT 02', 'G 08', 'A 10', // Shimbashi,
-  'H 09', 'M 16', // Ginza
-  'H 10', // Higashi-Ginza
-  'T 09', 'T 10', 'T 11',
-  'G 11',
-  'JY 02', 'JC 02', 'JK 27', // Kanda
-  'JY 03', 'JK 28', 'JB 19', 'H 16', // Akihabara
-  'A 14', // Ningyocho
-  'Z 09', // Mitsukoshimae
-  'JE 01', 'JE 02',
-  'M 20', // Ochanomizu,
-  'JB 21', 'S 11', 'Z 11', 'T 12', 'Y 21', // Oedo East,
-  'TS 03', 'Z 14', 'KS 45', // Oshiage
-  'H 21', 'JJ 04', // Mita-senju
-  'JJ 05', 'TS 09', 'H 22', // Kita-senju
-  'JJ 01', 'JY 05', 'G 16', 'JU 02', // Ueno
-  'JB 30', 'T 23',  // Nishi-Funabashi
-  'JB 14', 'N 08', 'JC 04', // Yotsuya
-  'E 06', 'Y 13', 'N 10', 'JB 16', // Iidabashi
-  'Z 07', 'S 06', // Jimbocho,
-  'JY 17', 'JB 10', // Shinjuku
-  'C 07', 
-  'N 07', 'C 04', 'M 13', // Nagatcho
-  'JY 20', 'G 01', // Shibuya
-]
-
-export default STOPS_TO_HIDE_TEXT;
-
 export const generateStationCodes = (prefix: string, start: number, end: number, padding: number = 2): string[] => {
     if (start > end) {
         return generateStationCodes(prefix, end, start, padding).reverse();

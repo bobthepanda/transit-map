@@ -6,7 +6,7 @@ export const midPoint = ({ x: x1, y: y1 }: Coordinates, { x: x2, y: y2 }: Coordi
     return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
 };
 
-export const offset = ({ x, y }: Coordinates, ...coords: RelativeCoordinates[]): Coordinates => {
+export const offsetCoordinates = ({ x, y }: Coordinates, ...coords: RelativeCoordinates[]): Coordinates => {
     let newX = x;
     let newY = y;
     coords.forEach(({ dx = 0, dy = 0 }) => {
@@ -102,8 +102,8 @@ export interface CurveToParameters extends CommonCurveParameters {
 export const RADIUS = MINOR_LINE * 4;
 
 const curveTo = ({ control, end, firstDirection, secondDirection, radius = RADIUS, debug = false }: CurveToParameters) => {
-    const startCurve: Coordinates = offset(control, scale(firstDirection, Math.abs(radius) * -1));
-    const endCurve: Coordinates = offset(control, scale(secondDirection, Math.abs(radius)));
+    const startCurve: Coordinates = offsetCoordinates(control, scale(firstDirection, Math.abs(radius) * -1));
+    const endCurve: Coordinates = offsetCoordinates(control, scale(secondDirection, Math.abs(radius)));
 
     // eslint-disable-next-line no-console
     if (debug) console.log({ startCurve, endCurve, control, radius, firstDirection, secondDirection });

@@ -1,16 +1,21 @@
 /* eslint-disable no-param-reassign */
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { Coordinates } from '../../../interfaces/Dimensions';
+import { Coordinates, RelativeCoordinates } from '../../../interfaces/Dimensions';
+import { offsetCoordinates, scale } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
 
-export interface StopDefinition {
-    location: Coordinates;
+export interface StopMetadata {
     stationCode: string;
+    displayStationCode?: string;
     hideText?: boolean;
     textAlignment?: string;
     strokeColor?: string;
     fillColor?: string;
+}
+
+export interface StopDefinition extends StopMetadata {
+    location: Coordinates;
 }
 export enum TextAlignment {
     UP = '[text-anchor:middle] -translate-y-vertical-double',
@@ -36,12 +41,6 @@ export const stopDefinitionSlice = createSlice({
 
 export const { addStopDefinition } = stopDefinitionSlice.actions;
 
-export const addStopDefinitions = (stops: StopDefinition[]) => {
-    return (dispatch) => {
-        stops.forEach((stop) => dispatch(addStopDefinition(stop)));
-    };
-};
-
 export default stopDefinitionSlice.reducer;
 
 const selectStopDefinition = (state, stationCode: string): StopDefinition => state?.stopDefinition?.[stationCode];
@@ -53,6 +52,46 @@ export const selectStopStrokeColor = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.strokeColor || 'stroke-black';
 export const selectStopFillColor = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.fillColor || 'fill-white';
+export const selectDisplayStationCode = (state, stationCode: string): string =>
+    selectStopDefinition(state, stationCode)?.displayStationCode || stationCode;
+
 export interface TextDefinition extends TextData {
     textAlignment?: string;
 }
+
+export const addStopDefinitions = (stops: StopDefinition[]) => {
+    return (dispatch) => {
+        stops.forEach((stop) => dispatch(addStopDefinition(stop)));
+    };
+};
+
+export const offsetSingleStop = (originStationCode: string, newStationData: StopMetadata, ...offsets: RelativeCoordinates[]) => {
+    return (dispatch, getState) => {
+        const originalLocation = selectStopLocation(getState(), originStationCode);
+        if (!originalLocation) {
+            console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
+            return;
+        }
+        dispatch(addStopDefinition({ ...newStationData, location: offsetCoordinates(originalLocation, ...offsets) }));
+    };
+};
+
+export const offsetEquallySpacedStops = (originStationCode: string, newStationData: StopMetadata[], offset: RelativeCoordinates) => {
+    return (dispatch, getState) => {
+        const originalLocation = selectStopLocation(getState(), originStationCode);
+        if (!originalLocation) {
+            console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
+            return;
+        }
+        dispatch(
+            addStopDefinitions(
+                newStationData.map((newStation, index) => {
+                    return {
+                        ...newStation,
+                        location: offsetCoordinates(originalLocation, scale(offset, index + 1)),
+                    };
+                })
+            )
+        );
+    };
+};
