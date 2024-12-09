@@ -1,6 +1,16 @@
+import LinePath from '../../symbols/LinePath';
+import { NNE } from '../../utils/PathUtils';
+
 const Ginza = () => {
-    return null;
-    // return <SVGPath color="stroke-ginza" points={[G_01, G_08, G_09, G_13, G_15, G_16]} directions={[E, SE, NE, N, NE, SE]} />;
+    return (
+        <LinePath
+            color="stroke-ginza"
+            points={[
+                { location: 'G 10', direction: NNE },
+                { location: 'G 11', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const Marunouchi = () => {
@@ -92,8 +102,15 @@ const Mita = () => {
 };
 
 const Asakusa = () => {
-    return null;
-    // return <SVGPath color="stroke-asakusa" points={[A_01, A_03, A_05, A_09, A_10, A_17]} directions={[N, NE, E, NE, SE, NE]} />;
+    return (
+        <LinePath
+            color="stroke-asakusa"
+            points={[
+                { location: 'A 12', direction: NNE },
+                { location: 'A 13', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const Oedo = () => {
