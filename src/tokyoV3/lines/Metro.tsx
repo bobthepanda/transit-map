@@ -1,5 +1,5 @@
 import LinePath from '../../symbols/LinePath';
-import { NNE, NNW } from '../../utils/PathUtils';
+import { E, NNE, NNW, SSE } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -15,7 +15,15 @@ const Ginza = () => {
 };
 
 const Marunouchi = () => {
-    return null;
+    return (
+        <LinePath
+            color="stroke-marunouchi"
+            points={[
+                { location: 'M 17', direction: NNW },
+                { location: 'M 18', direction: NNE },
+            ]}
+        />
+    );
     // return (
     //     <>
     //         <SVGPath
@@ -77,12 +85,28 @@ const Chiyoda = () => {
 };
 
 const Hibiya = () => {
-    return null;
-    // return <SVGPath color="stroke-hibiya" points={[H_01, H_02, H_06, H_09, H_12, H_14, H_18]} directions={[SE, E, NE, SE, NE, N, NE]} />;
+    return (
+        <LinePath
+            color="stroke-hibiya"
+            points={[
+                { location: 'H 13', direction: NNE },
+                { location: 'H 15', direction: NNW },
+            ]}
+        />
+    ); // return <SVGPath color="stroke-hibiya" points={[H_01, H_02, H_06, H_09, H_12, H_14, H_18]} directions={[SE, E, NE, SE, NE, N, NE]} />;
 };
 
 const Tozai = () => {
-    return null;
+    return (
+        <LinePath
+            color="stroke-tozai"
+            points={[
+                { location: 'T 09', direction: E },
+                { location: 'T 10', direction: SSE },
+                { location: 'T 11', direction: SSE },
+            ]}
+        />
+    );
     // return <SVGPath color="stroke-tozai" points={[T_01, midPoint(T_01, T_03), T_12]} directions={[SE, E, SE]} />;
 };
 

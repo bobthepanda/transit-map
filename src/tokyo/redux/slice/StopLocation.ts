@@ -83,7 +83,9 @@ export const offsetSingleStop = (originStationCode: string, newStationData: Stop
             console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
             return;
         }
-        dispatch(addStopDefinition({ ...newStationData, location: offsetCoordinates(originalLocation, ...offsets) }));
+        const newLocation = offsetCoordinates(originalLocation, ...offsets);
+        console.debug(originStationCode, originalLocation, newStationData.stationCode, { newStationData, newLocation }, offsets);
+        dispatch(addStopDefinition({ ...newStationData, location: newLocation }));
     };
 };
 
