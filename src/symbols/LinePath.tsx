@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createSelector } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Coordinates, RelativeCoordinates } from '../interfaces/Dimensions';
-import { selectStopLocation } from '../tokyo/redux/slice/StopLocation';
+import { RootState } from '../tokyo/redux/store';
 import { curveFrom, lineToLocation, startAtLocation } from '../utils/PathUtils';
 
 interface CommonLocationAndDirection {
@@ -53,23 +55,52 @@ const BasicLinePath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`,
     return <path className={`${color} ${strokeWidth} fill-none`} d={`${d.join(' ')}`} />;
 };
 
-const LinePath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`, points }: ReduxPathParameters) => {
-    const pointsWithLocations: LocationAndDirection[] = useSelector((state) => {
-        return points
-            .map((point) => {
-                const actualLocation: Coordinates =
-                    typeof point.location === 'string' ? selectStopLocation(state, point?.location) : point.location;
-                if (!actualLocation) {
-                    console.warn('No location available', point);
-                }
-                return {
-                    ...point,
-                    location: actualLocation,
-                };
-            })
-            .filter((point) => point.location);
-    });
+interface ResolvedLocation {
+    stationCode: string;
+    location: Coordinates;
+}
 
+const possibleLocationsMap = createSelector(
+    [
+        (state: RootState) => state?.stopDefinition,
+        (state: RootState, points: PossibleLocationAndDirection[]) =>
+            points
+                ?.filter((point) => typeof point?.location === 'string')
+                ?.map((point) => {
+                    return point?.location as string;
+                }),
+    ],
+    (stopDefinition: any, stringLocations: string[]): ResolvedLocation[] => {
+        return stringLocations
+            .map((str) => {
+                return { stationCode: str, location: stopDefinition?.[str]?.location };
+            })
+            .filter((stringLocation) => stringLocation?.location);
+    }
+);
+
+const LinePath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`, points }: ReduxPathParameters) => {
+    const stringLocationsMap: ResolvedLocation[] = useSelector((state: RootState) => possibleLocationsMap(state, points));
+    const pointsWithLocations: LocationAndDirection[] = points
+        .map((point) => {
+            if (typeof point?.location === 'string') {
+                const resolvedLocation: ResolvedLocation | undefined = stringLocationsMap?.find(
+                    (entry) => entry?.stationCode === point?.location
+                );
+                const stringLocation: Coordinates | undefined = resolvedLocation?.location;
+                if (stringLocation) {
+                    return {
+                        ...point,
+                        location: stringLocation,
+                    };
+                }
+                return undefined;
+            }
+
+            return point;
+        })
+        .filter((point): boolean => !!point?.location)
+        .map((point) => point as LocationAndDirection);
     if (pointsWithLocations.length) {
         return <BasicLinePath color={color} strokeWidth={strokeWidth} points={pointsWithLocations} />;
     }

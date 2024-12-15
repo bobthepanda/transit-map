@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { Coordinates, RelativeCoordinates } from '../../../interfaces/Dimensions';
 import { midPoint, offsetCoordinates, scale } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
@@ -44,7 +45,15 @@ export const { addStopDefinition } = stopDefinitionSlice.actions;
 export default stopDefinitionSlice.reducer;
 
 const selectStopDefinition = (state, stationCode: string): StopDefinition => state?.stopDefinition?.[stationCode];
-export const selectStopLocation = (state, stationCode: string): Coordinates => selectStopDefinition(state, stationCode)?.location;
+const selectStopX = (state, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.x;
+const selectStopY = (state, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.y;
+
+export const selectStopLocation = createSelector(
+    [(state, stationCode: string) => selectStopX(state, stationCode), (state, stationCode: string) => selectStopY(state, stationCode)],
+    (x, y) => {
+        return { x, y };
+    }
+);
 export const selectStopTextAlignment = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.textAlignment || TextAlignment.RIGHT;
 export const selectStopHideText = (state, stationCode: string): boolean => selectStopDefinition(state, stationCode)?.hideText || false;
@@ -54,17 +63,21 @@ export const selectStopFillColor = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.fillColor || 'fill-white';
 export const selectDisplayStationCode = (state, stationCode: string): string =>
     selectStopDefinition(state, stationCode)?.displayStationCode || stationCode;
-export const selectMidpoint = (state, firstStationCode: string, secondStationCode: string): Coordinates => {
-    const firstStop = selectStopLocation(state, firstStationCode);
-    const secondStop = selectStopLocation(state, secondStationCode);
-    if (!firstStop) {
-        throw new Error(`could not find undefined location ${firstStationCode}`);
+export const selectMidpoint = createSelector(
+    [
+        (state) => state?.stopDefinition,
+        (state, firstStationCode, secondStationCode) => selectStopX(state, firstStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopY(state, firstStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopX(state, secondStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopY(state, secondStationCode),
+    ],
+    (_state, firstX, firstY, secondX, secondY) => {
+        if (firstX && firstY && secondX && secondY) {
+            return midPoint({ x: firstX, y: firstY }, { x: secondX, y: secondY });
+        }
+        throw Error('Could not find locations for midpoint.');
     }
-    if (!secondStop) {
-        throw new Error(`could not find undefined location ${secondStationCode}`);
-    }
-    return midPoint(firstStop, secondStop);
-};
+);
 
 export interface TextDefinition extends TextData {
     textAlignment?: string;
@@ -84,7 +97,6 @@ export const offsetSingleStop = (originStationCode: string, newStationData: Stop
             return;
         }
         const newLocation = offsetCoordinates(originalLocation, ...offsets);
-        console.debug(originStationCode, originalLocation, newStationData.stationCode, { newStationData, newLocation }, offsets);
         dispatch(addStopDefinition({ ...newStationData, location: newLocation }));
     };
 };
