@@ -3,7 +3,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { Coordinates, RelativeCoordinates } from '../../../interfaces/Dimensions';
-import { midPoint, offsetCoordinates, scale } from '../../../utils/PathUtils';
+import { findIntersectionFromSlopes, midPoint, offsetCoordinates, scale } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
 
 export interface StopMetadata {
@@ -66,19 +66,33 @@ export const selectDisplayStationCode = (state, stationCode: string): string =>
 export const selectMidpoint = createSelector(
     [
         (state) => state?.stopDefinition,
-        (state, firstStationCode, secondStationCode) => selectStopX(state, firstStationCode),
-        (state, firstStationCode, secondStationCode) => selectStopY(state, firstStationCode),
-        (state, firstStationCode, secondStationCode) => selectStopX(state, secondStationCode),
-        (state, firstStationCode, secondStationCode) => selectStopY(state, secondStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopLocation(state, firstStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopLocation(state, secondStationCode),
     ],
-    (_state, firstX, firstY, secondX, secondY) => {
-        if (firstX && firstY && secondX && secondY) {
-            return midPoint({ x: firstX, y: firstY }, { x: secondX, y: secondY });
+    (_state, firstStop, secondStop) => {
+        if (firstStop && secondStop) {
+            return midPoint(firstStop, secondStop);
         }
         throw Error('Could not find locations for midpoint.');
     }
 );
-
+export const selectIntersection = createSelector(
+    [
+        (state) => state?.stopDefinition,
+        (state, firstStationCode, firstDirection, secondStationCode, secondDirection) => {
+            return { location: selectStopLocation(state, firstStationCode), direction: firstDirection };
+        },
+        (state, firstStationCode, firstDirection, secondStationCode, secondDirection) => {
+            return { location: selectStopLocation(state, secondStationCode), direction: secondDirection };
+        },
+    ],
+    (_state, start, end) => {
+        if (start && end) {
+            return findIntersectionFromSlopes({ start, end });
+        }
+        throw Error('Could not find locations for midpoint.');
+    }
+);
 export interface TextDefinition extends TextData {
     textAlignment?: string;
 }

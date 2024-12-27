@@ -64,14 +64,15 @@ const StationCode = ({ stationCode, fillColor = 'fill-white' }: { stationCode: s
 };
 
 const NonMemoStop = ({ stationCode }: { stationCode: string }) => {
-    const text = useSelector((state) => selectStopText(state, stationCode));
-    const subtitleText = useSelector((state) => selectStopSubtitleText(state, stationCode));
     const location = useSelector((state) => selectStopLocation(state, stationCode));
     const textAlignment = useSelector((state) => selectStopTextAlignment(state, stationCode));
     const hideText = useSelector((state) => selectStopHideText(state, stationCode));
     const strokeColor = useSelector((state) => selectStopStrokeColor(state, stationCode));
     const fillColor = useSelector((state) => selectStopFillColor(state, stationCode));
     const displayStationCode = useSelector((state) => selectDisplayStationCode(state, stationCode));
+
+    const text = useSelector((state) => selectStopText(state, displayStationCode));
+    const subtitleText = useSelector((state) => selectStopSubtitleText(state, displayStationCode));
     const showGrid = useShowGrid();
 
     if (location) {

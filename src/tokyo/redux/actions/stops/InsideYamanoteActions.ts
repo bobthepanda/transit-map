@@ -1,3 +1,4 @@
+import { Coordinates } from '../../../../interfaces/Dimensions';
 import { HEIGHT, MAJOR_LINE, OFFSET, WIDTH } from '../../../../utils/CommonCoordinates';
 import { ENE, ESE, NNE, NNW, offsetCoordinates, roundPoint, scale, scaleToUnitX, SSE, SSW, WNW, WSW } from '../../../../utils/PathUtils';
 import {
@@ -5,6 +6,7 @@ import {
     offsetEquallySpacedStops,
     offsetGridOfStops,
     offsetSingleStop,
+    selectIntersection,
     selectMidpoint,
     StopDefinition,
     TextAlignment,
@@ -108,12 +110,40 @@ export const addNihombashi = (dispatch: AppDispatch, getState: () => RootState) 
     );
 };
 
+const addHatchobori = (dispatch: AppDispatch, getState) => {
+    const hatchoboriIntersection: Coordinates = selectIntersection(getState(), 'JE 01', SSE, 'H 13', SSW);
+    dispatch(
+        addStopDefinition({
+            stationCode: 'H 12',
+            location: offsetCoordinates(hatchoboriIntersection, scaleToUnitX(SSW, OFFSET * 0.5)),
+            strokeColor: 'stroke-hibiya',
+            hideText: true,
+        })
+    );
+    dispatch(
+        addStopDefinition({
+            stationCode: 'JE 02',
+            location: offsetCoordinates(hatchoboriIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
+            strokeColor: 'stroke-keiyo',
+            hideText: true,
+        })
+    );
+    dispatch(
+        offsetSingleStop(
+            'JE 02',
+            { stationCode: 'JE 02 M', strokeColor: 'stroke-musashino', displayStationCode: 'JE 02' },
+            scale(ENE, OFFSET)
+        )
+    );
+};
+
 export const addTozaiGrid = (dispatch: AppDispatch) => {
     dispatch(addNihombashi);
     dispatch(addOtemachi);
     dispatch(offsetSingleStop('A 13', { stationCode: 'H 13', strokeColor: 'stroke-hibiya' }, scaleToUnitX(SSE, MAJOR_LINE * 0.5)));
 
     dispatch(offsetSingleStop('H 13', { stationCode: 'T 11', strokeColor: 'stroke-tozai' }, scale(WSW, OFFSET)));
+    dispatch(addHatchobori);
 };
 
 export const addKyobashiGrid = (dispatch: AppDispatch) => {

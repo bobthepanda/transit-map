@@ -1,5 +1,5 @@
 import LinePath from '../../symbols/LinePath';
-import { NNE } from '../../utils/PathUtils';
+import { NNE, SSE } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -71,17 +71,26 @@ const ChuoRapid = () => {
 };
 
 const Keiyo = () => {
-    // return <SVGPath color="stroke-keiyo" points={[JE_01, JE_02]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-keiyo"
+            points={[
+                { location: 'JE 01', direction: SSE },
+                { location: 'JE 02', direction: SSE },
+            ]}
+        />
+    );
 };
 
 const Musashino = () => {
     return (
-        // <>
-        //     <SVGPath color="stroke-musashino" points={[JM_01, JM_02]} />
-        //     <SVGPath color="stroke-musashino" points={[JM_33, JM_35]} directions={[SW, S]} />
-        // </>
-        null
+        <LinePath
+            color="stroke-musashino"
+            points={[
+                { location: 'JE 01 M', direction: SSE },
+                { location: 'JE 02 M', direction: SSE },
+            ]}
+        />
     );
 };
 

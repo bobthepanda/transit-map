@@ -89,6 +89,7 @@ const Hibiya = () => {
         <LinePath
             color="stroke-hibiya"
             points={[
+                { location: 'H 12', direction: NNE },
                 { location: 'H 13', direction: NNE },
                 { location: 'H 15', direction: NNW },
             ]}
