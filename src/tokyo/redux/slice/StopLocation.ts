@@ -21,6 +21,7 @@ export interface StopDefinition extends StopMetadata {
 export enum TextAlignment {
     UP = '[text-anchor:middle] -translate-y-vertical-double',
     DOWN = '[text-anchor:middle] translate-y-vertical-double',
+    DOWN_LEFT_ALIGN = 'translate-y-vertical-double',
     RIGHT = 'translate-x-horizontal',
     LEFT = '[text-anchor:end] -translate-x-horizontal',
     NW = `[text-anchor:end] -translate-x-diagonal -translate-y-diagonal-down`,

@@ -58,14 +58,15 @@ const Namboku = () => {
 };
 
 const Hanzomon = () => {
-    return null;
-    // return (
-    //     <SVGPath
-    //         color="stroke-hanzomon"
-    //         points={[Z_01, Z_05, Z_07, midPoint(Z_07, C_11), Z_08, midPoint(Z_08, Z_09), Z_11]}
-    //         directions={[E, N, E, S, SE, E, SE]}
-    //     />
-    // );
+    return (
+        <LinePath
+            color="stroke-hanzomon"
+            points={[
+                { location: 'Z 08', direction: SSE },
+                { location: 'Z 10', direction: E },
+            ]}
+        />
+    );
 };
 
 const Yurakucho = () => {
@@ -134,6 +135,7 @@ const Asakusa = () => {
             points={[
                 { location: 'A 12', direction: NNE },
                 { location: 'A 13', direction: NNE },
+                { location: 'A 14', direction: NNE },
             ]}
         />
     );

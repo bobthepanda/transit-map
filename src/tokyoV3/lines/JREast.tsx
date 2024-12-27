@@ -1,5 +1,5 @@
 import LinePath from '../../symbols/LinePath';
-import { NNE, SSE } from '../../utils/PathUtils';
+import { E, NNE, SSE } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -38,24 +38,15 @@ const Tokaido = () => {
 // const JS_SK_CORNER = offset(JS_14, scaleToUnitX(SE, OFFSET * 2), scale(S, OFFSET * 2));
 
 const SobuRapid = () => {
-    // return (
-    //     <SVGPath
-    //         color="stroke-sobu-rapid"
-    //         points={[
-    //             JO_13,
-    //             offset(JS_SK_CORNER, scale(SE, OFFSET)),
-    //             JO_14,
-    //             JO_15,
-    //             SOBU_OSAKI_CORNER,
-    //             JO_17,
-    //             offset(TAMACHI_OFFSET, scale(S, OFFSET)),
-    //             JO_18,
-    //             JO_21,
-    //         ]}
-    //         directions={[E, NE, NW, NE, E, NE, E, NE, E]}
-    //     />
-    // );
-    return null;
+    return (
+        <LinePath
+            color="stroke-sobu-rapid"
+            points={[
+                { location: 'JO 17', direction: NNE },
+                { location: 'JO 18', direction: E },
+            ]}
+        />
+    );
 };
 
 const ChuoRapid = () => {

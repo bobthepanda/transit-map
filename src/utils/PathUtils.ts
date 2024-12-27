@@ -173,7 +173,6 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
 export const findIntersectionFromSlopes = ({ start, end }: CommonCurveParameters): Coordinates => {
     const { location: a1, direction: firstDirection } = start;
     const { location: b1, direction: secondDirection } = end;
-    console.log(start, end);
     let a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
     let b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
 
