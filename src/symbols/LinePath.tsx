@@ -42,10 +42,8 @@ const BasicLinePath = ({ color = 'stroke-gray-700', strokeWidth = `stroke-line`,
         } else {
             d.push(
                 curveFrom({
-                    start: points[i - 1].location,
-                    end: points[i].location,
-                    firstDirection: prevDirection,
-                    secondDirection: nextDirection,
+                    start: { location: points[i - 1].location, direction: prevDirection },
+                    end: { location: points[i].location, direction: nextDirection },
                     radius: points?.[i].radii,
                 })
             );

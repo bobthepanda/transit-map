@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 import { CSVData } from '../../../interfaces/CSVData';
 import { loadCSVData } from '../slice/StopText';
-import { addAllStops } from './StopActions';
+import { addAllStops } from './stops/AllStopActions';
 
 const prefixFolder = './data';
 

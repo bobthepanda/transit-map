@@ -1,5 +1,5 @@
-import { HEIGHT, MAJOR_LINE, OFFSET, WIDTH } from '../../../utils/CommonCoordinates';
-import { ENE, ESE, NNE, NNW, offsetCoordinates, roundPoint, scale, scaleToUnitX, SSE, SSW, WNW, WSW } from '../../../utils/PathUtils';
+import { HEIGHT, MAJOR_LINE, OFFSET, WIDTH } from '../../../../utils/CommonCoordinates';
+import { ENE, ESE, NNE, NNW, offsetCoordinates, roundPoint, scale, scaleToUnitX, SSE, SSW, WNW, WSW } from '../../../../utils/PathUtils';
 import {
     addStopDefinition,
     offsetEquallySpacedStops,
@@ -8,8 +8,8 @@ import {
     selectMidpoint,
     StopDefinition,
     TextAlignment,
-} from '../slice/StopLocation';
-import { AppDispatch, RootState } from '../store';
+} from '../../slice/StopLocation';
+import { AppDispatch, RootState } from '../../store';
 
 const YAMANOTE_ANCHOR = 'JY 01';
 
@@ -157,8 +157,4 @@ export const addInsideYamanote = (dispatch: AppDispatch) => {
     dispatch(addTozaiGrid);
     dispatch(addKyobashiGrid);
     dispatch(addKandaGrid);
-};
-
-export const addAllStops = (dispatch: AppDispatch) => {
-    dispatch(addInsideYamanote);
 };

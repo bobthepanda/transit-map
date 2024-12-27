@@ -84,13 +84,14 @@ export const SSE = { dy: Factor.DOUBLE_DIAG, dx: Factor.HALF_DIAG };
 
 export const SSW = { dy: Factor.DOUBLE_DIAG, dx: -Factor.HALF_DIAG };
 
-export interface Directions {
-    firstDirection: RelativeCoordinates;
-    secondDirection: RelativeCoordinates;
+interface LocationWithDirection {
+    location: Coordinates;
+    direction: RelativeCoordinates;
 }
 
-export interface CommonCurveParameters extends Directions {
-    end: Coordinates;
+export interface CommonCurveParameters {
+    start: LocationWithDirection;
+    end: LocationWithDirection;
     radius?: number;
     debug?: boolean;
 }
@@ -100,18 +101,6 @@ export interface CurveToParameters extends CommonCurveParameters {
 }
 
 export const RADIUS = MINOR_LINE * 4;
-
-const curveTo = ({ control, end, firstDirection, secondDirection, radius = RADIUS, debug = false }: CurveToParameters) => {
-    const startCurve: Coordinates = offsetCoordinates(control, scale(firstDirection, Math.abs(radius) * -1));
-    const endCurve: Coordinates = offsetCoordinates(control, scale(secondDirection, Math.abs(radius)));
-
-    // eslint-disable-next-line no-console
-    if (debug) console.log({ startCurve, endCurve, control, radius, firstDirection, secondDirection });
-
-    return `${lineToLocation(startCurve)} 
-        Q ${control.x} ${control.y} ${endCurve.x} ${endCurve.y}
-        ${lineToLocation(end)}`;
-};
 
 interface PointGeneration {
     start: Coordinates;
@@ -181,7 +170,9 @@ const findIntersection = (a1: Coordinates, a2: Coordinates, b1: Coordinates, b2:
     return p;
 };
 
-export const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection, secondDirection }: CurveFromParameters): Coordinates => {
+export const findIntersectionFromSlopes = ({ start, end }: CommonCurveParameters): Coordinates => {
+    const { location: a1, direction: firstDirection } = start;
+    const { location: b1, direction: secondDirection } = end;
     let a2: Coordinates = generatePoint({ start: a1, slope: firstDirection, endReference: b1 });
     let b2: Coordinates = generatePoint({ start: b1, slope: secondDirection, endReference: a1 });
 
@@ -193,20 +184,17 @@ export const findIntersectionFromSlopes = ({ start: a1, end: b1, firstDirection,
     return findIntersection(a1, a2, b1, b2);
 };
 
-export interface CurveFromParameters extends CommonCurveParameters {
-    start: Coordinates;
-}
+export const curveFrom = ({ start, end, radius = RADIUS, debug }: CommonCurveParameters): string => {
+    const control: Coordinates = findIntersectionFromSlopes({ start, end });
+    const startCurve: Coordinates = offsetCoordinates(control, scale(start.direction, Math.abs(radius) * -1));
+    const endCurve: Coordinates = offsetCoordinates(control, scale(end.direction, Math.abs(radius)));
 
-export const curveFrom = ({ start, end, firstDirection, secondDirection, radius, debug }: CurveFromParameters): string => {
-    const control: Coordinates = findIntersectionFromSlopes({ start, end, firstDirection, secondDirection });
-    return curveTo({
-        control,
-        end,
-        firstDirection,
-        secondDirection,
-        radius,
-        debug,
-    });
+    // eslint-disable-next-line no-console
+    if (debug) console.log({ startCurve, endCurve, control, radius, start, end });
+
+    return `${lineToLocation(startCurve)} 
+        Q ${control.x} ${control.y} ${endCurve.x} ${endCurve.y}
+        ${lineToLocation(end.location)}`;
 };
 
 export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors: number[]): RelativeCoordinates => {
