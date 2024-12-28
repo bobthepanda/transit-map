@@ -23,6 +23,7 @@ const KeihinTohoku = () => {
         <LinePath
             color="stroke-keihin-tohoku"
             points={[
+                { location: 'JK 25', direction: NNE },
                 { location: 'JK 26', direction: NNE },
                 { location: 'JK 27', direction: NNE },
             ]}

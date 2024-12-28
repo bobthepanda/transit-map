@@ -39,19 +39,19 @@ const addOtemachi = (dispatch: AppDispatch, getState: () => RootState) => {
             scaleToUnitX(NNW, MAJOR_LINE * 0.5)
         )
     );
-    dispatch(offsetSingleStop('C 11', { stationCode: 'I 09', strokeColor: 'stroke-marunouchi', hideText: true }, scale(WNW, OFFSET)));
+    dispatch(offsetSingleStop('C 11', { stationCode: 'I 09', strokeColor: 'stroke-mita', hideText: true }, scale(WNW, OFFSET)));
 
     const T_09 = selectMidpoint(getState(), 'M 18', 'C 11');
     dispatch(
         addStopDefinition({
             stationCode: 'T 09',
             strokeColor: 'stroke-tozai',
-            location: offsetCoordinates(T_09, scaleToUnitX(WSW, OFFSET * 2)),
+            location: offsetCoordinates(T_09, scaleToUnitX(WSW, OFFSET * 2.5)),
             textAlignment: TextAlignment.DOWN,
         })
     );
     dispatch(
-        offsetSingleStop('T 09', { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true }, scaleToUnitX(ENE, OFFSET * 4))
+        offsetSingleStop('T 09', { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true }, scaleToUnitX(ENE, OFFSET * 5))
     );
 };
 
@@ -67,7 +67,7 @@ export const addNihombashi = (dispatch: AppDispatch, getState: () => RootState) 
     dispatch(offsetSingleStop('G 11', { stationCode: 'A 13', strokeColor: 'stroke-asakusa' }, scaleToUnitX(SSE, MAJOR_LINE * 0.5)));
     dispatch(
         addStopDefinition({
-            location: offsetCoordinates(selectMidpoint(getState(), 'G 11', 'A 13'), scale(WSW, OFFSET)),
+            location: offsetCoordinates(selectMidpoint(getState(), 'G 11', 'A 13'), scaleToUnitX(WSW, (OFFSET * 2) / 3)),
             stationCode: 'T 10',
             strokeColor: 'stroke-tozai',
             hideText: true,

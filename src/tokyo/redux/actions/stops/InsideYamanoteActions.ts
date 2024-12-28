@@ -1,16 +1,12 @@
 import { HEIGHT, MAJOR_LINE, OFFSET, WIDTH } from '../../../../utils/CommonCoordinates';
-import { ESE, roundPoint, scale, scaleToUnitX, SSW, WNW, WSW } from '../../../../utils/PathUtils';
-import {
-    addStopDefinition,
-    offsetEquallySpacedStops,
-    offsetGridOfStops,
-    offsetSingleStop,
-    StopDefinition,
-    TextAlignment,
-} from '../../slice/StopLocation';
+import { ESE, roundPoint, scale, scaleToUnitX, SSW, W, WNW, WSW } from '../../../../utils/PathUtils';
+import { addStopDefinition, offsetEquallySpacedStops, offsetSingleStop, StopDefinition, TextAlignment } from '../../slice/StopLocation';
 import { AppDispatch } from '../../store';
+import { addGinzaGrid } from './GinzaGrid';
 import { addKandaGrid } from './KandaGrid';
+import { addKyobashiGrid } from './KyobashiGrid';
 import { addTozaiGrid } from './TozaiGrid';
+import { addYurakuchoGrid } from './YurakuchoGrid';
 
 export const YAMANOTE_ANCHOR = 'JY 01';
 
@@ -38,11 +34,15 @@ export const addTokyo = (dispatch: AppDispatch) => {
     dispatch(
         offsetEquallySpacedStops(
             YAMANOTE_ANCHOR,
-            [
-                { stationCode: 'JC 01', strokeColor: 'stroke-chuo-rapid', hideText: true },
-                { stationCode: 'M 17', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.NW },
-            ],
+            [{ stationCode: 'JC 01', strokeColor: 'stroke-chuo-rapid', hideText: true }],
             scale(WNW, OFFSET)
+        )
+    );
+    dispatch(
+        offsetSingleStop(
+            'JC 01',
+            { stationCode: 'M 17', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.LEFT },
+            scaleToUnitX(W, OFFSET)
         )
     );
 
@@ -57,21 +57,11 @@ export const addTokyo = (dispatch: AppDispatch) => {
     dispatch(offsetSingleStop('JE 01 M', { stationCode: 'JE 01', strokeColor: 'stroke-musashino', hideText: true }, scale(WSW, OFFSET)));
 };
 
-export const addKyobashiGrid = (dispatch: AppDispatch) => {
-    dispatch(
-        offsetGridOfStops(
-            [
-                { stationCode: 'G 11', newStationData: { stationCode: 'G 10', strokeColor: 'stroke-ginza' } },
-                { stationCode: 'A 13', newStationData: { stationCode: 'A 12', strokeColor: 'stroke-asakusa' } },
-            ],
-            scaleToUnitX(SSW, MAJOR_LINE)
-        )
-    );
-};
-
 export const addInsideYamanote = (dispatch: AppDispatch) => {
     dispatch(addTokyo);
     dispatch(addTozaiGrid);
     dispatch(addKyobashiGrid);
     dispatch(addKandaGrid);
+    dispatch(addYurakuchoGrid);
+    dispatch(addGinzaGrid);
 };

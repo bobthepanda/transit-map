@@ -6,8 +6,10 @@ const Ginza = () => {
         <LinePath
             color="stroke-ginza"
             points={[
+                { location: 'G 09', direction: NNE },
                 { location: 'G 10', direction: NNE },
                 { location: 'G 11', direction: NNE },
+                { location: 'G 12', direction: NNE },
                 { location: 'G 13', direction: NNW },
             ]}
         />
@@ -19,37 +21,12 @@ const Marunouchi = () => {
         <LinePath
             color="stroke-marunouchi"
             points={[
+                { location: 'M 16', direction: NNE },
                 { location: 'M 17', direction: NNW },
                 { location: 'M 18', direction: NNE },
             ]}
         />
     );
-    // return (
-    //     <>
-    //         <SVGPath
-    //             color="stroke-marunouchi"
-    //             points={[
-    //                 M_01,
-    //                 M_06,
-    //                 midPoint(M_07, M_08),
-    //                 M_08,
-    //                 M_12,
-    //                 M_13,
-    //                 M_14,
-    //                 M_15,
-    //                 M_16,
-    //                 M_17,
-    //                 M_18,
-    //                 M_20,
-    //                 M_22,
-    //                 MARUNOUCHI_MIDPOINT,
-    //                 M_25,
-    //             ]}
-    //             directions={[S, SE, S, SE, S, SE, E, SE, NE, N, NE, N, W, N, W]}
-    //         />
-    //         <SVGPath color="stroke-marunouchi" points={[MB_03, M_06]} directions={[E, SE]} />
-    //     </>
-    // );
 };
 
 const Namboku = () => {
@@ -70,19 +47,29 @@ const Hanzomon = () => {
 };
 
 const Yurakucho = () => {
-    return null;
-    // return <SVGPath color="stroke-yurakucho" points={[Y_09, Y_13, Y_15, Y_16, Y_21]} directions={[S, SW, S, E, SE]} />;
+    return (
+        <LinePath
+            color="stroke-yurakucho"
+            points={[
+                { location: 'Y 18', direction: SSE },
+                { location: 'Y 19', direction: SSE },
+                { location: 'Y 20', direction: SSE },
+            ]}
+        />
+    );
 };
 
 const Chiyoda = () => {
-    return null;
-    // return (
-    //     <SVGPath
-    //         color="stroke-chiyoda"
-    //         points={[C_01, C_03, C_04, C_07, C_08, C_11, C_15, C_16]}
-    //         directions={[SE, S, SE, E, SE, NE, N, E]}
-    //     />
-    // );
+    return (
+        <LinePath
+            color="stroke-chiyoda"
+            points={[
+                { location: 'C 09', direction: NNW },
+                { location: 'C 10', direction: NNW },
+                { location: 'C 11', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const Hibiya = () => {
@@ -90,12 +77,17 @@ const Hibiya = () => {
         <LinePath
             color="stroke-hibiya"
             points={[
+                { location: 'H 08', direction: SSE },
+                { location: 'H 09', direction: SSE },
+                { location: 'H 10', direction: SSE },
+                { location: 'H 11', direction: NNE },
                 { location: 'H 12', direction: NNE },
                 { location: 'H 13', direction: NNE },
+                { location: 'H 14', direction: NNW },
                 { location: 'H 15', direction: NNW },
             ]}
         />
-    ); // return <SVGPath color="stroke-hibiya" points={[H_01, H_02, H_06, H_09, H_12, H_14, H_18]} directions={[SE, E, NE, SE, NE, N, NE]} />;
+    );
 };
 
 const Tozai = () => {
@@ -118,14 +110,15 @@ const Shinjuku = () => {
 };
 
 const Mita = () => {
-    return null;
-    // return (
-    //     <SVGPath
-    //         color="stroke-mita"
-    //         points={[I_01, midPoint(I_03, I_04), I_04, I_08, OTEMACHI_NORTHWEST, I_17]}
-    //         directions={[E, SE, E, NE, NW, N]}
-    //     />
-    // );
+    return (
+        <LinePath
+            color="stroke-mita"
+            points={[
+                { location: 'I 08', direction: NNW },
+                { location: 'I 09', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const Asakusa = () => {
@@ -133,6 +126,7 @@ const Asakusa = () => {
         <LinePath
             color="stroke-asakusa"
             points={[
+                { location: 'A 11', direction: NNE },
                 { location: 'A 12', direction: NNE },
                 { location: 'A 13', direction: NNE },
                 { location: 'A 14', direction: NNE },
