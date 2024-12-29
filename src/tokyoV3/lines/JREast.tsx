@@ -6,6 +6,8 @@ const Yamanote = () => {
         <LinePath
             color="stroke-yamanote"
             points={[
+                { location: 'JY 29', direction: NNE },
+                { location: 'JY 30', direction: NNE },
                 { location: 'JY 01', direction: NNE },
                 { location: 'JY 02', direction: NNE },
             ]}
@@ -23,6 +25,7 @@ const KeihinTohoku = () => {
         <LinePath
             color="stroke-keihin-tohoku"
             points={[
+                { location: 'JK 24', direction: NNE },
                 { location: 'JK 25', direction: NNE },
                 { location: 'JK 26', direction: NNE },
                 { location: 'JK 27', direction: NNE },

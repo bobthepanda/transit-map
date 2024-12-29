@@ -6,6 +6,8 @@ const Ginza = () => {
         <LinePath
             color="stroke-ginza"
             points={[
+                { location: 'G 07', direction: SSE },
+                { location: 'G 08', direction: SSE },
                 { location: 'G 09', direction: NNE },
                 { location: 'G 10', direction: NNE },
                 { location: 'G 11', direction: NNE },
@@ -79,6 +81,7 @@ const Hibiya = () => {
         <LinePath
             color="stroke-hibiya"
             points={[
+                { location: 'H 06', direction: NNE },
                 { location: 'H 07', direction: NNE },
                 { location: 'H 08', direction: SSE },
                 { location: 'H 09', direction: SSE },
@@ -117,6 +120,7 @@ const Mita = () => {
         <LinePath
             color="stroke-mita"
             points={[
+                { location: 'I 07', direction: NNW },
                 { location: 'I 08', direction: NNW },
                 { location: 'I 09', direction: NNW },
             ]}
@@ -129,6 +133,7 @@ const Asakusa = () => {
         <LinePath
             color="stroke-asakusa"
             points={[
+                { location: 'A 10', direction: SSE },
                 { location: 'A 11', direction: NNE },
                 { location: 'A 12', direction: NNE },
                 { location: 'A 13', direction: NNE },

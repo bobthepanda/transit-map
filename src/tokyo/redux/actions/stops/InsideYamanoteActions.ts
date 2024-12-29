@@ -5,6 +5,7 @@ import { AppDispatch } from '../../store';
 import { addGinzaGrid } from './GinzaGrid';
 import { addKandaGrid } from './KandaGrid';
 import { addKyobashiGrid } from './KyobashiGrid';
+import { addShimbashiGrid } from './ShimbashiGrid';
 import { addTozaiGrid } from './TozaiGrid';
 import { addYurakuchoGrid } from './YurakuchoGrid';
 
@@ -64,4 +65,5 @@ export const addInsideYamanote = (dispatch: AppDispatch) => {
     dispatch(addKandaGrid);
     dispatch(addYurakuchoGrid);
     dispatch(addGinzaGrid);
+    dispatch(addShimbashiGrid);
 };

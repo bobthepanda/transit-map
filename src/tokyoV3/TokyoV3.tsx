@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import '../tokyo/colors/jr-east-colors.css';
 import loadTokyo from '../tokyo/redux/actions/LoadActions';
 import { AppDispatch } from '../tokyo/redux/store';
+import '../tokyo/Tokyo.css';
 import Interchanges from './interchanges/Stops';
 import Lines from './lines/Lines';
 
