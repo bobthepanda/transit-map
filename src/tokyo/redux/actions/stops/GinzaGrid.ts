@@ -26,6 +26,7 @@ const addHibiya = (dispatch: AppDispatch, getState) => {
             stationCode: 'H 08',
             strokeColor: 'stroke-hibiya',
             location: offsetCoordinates(hibiyaIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
+            textAlignment: TextAlignment.ENE,
         })
     );
     dispatch(offsetSingleStop('C 09', { stationCode: 'I 08', strokeColor: 'stroke-mita', hideText: true }, scale(WNW, OFFSET)));
@@ -36,7 +37,10 @@ const addGinzaStops = (dispatch: AppDispatch) => {
         offsetGridOfStops(
             [
                 { stationCode: 'G 10', newStationData: { stationCode: 'G 09', strokeColor: 'stroke-ginza', hideText: true } },
-                { stationCode: 'A 12', newStationData: { stationCode: 'A 11', strokeColor: 'stroke-asakusa', hideText: true } },
+                {
+                    stationCode: 'A 12',
+                    newStationData: { stationCode: 'A 11', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.WNW },
+                },
             ],
             scaleToUnitX(SSW, MAJOR_LINE)
         )
@@ -44,8 +48,14 @@ const addGinzaStops = (dispatch: AppDispatch) => {
     dispatch(
         offsetGridOfStops(
             [
-                { stationCode: 'G 09', newStationData: { stationCode: 'H 09', strokeColor: 'stroke-hibiya' } },
-                { stationCode: 'A 11', newStationData: { stationCode: 'H 10', strokeColor: 'stroke-hibiya' } },
+                {
+                    stationCode: 'G 09',
+                    newStationData: { stationCode: 'H 09', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.ENE },
+                },
+                {
+                    stationCode: 'A 11',
+                    newStationData: { stationCode: 'H 10', strokeColor: 'stroke-hibiya', hideText: true },
+                },
             ],
             scaleToUnitX(E, OFFSET)
         )
@@ -57,7 +67,7 @@ const addKasumigaseki = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'C 09',
-            { stationCode: 'H 07', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.LEFT },
+            { stationCode: 'H 07', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.WNW },
             scaleToUnitX(W, MAJOR_LINE + OFFSET)
         )
     );
@@ -70,7 +80,14 @@ export const addGinzaGrid = (dispatch: AppDispatch, getState) => {
     dispatch(addHibiya);
 
     const chiyodaMidpoint = selectMidpoint(getState(), 'C 09', 'C 11');
-    dispatch(addStopDefinition({ stationCode: 'C 10', location: chiyodaMidpoint, strokeColor: 'stroke-chiyoda' }));
+    dispatch(
+        addStopDefinition({
+            stationCode: 'C 10',
+            location: chiyodaMidpoint,
+            strokeColor: 'stroke-chiyoda',
+            textAlignment: TextAlignment.ESE,
+        })
+    );
 
     dispatch(addKasumigaseki);
 };

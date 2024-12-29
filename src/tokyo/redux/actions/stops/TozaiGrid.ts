@@ -59,12 +59,18 @@ export const addNihombashi = (dispatch: AppDispatch, getState: () => RootState) 
     dispatch(
         offsetSingleStop(
             'JY 01',
-            { stationCode: 'G 11', strokeColor: 'stroke-ginza' },
+            { stationCode: 'G 11', strokeColor: 'stroke-ginza', hideText: true },
             scaleToUnitX(SSE, MAJOR_LINE * 0.75),
             scaleToUnitX(NNE, MAJOR_LINE * 0.5)
         )
     );
-    dispatch(offsetSingleStop('G 11', { stationCode: 'A 13', strokeColor: 'stroke-asakusa' }, scaleToUnitX(SSE, MAJOR_LINE * 0.5)));
+    dispatch(
+        offsetSingleStop(
+            'G 11',
+            { stationCode: 'A 13', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.ESE },
+            scaleToUnitX(SSE, MAJOR_LINE * 0.5)
+        )
+    );
     dispatch(
         addStopDefinition({
             location: offsetCoordinates(selectMidpoint(getState(), 'G 11', 'A 13'), scaleToUnitX(WSW, (OFFSET * 2) / 3)),
@@ -95,7 +101,7 @@ const addHatchobori = (dispatch: AppDispatch, getState) => {
     dispatch(
         offsetSingleStop(
             'JE 02',
-            { stationCode: 'JE 02 M', strokeColor: 'stroke-musashino', displayStationCode: 'JE 02' },
+            { stationCode: 'JE 02 M', strokeColor: 'stroke-musashino', displayStationCode: 'JE 02', textAlignment: TextAlignment.ENE },
             scale(ENE, OFFSET)
         )
     );
@@ -112,6 +118,7 @@ const addKayabacho = (dispatch: AppDispatch, getState) => {
             stationCode: 'H 13',
             location: offsetCoordinates(kayabachoIntersection, scaleToUnitX(NNE, OFFSET * 0.5)),
             strokeColor: 'stroke-hibiya',
+            textAlignment: TextAlignment.ESE,
         })
     );
     dispatch(

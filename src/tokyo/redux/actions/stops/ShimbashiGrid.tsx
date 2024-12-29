@@ -37,7 +37,7 @@ const addShimbashi = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'G 08',
-            { stationCode: 'A 10', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.LEFT },
+            { stationCode: 'A 10', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.WSW },
             scale(WSW, OFFSET)
         )
     );
@@ -51,6 +51,7 @@ const addToranomon = (dispatch: AppDispatch, getState) => {
             stationCode: 'G 07',
             strokeColor: 'stroke-ginza',
             location: offsetCoordinates(toranomonIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
+            textAlignment: TextAlignment.ENE,
         })
     );
     dispatch(
@@ -58,7 +59,7 @@ const addToranomon = (dispatch: AppDispatch, getState) => {
             stationCode: 'H 06',
             strokeColor: 'stroke-hibiya',
             location: offsetCoordinates(toranomonIntersection, scaleToUnitX(SSW, OFFSET)),
-            textAlignment: TextAlignment.LEFT,
+            textAlignment: TextAlignment.WNW,
         })
     );
 };
@@ -71,6 +72,7 @@ const addUchisawiwaicho = (dispatch: AppDispatch, getState) => {
             stationCode: 'I 07',
             strokeColor: 'stroke-mita',
             location: midPoint(marunouchiIntersection, ginzaIntersection),
+            textAlignment: TextAlignment.ESE,
         })
     );
 };
@@ -78,11 +80,7 @@ const addUchisawiwaicho = (dispatch: AppDispatch, getState) => {
 const addTameikeSanno = (dispatch: AppDispatch) => {
     dispatch(offsetSingleStop('G 07', { stationCode: 'G 06', strokeColor: 'stroke-ginza', hideText: true }, scaleToUnitX(NNW, OFFSET * 4)));
     dispatch(
-        offsetSingleStop(
-            'G 06',
-            { stationCode: 'N 06', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.LEFT },
-            scale(W, OFFSET)
-        )
+        offsetSingleStop('G 06', { stationCode: 'N 06', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.WNW }, scale(W, OFFSET))
     );
 
     dispatch(
@@ -101,7 +99,7 @@ const addNagatcho = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'G 06',
-            { stationCode: 'G 05', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.LEFT },
+            { stationCode: 'G 05', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WSW },
             scaleToUnitX(NNW, OFFSET * 4)
         )
     );

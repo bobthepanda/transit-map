@@ -16,7 +16,11 @@ const addKanda = (dispatch: AppDispatch) => {
         )
     );
     dispatch(
-        offsetSingleStop('JC 02', { stationCode: 'G 13', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.NW }, scale(WNW, OFFSET))
+        offsetSingleStop(
+            'JC 02',
+            { stationCode: 'G 13', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WNW },
+            scale(WNW, OFFSET)
+        )
     );
 };
 const addNingyocho = (dispatch: AppDispatch, getState) => {
@@ -26,6 +30,7 @@ const addNingyocho = (dispatch: AppDispatch, getState) => {
             stationCode: 'H 14',
             location: offsetCoordinates(ningyochoIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
             strokeColor: 'stroke-hibiya',
+            textAlignment: TextAlignment.ENE,
         })
     );
     dispatch(

@@ -28,6 +28,10 @@ export enum TextAlignment {
     SW = `[text-anchor:end] -translate-x-diagonal translate-y-diagonal-down`,
     NE = 'translate-x-diagonal -translate-y-diagonal-down',
     SE = 'translate-x-diagonal translate-y-diagonal-down',
+    ENE = 'translate-x-half-diagonal-x -translate-y-half-diagonal-y',
+    ESE = 'translate-x-half-diagonal-x translate-y-half-diagonal-y',
+    WNW = '-translate-x-half-diagonal-x -translate-y-half-diagonal-y [text-anchor:end]',
+    WSW = '-translate-x-half-diagonal-x translate-y-half-diagonal-y [text-anchor:end]',
 }
 
 export const stopDefinitionSlice = createSlice({

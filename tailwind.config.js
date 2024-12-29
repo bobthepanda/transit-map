@@ -56,6 +56,8 @@ module.exports = {
             horizontal: '12pt',
             diagonal: '8.4852pt',
             'diagonal-down': '20.4852pt',
+            'half-diagonal-x': '13.1351pt',
+            'half-diagonal-y': '14.1171pt',
             'vertical-double': '24pt',
         },
     },

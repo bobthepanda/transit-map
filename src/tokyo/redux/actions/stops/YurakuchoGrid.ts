@@ -17,7 +17,7 @@ const addYurakucho = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'JY 30',
-            { stationCode: 'Y 18', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.LEFT },
+            { stationCode: 'Y 18', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.WSW },
             scaleToUnitX(W, OFFSET)
         )
     );
@@ -30,6 +30,7 @@ const addGinzaItchome = (dispatch: AppDispatch, getState) => {
             stationCode: 'Y 19',
             location: offsetCoordinates(ginzaItchomeIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
             strokeColor: 'stroke-yurakucho',
+            textAlignment: TextAlignment.ENE,
         })
     );
 };
@@ -41,7 +42,7 @@ const addTsukiji = (dispatch: AppDispatch, getState) => {
             stationCode: 'Y 20',
             location: offsetCoordinates(tsukijiIntersection, scaleToUnitX(NNW, OFFSET * 0.5)),
             strokeColor: 'stroke-yurakucho',
-            textAlignment: TextAlignment.LEFT,
+            textAlignment: TextAlignment.WSW,
         })
     );
     dispatch(
@@ -49,6 +50,7 @@ const addTsukiji = (dispatch: AppDispatch, getState) => {
             stationCode: 'H 11',
             location: offsetCoordinates(tsukijiIntersection, scaleToUnitX(NNE, OFFSET * 0.5)),
             strokeColor: 'stroke-hibiya',
+            textAlignment: TextAlignment.ESE,
         })
     );
 };
