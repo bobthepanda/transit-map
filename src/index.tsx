@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import './tokyo/colors/jr-east-colors.css';
 import { store } from './tokyo/redux/store';
 
 const router = createBrowserRouter([
