@@ -1,11 +1,13 @@
 import LinePath from '../../symbols/LinePath';
-import { E, NNE, NNW, SSE } from '../../utils/PathUtils';
+import { E, NNE, NNW, RADIUS, SSE } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
         <LinePath
             color="stroke-ginza"
             points={[
+                { location: 'G 05', direction: SSE },
+                { location: 'G 06', direction: SSE },
                 { location: 'G 07', direction: SSE },
                 { location: 'G 08', direction: SSE },
                 { location: 'G 09', direction: NNE },
@@ -23,6 +25,8 @@ const Marunouchi = () => {
         <LinePath
             color="stroke-marunouchi"
             points={[
+                { location: 'M 13', direction: SSE },
+                { location: 'M 14', direction: E },
                 { location: 'M 15', direction: SSE },
                 { location: 'M 16', direction: NNE },
                 { location: 'M 17', direction: NNW },
@@ -33,8 +37,15 @@ const Marunouchi = () => {
 };
 
 const Namboku = () => {
-    return null;
-    // return <SVGPath color="stroke-namboku" points={[N_01, N_06, N_08, N_10, N_11, N_14, N_16]} directions={[E, NE, NW, NE, E, N, NE]} />;
+    return (
+        <LinePath
+            color="stroke-namboku"
+            points={[
+                { location: 'N 06', direction: NNE },
+                { location: 'N 07', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const Hanzomon = () => {
@@ -54,6 +65,8 @@ const Yurakucho = () => {
         <LinePath
             color="stroke-yurakucho"
             points={[
+                { location: 'Y 16', direction: E },
+                { location: 'Y 17', direction: E },
                 { location: 'Y 18', direction: SSE },
                 { location: 'Y 19', direction: SSE },
                 { location: 'Y 20', direction: SSE },
@@ -67,7 +80,8 @@ const Chiyoda = () => {
         <LinePath
             color="stroke-chiyoda"
             points={[
-                { location: 'C 08', direction: SSE },
+                { location: 'C 07', direction: E },
+                { location: 'C 08', direction: SSE, radii: RADIUS + 20 },
                 { location: 'C 09', direction: NNE },
                 { location: 'C 10', direction: NNE },
                 { location: 'C 11', direction: NNE },

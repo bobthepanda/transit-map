@@ -1,6 +1,21 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { midPoint, offsetCoordinates, scale, scaleToUnitX, SSE, SSW, WSW } from '../../../../utils/PathUtils';
+import {
+    E,
+    ENE,
+    midPoint,
+    N,
+    NNE,
+    NNW,
+    offsetCoordinates,
+    scale,
+    scaleToUnitX,
+    scaleToUnitY,
+    SSE,
+    SSW,
+    W,
+    WSW,
+} from '../../../../utils/PathUtils';
 import { addStopDefinition, offsetGridOfStops, offsetSingleStop, selectIntersection, TextAlignment } from '../../slice/StopLocation';
 import { AppDispatch } from '../../store';
 
@@ -60,8 +75,63 @@ const addUchisawiwaicho = (dispatch: AppDispatch, getState) => {
     );
 };
 
+const addTameikeSanno = (dispatch: AppDispatch) => {
+    dispatch(offsetSingleStop('G 07', { stationCode: 'G 06', strokeColor: 'stroke-ginza', hideText: true }, scaleToUnitX(NNW, OFFSET * 4)));
+    dispatch(
+        offsetSingleStop(
+            'G 06',
+            { stationCode: 'N 06', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.LEFT },
+            scale(W, OFFSET)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop('G 06', { stationCode: 'M 14', strokeColor: 'stroke-marunouchi', hideText: true }, scaleToUnitY(NNE, OFFSET * 3))
+    );
+    dispatch(
+        offsetSingleStop(
+            'M 14',
+            { stationCode: 'C 07', strokeColor: 'stroke-chiyoda', textAlignment: '-translate-y-vertical-double -translate-x-[10pt]' },
+            scale(N, OFFSET)
+        )
+    );
+};
+
+const addNagatcho = (dispatch: AppDispatch) => {
+    dispatch(
+        offsetSingleStop(
+            'G 06',
+            { stationCode: 'G 05', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.LEFT },
+            scaleToUnitX(NNW, OFFSET * 4)
+        )
+    );
+    dispatch(offsetSingleStop('G 05', { stationCode: 'M 13', strokeColor: 'stroke-marunouchi', hideText: true }, scale(ENE, OFFSET)));
+
+    dispatch(
+        offsetSingleStop('G 05', { stationCode: 'N 07', strokeColor: 'stroke-namboku', hideText: true }, scaleToUnitY(NNE, OFFSET * 3))
+    );
+    dispatch(offsetSingleStop('N 07', { stationCode: 'Z 04', strokeColor: 'stroke-hanzomon', hideText: true }, scale(N, OFFSET)));
+    dispatch(
+        offsetSingleStop(
+            'Z 04',
+            { stationCode: 'Y 16', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.UP },
+            scale(N, OFFSET)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'Y 16',
+            { stationCode: 'Y 17', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.UP },
+            scale(E, MAJOR_LINE * 1.5)
+        )
+    );
+};
+
 export const addShimbashiGrid = (dispatch: AppDispatch) => {
     dispatch(addShimbashi);
     dispatch(addToranomon);
     dispatch(addUchisawiwaicho);
+    dispatch(addTameikeSanno);
+    dispatch(addNagatcho);
 };

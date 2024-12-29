@@ -28,9 +28,8 @@ const addGinzaItchome = (dispatch: AppDispatch, getState) => {
     dispatch(
         addStopDefinition({
             stationCode: 'Y 19',
-            location: offsetCoordinates(ginzaItchomeIntersection, scaleToUnitX(NNW, OFFSET)),
+            location: offsetCoordinates(ginzaItchomeIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
             strokeColor: 'stroke-yurakucho',
-            textAlignment: TextAlignment.LEFT,
         })
     );
 };

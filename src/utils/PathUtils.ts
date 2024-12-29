@@ -205,6 +205,14 @@ export const scaleToUnitX = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors
     return scale({ dx, dy }, ...factors, 1 / Math.abs(dx));
 };
 
+export const scaleToUnitY = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors: number[]): RelativeCoordinates => {
+    if (dy === 0) {
+        return { dy: 0, dx: (Math.abs(dx) / dx) * factors.reduce((a, b) => a * b) };
+    }
+
+    return scale({ dx, dy }, ...factors, 1 / Math.abs(dy));
+};
+
 export const roundPoint = (coords: Coordinates, numberToRound: number = OFFSET): Coordinates => {
     const { x, y } = coords;
 
