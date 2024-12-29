@@ -1,7 +1,14 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { E, NNW, offsetCoordinates, scale, scaleToUnitX, SSE, SSW, WNW } from '../../../../utils/PathUtils';
-import { addStopDefinition, offsetGridOfStops, offsetSingleStop, selectIntersection } from '../../slice/StopLocation';
+import { E, ENE, NNW, offsetCoordinates, scale, scaleToUnitX, SSE, SSW, W, WNW } from '../../../../utils/PathUtils';
+import {
+    addStopDefinition,
+    offsetGridOfStops,
+    offsetSingleStop,
+    selectIntersection,
+    selectMidpoint,
+    TextAlignment,
+} from '../../slice/StopLocation';
 import { AppDispatch } from '../../store';
 
 const addHibiya = (dispatch: AppDispatch, getState) => {
@@ -46,7 +53,24 @@ const addGinzaStops = (dispatch: AppDispatch) => {
     dispatch(offsetSingleStop('G 09', { stationCode: 'M 16', strokeColor: 'stroke-marunouchi', hideText: true }, scale(WNW, OFFSET)));
 };
 
-export const addGinzaGrid = (dispatch: AppDispatch) => {
+const addKasumigaseki = (dispatch: AppDispatch) => {
+    dispatch(
+        offsetSingleStop(
+            'C 09',
+            { stationCode: 'H 07', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.LEFT },
+            scaleToUnitX(W, MAJOR_LINE + OFFSET)
+        )
+    );
+    dispatch(offsetSingleStop('H 07', { stationCode: 'M 15', strokeColor: 'stroke-marunouchi', hideText: true }, scale(E, OFFSET)));
+    dispatch(offsetSingleStop('M 15', { stationCode: 'C 08', strokeColor: 'stroke-ginza', hideText: true }, scale(ENE, OFFSET)));
+};
+
+export const addGinzaGrid = (dispatch: AppDispatch, getState) => {
     dispatch(addGinzaStops);
     dispatch(addHibiya);
+
+    const chiyodaMidpoint = selectMidpoint(getState(), 'C 09', 'C 11');
+    dispatch(addStopDefinition({ stationCode: 'C 10', location: chiyodaMidpoint, strokeColor: 'stroke-chiyoda' }));
+
+    dispatch(addKasumigaseki);
 };

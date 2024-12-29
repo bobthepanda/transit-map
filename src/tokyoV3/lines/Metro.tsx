@@ -21,6 +21,7 @@ const Marunouchi = () => {
         <LinePath
             color="stroke-marunouchi"
             points={[
+                { location: 'M 15', direction: SSE },
                 { location: 'M 16', direction: NNE },
                 { location: 'M 17', direction: NNW },
                 { location: 'M 18', direction: NNE },
@@ -64,9 +65,10 @@ const Chiyoda = () => {
         <LinePath
             color="stroke-chiyoda"
             points={[
-                { location: 'C 09', direction: NNW },
-                { location: 'C 10', direction: NNW },
-                { location: 'C 11', direction: NNW },
+                { location: 'C 08', direction: SSE },
+                { location: 'C 09', direction: NNE },
+                { location: 'C 10', direction: NNE },
+                { location: 'C 11', direction: NNE },
             ]}
         />
     );
@@ -77,6 +79,7 @@ const Hibiya = () => {
         <LinePath
             color="stroke-hibiya"
             points={[
+                { location: 'H 07', direction: NNE },
                 { location: 'H 08', direction: SSE },
                 { location: 'H 09', direction: SSE },
                 { location: 'H 10', direction: SSE },

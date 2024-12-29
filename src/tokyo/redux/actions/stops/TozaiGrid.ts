@@ -46,12 +46,12 @@ const addOtemachi = (dispatch: AppDispatch, getState: () => RootState) => {
         addStopDefinition({
             stationCode: 'T 09',
             strokeColor: 'stroke-tozai',
-            location: offsetCoordinates(T_09, scaleToUnitX(WSW, OFFSET * 2.5)),
+            location: offsetCoordinates(T_09, scaleToUnitX(WSW, OFFSET)),
             textAlignment: TextAlignment.DOWN,
         })
     );
     dispatch(
-        offsetSingleStop('T 09', { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true }, scaleToUnitX(ENE, OFFSET * 5))
+        offsetSingleStop('T 09', { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true }, scaleToUnitX(ENE, OFFSET * 3.5))
     );
 };
 
