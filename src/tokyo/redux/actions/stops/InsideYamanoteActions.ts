@@ -1,9 +1,9 @@
 import { AppDispatch } from '../../store';
-import { addTokyo } from './addTokyo';
 import { addGinzaGrid } from './GinzaGrid';
 import { addKandaGrid } from './KandaGrid';
 import { addKyobashiGrid } from './KyobashiGrid';
 import { addShimbashiGrid } from './ShimbashiGrid';
+import { addTokyo } from './TokyoGrid';
 import { addTozaiGrid } from './TozaiGrid';
 import { addYurakuchoGrid } from './YurakuchoGrid';
 

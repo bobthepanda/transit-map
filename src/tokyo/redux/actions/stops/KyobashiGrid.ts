@@ -1,11 +1,12 @@
 import { MAJOR_LINE } from '../../../../utils/CommonCoordinates';
 import { scaleToUnitX, SSW } from '../../../../utils/PathUtils';
-import { offsetGridOfStops, TextAlignment } from '../../slice/StopLocation';
+import { TextAlignment } from '../../slice/StopLocation';
+import { offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 export const addKyobashiGrid = (dispatch: AppDispatch) => {
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 {
                     stationCode: 'G 11',

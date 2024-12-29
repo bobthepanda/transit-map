@@ -2,8 +2,8 @@
 /* eslint-disable no-param-reassign */
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { Coordinates, RelativeCoordinates } from '../../../interfaces/Dimensions';
-import { findIntersectionFromSlopes, midPoint, offsetCoordinates, scale } from '../../../utils/PathUtils';
+import { Coordinates } from '../../../interfaces/Dimensions';
+import { findIntersectionFromSlopes, midPoint } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
 
 export interface StopMetadata {
@@ -101,55 +101,3 @@ export const selectIntersection = createSelector(
 export interface TextDefinition extends TextData {
     textAlignment?: string;
 }
-
-export const addStopDefinitions = (stops: StopDefinition[]) => {
-    return (dispatch) => {
-        stops.forEach((stop) => dispatch(addStopDefinition(stop)));
-    };
-};
-
-export const offsetSingleStop = (originStationCode: string, newStationData: StopMetadata, ...offsets: RelativeCoordinates[]) => {
-    return (dispatch, getState) => {
-        const originalLocation = selectStopLocation(getState(), originStationCode);
-        if (!originalLocation) {
-            console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
-            return;
-        }
-        const newLocation = offsetCoordinates(originalLocation, ...offsets);
-        dispatch(addStopDefinition({ ...newStationData, location: newLocation }));
-    };
-};
-
-export const offsetEquallySpacedStops = (originStationCode: string, newStationData: StopMetadata[], offset: RelativeCoordinates) => {
-    return (dispatch, getState) => {
-        const originalLocation = selectStopLocation(getState(), originStationCode);
-        if (!originalLocation) {
-            console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
-            return;
-        }
-        dispatch(
-            addStopDefinitions(
-                newStationData.map((newStation, index) => {
-                    return {
-                        ...newStation,
-                        location: offsetCoordinates(originalLocation, scale(offset, index + 1)),
-                    };
-                })
-            )
-        );
-    };
-};
-
-interface GridOffsetStop {
-    stationCode: string;
-    newStationData: StopMetadata;
-}
-
-export const offsetGridOfStops = (gridOffsetStops: GridOffsetStop[], ...offsets: RelativeCoordinates[]) => {
-    return (dispatch) => {
-        gridOffsetStops.forEach((gridOffsetStop) => {
-            const { stationCode, newStationData } = gridOffsetStop;
-            dispatch(offsetSingleStop(stationCode, newStationData, ...offsets));
-        });
-    };
-};

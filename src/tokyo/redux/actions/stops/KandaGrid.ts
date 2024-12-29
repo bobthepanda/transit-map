@@ -1,12 +1,13 @@
 import { Coordinates } from '../../../../interfaces/Dimensions';
 import { MAJOR_LINE, OFFSET } from '../../../../utils/CommonCoordinates';
 import { E, N, NNE, offsetCoordinates, S, scale, scaleToUnitX, SSE, SSW, W, WNW } from '../../../../utils/PathUtils';
-import { addStopDefinition, offsetGridOfStops, offsetSingleStop, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 const addKanda = (dispatch: AppDispatch) => {
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 { stationCode: 'JC 01', newStationData: { stationCode: 'JC 02', strokeColor: 'stroke-chuo-rapid', hideText: true } },
                 { stationCode: 'JY 01', newStationData: { stationCode: 'JY 02', strokeColor: 'stroke-yamanote', hideText: true } },

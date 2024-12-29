@@ -1,14 +1,8 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
 import { E, ENE, NNW, offsetCoordinates, scale, scaleToUnitX, SSE, SSW, W, WNW } from '../../../../utils/PathUtils';
-import {
-    addStopDefinition,
-    offsetGridOfStops,
-    offsetSingleStop,
-    selectIntersection,
-    selectMidpoint,
-    TextAlignment,
-} from '../../slice/StopLocation';
+import { addStopDefinition, selectIntersection, selectMidpoint, TextAlignment } from '../../slice/StopLocation';
+import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 const addHibiya = (dispatch: AppDispatch, getState) => {
@@ -34,7 +28,7 @@ const addHibiya = (dispatch: AppDispatch, getState) => {
 
 const addGinzaStops = (dispatch: AppDispatch) => {
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 { stationCode: 'G 10', newStationData: { stationCode: 'G 09', strokeColor: 'stroke-ginza', hideText: true } },
                 {
@@ -46,7 +40,7 @@ const addGinzaStops = (dispatch: AppDispatch) => {
         )
     );
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 {
                     stationCode: 'G 09',

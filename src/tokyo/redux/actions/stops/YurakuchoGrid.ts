@@ -1,12 +1,13 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
 import { NNE, NNW, offsetCoordinates, scaleToUnitX, SSE, SSW, W } from '../../../../utils/PathUtils';
-import { addStopDefinition, offsetGridOfStops, offsetSingleStop, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 const addYurakucho = (dispatch: AppDispatch) => {
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 { stationCode: 'JY 01', newStationData: { stationCode: 'JY 30', strokeColor: 'stroke-yamanote', hideText: true } },
                 { stationCode: 'JK 26', newStationData: { stationCode: 'JK 25', strokeColor: 'stroke-keihin-tohoku', hideText: true } },

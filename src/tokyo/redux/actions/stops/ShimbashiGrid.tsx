@@ -16,12 +16,13 @@ import {
     W,
     WSW,
 } from '../../../../utils/PathUtils';
-import { addStopDefinition, offsetGridOfStops, offsetSingleStop, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 const addShimbashi = (dispatch: AppDispatch) => {
     dispatch(
-        offsetGridOfStops(
+        offsetStopGroup(
             [
                 { stationCode: 'JY 30', newStationData: { stationCode: 'JY 29', strokeColor: 'stroke-yamanote', hideText: true } },
                 { stationCode: 'JK 25', newStationData: { stationCode: 'JK 24', strokeColor: 'stroke-keihin-tohoku', hideText: true } },

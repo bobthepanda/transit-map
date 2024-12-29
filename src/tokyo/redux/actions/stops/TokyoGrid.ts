@@ -1,6 +1,7 @@
 import { HEIGHT, MAJOR_LINE, OFFSET, WIDTH } from '../../../../utils/CommonCoordinates';
 import { ESE, roundPoint, scale, scaleToUnitX, SSW, W, WNW, WSW } from '../../../../utils/PathUtils';
-import { addStopDefinition, offsetEquallySpacedStops, offsetSingleStop, StopDefinition, TextAlignment } from '../../slice/StopLocation';
+import { addStopDefinition, StopDefinition, TextAlignment } from '../../slice/StopLocation';
+import { offsetEquallySpacedStops, offsetSingleStop } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 export const addTokyo = (dispatch: AppDispatch) => {

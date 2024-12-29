@@ -8,19 +8,14 @@ import {
     offsetCoordinates,
     scale,
     scaleToUnitX,
+    scaleToUnitY,
     SSE,
     SSW,
     WNW,
     WSW,
 } from '../../../../utils/PathUtils';
-import {
-    addStopDefinition,
-    offsetSingleStop,
-    selectIntersection,
-    selectMidpoint,
-    selectStopLocation,
-    TextAlignment,
-} from '../../slice/StopLocation';
+import { addStopDefinition, selectIntersection, selectMidpoint, selectStopLocation, TextAlignment } from '../../slice/StopLocation';
+import { offsetSingleStop } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
 
 const addOtemachi = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -46,12 +41,17 @@ const addOtemachi = (dispatch: AppDispatch, getState: () => RootState) => {
         addStopDefinition({
             stationCode: 'T 09',
             strokeColor: 'stroke-tozai',
-            location: offsetCoordinates(T_09, scaleToUnitX(WSW, OFFSET)),
+            location: offsetCoordinates(T_09, scaleToUnitX(SSW, OFFSET)),
             textAlignment: TextAlignment.DOWN,
         })
     );
     dispatch(
-        offsetSingleStop('T 09', { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true }, scaleToUnitX(ENE, OFFSET * 3.5))
+        offsetSingleStop(
+            'T 09',
+            { stationCode: 'Z 08', strokeColor: 'stroke-hanzomon', hideText: true },
+            scaleToUnitX(NNE, OFFSET * 2),
+            scaleToUnitY(NNE, OFFSET)
+        )
     );
 };
 
