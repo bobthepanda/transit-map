@@ -31,6 +31,8 @@ const Marunouchi = () => {
                 { location: 'M 16', direction: NNE },
                 { location: 'M 17', direction: NNW },
                 { location: 'M 18', direction: NNE },
+                { location: 'M 19', direction: NNW },
+                { location: 'M 20', direction: NNW },
             ]}
         />
     );
@@ -53,7 +55,9 @@ const Hanzomon = () => {
         <LinePath
             color="stroke-hanzomon"
             points={[
+                { location: 'Z 07', direction: E },
                 { location: 'Z 08', direction: SSE },
+                { location: 'Z 09', direction: E },
                 { location: 'Z 10', direction: E },
             ]}
         />
@@ -85,6 +89,7 @@ const Chiyoda = () => {
                 { location: 'C 09', direction: NNE },
                 { location: 'C 10', direction: NNE },
                 { location: 'C 11', direction: NNE },
+                { location: 'C 12', direction: NNE },
             ]}
         />
     );
@@ -105,6 +110,7 @@ const Hibiya = () => {
                 { location: 'H 13', direction: NNE },
                 { location: 'H 14', direction: NNW },
                 { location: 'H 15', direction: NNW },
+                { location: 'H 16', direction: NNE },
             ]}
         />
     );
@@ -125,8 +131,16 @@ const Tozai = () => {
 };
 
 const Shinjuku = () => {
-    return null;
-    // return <SVGPath color="stroke-shinjuku" points={[S_01, S_04, S_11]} directions={[SE, E, SE]} />;
+    return (
+        <LinePath
+            color="stroke-shinjuku"
+            points={[
+                { location: 'S 06', direction: E },
+                { location: 'S 07', direction: E },
+                { location: 'S 08', direction: E },
+            ]}
+        />
+    );
 };
 
 const Mita = () => {
@@ -134,9 +148,12 @@ const Mita = () => {
         <LinePath
             color="stroke-mita"
             points={[
-                { location: 'I 07', direction: NNW },
-                { location: 'I 08', direction: NNW },
-                { location: 'I 09', direction: NNW },
+                { location: 'I 06', direction: NNE },
+                { location: 'I 07', direction: NNE },
+                { location: 'I 08', direction: NNE },
+                { location: 'I 09', direction: NNE },
+                { location: 'I 10', direction: NNW },
+                { location: 'I 11', direction: NNW },
             ]}
         />
     );

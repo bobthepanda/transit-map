@@ -1,5 +1,8 @@
+import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
-import { E, NNE, SSE } from '../../utils/PathUtils';
+import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { OFFSET } from '../../utils/CommonCoordinates';
+import { E, NNE, NNW, offsetCoordinates, SSE, W } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -10,14 +13,23 @@ const Yamanote = () => {
                 { location: 'JY 30', direction: NNE },
                 { location: 'JY 01', direction: NNE },
                 { location: 'JY 02', direction: NNE },
+                { location: 'JY 03', direction: NNE },
             ]}
         />
     );
 };
 
 const ChuoSobu = () => {
-    // return <SVGPath color="stroke-chuo-sobu" points={[JB_01, JB_10, JB_12, JB_14, JB_17, JB_21]} directions={[SE, SW, SE, NE, E, SE]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-chuo-sobu"
+            points={[
+                { location: 'JB 17', direction: E },
+                { location: 'JB 18', direction: E },
+                { location: 'JB 19', direction: E },
+            ]}
+        />
+    );
 };
 
 const KeihinTohoku = () => {
@@ -29,6 +41,7 @@ const KeihinTohoku = () => {
                 { location: 'JK 25', direction: NNE },
                 { location: 'JK 26', direction: NNE },
                 { location: 'JK 27', direction: NNE },
+                { location: 'JK 28', direction: NNE },
             ]}
         />
     );
@@ -54,12 +67,15 @@ const SobuRapid = () => {
 };
 
 const ChuoRapid = () => {
+    const kanda = useSelector((state) => selectStopLocation(state, 'JC 02'));
     return (
         <LinePath
             color="stroke-chuo-rapid"
             points={[
                 { location: 'JC 01', direction: NNE },
                 { location: 'JC 02', direction: NNE },
+                { location: offsetCoordinates(kanda, { dy: OFFSET * -4 }), direction: NNW },
+                { location: 'JC 03', direction: W },
             ]}
         />
     );

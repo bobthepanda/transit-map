@@ -19,7 +19,7 @@ const addKanda = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'JC 02',
-            { stationCode: 'G 13', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WNW },
+            { stationCode: 'G 13', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WSW },
             scale(WNW, OFFSET)
         )
     );
