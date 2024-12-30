@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../../map/GridLines';
 import { OFFSET } from '../../../utils/CommonCoordinates';
-import { ESE, N, NNE, NNW, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, W } from '../../../utils/PathUtils';
-import { addStopDefinition, selectIntersection, TextAlignment } from '../slice/StopLocation';
+import { E, ESE, N, NNE, NNW, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, W } from '../../../utils/PathUtils';
+import { addStopDefinition, selectIntersection, selectMidpoint, TextAlignment } from '../slice/StopLocation';
 import { offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../slice/StopLocationActions';
 import { AppDispatch } from '../store';
 
@@ -125,10 +125,52 @@ const addOchanomizu = (dispatch: AppDispatch, getState) => {
     );
 };
 
+const addAsakusabashi = (dispatch: AppDispatch, getState) => {
+    const asakusabashiIntersection = selectIntersection(getState(), 'JB 19', E, 'A 14', NNE);
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'A 16',
+            strokeColor: 'stroke-asakusa',
+            location: offsetCoordinates(asakusabashiIntersection, scaleToUnitY(NNE, OFFSET)),
+            textAlignment: TextAlignment.WNW,
+        })
+    );
+    dispatch(offsetSingleStop('A 16', { stationCode: 'JB 20', strokeColor: 'stroke-chuo-sobu', hideText: true }, scale(S, OFFSET)));
+};
+
+const addBakurocho = (dispatch: AppDispatch, getState) => {
+    dispatch(
+        addStopDefinition({
+            stationCode: 'A 15',
+            strokeColor: 'stroke-asakusa',
+            location: selectMidpoint(getState(), 'A 14', 'A 16'),
+            textAlignment: TextAlignment.ESE,
+        })
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'A 15',
+            { stationCode: 'S 09', strokeColor: 'stroke-shinjuku', textAlignment: TextAlignment.WSW },
+            scaleToUnitX(N, OFFSET * 2)
+        )
+    );
+    dispatch(
+        offsetSingleStop(
+            'S 09',
+            { stationCode: 'JO 21', strokeColor: 'stroke-sobu-rapid', textAlignment: TextAlignment.ESE },
+            scaleToUnitX(N, OFFSET * 2)
+        )
+    );
+};
+
 export const addAkihabaraGrid = (dispatch: AppDispatch) => {
     dispatch(addAkihabara);
     dispatch(addJimbocho);
     dispatch(addSuidobashi);
     dispatch(addOgawamachi);
     dispatch(addOchanomizu);
+    dispatch(addAsakusabashi);
+    dispatch(addBakurocho);
 };

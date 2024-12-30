@@ -3,6 +3,7 @@ import { OFFSET } from '../../../../utils/CommonCoordinates';
 import {
     E,
     ENE,
+    ESE,
     midPoint,
     N,
     NNE,
@@ -17,7 +18,7 @@ import {
     WSW,
 } from '../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
-import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
+import { offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
 
 const addShimbashi = (dispatch: AppDispatch) => {
@@ -32,6 +33,17 @@ const addShimbashi = (dispatch: AppDispatch) => {
                 },
             ],
             scaleToUnitX(SSW, MAJOR_LINE * 1.75)
+        )
+    );
+
+    dispatch(
+        offsetEquallySpacedStops(
+            'JK 24',
+            [
+                { stationCode: 'JT 02', strokeColor: 'stroke-tokaido', hideText: true },
+                { stationCode: 'JO 18', strokeColor: 'stroke-sobu-rapid', hideText: true },
+            ],
+            scale(ESE, OFFSET)
         )
     );
 

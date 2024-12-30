@@ -72,7 +72,7 @@ const addMitsukoshimae = (dispatch: AppDispatch, getState) => {
     dispatch(
         offsetSingleStop(
             'G 12',
-            { stationCode: 'JO 18', strokeColor: 'stroke-sobu-rapid', textAlignment: TextAlignment.UP },
+            { stationCode: 'JO 20', strokeColor: 'stroke-sobu-rapid', textAlignment: TextAlignment.UP },
             scaleToUnitX(N, MAJOR_LINE * 0.5)
         )
     );

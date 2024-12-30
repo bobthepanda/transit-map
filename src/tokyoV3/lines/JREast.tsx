@@ -27,6 +27,8 @@ const ChuoSobu = () => {
                 { location: 'JB 17', direction: E },
                 { location: 'JB 18', direction: E },
                 { location: 'JB 19', direction: E },
+                { location: 'JB 20', direction: E },
+                { location: 'JB 21', direction: E },
             ]}
         />
     );
@@ -48,8 +50,16 @@ const KeihinTohoku = () => {
 };
 
 const Tokaido = () => {
-    // return <SVGPath color="stroke-tokaido" points={[JU_02, TAMACHI_OFFSET, JT_04, JT_05]} directions={[SW, W, SW, W]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-tokaido"
+            points={[
+                { location: 'JT 02', direction: NNE },
+                { location: 'JT 01', direction: NNE },
+                { location: 'JU 01', direction: NNE },
+            ]}
+        />
+    );
 };
 
 // const JS_SK_CORNER = offset(JS_14, scaleToUnitX(SE, OFFSET * 2), scale(S, OFFSET * 2));
@@ -59,8 +69,10 @@ const SobuRapid = () => {
         <LinePath
             color="stroke-sobu-rapid"
             points={[
-                { location: 'JO 17', direction: NNE },
-                { location: 'JO 18', direction: E },
+                { location: 'JO 18', direction: NNE },
+                { location: 'JO 19', direction: NNE },
+                { location: 'JO 20', direction: E },
+                { location: 'JO 21', direction: NNE },
             ]}
         />
     );

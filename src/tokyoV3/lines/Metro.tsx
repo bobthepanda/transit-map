@@ -138,6 +138,7 @@ const Shinjuku = () => {
                 { location: 'S 06', direction: E },
                 { location: 'S 07', direction: E },
                 { location: 'S 08', direction: E },
+                { location: 'S 09', direction: SSE },
             ]}
         />
     );
@@ -169,6 +170,8 @@ const Asakusa = () => {
                 { location: 'A 12', direction: NNE },
                 { location: 'A 13', direction: NNE },
                 { location: 'A 14', direction: NNE },
+                { location: 'A 15', direction: NNE },
+                { location: 'A 16', direction: NNE },
             ]}
         />
     );
