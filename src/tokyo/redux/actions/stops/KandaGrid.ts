@@ -1,6 +1,6 @@
 import { Coordinates } from '../../../../interfaces/Dimensions';
 import { MAJOR_LINE, OFFSET } from '../../../../utils/CommonCoordinates';
-import { E, N, NNE, offsetCoordinates, S, scale, scaleToUnitX, SSE, SSW, W, WNW } from '../../../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, SSE, SSW, W, WNW } from '../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
 import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch } from '../../store';
@@ -83,9 +83,10 @@ export const addKandaGrid = (dispatch: AppDispatch) => {
     dispatch(
         offsetSingleStop(
             'JY 02',
-            { stationCode: 'H 15', strokeColor: 'stroke-hibiya' },
+            { stationCode: 'H 15', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.ENE },
             scaleToUnitX(SSE, MAJOR_LINE * 0.75),
-            scaleToUnitX(NNE, MAJOR_LINE * 0.25)
+            scaleToUnitX(NNE, MAJOR_LINE * 0.25),
+            scaleToUnitY(NNW, OFFSET * 1.5)
         )
     );
     dispatch(addNingyocho);
