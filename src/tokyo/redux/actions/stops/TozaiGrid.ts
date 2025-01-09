@@ -95,13 +95,13 @@ const addHatchobori = (dispatch: AppDispatch, getState) => {
             stationCode: 'JE 02',
             location: offsetCoordinates(hatchoboriIntersection, scaleToUnitX(SSE, OFFSET * 0.5)),
             strokeColor: 'stroke-keiyo',
-            hideText: true,
+            textAlignment: '[text-anchor:middle] translate-y-vertical-double -translate-x-[10pt]',
         })
     );
     dispatch(
         offsetSingleStop(
             'JE 02',
-            { stationCode: 'JE 02 M', strokeColor: 'stroke-musashino', displayStationCode: 'JE 02', textAlignment: TextAlignment.ENE },
+            { stationCode: 'JE 02 M', strokeColor: 'stroke-musashino', displayStationCode: 'JE 02', hideText: true },
             scale(ENE, OFFSET)
         )
     );

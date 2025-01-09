@@ -1,5 +1,5 @@
 import LinePath from '../../symbols/LinePath';
-import { E, NNE, NNW, RADIUS, SSE } from '../../utils/PathUtils';
+import { E, NNE, NNW, RADIUS, SSE, SSW } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -59,6 +59,7 @@ const Hanzomon = () => {
                 { location: 'Z 08', direction: SSE },
                 { location: 'Z 09', direction: E },
                 { location: 'Z 10', direction: E },
+                { location: 'Z 11', direction: E },
             ]}
         />
     );
@@ -74,6 +75,7 @@ const Yurakucho = () => {
                 { location: 'Y 18', direction: SSE },
                 { location: 'Y 19', direction: SSE },
                 { location: 'Y 20', direction: SSE },
+                { location: 'Y 21', direction: SSE },
             ]}
         />
     );
@@ -124,6 +126,7 @@ const Tozai = () => {
                 { location: 'T 09', direction: E },
                 { location: 'T 10', direction: SSE },
                 { location: 'T 11', direction: SSE },
+                { location: 'T 12', direction: SSE },
             ]}
         />
     );
@@ -139,6 +142,7 @@ const Shinjuku = () => {
                 { location: 'S 07', direction: E },
                 { location: 'S 08', direction: E },
                 { location: 'S 09', direction: SSE },
+                { location: 'S 10', direction: E },
             ]}
         />
     );
@@ -178,14 +182,18 @@ const Asakusa = () => {
 };
 
 const Oedo = () => {
-    return null;
-    // return (
-    //     <SVGPath
-    //         color="stroke-oedo"
-    //         points={[E_28_START, E_02, E_06, E_07, E_09, E_16, E_20, E_24, E_25, E_26, E_27, E_31]}
-    //         directions={[E, SE, NE, E, SE, SW, NW, N, NW, NE, NW, NE]}
-    //     />
-    // );
+    return (
+        <LinePath
+            color="stroke-oedo"
+            points={[
+                { location: 'E 12', direction: SSW },
+                { location: 'E 13', direction: SSW },
+                { location: 'E 14', direction: SSW },
+                { location: 'E 15', direction: SSW },
+                { location: 'E 16', direction: SSW },
+            ]}
+        />
+    );
 };
 
 const Fukutoshin = () => {

@@ -100,6 +100,7 @@ const Keiyo = () => {
             points={[
                 { location: 'JE 01', direction: SSE },
                 { location: 'JE 02', direction: SSE },
+                { location: 'JE 03', direction: SSE },
             ]}
         />
     );
@@ -112,6 +113,7 @@ const Musashino = () => {
             points={[
                 { location: 'JE 01 M', direction: SSE },
                 { location: 'JE 02 M', direction: SSE },
+                { location: 'JE 03 M', direction: SSE },
             ]}
         />
     );
