@@ -36,7 +36,7 @@ export const addTokyo = (dispatch: AppDispatch) => {
 
     dispatch(
         offsetSingleStop(
-            'JO 17',
+            'JO 19',
             { stationCode: 'JE 01 M', strokeColor: 'stroke-musashino', hideText: true, displayStationCode: 'JE 01' },
             scale(ESE, OFFSET),
             scaleToUnitX(SSW, OFFSET * 0.5)
