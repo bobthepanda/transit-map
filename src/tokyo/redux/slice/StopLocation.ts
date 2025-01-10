@@ -3,7 +3,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { Coordinates } from '../../../interfaces/Dimensions';
-import { findIntersectionFromSlopes, midPoint } from '../../../utils/PathUtils';
+import { findIntersectionFromSlopes, findOffset, midPoint } from '../../../utils/PathUtils';
 import { TextData } from './StopText';
 
 export interface StopMetadata {
@@ -101,3 +101,16 @@ export const selectIntersection = createSelector(
 export interface TextDefinition extends TextData {
     textAlignment?: string;
 }
+export const selectOffset = createSelector(
+    [
+        (state) => state?.stopDefinition,
+        (state, firstStationCode, secondStationCode) => selectStopLocation(state, firstStationCode),
+        (state, firstStationCode, secondStationCode) => selectStopLocation(state, secondStationCode),
+    ],
+    (_state, firstStop, secondStop) => {
+        if (firstStop && secondStop) {
+            return findOffset(firstStop, secondStop);
+        }
+        throw Error('Could not find locations for midpoint.');
+    }
+);

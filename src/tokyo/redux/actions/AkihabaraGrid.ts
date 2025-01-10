@@ -9,8 +9,8 @@ const addAkihabara = (dispatch: AppDispatch) => {
     dispatch(
         offsetStopGroup(
             [
-                { stationCode: 'JY 02', newStationData: { stationCode: 'JY 03', strokeColor: 'stroke-yamanote' } },
-                { stationCode: 'JK 27', newStationData: { stationCode: 'JK 28', strokeColor: 'stroke-keihin-tohoku' } },
+                { stationCode: 'JY 02', newStationData: { stationCode: 'JY 03', strokeColor: 'stroke-yamanote', hideText: true } },
+                { stationCode: 'JK 27', newStationData: { stationCode: 'JK 28', strokeColor: 'stroke-keihin-tohoku', hideText: true } },
             ],
             scaleToUnitY(NNE, MAJOR_LINE * 2)
         )

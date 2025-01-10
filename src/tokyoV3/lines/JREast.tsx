@@ -14,6 +14,8 @@ const Yamanote = () => {
                 { location: 'JY 01', direction: NNE },
                 { location: 'JY 02', direction: NNE },
                 { location: 'JY 03', direction: NNE },
+                { location: 'JY 04', direction: NNE },
+                { location: 'JY 05', direction: NNE },
             ]}
         />
     );
@@ -44,6 +46,9 @@ const KeihinTohoku = () => {
                 { location: 'JK 26', direction: NNE },
                 { location: 'JK 27', direction: NNE },
                 { location: 'JK 28', direction: NNE },
+                { location: 'JK 28', direction: NNE },
+                { location: 'JK 29', direction: NNE },
+                { location: 'JK 30', direction: NNE },
             ]}
         />
     );
@@ -57,6 +62,7 @@ const Tokaido = () => {
                 { location: 'JT 02', direction: NNE },
                 { location: 'JT 01', direction: NNE },
                 { location: 'JU 01', direction: NNE },
+                { location: 'JU 02', direction: NNE },
             ]}
         />
     );

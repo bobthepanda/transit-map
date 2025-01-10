@@ -1,6 +1,7 @@
 import { RelativeCoordinates } from '../../../interfaces/Dimensions';
 import { offsetCoordinates, scale } from '../../../utils/PathUtils';
-import { StopDefinition, StopMetadata, addStopDefinition, selectStopLocation } from './StopLocation';
+import { AppDispatch, RootState } from '../store';
+import { addStopDefinition, selectOffset, selectStopLocation, StopDefinition, StopMetadata } from './StopLocation';
 
 /**
  * Convenience function to add multiple stop definitions.
@@ -22,7 +23,7 @@ const addStopDefinitions = (stops: StopDefinition[]) => {
  * @returns
  */
 export const offsetSingleStop = (originStationCode: string, newStationData: StopMetadata, ...offsets: RelativeCoordinates[]) => {
-    return (dispatch, getState) => {
+    return (dispatch: AppDispatch, getState: () => RootState) => {
         const originalLocation = selectStopLocation(getState(), originStationCode);
         if (!originalLocation) {
             console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
@@ -42,7 +43,7 @@ export const offsetSingleStop = (originStationCode: string, newStationData: Stop
  * @returns
  */
 export const offsetEquallySpacedStops = (originStationCode: string, newStationData: StopMetadata[], offset: RelativeCoordinates) => {
-    return (dispatch, getState) => {
+    return (dispatch: AppDispatch, getState: () => RootState) => {
         const originalLocation = selectStopLocation(getState(), originStationCode);
         if (!originalLocation) {
             console.warn('Could not offset new stations because the original location is not in redux.', originStationCode, newStationData);
@@ -72,10 +73,38 @@ interface OffsetStopData {
  * @returns
  */
 export const offsetStopGroup = (gridOffsetStops: OffsetStopData[], ...offsets: RelativeCoordinates[]) => {
-    return (dispatch) => {
+    return (dispatch: AppDispatch) => {
         gridOffsetStops.forEach((gridOffsetStop) => {
             const { stationCode, newStationData } = gridOffsetStop;
             dispatch(offsetSingleStop(stationCode, newStationData, ...offsets));
         });
+    };
+};
+
+export const fillInStops = (
+    stationPrefix: string,
+    startCount: number,
+    endCount: number,
+    strokeColor?: string,
+    textAlignments?: string[]
+) => {
+    if (endCount < startCount) {
+        return fillInStops(stationPrefix, endCount, startCount, strokeColor, textAlignments);
+    }
+
+    return (dispatch: AppDispatch, getState: () => RootState) => {
+        const offset: RelativeCoordinates = selectOffset(getState(), `${stationPrefix} ${endCount}`, `${stationPrefix} ${startCount}`);
+        const numberOfStopsFilledIn = endCount - startCount - 1;
+
+        const newStopDefinitions: StopMetadata[] = [];
+
+        for (let i = startCount + 1; i < endCount; i += 1) {
+            const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
+            newStopDefinitions.push({ stationCode: `${stationPrefix} ${i}`, strokeColor, textAlignment });
+        }
+
+        dispatch(
+            offsetEquallySpacedStops(`${stationPrefix} ${startCount}`, newStopDefinitions, scale(offset, 1 / (numberOfStopsFilledIn + 1)))
+        );
     };
 };

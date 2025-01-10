@@ -1,5 +1,6 @@
 import { AppDispatch } from '../../store';
 import { addAkihabaraGrid } from '../AkihabaraGrid';
+import { addUenoGrid } from '../UenoGrid';
 import { addGinzaGrid } from './GinzaGrid';
 import { addKandaGrid } from './KandaGrid';
 import { addKyobashiGrid } from './KyobashiGrid';
@@ -19,4 +20,5 @@ export const addInsideYamanote = (dispatch: AppDispatch) => {
     dispatch(addShimbashiGrid);
     dispatch(addAkihabaraGrid);
     dispatch(addOedoGrid);
+    dispatch(addUenoGrid);
 };

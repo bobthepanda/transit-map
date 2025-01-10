@@ -1,5 +1,8 @@
+import { useSelector } from 'react-redux';
+import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { E, NNE, NNW, RADIUS, SSE, SSW } from '../../utils/PathUtils';
+import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -15,6 +18,12 @@ const Ginza = () => {
                 { location: 'G 11', direction: NNE },
                 { location: 'G 12', direction: NNE },
                 { location: 'G 13', direction: NNW },
+                { location: 'G 14', direction: NNE },
+                { location: 'G 15', direction: NNE },
+                { location: 'G 16', direction: E },
+                { location: 'G 17', direction: E },
+                { location: 'G 18', direction: E },
+                { location: 'G 19', direction: E },
             ]}
         />
     );
@@ -33,6 +42,7 @@ const Marunouchi = () => {
                 { location: 'M 18', direction: NNE },
                 { location: 'M 19', direction: NNW },
                 { location: 'M 20', direction: NNW },
+                { location: 'M 21', direction: NNW },
             ]}
         />
     );
@@ -113,6 +123,8 @@ const Hibiya = () => {
                 { location: 'H 14', direction: NNW },
                 { location: 'H 15', direction: NNW },
                 { location: 'H 16', direction: NNE },
+                { location: 'H 17', direction: NNE },
+                { location: 'H 18', direction: NNE },
             ]}
         />
     );
@@ -159,6 +171,7 @@ const Mita = () => {
                 { location: 'I 09', direction: NNE },
                 { location: 'I 10', direction: NNW },
                 { location: 'I 11', direction: NNW },
+                { location: 'I 12', direction: NNW },
             ]}
         />
     );
@@ -176,16 +189,27 @@ const Asakusa = () => {
                 { location: 'A 14', direction: NNE },
                 { location: 'A 15', direction: NNE },
                 { location: 'A 16', direction: NNE },
+                { location: 'A 17', direction: NNE },
+                { location: 'A 18', direction: E },
+                { location: 'A 19', direction: E },
+                { location: 'A 20', direction: E },
             ]}
         />
     );
 };
 
 const Oedo = () => {
+    const E_12 = useSelector((state) => selectStopLocation(state, 'E 12'));
     return (
         <LinePath
             color="stroke-oedo"
             points={[
+                { location: 'E 07', direction: E },
+                { location: 'E 08', direction: E },
+                { location: 'E 09', direction: E },
+                { location: 'E 10', direction: E },
+                { location: 'E 11', direction: E },
+                { location: offsetCoordinates(E_12, scaleToUnitY(N, MAJOR_LINE * 0.5)), direction: SSE },
                 { location: 'E 12', direction: SSW },
                 { location: 'E 13', direction: SSW },
                 { location: 'E 14', direction: SSW },

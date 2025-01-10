@@ -218,3 +218,7 @@ export const roundPoint = (coords: Coordinates, numberToRound: number = OFFSET):
 
     return { x: Math.round(x / numberToRound) * numberToRound, y: Math.round(y / numberToRound) * numberToRound };
 };
+
+export const findOffset = ({ x: ax, y: ay }: Coordinates, { x: bx, y: by }): RelativeCoordinates => {
+    return { dx: ax - bx, dy: ay - by };
+};
