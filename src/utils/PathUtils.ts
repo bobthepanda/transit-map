@@ -21,7 +21,10 @@ export const scale = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...values: number
     values.forEach((v) => {
         value *= v;
     });
-    return { dx: dx * value, dy: dy * value };
+    return {
+        dx: +(dx * value).toFixed(4),
+        dy: +(dy * value).toFixed(4),
+    };
 };
 
 export const startAtLocation = (location: Coordinates): string => {

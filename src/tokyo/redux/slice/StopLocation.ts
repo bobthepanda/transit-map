@@ -40,7 +40,7 @@ export const stopDefinitionSlice = createSlice({
     reducers: {
         addStopDefinition: (state, action: PayloadAction<StopDefinition>) => {
             const data = action.payload;
-            state[data.stationCode] = data;
+            state[data.stationCode] = { ...data, location: { x: +data.location.x.toFixed(4), y: +data.location.y.toFixed(4) } };
         },
     },
 });
