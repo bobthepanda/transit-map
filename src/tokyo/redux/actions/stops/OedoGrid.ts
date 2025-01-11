@@ -162,6 +162,7 @@ const addKuramae = (dispatch: AppDispatch, getState: () => RootState) => {
             textAlignment: TextAlignment.UP,
         })
     );
+    dispatch(offsetSingleStop('E 10', { stationCode: 'TX 02', hideText: true }, scale(S, OFFSET)));
 };
 
 const addKasuga = (dispatch: AppDispatch, getState: () => RootState) => {

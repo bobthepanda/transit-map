@@ -1,6 +1,6 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { E, ESE, NNE, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY } from '../../../../utils/PathUtils';
+import { E, ESE, N, NNE, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, WNW } from '../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
 import { fillInStops, offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
@@ -31,7 +31,7 @@ const addUeno = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(
         addStopDefinition({
             stationCode: 'H 18',
-            location: selectIntersection(getState(), 'H 17', NNE, 'JJ 01', S),
+            location: selectIntersection(getState(), 'H 17', NNE, 'JJ 01', ESE),
             hideText: true,
             strokeColor: 'stroke-hibiya',
         })
@@ -57,6 +57,14 @@ const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
         )
     );
     dispatch(fillInStops('G', 16, 19, 'stroke-ginza', [TextAlignment.DOWN, TextAlignment.UP]));
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'TX 03',
+            location: offsetCoordinates(selectIntersection(getState(), 'A 17', NNE, 'A 18', N), scale(WNW, OFFSET)),
+            textAlignment: TextAlignment.ESE,
+        })
+    );
 };
 
 export const addUenoGrid = (dispatch: AppDispatch) => {

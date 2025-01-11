@@ -1,8 +1,8 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { ENE, N, NNW, scale, scaleToUnitY, SSW, W } from '../../../../utils/PathUtils';
-import { addStopDefinition, selectMidpoint, TextAlignment } from '../../slice/StopLocation';
-import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
+import { ENE, ESE, N, NNE, NNW, scale, scaleToUnitY, SSW, W, WNW } from '../../../../utils/PathUtils';
+import { addStopDefinition, selectMidpoint, selectOffset, TextAlignment } from '../../slice/StopLocation';
+import { fillInStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
 
 const addUguisudani = (dispatch: AppDispatch) => {
@@ -47,6 +47,7 @@ const addNishiNippori = (dispatch: AppDispatch) => {
             scale(W, OFFSET)
         )
     );
+    dispatch(offsetSingleStop('JK 32', { stationCode: 'JJ 02', strokeColor: 'stroke-joban-rapid', hideText: true }, scale(ENE, OFFSET)));
 };
 
 const fillInChiyoda = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -67,8 +68,33 @@ const fillInChiyoda = (dispatch: AppDispatch, getState: () => RootState) => {
     );
 };
 
+const addMinamiSenju = (dispatch: AppDispatch, getState: () => RootState) => {
+    const { dy = 0 } = selectOffset(getState(), 'H 18', 'JY 07');
+    dispatch(
+        offsetSingleStop(
+            'H 18',
+            { stationCode: 'H 21', strokeColor: 'stroke-hibiya', hideText: true },
+            scaleToUnitY(NNE, dy + MAJOR_LINE * 1.5 + OFFSET)
+        )
+    );
+    dispatch(offsetSingleStop('H 21', { stationCode: 'JJ 04', strokeColor: 'stroke-joban-rapid', hideText: true }, scale(WNW, OFFSET)));
+    dispatch(offsetSingleStop('H 21', { stationCode: 'TX 04', textAlignment: TextAlignment.ESE }, scale(ESE, OFFSET)));
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'JJ 03',
+            location: selectMidpoint(getState(), 'JJ 02', 'JJ 04'),
+            strokeColor: 'stroke-joban-rapid',
+            textAlignment: TextAlignment.UP,
+        })
+    );
+
+    dispatch(fillInStops('H', 18, 21, 'stroke-hibiya', [TextAlignment.ESE]));
+};
+
 export const addNipporiGrid = (dispatch: AppDispatch) => {
     dispatch(addUguisudani);
     dispatch(addNishiNippori);
     dispatch(fillInChiyoda);
+    dispatch(addMinamiSenju);
 };

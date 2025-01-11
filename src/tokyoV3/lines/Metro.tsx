@@ -129,6 +129,9 @@ const Hibiya = () => {
                 { location: 'H 16', direction: NNE },
                 { location: 'H 17', direction: NNE },
                 { location: 'H 18', direction: NNE },
+                { location: 'H 19', direction: NNE },
+                { location: 'H 20', direction: NNE },
+                { location: 'H 21', direction: NNE },
             ]}
         />
     );

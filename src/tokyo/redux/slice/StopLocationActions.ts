@@ -42,7 +42,7 @@ export const offsetSingleStop = (originStationCode: string, newStationData: Stop
  * @param offset
  * @returns
  */
-export const offsetEquallySpacedStops = (originStationCode: string, newStationData: StopMetadata[], offset: RelativeCoordinates) => {
+export const offsetEquallySpacedStops = (originStationCode: string, newStationData: StopMetadata[], ...offsets: RelativeCoordinates[]) => {
     return (dispatch: AppDispatch, getState: () => RootState) => {
         const originalLocation = selectStopLocation(getState(), originStationCode);
         if (!originalLocation) {
@@ -54,7 +54,7 @@ export const offsetEquallySpacedStops = (originStationCode: string, newStationDa
                 newStationData.map((newStation, index) => {
                     return {
                         ...newStation,
-                        location: offsetCoordinates(originalLocation, scale(offset, index + 1)),
+                        location: offsetCoordinates(originalLocation, ...offsets.map((offset) => scale(offset, index + 1))),
                     };
                 })
             )
@@ -81,6 +81,47 @@ export const offsetStopGroup = (gridOffsetStops: OffsetStopData[], ...offsets: R
     };
 };
 
+/**
+ * This spaces out stops with a common spacing.
+ *
+ * @param stationPrefix     common stationCode prefix
+ * @param startCount        start stationCode number that already has a location
+ * @param endCount          end stationCode number. Added stops *is* inclusive of the endCount
+ * @param strokeColor
+ * @param textAlignments
+ * @param offsets
+ * @returns
+ */
+export const spaceOutStops = (
+    stationPrefix: string,
+    startCount: number,
+    endCount: number,
+    strokeColor?: string,
+    textAlignments?: string[],
+    ...offsets: RelativeCoordinates[]
+) => {
+    return (dispatch: AppDispatch) => {
+        const newStopDefinitions: StopMetadata[] = [];
+
+        for (let i = startCount + 1; i <= endCount; i += 1) {
+            const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
+            newStopDefinitions.push({ stationCode: `${stationPrefix} ${i}`, strokeColor, textAlignment });
+        }
+
+        dispatch(offsetEquallySpacedStops(`${stationPrefix} ${startCount}`, newStopDefinitions, ...offsets));
+    };
+};
+
+/**
+ * This fills in stops with a known station spacing.
+ *
+ * @param stationPrefix     common stationCode prefix
+ * @param startCount        start stationCode number that already has a location
+ * @param endCount          end stationCode number that already has a location. Added stops *is not* inclusive of the endCount
+ * @param strokeColor
+ * @param textAlignments
+ * @returns
+ */
 export const fillInStops = (
     stationPrefix: string,
     startCount: number,
@@ -95,16 +136,15 @@ export const fillInStops = (
     return (dispatch: AppDispatch, getState: () => RootState) => {
         const offset: RelativeCoordinates = selectOffset(getState(), `${stationPrefix} ${endCount}`, `${stationPrefix} ${startCount}`);
         const numberOfStopsFilledIn = endCount - startCount - 1;
-
-        const newStopDefinitions: StopMetadata[] = [];
-
-        for (let i = startCount + 1; i < endCount; i += 1) {
-            const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
-            newStopDefinitions.push({ stationCode: `${stationPrefix} ${i}`, strokeColor, textAlignment });
-        }
-
         dispatch(
-            offsetEquallySpacedStops(`${stationPrefix} ${startCount}`, newStopDefinitions, scale(offset, 1 / (numberOfStopsFilledIn + 1)))
+            spaceOutStops(
+                stationPrefix,
+                startCount,
+                endCount - 1,
+                strokeColor,
+                textAlignments,
+                scale(offset, 1 / (numberOfStopsFilledIn + 1))
+            )
         );
     };
 };

@@ -23,19 +23,17 @@ const addAkihabara = (dispatch: AppDispatch) => {
         )
     );
 
-    dispatch(
-        offsetSingleStop(
-            'JY 03',
-            { stationCode: 'H 16', strokeColor: 'stroke-hibiya', textAlignment: TextAlignment.ESE },
-            scaleToUnitX(ESE, OFFSET * 3)
-        )
-    );
+    dispatch(offsetSingleStop('JY 03', { stationCode: 'H 16', strokeColor: 'stroke-hibiya', hideText: true }, scale(ESE, OFFSET * 4)));
 
+    dispatch(offsetSingleStop('H 16', { stationCode: 'TX 01', textAlignment: TextAlignment.ESE }, scale(ESE, OFFSET)));
+
+    const { dx: tsukubaOffset } = scale(ESE, OFFSET);
     dispatch(
         offsetSingleStop(
             'H 16',
             { stationCode: 'S 08', strokeColor: 'stroke-shinjuku', textAlignment: TextAlignment.DOWN },
-            scaleToUnitX(S, OFFSET * 3)
+            scaleToUnitX(S, OFFSET * 3),
+            { dx: tsukubaOffset }
         )
     );
 };

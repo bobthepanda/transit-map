@@ -1,6 +1,26 @@
+import { useSelector } from 'react-redux';
+import { Coordinates } from '../../interfaces/Dimensions';
+import LinePath from '../../symbols/LinePath';
+import { selectIntersection, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { E, ESE, midPoint, NNE, NNW } from '../../utils/PathUtils';
+
 const TsukubaExpress = () => {
-    // return <SVGPath points={[TX_01, TX_02]} directions={[E, SE]} />;
-    return null;
+    const minowaTurn: Coordinates = useSelector((state) => {
+        const turnStart = selectIntersection(state, 'TX 03', NNE, 'H 20', ESE);
+        const turnEnd = selectStopLocation(state, 'TX 04');
+        return midPoint(turnStart, turnEnd);
+    });
+    return (
+        <LinePath
+            points={[
+                { location: 'TX 01', direction: NNE },
+                { location: 'TX 02', direction: E },
+                { location: 'TX 03', direction: NNE },
+                { location: minowaTurn, direction: NNW },
+                { location: 'TX 04', direction: NNE },
+            ]}
+        />
+    );
 };
 
 const Arakawa = () => {

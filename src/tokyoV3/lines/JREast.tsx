@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
 import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, NNE, NNW, offsetCoordinates, RADIUS, SSE, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitX, SSE, W } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -157,6 +157,22 @@ const Yokohama = () => {
     return null;
 };
 
+const JobanRapid = () => {
+    const nipporiTurn = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JJ 02'), scaleToUnitX(N, OFFSET * 3)));
+    return (
+        <LinePath
+            color="stroke-joban-rapid"
+            points={[
+                { location: 'JJ 01', direction: NNE },
+                { location: 'JJ 02', direction: NNW, radii: RADIUS + OFFSET * 2 },
+                { location: nipporiTurn, direction: NNE },
+                { location: 'JJ 03', direction: E },
+                { location: 'JJ 04', direction: NNE },
+            ]}
+        />
+    );
+};
+
 const JREast = () => {
     return (
         <g id="jr-east">
@@ -172,6 +188,7 @@ const JREast = () => {
             <ShonanShinjuku />
             <Nambu />
             <Yokohama />
+            <JobanRapid />
         </g>
     );
 };
