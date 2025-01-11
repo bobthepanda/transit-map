@@ -146,9 +146,16 @@ const addKuramae = (dispatch: AppDispatch, getState: () => RootState) => {
             [
                 {
                     stationCode: 'A 16',
-                    newStationData: { stationCode: 'A 17', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.WNW },
+                    newStationData: { stationCode: 'A 17', strokeColor: 'stroke-asakusa', hideText: true },
                 },
-                { stationCode: 'JB 20', newStationData: { stationCode: 'E 11', strokeColor: 'stroke-oedo', hideText: true } },
+                {
+                    stationCode: 'JB 20',
+                    newStationData: {
+                        stationCode: 'E 11',
+                        strokeColor: 'stroke-oedo',
+                        textAlignment: '-translate-x-[10pt] translate-y-vertical-double',
+                    },
+                },
             ],
             scaleToUnitY(NNE, dy + OFFSET)
         )
@@ -157,7 +164,7 @@ const addKuramae = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(
         addStopDefinition({
             stationCode: 'E 10',
-            location: offsetCoordinates(selectMidpoint(getState(), 'E 09', 'E 11'), scaleToUnitX(E, OFFSET * 2)),
+            location: offsetCoordinates(selectMidpoint(getState(), 'E 09', 'E 11'), scaleToUnitX(E, OFFSET * 2.875)),
             strokeColor: 'stroke-oedo',
             textAlignment: TextAlignment.UP,
         })

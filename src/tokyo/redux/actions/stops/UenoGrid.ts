@@ -1,8 +1,20 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { E, ESE, N, NNE, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, WNW } from '../../../../utils/PathUtils';
-import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
-import { fillInStops, offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
+import {
+    E,
+    ESE,
+    findIntersectionFromSlopes,
+    N,
+    NNE,
+    offsetCoordinates,
+    S,
+    scale,
+    scaleToUnitX,
+    scaleToUnitY,
+    WNW,
+} from '../../../../utils/PathUtils';
+import { addStopDefinition, selectIntersection, selectStopLocation, TextAlignment } from '../../slice/StopLocation';
+import { offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup, spaceOutStops } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
 
 const addUeno = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -56,12 +68,17 @@ const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
             scale(S, OFFSET)
         )
     );
-    dispatch(fillInStops('G', 16, 19, 'stroke-ginza', [TextAlignment.DOWN, TextAlignment.UP]));
+    dispatch(spaceOutStops('G', 16, 18, 'stroke-ginza', [TextAlignment.DOWN, TextAlignment.UP], scaleToUnitX(E, MAJOR_LINE * 0.5)));
 
+    const A_17_TX = offsetCoordinates(selectStopLocation(getState(), 'A 17'), scale(WNW, OFFSET));
+    const A_18_TX = selectStopLocation(getState(), 'A 18');
     dispatch(
         addStopDefinition({
             stationCode: 'TX 03',
-            location: offsetCoordinates(selectIntersection(getState(), 'A 17', NNE, 'A 18', N), scale(WNW, OFFSET)),
+            location: findIntersectionFromSlopes({
+                start: { location: A_17_TX, direction: NNE },
+                end: { location: A_18_TX, direction: N },
+            }),
             textAlignment: TextAlignment.ESE,
         })
     );
