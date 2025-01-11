@@ -1,6 +1,6 @@
 import { AppDispatch } from '../../store';
-import { addInsideYamanote } from './InsideYamanoteActions';
+import { addCentralGrid } from './CentralGridActions';
 
 export const addAllStops = (dispatch: AppDispatch) => {
-    dispatch(addInsideYamanote);
+    dispatch(addCentralGrid);
 };

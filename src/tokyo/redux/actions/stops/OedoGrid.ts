@@ -1,6 +1,21 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { E, ESE, N, NNE, NNW, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, SSE, SSW, WNW } from '../../../../utils/PathUtils';
+import {
+    E,
+    ESE,
+    N,
+    NNE,
+    NNW,
+    offsetCoordinates,
+    S,
+    scale,
+    scaleToUnitX,
+    scaleToUnitY,
+    SSE,
+    SSW,
+    W,
+    WNW,
+} from '../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, selectMidpoint, selectOffset, TextAlignment } from '../../slice/StopLocation';
 import { offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
@@ -67,6 +82,15 @@ const addEastGrid = (dispatch: AppDispatch, getState: () => RootState) => {
         })
     );
     dispatch(offsetSingleStop('E 13', { stationCode: 'S 10', strokeColor: 'stroke-shinjuku', hideText: true }, scale(S, OFFSET)));
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'C 13',
+            location: selectIntersection(getState(), 'JY 04', W, 'C 12', NNE),
+            strokeColor: 'stroke-chiyoda',
+            textAlignment: TextAlignment.WNW,
+        })
+    );
 };
 
 const addOkachimachi = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -110,7 +134,7 @@ const addOkachimachi = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'G 15',
             { stationCode: 'G 14', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WNW },
-            scaleToUnitY(SSW, MAJOR_LINE)
+            scaleToUnitY(SSW, MAJOR_LINE * 1.5)
         )
     );
 };

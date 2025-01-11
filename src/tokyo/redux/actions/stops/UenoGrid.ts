@@ -1,9 +1,9 @@
-import { MAJOR_LINE } from '../../../map/GridLines';
-import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, ESE, NNE, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY } from '../../../utils/PathUtils';
-import { addStopDefinition, selectIntersection, TextAlignment } from '../slice/StopLocation';
-import { fillInStops, offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../slice/StopLocationActions';
-import { AppDispatch, RootState } from '../store';
+import { MAJOR_LINE } from '../../../../map/GridLines';
+import { OFFSET } from '../../../../utils/CommonCoordinates';
+import { E, ESE, NNE, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY } from '../../../../utils/PathUtils';
+import { addStopDefinition, selectIntersection, TextAlignment } from '../../slice/StopLocation';
+import { fillInStops, offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
+import { AppDispatch, RootState } from '../../store';
 
 const addUeno = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(

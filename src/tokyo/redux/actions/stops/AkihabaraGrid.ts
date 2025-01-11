@@ -1,9 +1,9 @@
-import { MAJOR_LINE } from '../../../map/GridLines';
-import { OFFSET } from '../../../utils/CommonCoordinates';
-import { E, ESE, N, NNE, NNW, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, W } from '../../../utils/PathUtils';
-import { addStopDefinition, selectIntersection, selectMidpoint, TextAlignment } from '../slice/StopLocation';
-import { offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../slice/StopLocationActions';
-import { AppDispatch } from '../store';
+import { MAJOR_LINE } from '../../../../map/GridLines';
+import { OFFSET } from '../../../../utils/CommonCoordinates';
+import { E, ESE, N, NNE, NNW, S, W, offsetCoordinates, scale, scaleToUnitX, scaleToUnitY } from '../../../../utils/PathUtils';
+import { TextAlignment, addStopDefinition, selectIntersection, selectMidpoint } from '../../slice/StopLocation';
+import { offsetEquallySpacedStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
+import { AppDispatch } from '../../store';
 
 const addAkihabara = (dispatch: AppDispatch) => {
     dispatch(

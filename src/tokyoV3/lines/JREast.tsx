@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
 import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, NNE, NNW, offsetCoordinates, SSE, W } from '../../utils/PathUtils';
+import { E, NNE, NNW, offsetCoordinates, RADIUS, SSE, W } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -16,6 +16,9 @@ const Yamanote = () => {
                 { location: 'JY 03', direction: NNE },
                 { location: 'JY 04', direction: NNE },
                 { location: 'JY 05', direction: NNE },
+                { location: 'JY 06', direction: NNW },
+                { location: 'JY 07', direction: NNW },
+                { location: 'JY 08', direction: NNW },
             ]}
         />
     );
@@ -49,6 +52,9 @@ const KeihinTohoku = () => {
                 { location: 'JK 28', direction: NNE },
                 { location: 'JK 29', direction: NNE },
                 { location: 'JK 30', direction: NNE },
+                { location: 'JK 31', direction: NNW, radii: RADIUS + OFFSET },
+                { location: 'JK 32', direction: NNW },
+                { location: 'JK 33', direction: NNW },
             ]}
         />
     );
