@@ -1,5 +1,6 @@
 import { RelativeCoordinates } from '../../../interfaces/Dimensions';
 import { offsetCoordinates, scale } from '../../../utils/PathUtils';
+import { generateStationCode } from '../../../utils/StopUtils';
 import { AppDispatch, RootState } from '../store';
 import { addStopDefinition, selectOffset, selectStopLocation, StopDefinition, StopMetadata } from './StopLocation';
 
@@ -92,23 +93,37 @@ export const offsetStopGroup = (gridOffsetStops: OffsetStopData[], ...offsets: R
  * @param offsets
  * @returns
  */
-export const spaceOutStops = (
-    stationPrefix: string,
-    startCount: number,
-    endCount: number,
-    strokeColor?: string,
-    textAlignments?: string[],
-    ...offsets: RelativeCoordinates[]
-) => {
+export const spaceOutStops = ({
+    stationPrefix,
+    startCount,
+    endCount,
+    strokeColor,
+    textAlignments,
+    offsets = [],
+}: {
+    stationPrefix: string;
+    startCount: number;
+    endCount: number;
+    strokeColor?: string;
+    textAlignments?: string[];
+    offsets?: RelativeCoordinates[];
+}) => {
     return (dispatch: AppDispatch) => {
         const newStopDefinitions: StopMetadata[] = [];
 
-        for (let i = startCount + 1; i <= endCount; i += 1) {
-            const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
-            newStopDefinitions.push({ stationCode: `${stationPrefix} ${i}`, strokeColor, textAlignment });
+        if (startCount < endCount) {
+            for (let i = startCount + 1; i <= endCount; i += 1) {
+                const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
+                newStopDefinitions.push({ stationCode: generateStationCode(stationPrefix, i), strokeColor, textAlignment });
+            }
+        } else {
+            for (let i = startCount - 1; i >= endCount; i -= 1) {
+                const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
+                newStopDefinitions.push({ stationCode: generateStationCode(stationPrefix, i), strokeColor, textAlignment });
+            }
         }
 
-        dispatch(offsetEquallySpacedStops(`${stationPrefix} ${startCount}`, newStopDefinitions, ...offsets));
+        dispatch(offsetEquallySpacedStops(generateStationCode(stationPrefix, startCount), newStopDefinitions, ...offsets));
     };
 };
 
@@ -122,29 +137,35 @@ export const spaceOutStops = (
  * @param textAlignments
  * @returns
  */
-export const fillInStops = (
-    stationPrefix: string,
-    startCount: number,
-    endCount: number,
-    strokeColor?: string,
-    textAlignments?: string[]
-) => {
+export const fillInStops = ({
+    stationPrefix,
+    startCount,
+    endCount,
+    strokeColor,
+    textAlignments,
+}: {
+    stationPrefix: string;
+    startCount: number;
+    endCount: number;
+    strokeColor?: string;
+    textAlignments?: string[];
+}) => {
     if (endCount < startCount) {
-        return fillInStops(stationPrefix, endCount, startCount, strokeColor, textAlignments);
+        return fillInStops({ stationPrefix, startCount: endCount, endCount: startCount, strokeColor, textAlignments });
     }
 
     return (dispatch: AppDispatch, getState: () => RootState) => {
         const offset: RelativeCoordinates = selectOffset(getState(), `${stationPrefix} ${endCount}`, `${stationPrefix} ${startCount}`);
         const numberOfStopsFilledIn = endCount - startCount - 1;
         dispatch(
-            spaceOutStops(
+            spaceOutStops({
                 stationPrefix,
                 startCount,
-                endCount - 1,
+                endCount: endCount - 1,
                 strokeColor,
                 textAlignments,
-                scale(offset, 1 / (numberOfStopsFilledIn + 1))
-            )
+                offsets: [scale(offset, 1 / (numberOfStopsFilledIn + 1))],
+            })
         );
     };
 };

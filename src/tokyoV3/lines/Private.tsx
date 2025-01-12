@@ -1,3 +1,6 @@
+import LinePath from '../../symbols/LinePath';
+import { E, NNE, NNW } from '../../utils/PathUtils';
+
 const Keikyu = () => {
     // return (
     //     <SVGPath
@@ -72,6 +75,32 @@ const Setagaya = () => {
     return null;
 };
 
+const KeiseiMain = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'KS 01', direction: NNE },
+                { location: 'KS 02', direction: NNW },
+                { location: 'KS 03', direction: NNE },
+                { location: 'KS 04', direction: E },
+                { location: 'KS 05', direction: E },
+                { location: 'KS 06', direction: E },
+            ]}
+        />
+    );
+};
+
+const TobuSkytree = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'TS 08', direction: NNW },
+                { location: 'TS 09', direction: NNW },
+            ]}
+        />
+    );
+};
+
 const Private = () => {
     return (
         <>
@@ -88,6 +117,8 @@ const Private = () => {
             <Ikegami />
             <Tamagawa />
             <Setagaya />
+            <KeiseiMain />
+            <TobuSkytree />
         </>
     );
 };

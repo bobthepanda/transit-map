@@ -168,6 +168,7 @@ const JobanRapid = () => {
                 { location: nipporiTurn, direction: NNE },
                 { location: 'JJ 03', direction: E },
                 { location: 'JJ 04', direction: NNE },
+                { location: 'JJ 05', direction: NNE },
             ]}
         />
     );

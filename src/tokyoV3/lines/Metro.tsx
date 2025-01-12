@@ -106,6 +106,8 @@ const Chiyoda = () => {
                 { location: 'C 14', direction: NNW },
                 { location: 'C 15', direction: NNE },
                 { location: 'C 16', direction: NNE },
+                { location: 'C 17', direction: E },
+                { location: 'C 18', direction: NNE },
             ]}
         />
     );
@@ -132,6 +134,7 @@ const Hibiya = () => {
                 { location: 'H 19', direction: NNE },
                 { location: 'H 20', direction: NNE },
                 { location: 'H 21', direction: NNE },
+                { location: 'H 22', direction: NNE },
             ]}
         />
     );

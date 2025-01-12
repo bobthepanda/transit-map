@@ -1,6 +1,6 @@
 import { MAJOR_LINE } from '../../../../map/GridLines';
 import { OFFSET } from '../../../../utils/CommonCoordinates';
-import { ENE, ESE, N, NNE, NNW, scale, scaleToUnitY, SSW, W, WNW } from '../../../../utils/PathUtils';
+import { ENE, ESE, N, NNE, NNW, offsetCoordinates, scale, scaleToUnitX, scaleToUnitY, SSW, W, WNW, WSW } from '../../../../utils/PathUtils';
 import { addStopDefinition, selectMidpoint, selectOffset, TextAlignment } from '../../slice/StopLocation';
 import { fillInStops, offsetSingleStop, offsetStopGroup } from '../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../store';
@@ -22,7 +22,7 @@ const addNishiNippori = (dispatch: AppDispatch) => {
             [
                 {
                     stationCode: 'JY 06',
-                    newStationData: { stationCode: 'JY 07', strokeColor: 'stroke-yamanote', textAlignment: TextAlignment.WSW },
+                    newStationData: { stationCode: 'JY 07', strokeColor: 'stroke-yamanote', hideText: true },
                 },
                 {
                     stationCode: 'JY 07',
@@ -48,6 +48,7 @@ const addNishiNippori = (dispatch: AppDispatch) => {
         )
     );
     dispatch(offsetSingleStop('JK 32', { stationCode: 'JJ 02', strokeColor: 'stroke-joban-rapid', hideText: true }, scale(ENE, OFFSET)));
+    dispatch(offsetSingleStop('JY 07', { stationCode: 'KS 02', textAlignment: TextAlignment.WSW }, scale(WSW, OFFSET)));
 };
 
 const fillInChiyoda = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -83,13 +84,15 @@ const addMinamiSenju = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(
         addStopDefinition({
             stationCode: 'JJ 03',
-            location: selectMidpoint(getState(), 'JJ 02', 'JJ 04'),
+            location: offsetCoordinates(selectMidpoint(getState(), 'JJ 02', 'JJ 04'), scaleToUnitX(W, MAJOR_LINE)),
             strokeColor: 'stroke-joban-rapid',
             textAlignment: TextAlignment.UP,
         })
     );
 
-    dispatch(fillInStops('H', 18, 21, 'stroke-hibiya', [TextAlignment.ESE]));
+    dispatch(
+        fillInStops({ stationPrefix: 'H', startCount: 18, endCount: 21, strokeColor: 'stroke-hibiya', textAlignments: [TextAlignment.ESE] })
+    );
 };
 
 export const addNipporiGrid = (dispatch: AppDispatch) => {

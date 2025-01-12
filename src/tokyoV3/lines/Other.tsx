@@ -18,21 +18,25 @@ const TsukubaExpress = () => {
                 { location: 'TX 03', direction: NNE },
                 { location: minowaTurn, direction: NNW },
                 { location: 'TX 04', direction: NNE },
+                { location: 'TX 05', direction: NNE },
             ]}
         />
     );
 };
 
 const Arakawa = () => {
-    // return (
-    //     <SVGPath
-    //         points={[SA_16, SA_25, SA_26, SA_27, SA_30]}
-    //         strokeWidth="stroke-[4pt]"
-    //         directions={[W, SW, W, SW, SE]}
-    //         radii={{ 1: 20, 2: 20, 3: 20, 4: 20, 5: 20 }}
-    //     />
-    // );
-    return null;
+    return (
+        <LinePath
+            points={[
+                { location: 'SA 01', direction: NNW },
+                { location: 'SA 02', direction: NNW },
+                { location: 'SA 03', direction: NNW },
+                { location: 'SA 04', direction: NNW },
+                { location: 'SA 05', direction: NNW },
+                { location: 'SA 06', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const Rinkai = () => {

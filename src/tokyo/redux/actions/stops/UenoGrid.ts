@@ -49,6 +49,7 @@ const addUeno = (dispatch: AppDispatch, getState: () => RootState) => {
         })
     );
     dispatch(offsetSingleStop('H 18', { stationCode: 'G 16', strokeColor: 'stroke-ginza', hideText: true }, scale(S, OFFSET)));
+    dispatch(offsetSingleStop('JY 05', { stationCode: 'KS 01', textAlignment: TextAlignment.WNW }, scaleToUnitX(WNW, OFFSET * 3)));
 };
 
 const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -68,8 +69,17 @@ const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
             scale(S, OFFSET)
         )
     );
-    dispatch(spaceOutStops('G', 16, 18, 'stroke-ginza', [TextAlignment.DOWN, TextAlignment.UP], scaleToUnitX(E, MAJOR_LINE * 0.5)));
 
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'G',
+            startCount: 16,
+            endCount: 18,
+            strokeColor: 'stroke-ginza',
+            textAlignments: [TextAlignment.DOWN, TextAlignment.UP],
+            offsets: [scaleToUnitX(E, MAJOR_LINE * 0.5)],
+        })
+    );
     const A_17_TX = offsetCoordinates(selectStopLocation(getState(), 'A 17'), scale(WNW, OFFSET));
     const A_18_TX = selectStopLocation(getState(), 'A 18');
     dispatch(

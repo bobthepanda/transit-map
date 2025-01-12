@@ -2,6 +2,7 @@ import { AppDispatch } from '../../store';
 import { addAkihabaraGrid } from './AkihabaraGrid';
 import { addGinzaGrid } from './GinzaGrid';
 import { addKandaGrid } from './KandaGrid';
+import { addKitaSenjuGrid } from './KitaSenjuGrid';
 import { addKyobashiGrid } from './KyobashiGrid';
 import { addNipporiGrid } from './NipporiGrid';
 import { addOedoGrid } from './OedoGrid';
@@ -23,4 +24,5 @@ export const addCentralGrid = (dispatch: AppDispatch) => {
     dispatch(addOedoGrid);
     dispatch(addUenoGrid);
     dispatch(addNipporiGrid);
+    dispatch(addKitaSenjuGrid);
 };
