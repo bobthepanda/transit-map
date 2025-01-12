@@ -1,5 +1,6 @@
 import LinePath from '../../symbols/LinePath';
-import { E, NNE, NNW } from '../../utils/PathUtils';
+import { OFFSET } from '../../utils/CommonCoordinates';
+import { E, NNE, NNW, RADIUS, SSE } from '../../utils/PathUtils';
 
 const Keikyu = () => {
     // return (
@@ -85,6 +86,25 @@ const KeiseiMain = () => {
                 { location: 'KS 04', direction: E },
                 { location: 'KS 05', direction: E },
                 { location: 'KS 06', direction: E },
+                { location: 'KS 07', direction: E },
+                { location: 'KS 08', direction: E },
+                { location: 'KS 09', direction: E },
+                { location: 'KS 10', direction: E },
+                { location: 'KS 11', direction: SSE, radii: RADIUS + OFFSET },
+                { location: 'KS 12', direction: SSE },
+                { location: 'KS 13', direction: SSE },
+                { location: 'KS 14', direction: SSE },
+                { location: 'KS 15', direction: SSE },
+                { location: 'KS 16', direction: SSE },
+                { location: 'KS 17', direction: SSE },
+                { location: 'KS 18', direction: SSE },
+                { location: 'KS 19', direction: SSE },
+                { location: 'KS 20', direction: SSE },
+                { location: 'KS 21', direction: SSE },
+                { location: 'KS 22', direction: SSE },
+                { location: 'KS 23', direction: SSE },
+                { location: 'KS 24', direction: SSE },
+                { location: 'KS 25', direction: SSE },
             ]}
         />
     );

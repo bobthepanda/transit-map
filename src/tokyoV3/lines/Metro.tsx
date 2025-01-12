@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW } from '../../utils/PathUtils';
 
 const Ginza = () => {
@@ -70,6 +70,8 @@ const Hanzomon = () => {
                 { location: 'Z 09', direction: E },
                 { location: 'Z 10', direction: E },
                 { location: 'Z 11', direction: E },
+                { location: 'Z 12', direction: NNE },
+                { location: 'Z 13', direction: NNE },
             ]}
         />
     );
@@ -141,6 +143,7 @@ const Hibiya = () => {
 };
 
 const Tozai = () => {
+    const chibaTurn = useSelector((state) => selectMidpoint(state, 'T 13', 'T 23'));
     return (
         <LinePath
             color="stroke-tozai"
@@ -149,6 +152,9 @@ const Tozai = () => {
                 { location: 'T 10', direction: SSE },
                 { location: 'T 11', direction: SSE },
                 { location: 'T 12', direction: SSE },
+                { location: 'T 13', direction: E },
+                { location: chibaTurn, direction: NNE },
+                { location: 'T 23', direction: E },
             ]}
         />
     );
@@ -156,6 +162,7 @@ const Tozai = () => {
 };
 
 const Shinjuku = () => {
+    const chibaTurn = useSelector((state) => selectMidpoint(state, 'S 13', 'S 20'));
     return (
         <LinePath
             color="stroke-shinjuku"
@@ -165,6 +172,11 @@ const Shinjuku = () => {
                 { location: 'S 08', direction: E },
                 { location: 'S 09', direction: SSE },
                 { location: 'S 10', direction: E },
+                { location: 'S 11', direction: E },
+                { location: 'S 12', direction: E },
+                { location: 'S 13', direction: E },
+                { location: chibaTurn, direction: NNE },
+                { location: 'S 20', direction: E },
             ]}
         />
     );

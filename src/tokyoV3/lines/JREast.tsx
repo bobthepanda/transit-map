@@ -1,8 +1,12 @@
 import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
-import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitX, SSE, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, scaleToUnitY, SSE, W } from '../../utils/PathUtils';
+
+const useKoiwaCorner = () => {
+    return useSelector((state) => offsetCoordinates(selectMidpoint(state, 'JB 26', 'JB 25'), scaleToUnitY(N, OFFSET * 3)));
+};
 
 const Yamanote = () => {
     return (
@@ -34,6 +38,16 @@ const ChuoSobu = () => {
                 { location: 'JB 19', direction: E },
                 { location: 'JB 20', direction: E },
                 { location: 'JB 21', direction: E },
+                { location: 'JB 22', direction: NNE },
+                { location: 'JB 23', direction: NNE },
+                { location: 'JB 24', direction: NNE },
+                { location: 'JB 25', direction: NNE },
+                { location: useKoiwaCorner(), direction: E },
+                { location: 'JB 26', direction: SSE },
+                { location: 'JB 27', direction: SSE },
+                { location: 'JB 28', direction: SSE },
+                { location: 'JB 29', direction: SSE },
+                { location: 'JB 30', direction: SSE },
             ]}
         />
     );
@@ -77,6 +91,7 @@ const Tokaido = () => {
 // const JS_SK_CORNER = offset(JS_14, scaleToUnitX(SE, OFFSET * 2), scale(S, OFFSET * 2));
 
 const SobuRapid = () => {
+    const ryogokuOffset = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JB 21'), scale(S, OFFSET)));
     return (
         <LinePath
             color="stroke-sobu-rapid"
@@ -85,6 +100,11 @@ const SobuRapid = () => {
                 { location: 'JO 19', direction: NNE },
                 { location: 'JO 20', direction: E },
                 { location: 'JO 21', direction: NNE },
+                { location: ryogokuOffset, direction: E },
+                { location: 'JO 22', direction: NNE },
+                { location: 'JO 23', direction: NNE },
+                { location: offsetCoordinates(useKoiwaCorner(), scale(NNE, OFFSET)), direction: E },
+                { location: 'JO 24', direction: SSE },
             ]}
         />
     );
@@ -126,6 +146,7 @@ const Musashino = () => {
                 { location: 'JE 01 M', direction: SSE },
                 { location: 'JE 02 M', direction: SSE },
                 { location: 'JE 03 M', direction: SSE },
+                { location: 'JM 10', direction: NNE },
             ]}
         />
     );
