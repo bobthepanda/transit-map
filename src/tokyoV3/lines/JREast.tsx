@@ -66,7 +66,7 @@ const KeihinTohoku = () => {
                 { location: 'JK 28', direction: NNE },
                 { location: 'JK 29', direction: NNE },
                 { location: 'JK 30', direction: NNE },
-                { location: 'JK 31', direction: NNW, radii: RADIUS + OFFSET },
+                { location: 'JK 31', direction: NNW, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JK 32', direction: NNW },
                 { location: 'JK 33', direction: NNW },
             ]}
@@ -101,7 +101,7 @@ const SobuRapid = () => {
                 { location: 'JO 20', direction: E },
                 { location: 'JO 21', direction: NNE },
                 { location: ryogokuOffset, direction: E },
-                { location: 'JO 22', direction: NNE },
+                { location: 'JO 22', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JO 23', direction: NNE },
                 { location: offsetCoordinates(useKoiwaCorner(), scale(NNE, OFFSET)), direction: E },
                 { location: 'JO 24', direction: SSE },
@@ -133,6 +133,12 @@ const Keiyo = () => {
                 { location: 'JE 01', direction: SSE },
                 { location: 'JE 02', direction: SSE },
                 { location: 'JE 03', direction: SSE },
+                { location: 'JE 04', direction: SSE },
+                { location: 'JE 05', direction: E, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: 'JE 06', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: 'JE 07', direction: NNE },
+                { location: 'JE 08', direction: NNE },
+                { location: 'JE 09', direction: NNE },
             ]}
         />
     );
@@ -146,6 +152,8 @@ const Musashino = () => {
                 { location: 'JE 01 M', direction: SSE },
                 { location: 'JE 02 M', direction: SSE },
                 { location: 'JE 03 M', direction: SSE },
+                { location: 'JE 04 M', direction: SSE },
+                { location: 'JE 05 M', direction: E },
                 { location: 'JM 10', direction: NNE },
             ]}
         />
@@ -185,7 +193,7 @@ const JobanRapid = () => {
             color="stroke-joban-rapid"
             points={[
                 { location: 'JJ 01', direction: NNE },
-                { location: 'JJ 02', direction: NNW, radii: RADIUS + OFFSET * 2 },
+                { location: 'JJ 02', direction: NNW, radii: RADIUS + (OFFSET * 2 * 2) / 3 },
                 { location: nipporiTurn, direction: NNE },
                 { location: 'JJ 03', direction: E },
                 { location: 'JJ 04', direction: NNE },

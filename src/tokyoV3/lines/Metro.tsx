@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW } from '../../utils/PathUtils';
 
 const Ginza = () => {
@@ -143,7 +143,6 @@ const Hibiya = () => {
 };
 
 const Tozai = () => {
-    const chibaTurn = useSelector((state) => selectMidpoint(state, 'T 13', 'T 23'));
     return (
         <LinePath
             color="stroke-tozai"
@@ -153,7 +152,15 @@ const Tozai = () => {
                 { location: 'T 11', direction: SSE },
                 { location: 'T 12', direction: SSE },
                 { location: 'T 13', direction: E },
-                { location: chibaTurn, direction: NNE },
+                { location: 'T 14', direction: E },
+                { location: 'T 15', direction: NNE },
+                { location: 'T 16', direction: NNE },
+                { location: 'T 17', direction: NNE },
+                { location: 'T 18', direction: NNE },
+                { location: 'T 19', direction: NNE },
+                { location: 'T 20', direction: NNE },
+                { location: 'T 21', direction: NNE },
+                { location: 'T 22', direction: E },
                 { location: 'T 23', direction: E },
             ]}
         />
@@ -162,7 +169,6 @@ const Tozai = () => {
 };
 
 const Shinjuku = () => {
-    const chibaTurn = useSelector((state) => selectMidpoint(state, 'S 13', 'S 20'));
     return (
         <LinePath
             color="stroke-shinjuku"
@@ -175,7 +181,12 @@ const Shinjuku = () => {
                 { location: 'S 11', direction: E },
                 { location: 'S 12', direction: E },
                 { location: 'S 13', direction: E },
-                { location: chibaTurn, direction: NNE },
+                { location: 'S 14', direction: NNE },
+                { location: 'S 15', direction: NNE },
+                { location: 'S 16', direction: NNE },
+                { location: 'S 17', direction: NNE },
+                { location: 'S 18', direction: NNE },
+                { location: 'S 29', direction: E },
                 { location: 'S 20', direction: E },
             ]}
         />

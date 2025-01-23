@@ -90,7 +90,7 @@ const KeiseiMain = () => {
                 { location: 'KS 08', direction: E },
                 { location: 'KS 09', direction: E },
                 { location: 'KS 10', direction: E },
-                { location: 'KS 11', direction: SSE, radii: RADIUS + OFFSET },
+                { location: 'KS 11', direction: SSE, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'KS 12', direction: SSE },
                 { location: 'KS 13', direction: SSE },
                 { location: 'KS 14', direction: SSE },
