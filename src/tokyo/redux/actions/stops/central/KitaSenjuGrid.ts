@@ -151,7 +151,7 @@ const addChuoSobuToKoiwa = (dispatch: AppDispatch) => {
         offsetSingleStop(
             'JB 26',
             { stationCode: 'JB 25', strokeColor: 'stroke-chuo-sobu', textAlignment: TextAlignment.WNW },
-            scaleToUnitX(W, MAJOR_LINE * 1.5),
+            scaleToUnitX(W, OFFSET * 4),
             scaleToUnitY(SSW, MAJOR_LINE * 0.5)
         )
     );
@@ -163,6 +163,7 @@ const addChuoSobuToKoiwa = (dispatch: AppDispatch) => {
             strokeColor: 'stroke-chuo-sobu',
             textAlignments: [TextAlignment.WNW],
             offsets: [scaleToUnitY(SSW, MAJOR_LINE * 2)],
+            hideTexts: ['JB 23'],
         })
     );
     dispatch(

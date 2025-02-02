@@ -11,6 +11,9 @@ import {
     scale,
     scaleToUnitX,
     scaleToUnitY,
+    SSE,
+    SSW,
+    W,
     WNW,
 } from '../../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, selectStopLocation, TextAlignment } from '../../../slice/StopLocation';
@@ -66,9 +69,11 @@ const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'G 19',
             { stationCode: 'A 18', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.DOWN },
-            scale(S, OFFSET)
+            scale(S, OFFSET),
+            scale(E, OFFSET * 0.5)
         )
     );
+    dispatch(offsetSingleStop('G 19', { stationCode: 'TS 01', textAlignment: TextAlignment.DOWN, hideText: true }, scale(E, OFFSET)));
 
     dispatch(
         spaceOutStops({
@@ -94,7 +99,94 @@ const addAsakusa = (dispatch: AppDispatch, getState: () => RootState) => {
     );
 };
 
+const addSkyTree = (dispatch: AppDispatch) => {
+    dispatch(
+        offsetSingleStop(
+            'TS 01',
+            { stationCode: 'TS 02', textAlignment: TextAlignment.WNW },
+            scaleToUnitX(E, OFFSET * 2),
+            scaleToUnitY(NNE, MAJOR_LINE)
+        )
+    );
+
+    dispatch(offsetSingleStop('TS 02', { stationCode: 'KS 45', hideText: true }, scaleToUnitX(E, MAJOR_LINE * 0.5)));
+    dispatch(offsetSingleStop('KS 45', { stationCode: 'TS 03', hideText: true }, scale(E, OFFSET)));
+    dispatch(
+        offsetSingleStop(
+            'TS 03',
+            {
+                stationCode: 'Z 14',
+                strokeColor: 'stroke-hanzomon',
+                textAlignment: '[text-anchor:middle] translate-y-vertical-double -translate-x-[18pt]',
+            },
+            scale(SSE, OFFSET)
+        )
+    );
+    dispatch(offsetSingleStop('KS 45', { stationCode: 'A 20', strokeColor: 'stroke-asakusa', hideText: true }, scale(SSW, OFFSET)));
+    dispatch(
+        offsetSingleStop(
+            'A 20',
+            { stationCode: 'A 19', strokeColor: 'stroke-asakusa', textAlignment: TextAlignment.ESE },
+            scaleToUnitY(SSW, OFFSET * 4)
+        )
+    );
+};
+
+const addKeiseiOshiage = (dispatch: AppDispatch) => {
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'KS',
+            startCount: 45,
+            endCount: 49,
+            textAlignments: [TextAlignment.ESE],
+            offsets: [scaleToUnitY(NNE, MAJOR_LINE)],
+        })
+    );
+};
+
+const addTobuSkyTree = (dispatch: AppDispatch) => {
+    dispatch(offsetSingleStop('TS 02', { stationCode: 'TS 04', textAlignment: TextAlignment.WNW }, scaleToUnitY(NNE, MAJOR_LINE)));
+
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'TS',
+            startCount: 4,
+            endCount: 6,
+            textAlignments: [TextAlignment.WNW],
+            offsets: [scaleToUnitY(NNE, MAJOR_LINE)],
+        })
+    );
+
+    dispatch(offsetSingleStop('TS 08', { stationCode: 'TS 07', textAlignment: TextAlignment.WSW }, scaleToUnitY(SSE, OFFSET * 4)));
+};
+
+const addTobuKameido = (dispatch: AppDispatch) => {
+    dispatch(
+        offsetSingleStop(
+            'TS 04',
+            { stationCode: 'TS 04 KAMEIDO', displayStationCode: 'TS 04', textAlignment: TextAlignment.WNW, hideText: true },
+            scale(E, OFFSET)
+        )
+    );
+    dispatch(offsetSingleStop('JB 23', { stationCode: 'TS 44', textAlignment: TextAlignment.UP }, scale(W, OFFSET)));
+    dispatch(offsetSingleStop('TS 04 KAMEIDO', { stationCode: 'TS 41', textAlignment: TextAlignment.ENE }, scaleToUnitY(SSE, OFFSET * 3)));
+
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'TS',
+            startCount: 41,
+            endCount: 43,
+            textAlignments: [TextAlignment.ENE],
+            offsets: [scaleToUnitY(SSE, OFFSET * 2)],
+        })
+    );
+};
+
 export const addUenoGrid = (dispatch: AppDispatch) => {
     dispatch(addUeno);
     dispatch(addAsakusa);
+    dispatch(addSkyTree);
+    dispatch(addKeiseiOshiage);
+    dispatch(addTobuSkyTree);
+    dispatch(addTobuKameido);
 };

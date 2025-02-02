@@ -72,6 +72,7 @@ const Hanzomon = () => {
                 { location: 'Z 11', direction: E },
                 { location: 'Z 12', direction: NNE },
                 { location: 'Z 13', direction: NNE },
+                { location: 'Z 14', direction: NNW },
             ]}
         />
     );
@@ -224,8 +225,8 @@ const Asakusa = () => {
                 { location: 'A 16', direction: NNE },
                 { location: 'A 17', direction: NNE },
                 { location: 'A 18', direction: E },
-                { location: 'A 19', direction: E },
-                { location: 'A 20', direction: E },
+                { location: 'A 19', direction: NNE },
+                { location: 'A 20', direction: NNE },
             ]}
         />
     );

@@ -1,12 +1,8 @@
 import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
-import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, scaleToUnitY, SSE, W } from '../../utils/PathUtils';
-
-const useKoiwaCorner = () => {
-    return useSelector((state) => offsetCoordinates(selectMidpoint(state, 'JB 26', 'JB 25'), scaleToUnitY(N, OFFSET * 3)));
-};
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, SSE, W } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     return (
@@ -42,8 +38,7 @@ const ChuoSobu = () => {
                 { location: 'JB 23', direction: NNE },
                 { location: 'JB 24', direction: NNE },
                 { location: 'JB 25', direction: NNE },
-                { location: useKoiwaCorner(), direction: E },
-                { location: 'JB 26', direction: SSE },
+                { location: 'JB 26', direction: SSE, radii: RADIUS + OFFSET * 2 },
                 { location: 'JB 27', direction: SSE },
                 { location: 'JB 28', direction: SSE },
                 { location: 'JB 29', direction: SSE },
@@ -88,8 +83,6 @@ const Tokaido = () => {
     );
 };
 
-// const JS_SK_CORNER = offset(JS_14, scaleToUnitX(SE, OFFSET * 2), scale(S, OFFSET * 2));
-
 const SobuRapid = () => {
     const ryogokuOffset = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JB 21'), scale(S, OFFSET)));
     return (
@@ -103,8 +96,7 @@ const SobuRapid = () => {
                 { location: ryogokuOffset, direction: E },
                 { location: 'JO 22', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JO 23', direction: NNE },
-                { location: offsetCoordinates(useKoiwaCorner(), scale(NNE, OFFSET)), direction: E },
-                { location: 'JO 24', direction: SSE },
+                { location: 'JO 24', direction: SSE, radii: RADIUS + OFFSET * 2 },
             ]}
         />
     );

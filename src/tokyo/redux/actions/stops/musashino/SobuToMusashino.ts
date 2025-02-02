@@ -98,7 +98,7 @@ const fillInShinjukuToMusashino = (dispatch: AppDispatch, getState: () => RootSt
         offsetSingleStop(
             'S 20',
             { stationCode: 'S 19', strokeColor: 'stroke-shinjuku', textAlignment: TextAlignment.UP },
-            scaleToUnitX(W, MAJOR_LINE * 1.5)
+            scaleToUnitX(W, MAJOR_LINE + OFFSET * 2)
         )
     );
 
@@ -128,8 +128,8 @@ const fillInTozaiToMusashino = (dispatch: AppDispatch, getState: () => RootState
     dispatch(
         offsetSingleStop(
             'T 23',
-            { stationCode: 'T 22', strokeColor: 'stroke-tozai', textAlignment: TextAlignment.UP },
-            scaleToUnitX(W, MAJOR_LINE * 1.5)
+            { stationCode: 'T 22', strokeColor: 'stroke-tozai', textAlignment: TextAlignment.DOWN },
+            scaleToUnitX(W, MAJOR_LINE + OFFSET * 2)
         )
     );
 

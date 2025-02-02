@@ -112,10 +112,42 @@ const KeiseiMain = () => {
 
 const TobuSkytree = () => {
     return (
+        <>
+            <LinePath
+                points={[
+                    { location: 'TS 01', direction: E },
+                    { location: 'TS 02', direction: NNE },
+                    { location: 'TS 08', direction: NNW },
+                    { location: 'TS 09', direction: NNW },
+                ]}
+            />
+            <LinePath
+                points={[
+                    { location: 'TS 03', direction: NNW },
+                    { location: 'TS 04', direction: NNE },
+                ]}
+            />
+        </>
+    );
+};
+
+const KeiseiOshiage = () => {
+    return (
         <LinePath
             points={[
-                { location: 'TS 08', direction: NNW },
-                { location: 'TS 09', direction: NNW },
+                { location: 'KS 45', direction: NNE },
+                { location: 'KS 09', direction: E },
+            ]}
+        />
+    );
+};
+
+const TobuKameido = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'TS 04 KAMEIDO', direction: SSE },
+                { location: 'TS 44', direction: E },
             ]}
         />
     );
@@ -139,6 +171,8 @@ const Private = () => {
             <Setagaya />
             <KeiseiMain />
             <TobuSkytree />
+            <KeiseiOshiage />
+            <TobuKameido />
         </>
     );
 };

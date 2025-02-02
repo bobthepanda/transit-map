@@ -100,6 +100,7 @@ export const spaceOutStops = ({
     strokeColor,
     textAlignments,
     offsets = [],
+    hideTexts = [],
 }: {
     stationPrefix: string;
     startCount: number;
@@ -107,19 +108,32 @@ export const spaceOutStops = ({
     strokeColor?: string;
     textAlignments?: string[];
     offsets?: RelativeCoordinates[];
+    hideTexts?: string[];
 }) => {
     return (dispatch: AppDispatch) => {
         const newStopDefinitions: StopMetadata[] = [];
 
         if (startCount < endCount) {
             for (let i = startCount + 1; i <= endCount; i += 1) {
+                const stationCode = generateStationCode(stationPrefix, i);
                 const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
-                newStopDefinitions.push({ stationCode: generateStationCode(stationPrefix, i), strokeColor, textAlignment });
+                newStopDefinitions.push({
+                    stationCode,
+                    strokeColor,
+                    textAlignment,
+                    hideText: hideTexts.includes(stationCode),
+                });
             }
         } else {
             for (let i = startCount - 1; i >= endCount; i -= 1) {
+                const stationCode = generateStationCode(stationPrefix, i);
                 const textAlignment = textAlignments?.[(i - 1) % textAlignments.length];
-                newStopDefinitions.push({ stationCode: generateStationCode(stationPrefix, i), strokeColor, textAlignment });
+                newStopDefinitions.push({
+                    stationCode,
+                    strokeColor,
+                    textAlignment,
+                    hideText: hideTexts.includes(stationCode),
+                });
             }
         }
 
