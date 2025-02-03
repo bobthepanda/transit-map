@@ -19,6 +19,7 @@ const TsukubaExpress = () => {
                 { location: minowaTurn, direction: NNW },
                 { location: 'TX 04', direction: NNE },
                 { location: 'TX 05', direction: NNE },
+                { location: 'TX 10', direction: NNE },
             ]}
         />
     );

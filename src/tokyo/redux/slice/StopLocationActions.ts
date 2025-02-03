@@ -157,19 +157,25 @@ export const fillInStops = ({
     endCount,
     strokeColor,
     textAlignments,
+    hideTexts,
 }: {
     stationPrefix: string;
     startCount: number;
     endCount: number;
     strokeColor?: string;
     textAlignments?: string[];
+    hideTexts?: string[];
 }) => {
     if (endCount < startCount) {
-        return fillInStops({ stationPrefix, startCount: endCount, endCount: startCount, strokeColor, textAlignments });
+        return fillInStops({ stationPrefix, startCount: endCount, endCount: startCount, strokeColor, textAlignments, hideTexts });
     }
 
     return (dispatch: AppDispatch, getState: () => RootState) => {
-        const offset: RelativeCoordinates = selectOffset(getState(), `${stationPrefix} ${endCount}`, `${stationPrefix} ${startCount}`);
+        const offset: RelativeCoordinates = selectOffset(
+            getState(),
+            generateStationCode(stationPrefix, endCount),
+            generateStationCode(stationPrefix, startCount)
+        );
         const numberOfStopsFilledIn = endCount - startCount - 1;
         dispatch(
             spaceOutStops({
@@ -179,6 +185,7 @@ export const fillInStops = ({
                 strokeColor,
                 textAlignments,
                 offsets: [scale(offset, 1 / (numberOfStopsFilledIn + 1))],
+                hideTexts,
             })
         );
     };

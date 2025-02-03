@@ -1,6 +1,6 @@
 import { AppDispatch } from '../../../store';
-import { addSobuToMusashino } from './SobuToMusashino';
+import { addMusashinoEast } from './MusashinoEast';
 
 export const addMusashino = (dispatch: AppDispatch) => {
-    dispatch(addSobuToMusashino);
+    dispatch(addMusashinoEast);
 };

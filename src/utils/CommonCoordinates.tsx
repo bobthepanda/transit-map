@@ -1,8 +1,8 @@
 import { Coordinates } from '../interfaces/Dimensions';
 
 // A0 dimensions.
-export const A0_HEIGHT = 2384;
-export const A0_WIDTH = 3370;
+export const A0_WIDTH = 2384;
+export const A0_HEIGHT = 3370;
 
 export const WIDTH = A0_WIDTH * 3;
 export const HEIGHT = A0_HEIGHT * 3;

@@ -147,6 +147,8 @@ const Musashino = () => {
                 { location: 'JE 04 M', direction: SSE },
                 { location: 'JE 05 M', direction: E },
                 { location: 'JM 10', direction: NNE },
+                { location: 'JM 13', direction: NNW },
+                { location: 'JM 16', direction: NNW },
             ]}
         />
     );
@@ -180,6 +182,7 @@ const Yokohama = () => {
 
 const JobanRapid = () => {
     const nipporiTurn = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JJ 02'), scaleToUnitX(N, OFFSET * 3)));
+    const ayaseOffset = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JL 19'), scale(S, OFFSET)));
     return (
         <LinePath
             color="stroke-joban-rapid"
@@ -190,6 +193,21 @@ const JobanRapid = () => {
                 { location: 'JJ 03', direction: E },
                 { location: 'JJ 04', direction: NNE },
                 { location: 'JJ 05', direction: NNE },
+                { location: ayaseOffset, direction: E },
+                { location: 'JJ 06', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
+            ]}
+        />
+    );
+};
+
+const JobanLocal = () => {
+    return (
+        <LinePath
+            color="stroke-joban-local"
+            points={[
+                { location: 'JL 19', direction: E },
+                { location: 'JL 22', direction: NNE },
+                { location: 'JL 25', direction: NNE },
             ]}
         />
     );
@@ -211,6 +229,7 @@ const JREast = () => {
             <Nambu />
             <Yokohama />
             <JobanRapid />
+            <JobanLocal />
         </g>
     );
 };

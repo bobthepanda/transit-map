@@ -153,6 +153,40 @@ const TobuKameido = () => {
     );
 };
 
+const Hokuso = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'KS 10 HOKUSO', direction: E },
+                { location: 'HS 05', direction: E },
+            ]}
+        />
+    );
+};
+
+const ShinKeisei = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'SL 01', direction: E },
+                { location: 'SL 05', direction: E },
+            ]}
+        />
+    );
+};
+
+const KeiseiKanamachi = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'KS 10 KANAMACHI', direction: NNE },
+                { location: 'KS 50', direction: NNE },
+                { location: 'KS 51', direction: NNW },
+            ]}
+        />
+    );
+};
+
 const Private = () => {
     return (
         <>
@@ -173,6 +207,9 @@ const Private = () => {
             <TobuSkytree />
             <KeiseiOshiage />
             <TobuKameido />
+            <Hokuso />
+            <ShinKeisei />
+            <KeiseiKanamachi />
         </>
     );
 };

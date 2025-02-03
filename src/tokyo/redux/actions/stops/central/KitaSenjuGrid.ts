@@ -124,6 +124,7 @@ const addTakasago = (dispatch: AppDispatch) => {
             endCount: 10,
             textAlignments: [TextAlignment.UP],
             offsets: [scaleToUnitX(E, MAJOR_LINE)],
+            hideTexts: ['KS 10'],
         })
     );
 };

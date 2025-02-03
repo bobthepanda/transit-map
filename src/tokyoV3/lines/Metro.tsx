@@ -111,6 +111,8 @@ const Chiyoda = () => {
                 { location: 'C 16', direction: NNE },
                 { location: 'C 17', direction: E },
                 { location: 'C 18', direction: NNE },
+                { location: 'C 19', direction: E },
+                { location: 'C 20', direction: NNE },
             ]}
         />
     );
