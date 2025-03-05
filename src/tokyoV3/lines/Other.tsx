@@ -48,12 +48,27 @@ const Rinkai = () => {
     return null;
 };
 
+const NipponToneri = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'NT 01', direction: NNW },
+                { location: 'NT 02', direction: NNW },
+                { location: 'NT 03', direction: NNE },
+                { location: 'NT 04', direction: NNE },
+                { location: 'NT 13', direction: NNW },
+            ]}
+        />
+    );
+};
+
 const Other = () => {
     return (
         <g id="other">
             <TsukubaExpress />
             <Arakawa />
             <Rinkai />
+            <NipponToneri />
         </g>
     );
 };

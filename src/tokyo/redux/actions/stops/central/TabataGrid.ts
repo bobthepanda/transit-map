@@ -2,6 +2,7 @@ import { MAJOR_LINE } from '../../../../../map/GridLines';
 import { OFFSET } from '../../../../../utils/CommonCoordinates';
 import {
     E,
+    ENE,
     findIntersectionFromSlopes,
     midPoint,
     N,
@@ -12,6 +13,7 @@ import {
     scale,
     scaleToUnitX,
     scaleToUnitY,
+    SSE,
     SSW,
     W,
     WNW,
@@ -104,7 +106,7 @@ const addSugamo = (dispatch: AppDispatch, getState: () => RootState) => {
 
 const addIkebukuro = (dispatch: AppDispatch, getState: () => RootState) => {
     const JK_38 = selectStopLocation(getState(), 'JK 38');
-    const JY_09 = selectStopLocation(getState(), 'JY 08');
+    const JY_09 = selectStopLocation(getState(), 'JY 06');
     dispatch(
         addStopDefinition({
             stationCode: 'JY 13',
@@ -172,13 +174,13 @@ const fillInMusashino = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(
         offsetSingleStop(
             'M 24',
-            { stationCode: 'M 23', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.WNW },
-            scaleToUnitY(S, MAJOR_LINE * 2)
+            { stationCode: 'M 23', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.ENE },
+            scaleToUnitY(SSE, MAJOR_LINE - OFFSET * 2)
         )
     );
 };
 
-const fillInNamboku = (dispatch: AppDispatch) => {
+const fillInNamboku = (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(
         offsetSingleStop(
             'JK 36',
@@ -202,6 +204,29 @@ const fillInNamboku = (dispatch: AppDispatch) => {
             endCount: 13,
             textAlignments: [TextAlignment.ESE],
             offsets: [scaleToUnitY(NNE, MAJOR_LINE * 2)],
+            strokeColor: 'stroke-namboku',
+        })
+    );
+
+    const AKABANE = offsetCoordinates(selectStopLocation(getState(), 'JK 38'), scaleToUnitX(ENE, MAJOR_LINE));
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'N 19',
+            strokeColor: 'stroke-namboku',
+            textAlignment: TextAlignment.ENE,
+            location: offsetCoordinates(AKABANE, scale(SSE, OFFSET * 0.5)),
+        })
+    );
+
+    dispatch(offsetSingleStop('N 19', { stationCode: 'SR 19', strokeColor: 'stroke-namboku', hideText: true }, scale(NNW, OFFSET)));
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'N',
+            startCount: 19,
+            endCount: 17,
+            textAlignments: [TextAlignment.ENE],
+            offsets: [scaleToUnitY(SSE, MAJOR_LINE)],
             strokeColor: 'stroke-namboku',
         })
     );
@@ -290,6 +315,38 @@ const fillInSakura = (dispatch: AppDispatch, getState: () => RootState) => {
             textAlignment: TextAlignment.UP,
         })
     );
+
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'SA',
+            startCount: 9,
+            endCount: 12,
+            offsets: [scaleToUnitY(NNW, OFFSET * 2.5)],
+            textAlignments: [TextAlignment.WSW],
+        })
+    );
+
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'SA',
+            startCount: 16,
+            endCount: 13,
+            offsets: [scaleToUnitX(E, OFFSET * 5.5)],
+            textAlignments: [TextAlignment.UP],
+        })
+    );
+
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'SA',
+            startCount: 16,
+            endCount: 18,
+            offsets: [scaleToUnitX(W, OFFSET * 4.5)],
+            textAlignments: [TextAlignment.DOWN, TextAlignment.UP],
+        })
+    );
+
+    dispatch(offsetSingleStop('SA 20', { stationCode: 'SA 19', textAlignment: TextAlignment.ESE }, scaleToUnitY(NNE, MAJOR_LINE - OFFSET)));
 };
 
 export const addTabataGrid = (dispatch: AppDispatch) => {

@@ -3,6 +3,8 @@ import { OFFSET } from '../../../../../utils/CommonCoordinates';
 import {
     ENE,
     ESE,
+    findIntersectionFromSlopes,
+    midPoint,
     N,
     NNE,
     NNW,
@@ -10,13 +12,14 @@ import {
     scale,
     scaleToUnitX,
     scaleToUnitY,
+    SSE,
     SSW,
     W,
     WNW,
     WSW,
 } from '../../../../../utils/PathUtils';
-import { addStopDefinition, selectMidpoint, selectOffset, TextAlignment } from '../../../slice/StopLocation';
-import { fillInStops, offsetSingleStop, offsetStopGroup } from '../../../slice/StopLocationActions';
+import { addStopDefinition, selectMidpoint, selectOffset, selectStopLocation, TextAlignment } from '../../../slice/StopLocation';
+import { fillInStops, offsetSingleStop, offsetStopGroup, spaceOutStops } from '../../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../../store';
 
 const addUguisudani = (dispatch: AppDispatch) => {
@@ -56,14 +59,29 @@ const addNishiNippori = (dispatch: AppDispatch) => {
         )
     );
     dispatch(
+        offsetStopGroup(
+            [
+                {
+                    stationCode: 'JY 07',
+                    newStationData: { stationCode: 'NT 01', hideText: true },
+                },
+                {
+                    stationCode: 'JY 08',
+                    newStationData: { stationCode: 'NT 02', hideText: true },
+                },
+            ],
+            scale(WSW, OFFSET)
+        )
+    );
+    dispatch(
         offsetSingleStop(
-            'JY 08',
+            'NT 02',
             { stationCode: 'C 16', strokeColor: 'stroke-chiyoda', textAlignment: TextAlignment.WNW },
             scale(W, OFFSET)
         )
     );
     dispatch(offsetSingleStop('JK 32', { stationCode: 'JJ 02', strokeColor: 'stroke-joban-rapid', hideText: true }, scale(ENE, OFFSET)));
-    dispatch(offsetSingleStop('JY 07', { stationCode: 'KS 02', textAlignment: TextAlignment.WSW }, scale(WSW, OFFSET)));
+    dispatch(offsetSingleStop('NT 01', { stationCode: 'KS 02', textAlignment: TextAlignment.WSW }, scale(WSW, OFFSET)));
 };
 
 const fillInChiyoda = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -110,9 +128,60 @@ const addMinamiSenju = (dispatch: AppDispatch, getState: () => RootState) => {
     );
 };
 
+const addNipponToneri = (dispatch: AppDispatch, getState: () => RootState) => {
+    const TABATA_TURN = selectMidpoint(getState(), 'JY 08', 'JY 09');
+    const KUMANOMAE_INTERSECTION = findIntersectionFromSlopes({
+        start: { location: TABATA_TURN, direction: NNE },
+        end: { location: selectStopLocation(getState(), 'SA 06'), direction: NNW },
+    });
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'SA 09',
+            location: offsetCoordinates(KUMANOMAE_INTERSECTION, scaleToUnitX(SSE, OFFSET * 0.5)),
+            textAlignment: TextAlignment.ENE,
+        })
+    );
+    dispatch(offsetSingleStop('SA 09', { stationCode: 'NT 04', hideText: true }, scale(W, OFFSET)));
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'SA',
+            startCount: 9,
+            endCount: 7,
+            offsets: [scaleToUnitY(SSE, OFFSET * 1.5)],
+            textAlignments: [TextAlignment.ENE],
+        })
+    );
+    dispatch(
+        addStopDefinition({
+            stationCode: 'NT 03',
+            location: midPoint(TABATA_TURN, selectStopLocation(getState(), 'NT 04')),
+            textAlignment: TextAlignment.WNW,
+        })
+    );
+    dispatch(
+        offsetSingleStop(
+            'NT 04',
+            { stationCode: 'NT 05', textAlignment: TextAlignment.ENE },
+            scaleToUnitY(N, MAJOR_LINE * 1.5),
+            scaleToUnitY(SSE, MAJOR_LINE * 0.5)
+        )
+    );
+    dispatch(
+        spaceOutStops({
+            stationPrefix: 'NT',
+            startCount: 5,
+            endCount: 13,
+            offsets: [scaleToUnitY(NNW, MAJOR_LINE * 0.5)],
+            textAlignments: [TextAlignment.ENE],
+        })
+    );
+};
+
 export const addNipporiGrid = (dispatch: AppDispatch) => {
     dispatch(addUguisudani);
     dispatch(addNishiNippori);
     dispatch(fillInChiyoda);
     dispatch(addMinamiSenju);
+    dispatch(addNipponToneri);
 };

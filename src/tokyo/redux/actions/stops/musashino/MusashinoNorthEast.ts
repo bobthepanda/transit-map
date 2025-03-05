@@ -1,7 +1,7 @@
 import { MAJOR_LINE } from '../../../../../map/GridLines';
 import { OFFSET } from '../../../../../utils/CommonCoordinates';
-import { E, N, NNW, offsetCoordinates, scale, scaleToUnitX, scaleToUnitY, SSE, WSW } from '../../../../../utils/PathUtils';
-import { addStopDefinition, selectIntersection, TextAlignment } from '../../../slice/StopLocation';
+import { E, N, NNE, NNW, offsetCoordinates, scale, scaleToUnitX, scaleToUnitY, SSE, SSW, WSW } from '../../../../../utils/PathUtils';
+import { addStopDefinition, selectIntersection, selectMidpoint, TextAlignment } from '../../../slice/StopLocation';
 import { fillInStops, offsetSingleStop, offsetStopGroup, spaceOutStops } from '../../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../../store';
 
@@ -71,7 +71,65 @@ const addSkyTree = (dispatch: AppDispatch, getState: () => RootState) => {
             endCount: 22,
             strokeColor: 'stroke-musashino',
             textAlignments: [TextAlignment.UP],
+            hideTexts: ['JM 23'],
         })
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'JM 23',
+            { stationCode: 'SR 25', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.ENE },
+            scaleToUnitX(N, OFFSET)
+        )
+    );
+
+    dispatch(
+        addStopDefinition({
+            stationCode: 'SR 22',
+            strokeColor: 'stroke-namboku',
+            textAlignment: TextAlignment.WNW,
+            location: selectMidpoint(getState(), 'SR 19', 'SR 25'),
+        })
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'SR 25',
+            { stationCode: 'SR 24', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.ENE },
+            scaleToUnitY(SSE, MAJOR_LINE)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'SR 25',
+            { stationCode: 'SR 26', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.ENE },
+            scaleToUnitY(NNW, MAJOR_LINE)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'SR 19',
+            { stationCode: 'SR 20', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.ENE },
+            scaleToUnitY(NNW, MAJOR_LINE * 0.75)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'SR 22',
+            { stationCode: 'SR 23', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.WNW },
+            scaleToUnitY(NNE, MAJOR_LINE)
+        )
+    );
+
+    dispatch(
+        offsetSingleStop(
+            'SR 22',
+            { stationCode: 'SR 21', strokeColor: 'stroke-namboku', textAlignment: TextAlignment.WNW },
+            scaleToUnitY(SSW, MAJOR_LINE)
+        )
     );
 };
 

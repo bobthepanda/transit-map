@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
-import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitX, scaleToUnitY, SSE, SSW, W, WSW } from '../../utils/PathUtils';
+import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -31,10 +30,6 @@ const Ginza = () => {
 };
 
 const Marunouchi = () => {
-    const KORAKUEN_TURN = offsetCoordinates(
-        useSelector((state) => selectMidpoint(state, 'M 22', 'M 23')),
-        scaleToUnitX(WSW, OFFSET * 3)
-    );
     return (
         <LinePath
             color="stroke-marunouchi"
@@ -49,8 +44,7 @@ const Marunouchi = () => {
                 { location: 'M 20', direction: NNW },
                 { location: 'M 21', direction: NNW },
                 { location: 'M 22', direction: W },
-                { location: KORAKUEN_TURN, direction: NNW },
-                { location: 'M 23', direction: NNE },
+                { location: 'M 23', direction: NNW },
                 { location: 'M 24', direction: NNW },
                 { location: 'M 25', direction: W },
             ]}
@@ -68,6 +62,10 @@ const Namboku = () => {
                 { location: 'N 11', direction: NNE },
                 { location: 'N 14', direction: NNW },
                 { location: 'N 16', direction: NNE },
+                { location: 'N 19', direction: NNW },
+                { location: 'SR 22', direction: NNE },
+                { location: 'SR 25', direction: NNW },
+                { location: 'SR 26', direction: NNW },
             ]}
         />
     );
