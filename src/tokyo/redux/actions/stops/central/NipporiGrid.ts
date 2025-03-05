@@ -24,7 +24,8 @@ const addUguisudani = (dispatch: AppDispatch) => {
         offsetSingleStop(
             'JY 05',
             { stationCode: 'JY 06', strokeColor: 'stroke-yamanote', textAlignment: TextAlignment.WSW },
-            scaleToUnitY(N, MAJOR_LINE)
+            scaleToUnitY(N, MAJOR_LINE),
+            scale(WSW, OFFSET)
         )
     );
     dispatch(offsetSingleStop('JY 06', { stationCode: 'JK 31', strokeColor: 'stroke-keihin-tohoku', hideText: true }, scale(ENE, OFFSET)));

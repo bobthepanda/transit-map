@@ -119,6 +119,7 @@ const TobuSkytree = () => {
                     { location: 'TS 02', direction: NNE },
                     { location: 'TS 08', direction: NNW },
                     { location: 'TS 09', direction: NNW },
+                    { location: 'TS 20', direction: NNW },
                 ]}
             />
             <LinePath

@@ -1,10 +1,12 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
-import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, SSE, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, SSE, SSW, W } from '../../utils/PathUtils';
 
 const Yamanote = () => {
+    const SUGAMO_MIDPOINT = useSelector((state) => selectMidpoint(state, 'JY 11', 'JY 12'));
     return (
         <LinePath
             color="stroke-yamanote"
@@ -19,6 +21,12 @@ const Yamanote = () => {
                 { location: 'JY 06', direction: NNW },
                 { location: 'JY 07', direction: NNW },
                 { location: 'JY 08', direction: NNW },
+                { location: 'JY 09', direction: NNW },
+                { location: 'JY 10', direction: W },
+                { location: 'JY 11', direction: W },
+                { location: SUGAMO_MIDPOINT, direction: SSW },
+                { location: 'JY 12', direction: W },
+                { location: 'JY 13', direction: SSW },
             ]}
         />
     );
@@ -64,6 +72,7 @@ const KeihinTohoku = () => {
                 { location: 'JK 31', direction: NNW, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JK 32', direction: NNW },
                 { location: 'JK 33', direction: NNW },
+                { location: 'JK 47', direction: NNW },
             ]}
         />
     );
@@ -84,7 +93,10 @@ const Tokaido = () => {
 };
 
 const SobuRapid = () => {
-    const ryogokuOffset = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JB 21'), scale(S, OFFSET)));
+    const ryogokuOffset = useSelector(
+        createSelector([(state) => selectStopLocation(state, 'JB 21')], (stop) => offsetCoordinates(stop, scale(S, OFFSET)))
+    );
+
     return (
         <LinePath
             color="stroke-sobu-rapid"
@@ -149,25 +161,36 @@ const Musashino = () => {
                 { location: 'JM 10', direction: NNE },
                 { location: 'JM 13', direction: NNW },
                 { location: 'JM 16', direction: NNW },
+                { location: 'JM 25', direction: W },
             ]}
         />
     );
 };
 
 const Saikyo = () => {
-    // return <SVGPath color="stroke-saikyo" points={[JA_08, JA_11, JA_12, JA_13, JA_15]} directions={[N, NE, E, NE, N]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-saikyo"
+            points={[
+                { location: 'JA 12', direction: NNE },
+                { location: 'JA 15', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const ShonanShinjuku = () => {
-    // return (
-    //     <SVGPath
-    //         color="stroke-shonan-shinjuku"
-    //         points={[JS_13, JS_SK_CORNER, JS_14, JS_15, offset(OSAKI_CORNER, { dx: -MAJOR_LINE }), JS_17, JS_20, JS_21, JS_22]}
-    //         directions={[E, NE, NW, NE, E, N, NE, E, N]}
-    //     />
-    // );
-    return null;
+    return (
+        <LinePath
+            color="stroke-shonan-shinjuku"
+            points={[
+                { location: 'JS 21', direction: NNE },
+                { location: 'JS 22', direction: NNW, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: 'JS 23', direction: NNW },
+                { location: 'JS 24', direction: NNW },
+            ]}
+        />
+    );
 };
 
 const Nambu = () => {
@@ -181,8 +204,14 @@ const Yokohama = () => {
 };
 
 const JobanRapid = () => {
-    const nipporiTurn = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JJ 02'), scaleToUnitX(N, OFFSET * 3)));
-    const ayaseOffset = useSelector((state) => offsetCoordinates(selectStopLocation(state, 'JL 19'), scale(S, OFFSET)));
+    const nipporiTurn = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'JJ 02')),
+        scaleToUnitX(N, OFFSET * 3)
+    );
+    const ayaseOffset = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'JL 19')),
+        scale(S, OFFSET)
+    );
     return (
         <LinePath
             color="stroke-joban-rapid"

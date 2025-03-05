@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW } from '../../utils/PathUtils';
+import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { OFFSET } from '../../utils/CommonCoordinates';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitX, scaleToUnitY, SSE, SSW, W, WSW } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -30,6 +31,10 @@ const Ginza = () => {
 };
 
 const Marunouchi = () => {
+    const KORAKUEN_TURN = offsetCoordinates(
+        useSelector((state) => selectMidpoint(state, 'M 22', 'M 23')),
+        scaleToUnitX(WSW, OFFSET * 3)
+    );
     return (
         <LinePath
             color="stroke-marunouchi"
@@ -43,6 +48,11 @@ const Marunouchi = () => {
                 { location: 'M 19', direction: NNW },
                 { location: 'M 20', direction: NNW },
                 { location: 'M 21', direction: NNW },
+                { location: 'M 22', direction: W },
+                { location: KORAKUEN_TURN, direction: NNW },
+                { location: 'M 23', direction: NNE },
+                { location: 'M 24', direction: NNW },
+                { location: 'M 25', direction: W },
             ]}
         />
     );
@@ -55,6 +65,9 @@ const Namboku = () => {
             points={[
                 { location: 'N 06', direction: NNE },
                 { location: 'N 07', direction: NNW },
+                { location: 'N 11', direction: NNE },
+                { location: 'N 14', direction: NNW },
+                { location: 'N 16', direction: NNE },
             ]}
         />
     );
@@ -208,6 +221,10 @@ const Mita = () => {
                 { location: 'I 10', direction: NNW },
                 { location: 'I 11', direction: NNW },
                 { location: 'I 12', direction: NNW },
+                { location: 'I 13', direction: NNE },
+                { location: 'I 14', direction: NNE },
+                { location: 'I 15', direction: NNW },
+                { location: 'I 17', direction: NNW },
             ]}
         />
     );
