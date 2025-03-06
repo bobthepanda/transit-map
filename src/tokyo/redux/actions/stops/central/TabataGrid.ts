@@ -125,23 +125,22 @@ const addIkebukuro = (dispatch: AppDispatch, getState: () => RootState) => {
                 { stationCode: 'JY 13', newStationData: { stationCode: 'JS 21', strokeColor: 'stroke-shonan-shinjuku', hideText: true } },
                 {
                     stationCode: 'JS 21',
-                    newStationData: { stationCode: 'JA 12', strokeColor: 'stroke-saikyo', textAlignment: TextAlignment.WNW },
+                    newStationData: { stationCode: 'JA 12', strokeColor: 'stroke-saikyo', hideText: true },
                 },
             ],
             scale(WNW, OFFSET)
         )
     );
 
+    dispatch(offsetSingleStop('JY 13', { stationCode: 'M 25', strokeColor: 'stroke-marunouchi', hideText: true }, scale(S, OFFSET)));
+
+    dispatch(offsetSingleStop('JA 12', { stationCode: 'Y 09', strokeColor: 'stroke-yurakucho', hideText: true }, scale(W, OFFSET)));
+
     dispatch(
-        offsetStopGroup(
-            [
-                { stationCode: 'JY 13', newStationData: { stationCode: 'M 25', strokeColor: 'stroke-marunouchi', hideText: true } },
-                {
-                    stationCode: 'M 25',
-                    newStationData: { stationCode: 'Y 09', strokeColor: 'stroke-yurakucho', hideText: true },
-                },
-            ],
-            scale(S, OFFSET)
+        offsetSingleStop(
+            'Y 09',
+            { stationCode: 'F 09', strokeColor: 'stroke-fukutoshin', textAlignment: TextAlignment.WSW },
+            scale(WSW, OFFSET)
         )
     );
 };

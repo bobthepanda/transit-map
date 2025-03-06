@@ -37,6 +37,8 @@ const ChuoSobu = () => {
         <LinePath
             color="stroke-chuo-sobu"
             points={[
+                { location: 'JB 14', direction: NNE },
+                { location: 'JB 16', direction: NNE },
                 { location: 'JB 17', direction: E },
                 { location: 'JB 18', direction: E },
                 { location: 'JB 19', direction: E },
@@ -124,6 +126,7 @@ const ChuoRapid = () => {
                 { location: 'JC 02', direction: NNE },
                 { location: offsetCoordinates(kanda, { dy: OFFSET * -4 }), direction: NNW },
                 { location: 'JC 03', direction: W },
+                { location: 'JC 04', direction: SSW },
             ]}
         />
     );

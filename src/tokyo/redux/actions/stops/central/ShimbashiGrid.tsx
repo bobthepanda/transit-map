@@ -119,22 +119,19 @@ const addNagatcho = (dispatch: AppDispatch) => {
     dispatch(offsetSingleStop('G 05', { stationCode: 'M 13', strokeColor: 'stroke-marunouchi', hideText: true }, scale(ENE, OFFSET)));
 
     dispatch(
-        offsetSingleStop('G 05', { stationCode: 'N 07', strokeColor: 'stroke-namboku', hideText: true }, scaleToUnitY(NNE, OFFSET * 3))
+        offsetSingleStop('G 05', { stationCode: 'N 07', strokeColor: 'stroke-namboku', hideText: true }, scaleToUnitX(ENE, OFFSET * 2))
     );
-    dispatch(offsetSingleStop('N 07', { stationCode: 'Z 04', strokeColor: 'stroke-hanzomon', hideText: true }, scale(N, OFFSET)));
+    dispatch(offsetSingleStop('N 07', { stationCode: 'Y 16', strokeColor: 'stroke-yurakucho', hideText: true }, scale(ENE, OFFSET)));
     dispatch(
-        offsetSingleStop(
-            'Z 04',
-            { stationCode: 'Y 16', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.UP },
-            scale(N, OFFSET)
-        )
+        offsetSingleStop('Y 16', { stationCode: 'Z 04', strokeColor: 'stroke-hanzomon', textAlignment: TextAlignment.UP }, scale(N, OFFSET))
     );
 
     dispatch(
         offsetSingleStop(
             'Y 16',
             { stationCode: 'Y 17', strokeColor: 'stroke-yurakucho', textAlignment: TextAlignment.UP },
-            scale(E, MAJOR_LINE * 1.5)
+            scale(E, MAJOR_LINE * 1.5),
+            scaleToUnitY(SSE, OFFSET * 1.5)
         )
     );
 };

@@ -160,7 +160,7 @@ const fillInTozaiToMusashino = (dispatch: AppDispatch, getState: () => RootState
             endCount: 15,
             strokeColor: 'stroke-tozai',
             textAlignments: [TextAlignment.WNW],
-            offsets: [scaleToUnitY(SSW, MAJOR_LINE * 1.75)],
+            offsets: [scaleToUnitY(SSW, MAJOR_LINE * 1.5 + OFFSET)],
         })
     );
 
@@ -168,7 +168,7 @@ const fillInTozaiToMusashino = (dispatch: AppDispatch, getState: () => RootState
         offsetSingleStop(
             'T 13',
             { stationCode: 'T 14', strokeColor: 'stroke-tozai', textAlignment: TextAlignment.UP },
-            scaleToUnitX(E, MAJOR_LINE * 1.5)
+            scaleToUnitX(E, MAJOR_LINE * 2)
         )
     );
 };

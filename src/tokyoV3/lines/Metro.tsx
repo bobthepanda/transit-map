@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
-import { selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
 
 const Ginza = () => {
@@ -30,11 +31,14 @@ const Ginza = () => {
 };
 
 const Marunouchi = () => {
+    const YOTSUYA_TURN = useSelector((state) => selectMidpoint(state, 'M 12', 'M 13'));
     return (
         <LinePath
             color="stroke-marunouchi"
             points={[
-                { location: 'M 13', direction: SSE },
+                { location: 'M 12', direction: SSE },
+                { location: YOTSUYA_TURN, direction: SSW, radii: RADIUS - (OFFSET * 2) / 3 },
+                { location: 'M 13', direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
                 { location: 'M 14', direction: E },
                 { location: 'M 15', direction: SSE },
                 { location: 'M 16', direction: NNE },
@@ -76,6 +80,8 @@ const Hanzomon = () => {
         <LinePath
             color="stroke-hanzomon"
             points={[
+                { location: 'Z 04', direction: E },
+                { location: 'Z 05', direction: N },
                 { location: 'Z 07', direction: E },
                 { location: 'Z 08', direction: SSE },
                 { location: 'Z 09', direction: E },
@@ -90,11 +96,16 @@ const Hanzomon = () => {
 };
 
 const Yurakucho = () => {
+    const NAGATCHO_MIDPOINT = useSelector((state) => selectMidpoint(state, 'Y 15', 'Y 16'));
     return (
         <LinePath
             color="stroke-yurakucho"
             points={[
-                { location: 'Y 16', direction: E },
+                { location: 'Y 09', direction: SSE },
+                { location: 'Y 13', direction: SSW },
+                { location: 'Y 15', direction: SSE },
+                { location: NAGATCHO_MIDPOINT, direction: SSW, radii: RADIUS - (OFFSET * 2) / 3 },
+                { location: 'Y 16', direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
                 { location: 'Y 17', direction: E },
                 { location: 'Y 18', direction: SSE },
                 { location: 'Y 19', direction: SSE },
@@ -161,6 +172,9 @@ const Tozai = () => {
         <LinePath
             color="stroke-tozai"
             points={[
+                { location: 'T 06', direction: SSE },
+                { location: 'T 07', direction: E },
+                { location: 'T 08', direction: SSE },
                 { location: 'T 09', direction: E },
                 { location: 'T 10', direction: SSE },
                 { location: 'T 11', direction: SSE },
@@ -187,6 +201,7 @@ const Shinjuku = () => {
         <LinePath
             color="stroke-shinjuku"
             points={[
+                { location: 'S 04', direction: E },
                 { location: 'S 06', direction: E },
                 { location: 'S 07', direction: E },
                 { location: 'S 08', direction: E },
@@ -255,6 +270,7 @@ const Oedo = () => {
         <LinePath
             color="stroke-oedo"
             points={[
+                { location: 'E 06', direction: NNE },
                 { location: 'E 07', direction: E },
                 { location: 'E 08', direction: E },
                 { location: 'E 09', direction: E },

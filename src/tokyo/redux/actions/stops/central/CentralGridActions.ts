@@ -11,6 +11,7 @@ import { addTabataGrid } from './TabataGrid';
 import { addTokyo } from './TokyoGrid';
 import { addTozaiGrid } from './TozaiGrid';
 import { addUenoGrid } from './UenoGrid';
+import { addYotsuyaGrid } from './YotsuyaGrid';
 import { addYurakuchoGrid } from './YurakuchoGrid';
 
 export const addCentralGrid = (dispatch: AppDispatch) => {
@@ -27,4 +28,5 @@ export const addCentralGrid = (dispatch: AppDispatch) => {
     dispatch(addNipporiGrid);
     dispatch(addKitaSenjuGrid);
     dispatch(addTabataGrid);
+    dispatch(addYotsuyaGrid);
 };
