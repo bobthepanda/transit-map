@@ -2,8 +2,9 @@ import { createSelector } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Coordinates } from '../../interfaces/Dimensions';
 import LinePath from '../../symbols/LinePath';
-import { selectIntersection, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
-import { E, ESE, midPoint, NNE, NNW, SSW, W } from '../../utils/PathUtils';
+import { selectIntersection, selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
+import { OFFSET } from '../../utils/CommonCoordinates';
+import { E, ESE, midPoint, NNE, NNW, RADIUS, SSE, SSW, W } from '../../utils/PathUtils';
 
 const TsukubaExpress = () => {
     const selectMinowaTurn = createSelector(
@@ -27,6 +28,7 @@ const TsukubaExpress = () => {
 };
 
 const Arakawa = () => {
+    const MUKOHARA_TURN = useSelector((state) => selectMidpoint(state, 'SA 24', 'SA 25'));
     return (
         <LinePath
             points={[
@@ -38,6 +40,9 @@ const Arakawa = () => {
                 { location: 'SA 06', direction: NNW },
                 { location: 'SA 16', direction: W },
                 { location: 'SA 23', direction: SSW },
+                { location: MUKOHARA_TURN, direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
+                { location: 'SA 27', direction: SSW, radii: RADIUS - (OFFSET * 2) / 3 },
+                { location: 'SA 30', direction: E },
             ]}
         />
     );

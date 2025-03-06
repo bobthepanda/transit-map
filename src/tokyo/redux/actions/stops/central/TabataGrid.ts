@@ -166,7 +166,11 @@ const fillInMusashino = (dispatch: AppDispatch, getState: () => RootState) => {
             stationCode: 'M 24',
             strokeColor: 'stroke-musashino',
             textAlignment: TextAlignment.ENE,
-            location: offsetCoordinates(selectIntersection(getState(), 'JY 12', S, 'M 25', E), scaleToUnitY(WSW, (MAJOR_LINE * 2) / 3)),
+            location: offsetCoordinates(
+                selectIntersection(getState(), 'JY 12', S, 'M 25', E),
+                scaleToUnitY(WSW, (MAJOR_LINE * 2) / 3),
+                scaleToUnitY(NNW, OFFSET * 2)
+            ),
         })
     );
 
@@ -174,7 +178,7 @@ const fillInMusashino = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'M 24',
             { stationCode: 'M 23', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.ENE },
-            scaleToUnitY(SSE, MAJOR_LINE - OFFSET * 2)
+            scaleToUnitY(SSE, MAJOR_LINE - OFFSET * 1.5)
         )
     );
 };

@@ -32,10 +32,14 @@ const Ginza = () => {
 
 const Marunouchi = () => {
     const YOTSUYA_TURN = useSelector((state) => selectMidpoint(state, 'M 12', 'M 13'));
+    const SHINJUKU_TURN = useSelector((state) => selectMidpoint(state, 'M 08', 'M 09'));
     return (
         <LinePath
             color="stroke-marunouchi"
             points={[
+                { location: 'M 08', direction: E },
+                { location: SHINJUKU_TURN, direction: SSE },
+                { location: 'M 09', direction: E },
                 { location: 'M 12', direction: SSE },
                 { location: YOTSUYA_TURN, direction: SSW, radii: RADIUS - (OFFSET * 2) / 3 },
                 { location: 'M 13', direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
@@ -172,6 +176,8 @@ const Tozai = () => {
         <LinePath
             color="stroke-tozai"
             points={[
+                { location: 'T 03', direction: SSE },
+                { location: 'T 04', direction: E },
                 { location: 'T 06', direction: SSE },
                 { location: 'T 07', direction: E },
                 { location: 'T 08', direction: SSE },
@@ -193,15 +199,16 @@ const Tozai = () => {
             ]}
         />
     );
-    // return <SVGPath color="stroke-tozai" points={[T_01, midPoint(T_01, T_03), T_12]} directions={[SE, E, SE]} />;
 };
 
 const Shinjuku = () => {
+    const SHINJUKU_TURN = useSelector((state) => selectMidpoint(state, 'S 02', 'S 03'));
     return (
         <LinePath
             color="stroke-shinjuku"
             points={[
-                { location: 'S 04', direction: E },
+                { location: 'S 01', direction: E },
+                { location: SHINJUKU_TURN, direction: NNE },
                 { location: 'S 06', direction: E },
                 { location: 'S 07', direction: E },
                 { location: 'S 08', direction: E },
@@ -270,6 +277,7 @@ const Oedo = () => {
         <LinePath
             color="stroke-oedo"
             points={[
+                { location: 'E 01', direction: E },
                 { location: 'E 06', direction: NNE },
                 { location: 'E 07', direction: E },
                 { location: 'E 08', direction: E },
@@ -288,8 +296,15 @@ const Oedo = () => {
 };
 
 const Fukutoshin = () => {
-    // return <SVGPath color="stroke-fukutoshin" points={[F_09, F_13, F_14, F_16]} directions={[S, SW, W, SW]} />;
-    return null;
+    return (
+        <LinePath
+            color="stroke-fukutoshin"
+            points={[
+                { location: 'F 09', direction: SSE },
+                { location: 'F 13', direction: SSW },
+            ]}
+        />
+    );
 };
 
 const Metro = () => {

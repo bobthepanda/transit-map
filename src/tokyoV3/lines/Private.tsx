@@ -188,6 +188,17 @@ const KeiseiKanamachi = () => {
     );
 };
 
+const SeibuShinjuku = () => {
+    return (
+        <LinePath
+            points={[
+                { location: 'SS 01', direction: NNE },
+                { location: 'SS 02', direction: NNW },
+            ]}
+        />
+    );
+};
+
 const Private = () => {
     return (
         <>
@@ -211,6 +222,7 @@ const Private = () => {
             <Hokuso />
             <ShinKeisei />
             <KeiseiKanamachi />
+            <SeibuShinjuku />
         </>
     );
 };
