@@ -218,6 +218,7 @@ export const scaleToUnitY = ({ dx = 0, dy = 0 }: RelativeCoordinates, ...factors
 
 export const roundPoint = (coords: Coordinates, numberToRound: number = OFFSET): Coordinates => {
     const { x, y } = coords;
+    console.log(x, y);
 
     return { x: Math.round(x / numberToRound) * numberToRound, y: Math.round(y / numberToRound) * numberToRound };
 };

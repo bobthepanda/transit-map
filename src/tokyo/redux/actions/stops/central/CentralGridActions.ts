@@ -6,7 +6,7 @@ import { addKitaSenjuGrid } from './KitaSenjuGrid';
 import { addKyobashiGrid } from './KyobashiGrid';
 import { addNipporiGrid } from './NipporiGrid';
 import { addOedoGrid } from './OedoGrid';
-import { addOedoSouthGrid } from './OedoSouthGrid';
+import { addShibuyaGrid } from './ShibuyaGrid';
 import { addShimbashiGrid } from './ShimbashiGrid';
 import { addShinjukuGrid } from './ShinjukuGrid';
 import { addTabataGrid } from './TabataGrid';
@@ -32,5 +32,5 @@ export const addCentralGrid = (dispatch: AppDispatch) => {
     dispatch(addTabataGrid);
     dispatch(addYotsuyaGrid);
     dispatch(addShinjukuGrid);
-    dispatch(addOedoSouthGrid);
+    dispatch(addShibuyaGrid);
 };

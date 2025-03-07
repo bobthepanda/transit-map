@@ -3,14 +3,22 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
 import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scaleToUnitX, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
 
 const Ginza = () => {
+    const AKASAKA_TURN = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'G 05')),
+        scaleToUnitY(NNW, OFFSET * 2),
+        scaleToUnitX(W, OFFSET * 2)
+    );
     return (
         <LinePath
             color="stroke-ginza"
             points={[
-                { location: 'G 05', direction: SSE },
+                { location: 'G 01', direction: E },
+                { location: 'G 04', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: AKASAKA_TURN, direction: E, radii: RADIUS - (OFFSET * 2) / 3 },
+                { location: 'G 05', direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
                 { location: 'G 06', direction: SSE },
                 { location: 'G 07', direction: SSE },
                 { location: 'G 08', direction: SSE },
@@ -84,7 +92,9 @@ const Hanzomon = () => {
         <LinePath
             color="stroke-hanzomon"
             points={[
-                { location: 'Z 04', direction: E },
+                { location: 'Z 01', direction: E },
+                { location: 'Z 03', direction: NNE },
+                { location: 'Z 04', direction: E, radii: RADIUS },
                 { location: 'Z 05', direction: N },
                 { location: 'Z 07', direction: E },
                 { location: 'Z 08', direction: SSE },
@@ -125,6 +135,9 @@ const Chiyoda = () => {
         <LinePath
             color="stroke-chiyoda"
             points={[
+                { location: 'C 03', direction: E },
+                { location: 'C 04', direction: SSE },
+                { location: 'C 05', direction: NNE },
                 { location: 'C 07', direction: E },
                 { location: 'C 08', direction: SSE, radii: RADIUS + 20 },
                 { location: 'C 09', direction: NNE },
@@ -295,6 +308,7 @@ const Oedo = () => {
                 { location: 'E 14', direction: SSW },
                 { location: 'E 15', direction: SSW },
                 { location: 'E 16', direction: SSW },
+                { location: 'E 24', direction: NNW },
                 { location: 'E 25', direction: W },
                 { location: YOYOGI_TURN, direction: NNW },
                 { location: 'E 26', direction: NNE },
@@ -311,6 +325,8 @@ const Fukutoshin = () => {
             points={[
                 { location: 'F 09', direction: SSE },
                 { location: 'F 13', direction: SSW },
+                { location: 'F 15', direction: SSE },
+                { location: 'F 16', direction: SSW },
             ]}
         />
     );

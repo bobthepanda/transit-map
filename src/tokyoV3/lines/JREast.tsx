@@ -27,6 +27,7 @@ const Yamanote = () => {
                 { location: SUGAMO_MIDPOINT, direction: SSW },
                 { location: 'JY 12', direction: W },
                 { location: 'JY 18', direction: SSW },
+                { location: 'JY 20', direction: SSE },
             ]}
         />
     );
@@ -194,7 +195,8 @@ const Saikyo = () => {
         <LinePath
             color="stroke-saikyo"
             points={[
-                { location: 'JA 11', direction: NNE },
+                { location: 'JA 10', direction: NNW },
+                { location: 'JA 11', direction: NNE, radii: RADIUS + (OFFSET * 4) / 3 },
                 { location: 'JA 15', direction: NNW },
             ]}
         />
@@ -206,7 +208,8 @@ const ShonanShinjuku = () => {
         <LinePath
             color="stroke-shonan-shinjuku"
             points={[
-                { location: 'JS 20', direction: NNE },
+                { location: 'JS 19', direction: NNW },
+                { location: 'JS 20', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JS 22', direction: NNW, radii: RADIUS + (OFFSET * 2) / 3 },
                 { location: 'JS 23', direction: NNW },
                 { location: 'JS 24', direction: NNW },

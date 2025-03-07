@@ -252,7 +252,7 @@ const fillInMarunouchi = (dispatch: AppDispatch) => {
             stationPrefix: 'M',
             startCount: 9,
             endCount: 11,
-            textAlignments: [TextAlignment.DOWN],
+            textAlignments: [TextAlignment.UP, TextAlignment.DOWN],
             offsets: [scaleToUnitX(E, MAJOR_LINE + OFFSET)],
             strokeColor: 'stroke-marunouchi',
         })
