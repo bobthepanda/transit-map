@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux';
 import { MAJOR_LINE } from '../../map/GridLines';
-import LinePath from '../../symbols/LinePath';
+import LinePath, { ReduxPathParameters } from '../../symbols/LinePath';
 import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scaleToUnitX, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
+
+const MetroPath = (props: ReduxPathParameters) => {
+    const newProps = { strokeWidth: 'stroke-[16pt]', ...props };
+    return <LinePath {...newProps} />;
+};
 
 const Ginza = () => {
     const AKASAKA_TURN = offsetCoordinates(
@@ -12,7 +17,7 @@ const Ginza = () => {
         scaleToUnitX(W, OFFSET * 2)
     );
     return (
-        <LinePath
+        <MetroPath
             color="stroke-ginza"
             points={[
                 { location: 'G 01', direction: E },
@@ -42,7 +47,7 @@ const Marunouchi = () => {
     const YOTSUYA_TURN = useSelector((state) => selectMidpoint(state, 'M 12', 'M 13'));
     const SHINJUKU_TURN = useSelector((state) => selectMidpoint(state, 'M 08', 'M 09'));
     return (
-        <LinePath
+        <MetroPath
             color="stroke-marunouchi"
             points={[
                 { location: 'M 08', direction: E },
@@ -70,7 +75,7 @@ const Marunouchi = () => {
 
 const Namboku = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-namboku"
             points={[
                 { location: 'N 06', direction: NNE },
@@ -89,7 +94,7 @@ const Namboku = () => {
 
 const Hanzomon = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-hanzomon"
             points={[
                 { location: 'Z 01', direction: E },
@@ -112,7 +117,7 @@ const Hanzomon = () => {
 const Yurakucho = () => {
     const NAGATCHO_MIDPOINT = useSelector((state) => selectMidpoint(state, 'Y 15', 'Y 16'));
     return (
-        <LinePath
+        <MetroPath
             color="stroke-yurakucho"
             points={[
                 { location: 'Y 09', direction: SSE },
@@ -132,7 +137,7 @@ const Yurakucho = () => {
 
 const Chiyoda = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-chiyoda"
             points={[
                 { location: 'C 03', direction: E },
@@ -159,7 +164,7 @@ const Chiyoda = () => {
 
 const Hibiya = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-hibiya"
             points={[
                 { location: 'H 06', direction: NNE },
@@ -186,7 +191,7 @@ const Hibiya = () => {
 
 const Tozai = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-tozai"
             points={[
                 { location: 'T 03', direction: SSE },
@@ -217,7 +222,7 @@ const Tozai = () => {
 const Shinjuku = () => {
     const SHINJUKU_TURN = useSelector((state) => selectMidpoint(state, 'S 02', 'S 03'));
     return (
-        <LinePath
+        <MetroPath
             color="stroke-shinjuku"
             points={[
                 { location: 'S 01', direction: E },
@@ -244,7 +249,7 @@ const Shinjuku = () => {
 
 const Mita = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-mita"
             points={[
                 { location: 'I 06', direction: NNE },
@@ -265,7 +270,7 @@ const Mita = () => {
 
 const Asakusa = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-asakusa"
             points={[
                 { location: 'A 10', direction: SSE },
@@ -292,7 +297,7 @@ const Oedo = () => {
         scaleToUnitY(NNW, OFFSET)
     );
     return (
-        <LinePath
+        <MetroPath
             color="stroke-oedo"
             points={[
                 { location: 'E 01', direction: E },
@@ -320,7 +325,7 @@ const Oedo = () => {
 
 const Fukutoshin = () => {
     return (
-        <LinePath
+        <MetroPath
             color="stroke-fukutoshin"
             points={[
                 { location: 'F 09', direction: SSE },

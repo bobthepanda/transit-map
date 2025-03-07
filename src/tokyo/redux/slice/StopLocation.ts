@@ -4,7 +4,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { Coordinates } from '../../../interfaces/Dimensions';
 import { findIntersectionFromSlopes, findOffset, midPoint } from '../../../utils/PathUtils';
-import { RootState } from '../store';
 import { TextData } from './StopText';
 
 export interface StopMetadata {
@@ -50,15 +49,12 @@ export const { addStopDefinition } = stopDefinitionSlice.actions;
 
 export default stopDefinitionSlice.reducer;
 
-const selectStopDefinition = (state: RootState, stationCode: string): StopDefinition => state?.stopDefinition?.[stationCode];
-const selectStopX = (state: RootState, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.x;
-const selectStopY = (state: RootState, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.y;
+const selectStopDefinition = (state, stationCode: string): StopDefinition => state?.stopDefinition?.[stationCode];
+const selectStopX = (state, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.x;
+const selectStopY = (state, stationCode: string) => selectStopDefinition(state, stationCode)?.location?.y;
 
 export const selectStopLocation = createSelector(
-    [
-        (state: RootState, stationCode: string) => selectStopX(state, stationCode),
-        (state, stationCode: string) => selectStopY(state, stationCode),
-    ],
+    [(state, stationCode: string) => selectStopX(state, stationCode), (state, stationCode: string) => selectStopY(state, stationCode)],
     (x, y) => {
         return { x, y };
     }

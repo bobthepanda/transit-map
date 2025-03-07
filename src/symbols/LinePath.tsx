@@ -27,7 +27,7 @@ interface BasicPathParameters extends CommonPathParameters {
     points: LocationAndDirection[];
 }
 
-interface ReduxPathParameters extends CommonPathParameters {
+export interface ReduxPathParameters extends CommonPathParameters {
     points: PossibleLocationAndDirection[];
 }
 
