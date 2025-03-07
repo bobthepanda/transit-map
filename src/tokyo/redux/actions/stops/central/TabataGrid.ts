@@ -106,7 +106,7 @@ const addSugamo = (dispatch: AppDispatch, getState: () => RootState) => {
 
 const addIkebukuro = (dispatch: AppDispatch, getState: () => RootState) => {
     const JK_38 = selectStopLocation(getState(), 'JK 38');
-    const JY_09 = selectStopLocation(getState(), 'JY 06');
+    const JY_09 = selectStopLocation(getState(), 'JY 07');
     dispatch(
         addStopDefinition({
             stationCode: 'JY 13',

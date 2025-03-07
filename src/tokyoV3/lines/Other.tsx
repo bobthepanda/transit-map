@@ -42,7 +42,7 @@ const Arakawa = () => {
                 { location: 'SA 23', direction: SSW },
                 { location: MUKOHARA_TURN, direction: SSE, radii: RADIUS - (OFFSET * 2) / 3 },
                 { location: 'SA 27', direction: SSW, radii: RADIUS - (OFFSET * 2) / 3 },
-                { location: 'SA 30', direction: E },
+                { location: 'SA 30', direction: SSE },
             ]}
         />
     );

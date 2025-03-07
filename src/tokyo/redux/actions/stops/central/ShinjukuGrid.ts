@@ -147,8 +147,8 @@ const fillInSakura = (dispatch: AppDispatch, getState: () => RootState) => {
         })
     );
 
-    dispatch(offsetSingleStop('SA 28', { stationCode: 'SA 29', textAlignment: TextAlignment.DOWN }, scaleToUnitY(S, OFFSET * 3)));
-    dispatch(offsetSingleStop('SA 29', { stationCode: 'SA 30', textAlignment: TextAlignment.DOWN }, scaleToUnitY(E, OFFSET * 4)));
+    dispatch(offsetSingleStop('SA 28', { stationCode: 'SA 29', textAlignment: TextAlignment.WSW }, scaleToUnitY(S, OFFSET * 3)));
+    dispatch(offsetSingleStop('SA 29', { stationCode: 'SA 30', textAlignment: TextAlignment.WSW }, scaleToUnitX(SSE, OFFSET * 2)));
 };
 
 const fillInFukutoshin = (dispatch: AppDispatch, getState: () => RootState) => {
@@ -208,7 +208,7 @@ const fillInFukutoshin = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'F 12',
             { stationCode: 'F 11', strokeColor: 'stroke-fukutoshin', textAlignment: TextAlignment.WNW },
-            scaleToUnitY(NNE, OFFSET * 5)
+            scaleToUnitY(NNE, MAJOR_LINE * 1.5 - OFFSET)
         )
     );
 };
@@ -231,8 +231,8 @@ const fillInTozai = (dispatch: AppDispatch) => {
         offsetSingleStop(
             'T 06',
             { stationCode: 'T 05', strokeColor: 'stroke-tozai', textAlignment: TextAlignment.DOWN },
-            scaleToUnitY(NNW, OFFSET * 2.5),
-            scaleToUnitY(W, MAJOR_LINE * 0.5 + OFFSET * 2)
+            scaleToUnitY(NNW, OFFSET * 4),
+            scaleToUnitY(W, MAJOR_LINE * 0.5)
         )
     );
 
