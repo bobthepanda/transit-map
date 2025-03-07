@@ -3,7 +3,7 @@ import { MAJOR_LINE } from '../../map/GridLines';
 import LinePath from '../../symbols/LinePath';
 import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
 
 const Ginza = () => {
     return (
@@ -273,6 +273,11 @@ const Asakusa = () => {
 
 const Oedo = () => {
     const E_12 = useSelector((state) => selectStopLocation(state, 'E 12'));
+    const YOYOGI_TURN = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'E 26')),
+        scaleToUnitY(S, OFFSET * 6),
+        scaleToUnitY(NNW, OFFSET)
+    );
     return (
         <LinePath
             color="stroke-oedo"
@@ -290,6 +295,10 @@ const Oedo = () => {
                 { location: 'E 14', direction: SSW },
                 { location: 'E 15', direction: SSW },
                 { location: 'E 16', direction: SSW },
+                { location: 'E 25', direction: W },
+                { location: YOYOGI_TURN, direction: NNW },
+                { location: 'E 26', direction: NNE },
+                { location: 'E 27', direction: NNW },
             ]}
         />
     );

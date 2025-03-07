@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import LinePath from '../../symbols/LinePath';
 import { selectMidpoint, selectStopLocation } from '../../tokyo/redux/slice/StopLocation';
 import { OFFSET } from '../../utils/CommonCoordinates';
-import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, SSE, SSW, W } from '../../utils/PathUtils';
+import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scale, scaleToUnitX, scaleToUnitY, SSE, SSW, W, WNW } from '../../utils/PathUtils';
 
 const Yamanote = () => {
     const SUGAMO_MIDPOINT = useSelector((state) => selectMidpoint(state, 'JY 11', 'JY 12'));
@@ -26,17 +26,24 @@ const Yamanote = () => {
                 { location: 'JY 11', direction: W },
                 { location: SUGAMO_MIDPOINT, direction: SSW },
                 { location: 'JY 12', direction: W },
-                { location: 'JY 17', direction: SSW },
+                { location: 'JY 18', direction: SSW },
             ]}
         />
     );
 };
 
 const ChuoSobu = () => {
+    const YOYOGI_TURN = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'JB 11')),
+        scaleToUnitY(S, OFFSET * 2)
+    );
     return (
         <LinePath
             color="stroke-chuo-sobu"
             points={[
+                { location: 'JB 10', direction: SSW },
+                { location: YOYOGI_TURN, direction: SSE },
+                { location: 'JB 12', direction: E },
                 { location: 'JB 14', direction: NNE },
                 { location: 'JB 16', direction: NNE },
                 { location: 'JB 17', direction: E },
@@ -118,6 +125,15 @@ const SobuRapid = () => {
 
 const ChuoRapid = () => {
     const kanda = useSelector((state) => selectStopLocation(state, 'JC 02'));
+    const SENDAGAYA_TURN = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'JB 12')),
+        scaleToUnitY(S, OFFSET)
+    );
+    const YOYOGI_TURN = offsetCoordinates(
+        useSelector((state) => selectStopLocation(state, 'JB 11')),
+        scaleToUnitY(S, OFFSET * 2),
+        scale(WNW, OFFSET * 2.5)
+    );
     return (
         <LinePath
             color="stroke-chuo-rapid"
@@ -127,6 +143,9 @@ const ChuoRapid = () => {
                 { location: offsetCoordinates(kanda, { dy: OFFSET * -4 }), direction: NNW },
                 { location: 'JC 03', direction: W },
                 { location: 'JC 04', direction: SSW },
+                { location: SENDAGAYA_TURN, direction: W, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: YOYOGI_TURN, direction: NNW, radii: RADIUS + (OFFSET * 2) / 3 },
+                { location: 'JC 05', direction: NNE, radii: RADIUS + (OFFSET * 2) / 3 },
             ]}
         />
     );

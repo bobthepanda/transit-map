@@ -49,11 +49,11 @@ const addShinjuku = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'JB 10',
             { stationCode: 'S 01', strokeColor: 'stroke-shinjuku', hideText: true },
-            scale(ESE, OFFSET),
-            scale(NNE, OFFSET * 0.5)
+            scale(S, OFFSET),
+            scale(E, OFFSET * 0.5)
         )
     );
-    dispatch(offsetSingleStop('S 01', { stationCode: 'KO 01', hideText: true }, scale(SSW, OFFSET)));
+    dispatch(offsetSingleStop('S 01', { stationCode: 'KO 01', hideText: true }, scale(W, OFFSET)));
 
     dispatch(
         offsetEquallySpacedStops(
@@ -63,7 +63,6 @@ const addShinjuku = (dispatch: AppDispatch, getState: () => RootState) => {
                 { stationCode: 'JS 20', strokeColor: 'stroke-shonan-shinjuku', hideText: true },
                 { stationCode: 'JA 11', strokeColor: 'stroke-saikyo', hideText: true },
                 { stationCode: 'JC 05', strokeColor: 'stroke-chuo-rapid', hideText: true },
-                { stationCode: 'E 27', strokeColor: 'stroke-oedo', hideText: true },
             ],
             scale(WNW, OFFSET)
         )
@@ -71,11 +70,13 @@ const addShinjuku = (dispatch: AppDispatch, getState: () => RootState) => {
 
     dispatch(
         offsetSingleStop(
-            'E 27',
+            'JC 05',
             { stationCode: 'M 08', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.UP },
             scale(N, OFFSET)
         )
     );
+
+    dispatch(offsetSingleStop('JC 05', { stationCode: 'E 27', strokeColor: 'stroke-oedo', hideText: true }, scale(W, OFFSET)));
 
     dispatch(
         offsetSingleStop('M 08', { stationCode: 'E 01', strokeColor: 'stroke-oedo', textAlignment: TextAlignment.UP }, scale(N, OFFSET * 3))
