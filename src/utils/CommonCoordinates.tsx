@@ -7,7 +7,7 @@ export const A0_HEIGHT = 3370;
 export const WIDTH = A0_WIDTH * 3;
 export const HEIGHT = A0_HEIGHT * 3;
 
-export const MINOR_LINE = 12;
+export const MINOR_LINE = 16;
 export const MAJOR_LINE = 12 * MINOR_LINE;
 export const OFFSET = MINOR_LINE * 2;
 

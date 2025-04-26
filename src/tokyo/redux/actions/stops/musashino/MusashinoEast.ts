@@ -204,7 +204,7 @@ const fillInKeiyoToMusashino = (dispatch: AppDispatch) => {
                     },
                 },
             ],
-            scaleToUnitY(SSE, MAJOR_LINE + OFFSET * 2)
+            scaleToUnitY(SSE, MAJOR_LINE)
         )
     );
 

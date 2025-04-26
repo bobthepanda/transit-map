@@ -1,6 +1,20 @@
 import { MAJOR_LINE } from '../../../../../map/GridLines';
 import { OFFSET } from '../../../../../utils/CommonCoordinates';
-import { ESE, N, offsetCoordinates, S, scale, scaleToUnitX, scaleToUnitY, SSE, SSW, W, WNW } from '../../../../../utils/PathUtils';
+import {
+    ESE,
+    N,
+    NNE,
+    NNW,
+    offsetCoordinates,
+    S,
+    scale,
+    scaleToUnitX,
+    scaleToUnitY,
+    SSE,
+    SSW,
+    W,
+    WNW,
+} from '../../../../../utils/PathUtils';
 import { addStopDefinition, selectIntersection, selectMidpoint, TextAlignment } from '../../../slice/StopLocation';
 import { offsetSingleStop, offsetStopGroup } from '../../../slice/StopLocationActions';
 import { AppDispatch, RootState } from '../../../store';
@@ -114,16 +128,19 @@ const addKudanshita = (dispatch: AppDispatch, getState: () => RootState) => {
     );
 };
 
-const addYotsuya = (dispatch: AppDispatch) => {
+const addYotsuya = (dispatch: AppDispatch, getState: () => RootState) => {
+    const YOTSUYA_INTERSECTION = selectIntersection(getState(), 'N 07', NNW, 'JB 15', SSW);
+
     dispatch(
-        offsetStopGroup(
-            [
-                { stationCode: 'N 09', newStationData: { stationCode: 'N 08', strokeColor: 'stroke-namboku', hideText: true } },
-                { stationCode: 'JB 15', newStationData: { stationCode: 'JB 14', strokeColor: 'stroke-chuo-sobu', hideText: true } },
-            ],
-            scaleToUnitY(SSW, OFFSET * 4)
-        )
+        addStopDefinition({
+            stationCode: 'JB 14',
+            strokeColor: 'stroke-chuo-sobu',
+            hideText: true,
+            location: offsetCoordinates(YOTSUYA_INTERSECTION, scaleToUnitY(NNE, OFFSET * 2)),
+        })
     );
+    dispatch(offsetSingleStop('JB 14', { stationCode: 'N 08', strokeColor: 'stroke-namboku', hideText: true }, scale(WNW, OFFSET)));
+
     dispatch(offsetSingleStop('JB 14', { stationCode: 'JC 04', strokeColor: 'stroke-chuo-rapid', hideText: true }, scale(ESE, OFFSET)));
     dispatch(
         offsetSingleStop(

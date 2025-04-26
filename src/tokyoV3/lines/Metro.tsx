@@ -6,7 +6,7 @@ import { OFFSET } from '../../utils/CommonCoordinates';
 import { E, N, NNE, NNW, offsetCoordinates, RADIUS, S, scaleToUnitX, scaleToUnitY, SSE, SSW, W } from '../../utils/PathUtils';
 
 const MetroPath = (props: ReduxPathParameters) => {
-    const newProps = { strokeWidth: 'stroke-[16pt]', ...props };
+    const newProps = { strokeWidth: 'stroke-[20pt]', ...props };
     return <LinePath {...newProps} />;
 };
 
@@ -194,8 +194,7 @@ const Tozai = () => {
         <MetroPath
             color="stroke-tozai"
             points={[
-                { location: 'T 03', direction: SSE },
-                { location: 'T 04', direction: E },
+                { location: 'T 03', direction: E },
                 { location: 'T 06', direction: SSE },
                 { location: 'T 07', direction: E },
                 { location: 'T 08', direction: SSE },

@@ -96,7 +96,7 @@ const addSugamo = (dispatch: AppDispatch, getState: () => RootState) => {
         addStopDefinition({
             stationCode: 'JY 12',
             strokeColor: 'stroke-yamanote',
-            hideText: true,
+            textAlignment: TextAlignment.DOWN,
             location: selectMidpoint(getState(), 'JY 11', 'JY 13'),
         })
     );
@@ -106,13 +106,13 @@ const addSugamo = (dispatch: AppDispatch, getState: () => RootState) => {
 
 const addIkebukuro = (dispatch: AppDispatch, getState: () => RootState) => {
     const JK_38 = selectStopLocation(getState(), 'JK 38');
-    const JY_09 = selectStopLocation(getState(), 'JY 07');
+    const VERTICAL_COORDINATE = selectStopLocation(getState(), 'JY 06');
     dispatch(
         addStopDefinition({
             stationCode: 'JY 13',
             location: findIntersectionFromSlopes({
                 start: { location: offsetCoordinates(JK_38, scaleToUnitY(S, MAJOR_LINE)), direction: SSW },
-                end: { location: JY_09, direction: W },
+                end: { location: VERTICAL_COORDINATE, direction: W },
             }),
             strokeColor: 'stroke-yamanote',
             hideText: true,
@@ -168,8 +168,8 @@ const fillInMusashino = (dispatch: AppDispatch, getState: () => RootState) => {
             textAlignment: TextAlignment.ENE,
             location: offsetCoordinates(
                 selectIntersection(getState(), 'JY 12', S, 'M 25', E),
-                scaleToUnitY(WSW, (MAJOR_LINE * 2) / 3),
-                scaleToUnitY(NNW, OFFSET * 2)
+                scaleToUnitY(WSW, (MAJOR_LINE * 2) / 3 + OFFSET * 1.5),
+                scaleToUnitY(SSE, OFFSET)
             ),
         })
     );
@@ -178,7 +178,7 @@ const fillInMusashino = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'M 24',
             { stationCode: 'M 23', strokeColor: 'stroke-marunouchi', textAlignment: TextAlignment.ENE },
-            scaleToUnitY(SSE, MAJOR_LINE - OFFSET * 1.5)
+            scaleToUnitY(SSE, MAJOR_LINE - OFFSET)
         )
     );
 };

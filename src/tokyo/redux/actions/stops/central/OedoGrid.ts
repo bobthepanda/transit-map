@@ -142,7 +142,7 @@ const addOkachimachi = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'E 09',
             { stationCode: 'G 15', strokeColor: 'stroke-ginza', textAlignment: TextAlignment.WNW },
-            scaleToUnitX(WNW, OFFSET * 4)
+            scaleToUnitX(WNW, OFFSET * 3)
         )
     );
 

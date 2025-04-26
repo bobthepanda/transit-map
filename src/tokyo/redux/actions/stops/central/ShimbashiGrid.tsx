@@ -32,7 +32,7 @@ const addShimbashi = (dispatch: AppDispatch) => {
                     newStationData: { stationCode: 'G 08', strokeColor: 'stroke-ginza', hideText: true },
                 },
             ],
-            scaleToUnitX(SSW, MAJOR_LINE * 1.75)
+            scaleToUnitX(SSW, MAJOR_LINE * 2.5)
         )
     );
 

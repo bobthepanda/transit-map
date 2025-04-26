@@ -40,7 +40,7 @@ const addShinjuku = (dispatch: AppDispatch, getState: () => RootState) => {
         addStopDefinition({
             stationCode: 'JB 10',
             strokeColor: 'stroke-chuo-sobu',
-            location: offsetCoordinates(SHINJUKU_INTERSECTION, scaleToUnitY(SSW, MAJOR_LINE * 0.5)),
+            location: offsetCoordinates(SHINJUKU_INTERSECTION, scaleToUnitY(SSW, OFFSET * 2)),
             hideText: true,
         })
     );
@@ -144,7 +144,7 @@ const fillInSakura = (dispatch: AppDispatch, getState: () => RootState) => {
             startCount: 26,
             endCount: 28,
             textAlignments: [TextAlignment.ESE],
-            offsets: [scaleToUnitY(SSW, OFFSET * 2)],
+            offsets: [scaleToUnitY(SSW, OFFSET * 1.25)],
         })
     );
 

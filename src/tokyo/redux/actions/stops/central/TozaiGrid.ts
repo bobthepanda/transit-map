@@ -28,11 +28,7 @@ const addOtemachi = (dispatch: AppDispatch, getState: () => RootState) => {
         )
     );
     dispatch(
-        offsetSingleStop(
-            'M 18',
-            { stationCode: 'C 11', strokeColor: 'stroke-chiyoda', hideText: true },
-            scaleToUnitX(NNW, MAJOR_LINE * 0.5)
-        )
+        offsetSingleStop('M 18', { stationCode: 'C 11', strokeColor: 'stroke-chiyoda', hideText: true }, scaleToUnitX(NNW, OFFSET * 2))
     );
     dispatch(offsetSingleStop('C 11', { stationCode: 'I 09', strokeColor: 'stroke-mita', hideText: true }, scale(WNW, OFFSET)));
 

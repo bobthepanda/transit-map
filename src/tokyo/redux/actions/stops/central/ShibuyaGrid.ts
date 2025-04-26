@@ -41,7 +41,7 @@ const addYoyogi = (dispatch: AppDispatch, getState: () => RootState) => {
             'JB 11',
             { stationCode: 'JB 12', strokeColor: 'stroke-chuo-sobu', textAlignment: TextAlignment.UP },
             scaleToUnitY(SSE, MAJOR_LINE * 0.5 + OFFSET),
-            scaleToUnitX(E, MAJOR_LINE * 1.5)
+            scaleToUnitX(E, MAJOR_LINE)
         )
     );
 
@@ -49,7 +49,7 @@ const addYoyogi = (dispatch: AppDispatch, getState: () => RootState) => {
         offsetSingleStop(
             'JB 12',
             { stationCode: 'JB 13', strokeColor: 'stroke-chuo-sobu', textAlignment: TextAlignment.UP },
-            scaleToUnitX(E, MAJOR_LINE * 2)
+            scaleToUnitX(E, MAJOR_LINE)
         )
     );
 
